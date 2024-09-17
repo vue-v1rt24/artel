@@ -1,9 +1,21 @@
 import { requestFetch } from '../utils/requestFetch';
 import { getCatsQuery } from '../queries/getCats.queries';
-import { TypeCatsQuery } from '../types/getCatsMenu.types';
+import { TypeCatsStocksQuery } from '../types/getCatsMenu.types';
 
 export default defineEventHandler(async (event) => {
-  const cats = (await requestFetch(getCatsQuery)) as TypeCatsQuery;
+  const catsStocks = (await requestFetch(getCatsQuery)) as TypeCatsStocksQuery;
 
-  return cats.data.productCategories.nodes;
+  //
+  const stockInMenu = catsStocks.data.stocks.nodes.filter((s) => s.stocksFields.stockVMenyu)[0];
+
+  const stock = {
+    slug: stockInMenu?.slug,
+    image: stockInMenu?.stocksFields.stockIzobrazhenie785.node.mediaItemUrl,
+  };
+
+  //
+  return {
+    cats: catsStocks.data.productCategories.nodes,
+    stock,
+  };
 });

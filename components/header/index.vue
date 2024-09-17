@@ -2,7 +2,7 @@
 const route = useRoute();
 const btnActive = ref(false);
 
-const { data: cats, error } = await useFetch('/api/getCats');
+const { data: catsStock, error } = await useFetch('/api/getCats');
 
 if (error.value) {
   throw createError({
@@ -11,7 +11,7 @@ if (error.value) {
   });
 }
 
-// console.log(cats.value);
+console.log(catsStock.value);
 </script>
 
 <template>
@@ -61,7 +61,12 @@ if (error.value) {
     </div>
 
     <!--  -->
-    <HeaderModalMenu v-if="btnActive && cats?.length" :cats />
+    <HeaderModalMenu
+      v-if="catsStock?.cats?.length"
+      :cats="catsStock.cats"
+      :stock="catsStock.stock"
+      :is-visible="btnActive"
+    />
   </header>
 </template>
 

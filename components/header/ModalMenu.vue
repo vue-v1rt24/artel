@@ -1,13 +1,22 @@
 <script setup lang="ts">
-const props = defineProps<{
+const { cats, stock, isVisible } = defineProps<{
   cats: {
     databaseId: number;
     name: string;
     slug: string;
+    image: {
+      mediaItemUrl: string;
+    };
   }[];
+  stock?: {
+    image: string;
+    slug: string;
+  };
+  isVisible: boolean;
 }>();
 
-console.log(props.cats);
+// console.log(cats);
+// console.log(stock);
 </script>
 
 <template>
@@ -20,6 +29,19 @@ console.log(props.cats);
             class="modal_menu__item_link"
           >
             <span class="cat__title">{{ cat.name }}</span>
+
+            <NuxtImg
+              :src="cat.image.mediaItemUrl"
+              format="avif, webp"
+              densities="x1"
+              class="modal_menu__item_img"
+            />
+          </NuxtLink>
+        </li>
+
+        <li v-if="stock?.image" class="modal_menu__stock">
+          <NuxtLink :to="`/stocks/${stock.slug}`">
+            <NuxtImg :src="stock.image" />
           </NuxtLink>
         </li>
       </ul>
@@ -40,6 +62,9 @@ console.log(props.cats);
 
 /*  */
 .modal_menu__list {
+  display: flex;
+  align-items: center;
+  column-gap: 30px;
 }
 
 /*  */
@@ -60,5 +85,19 @@ console.log(props.cats);
   line-height: 90%;
   color: var(--main-green);
   padding: 42px;
+}
+
+/*  */
+.modal_menu__item_img {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  mix-blend-mode: darken;
+}
+
+/*  */
+.modal_menu__stock {
+  border-radius: 10px;
+  overflow: hidden;
 }
 </style>

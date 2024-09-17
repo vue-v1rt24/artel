@@ -5,6 +5,22 @@ export const getCatsQuery = `
           databaseId
           name
           slug
+          image {
+            mediaItemUrl
+          }
+        }
+      }
+      stocks {
+        nodes {
+          stocksFields {
+            stockIzobrazhenie785 {
+              node {
+                mediaItemUrl
+              }
+            }
+            stockVMenyu
+          }
+          slug
         }
       }
     }

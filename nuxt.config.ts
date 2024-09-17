@@ -22,6 +22,8 @@ export default defineNuxtConfig({
     },
   },
 
+  modules: ['@nuxt/image'],
+
   experimental: {
     typedPages: true,
   },
@@ -31,7 +33,13 @@ export default defineNuxtConfig({
     minify: true,
   },
 
+  // Настройка модуля @nuxt/image
+  image: {
+    domains: [process.env.NUXT_API_URL || 'http://176.53.163.5:5000'],
+  },
+
   //
   compatibilityDate: '2024-04-03',
+
   devtools: { enabled: true },
 });
