@@ -1,0 +1,21 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@fancyapps/ui": "^5.0.36",
+    "gsap": "^3.12.5",
+    "maska": "^3.0.2",
+    "nuxt": "^3.13.0",
+    "swiper": "^11.1.14",
+    "vue": "latest",
+    "vue-router": "latest"
+  }
+}

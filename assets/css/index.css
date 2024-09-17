@@ -1,0 +1,26 @@
+@import url(reset.css);
+@import url(variables.css);
+
+/*  */
+
+body {
+  min-width: 360px;
+  font-family: var(--font-family);
+  font-size: 20px;
+  color: var(--main-green);
+  line-height: 140%;
+  background-color: white;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1600px;
+  box-sizing: content-box;
+  padding: 0 40px;
+  margin: 0 auto;
+}
+
+/*  */
+a {
+  text-decoration: none;
+}

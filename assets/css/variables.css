@@ -1,0 +1,17 @@
+@import url(fonts.css);
+
+:root {
+  --main-green: #172d2d;
+  --main--sand: #fdfadf;
+  --light-gray: #e4e6e6;
+  --medium-green: #5b6b6b;
+  --low-green: #f2f3f3;
+  --green-50: #f2f8f6;
+  --gray-text: #b9c0c0;
+  --green-akcent: #00573f;
+
+  --font-family: 'Geologica', sans-serif;
+  --second-family: 'Federov2', sans-serif;
+
+  --transition-speed: 0.3s;
+}
