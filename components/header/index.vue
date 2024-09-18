@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const route = useRoute();
-const btnActive = ref(false);
+const { menu } = useMenus();
+const isOpenMenu = useIsOpenMenu();
 
 const { data: catsStock, error } = await useFetch('/api/getCats');
 
@@ -10,14 +11,13 @@ if (error.value) {
     statusMessage: 'Категории не найдены',
   });
 }
-
-console.log(catsStock.value);
 </script>
 
 <template>
   <header class="header">
     <HeaderTop />
 
+    <!--  -->
     <div class="container">
       <div class="header_wrap">
         <!--  -->
@@ -32,8 +32,8 @@ console.log(catsStock.value);
         <!--  -->
         <button
           type="button"
-          :class="['btn_catalog', { active: btnActive }]"
-          @click="btnActive = !btnActive"
+          :class="['btn_catalog', { active: isOpenMenu }]"
+          @click="isOpenMenu = !isOpenMenu"
         >
           <span class="btn_catalog__lines"></span>
           <span>Каталог</span>
@@ -41,17 +41,8 @@ console.log(catsStock.value);
 
         <!--  -->
         <ul class="menu">
-          <li>
-            <NuxtLink to="/about">О компании</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/individual-order">Индивидуальный заказ</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/remont-izdeliy">Ремонт изделий</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/lombard">Ломбард</NuxtLink>
+          <li v-for="{ title, link } in menu">
+            <NuxtLink :to="link">{{ title }}</NuxtLink>
           </li>
         </ul>
 
@@ -65,7 +56,6 @@ console.log(catsStock.value);
       v-if="catsStock?.cats?.length"
       :cats="catsStock.cats"
       :stock="catsStock.stock"
-      :is-visible="btnActive"
     />
   </header>
 </template>

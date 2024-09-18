@@ -1,7 +1,9 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>Главная</div>
+  <div class="container">
+    <HomeSliderStocks />
+  </div>
 </template>
 
 <style lang="css" scoped></style>

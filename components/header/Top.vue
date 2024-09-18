@@ -1,24 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const { topMenu } = useMenus();
+</script>
 
 <template>
   <div class="top_header_bx">
     <div class="container">
       <div class="top_header">
         <ul class="top_header__list">
-          <li>
-            <NuxtLink to="/news">Новости</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/stocks">Акции</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/reviews">Отзывы и благодарности</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/partners">Партнеры</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/contacts">Контакты</NuxtLink>
+          <li v-for="menu in topMenu" :key="menu.link">
+            <NuxtLink :to="menu.link">{{ menu.title }}</NuxtLink>
           </li>
         </ul>
 

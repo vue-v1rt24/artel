@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const { cats, stock, isVisible } = defineProps<{
+const isOpenMenu = useIsOpenMenu();
+
+const { cats, stock } = defineProps<{
   cats: {
     databaseId: number;
     name: string;
@@ -12,15 +14,13 @@ const { cats, stock, isVisible } = defineProps<{
     image: string;
     slug: string;
   };
-  isVisible: boolean;
 }>();
-
-// console.log(cats);
-// console.log(stock);
 </script>
 
 <template>
-  <div class="modal_menu">
+  <div v-show="isOpenMenu" class="back_fon"></div>
+
+  <div :class="['modal_menu', { open: isOpenMenu }]">
     <div class="container">
       <ul class="modal_menu__list">
         <li v-for="cat in cats" :key="cat.databaseId" class="modal_menu__item">
@@ -41,7 +41,7 @@ const { cats, stock, isVisible } = defineProps<{
 
         <li v-if="stock?.image" class="modal_menu__stock">
           <NuxtLink :to="`/stocks/${stock.slug}`">
-            <NuxtImg :src="stock.image" />
+            <NuxtImg :src="stock.image" format="avif, webp" densities="x1" />
           </NuxtLink>
         </li>
       </ul>
@@ -56,15 +56,43 @@ const { cats, stock, isVisible } = defineProps<{
   left: 0;
   width: 100%;
   height: 565px;
-  background-color: rgba(156, 0, 0, 0.116);
+  background-color: white;
   padding-top: 190px;
+  translate: 0 -100%;
+  opacity: 0;
+  transition: translate var(--transition-speed), opacity var(--transition-speed);
+  overflow: hidden;
+}
+
+.modal_menu.open {
+  translate: 0;
+  opacity: 1;
+}
+
+/*  */
+.back_fon {
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(24.5px);
+  /* background-color: rgba(0, 0, 0, 0.1); */
+  background-color: aqua;
 }
 
 /*  */
 .modal_menu__list {
+  opacity: 0;
+  translate: 0 30px;
+  transition: translate var(--transition-speed), opacity var(--transition-speed);
+  transition-delay: var(--transition-speed);
+
   display: flex;
   align-items: center;
   column-gap: 30px;
+}
+
+.modal_menu.open .modal_menu__list {
+  opacity: 1;
+  translate: 0;
 }
 
 /*  */
@@ -99,5 +127,9 @@ const { cats, stock, isVisible } = defineProps<{
 .modal_menu__stock {
   border-radius: 10px;
   overflow: hidden;
+}
+
+.modal_menu__stock img {
+  max-width: none;
 }
 </style>
