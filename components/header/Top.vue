@@ -24,9 +24,18 @@ const { topMenu } = useMenus();
 <style lang="css" scoped>
 .top_header_bx {
   position: relative;
-  z-index: 10;
+  z-index: 11;
   background-color: var(--green-50);
   padding: 20px 0;
+
+  /*  */
+  @media (max-width: 1200px) {
+    padding: 18px 0;
+  }
+
+  @media (max-width: 576px) {
+    padding: 14px 0;
+  }
 }
 
 /*  */
@@ -42,15 +51,38 @@ const { topMenu } = useMenus();
   align-items: center;
   column-gap: 40px;
 
+  /*  */
+  @media (max-width: 1280px) {
+    column-gap: 32px;
+  }
+
+  @media (max-width: 1200px) {
+    display: none;
+  }
+
+  /*  */
   a {
     font-weight: 300;
     font-size: 17px;
     line-height: 90%;
     color: var(--main-green);
+
+    /*  */
+    @media (max-width: 1366px) {
+      font-size: 16px;
+    }
   }
 }
 
 /*  */
+.top_header__tel_email {
+  @media (max-width: 1200px) {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
 .top_header__tel_email a {
   font-weight: 400;
   font-size: 18px;
@@ -60,6 +92,20 @@ const { topMenu } = useMenus();
 
   &:nth-child(1) {
     margin-right: 62px;
+
+    /*  */
+    @media (max-width: 1200px) {
+      margin-right: 0;
+    }
+  }
+
+  /*  */
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 14px;
   }
 }
 </style>

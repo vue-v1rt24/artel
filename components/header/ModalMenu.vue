@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const viewport = useViewport();
 const isOpenMenu = useIsOpenMenu();
 
 const { cats, stock } = defineProps<{
@@ -18,7 +19,7 @@ const { cats, stock } = defineProps<{
 </script>
 
 <template>
-  <div v-show="isOpenMenu" class="back_fon"></div>
+  <div :class="['back_fon', isOpenMenu && 'active']"></div>
 
   <div :class="['modal_menu', { open: isOpenMenu }]">
     <div class="container">
@@ -39,7 +40,10 @@ const { cats, stock } = defineProps<{
           </NuxtLink>
         </li>
 
-        <li v-if="stock?.image" class="modal_menu__stock">
+        <li
+          v-if="viewport.isGreaterOrEquals('screen1280') && stock?.image"
+          class="modal_menu__stock"
+        >
           <NuxtLink :to="`/stocks/${stock.slug}`">
             <NuxtImg :src="stock.image" format="avif, webp" densities="x1" />
           </NuxtLink>
@@ -54,6 +58,7 @@ const { cats, stock } = defineProps<{
   position: absolute;
   top: 68px;
   left: 0;
+  z-index: 10;
   width: 100%;
   height: 565px;
   background-color: white;
@@ -62,6 +67,16 @@ const { cats, stock } = defineProps<{
   opacity: 0;
   transition: translate var(--transition-speed), opacity var(--transition-speed);
   overflow: hidden;
+
+  /*  */
+  @media (max-width: 1366px) {
+    top: 50px;
+    height: 460px;
+  }
+
+  @media (max-width: 1200px) {
+    top: 30px;
+  }
 }
 
 .modal_menu.open {
@@ -74,8 +89,16 @@ const { cats, stock } = defineProps<{
   position: fixed;
   inset: 0;
   backdrop-filter: blur(24.5px);
-  /* background-color: rgba(0, 0, 0, 0.1); */
-  background-color: aqua;
+  background-color: rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 10;
+  transition: opacity var(--transition-speed), opacity var(--transition-speed);
+}
+
+.back_fon.active {
+  opacity: 1;
+  visibility: visible;
 }
 
 /*  */
@@ -102,6 +125,12 @@ const { cats, stock } = defineProps<{
   height: 315px;
   background-color: var(--green-50);
   border-radius: 20px;
+
+  /*  */
+  @media (max-width: 1280px) {
+    width: 100%;
+    height: 220px;
+  }
 }
 
 .modal_menu__item_link {
@@ -121,6 +150,12 @@ const { cats, stock } = defineProps<{
   bottom: 20px;
   right: 20px;
   mix-blend-mode: darken;
+
+  /*  */
+  @media (max-width: 1280px) {
+    bottom: 10px;
+    right: 10px;
+  }
 }
 
 /*  */

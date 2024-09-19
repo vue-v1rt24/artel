@@ -2,6 +2,7 @@
 const route = useRoute();
 const { menu } = useMenus();
 const isOpenMenu = useIsOpenMenu();
+const viewport = useViewport();
 
 const { data: catsStock, error } = await useFetch('/api/getCats');
 
@@ -36,7 +37,8 @@ if (error.value) {
           @click="isOpenMenu = !isOpenMenu"
         >
           <span class="btn_catalog__lines"></span>
-          <span>Каталог</span>
+          <span v-if="viewport.isGreaterOrEquals('screen1200')">Каталог</span>
+          <span v-if="viewport.isLessThan('screen1200')">Меню</span>
         </button>
 
         <!--  -->
@@ -68,11 +70,30 @@ if (error.value) {
 /*  */
 .header_wrap {
   position: relative;
-  z-index: 10;
+  z-index: 11;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 26px 0;
+  padding-top: 26px;
+
+  /*  */
+  @media (max-width: 576px) {
+    padding-top: 14px;
+  }
+}
+
+/*  */
+.logo {
+  flex-shrink: 0;
+
+  /*  */
+  @media (max-width: 1366px) {
+    width: 225px;
+  }
+
+  @media (max-width: 576px) {
+    width: 150px;
+  }
 }
 
 /*  */
@@ -85,11 +106,34 @@ if (error.value) {
   background-color: transparent;
   border: 2px solid var(--main-green);
   border-radius: 16px;
+  flex-shrink: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   column-gap: 14px;
   transition: color var(--transition-speed), background-color var(--transition-speed);
+
+  /*  */
+  @media (max-width: 1280px) {
+    margin: 0 75px 0 62px;
+  }
+
+  @media (max-width: 1250px) {
+    margin: 0 50px 0 50px;
+  }
+
+  @media (max-width: 1200px) {
+    width: 152px;
+    margin: 0;
+  }
+
+  @media (max-width: 576px) {
+    width: 114px;
+    height: 44px;
+    font-size: 14px;
+    column-gap: 10px;
+    border-radius: 12px;
+  }
 }
 
 .btn_catalog:hover {
@@ -108,8 +152,14 @@ if (error.value) {
   height: 3px;
   background-color: var(--medium-green);
   border-radius: 6px;
-  rotate: 0;
+  rotate: 0deg;
   transition: rotate var(--transition-speed);
+
+  /*  */
+  @media (max-width: 576px) {
+    width: 18px;
+    height: 2px;
+  }
 }
 
 .btn_catalog.active .btn_catalog__lines {
@@ -126,7 +176,7 @@ if (error.value) {
   display: block;
   border-radius: 6px;
 
-  rotate: 0;
+  rotate: 0deg;
   translate: 0;
   opacity: 1;
   transition: rotate var(--transition-speed), translate var(--transition-speed),
@@ -134,11 +184,11 @@ if (error.value) {
 }
 
 .btn_catalog__lines::before {
-  top: -6px;
+  top: -9px;
 }
 
 .btn_catalog__lines::after {
-  top: 6px;
+  top: 9px;
 }
 
 .btn_catalog.active .btn_catalog__lines::before {
@@ -150,6 +200,20 @@ if (error.value) {
   opacity: 0;
 }
 
+@media (max-width: 576px) {
+  .btn_catalog__lines::before {
+    top: -6px;
+  }
+
+  .btn_catalog__lines::after {
+    top: 6px;
+  }
+
+  .btn_catalog.active .btn_catalog__lines::before {
+    translate: 0px 6px;
+  }
+}
+
 /*  */
 
 .menu {
@@ -158,6 +222,11 @@ if (error.value) {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  /*  */
+  @media (max-width: 1200px) {
+    display: none;
+  }
 }
 
 .menu a {
@@ -180,6 +249,11 @@ if (error.value) {
   border-radius: 16px;
   border: none;
   transition: color var(--transition-speed), background-color var(--transition-speed);
+
+  /*  */
+  @media (max-width: 1600px) {
+    display: none;
+  }
 }
 
 .contact_us:hover {
