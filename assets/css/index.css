@@ -34,3 +34,80 @@ body.open_menu {
 a {
   text-decoration: none;
 }
+
+/*  */
+.h2_56 {
+  font-family: var(--second-family);
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 110%;
+  color: var(--main-green);
+
+  /*  */
+  @media (max-width: 1280px) {
+    font-size: 48px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 40px;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 22px;
+  }
+}
+
+.h2_72 {
+  font-family: var(--second-family);
+  font-weight: 400;
+  font-size: 72px;
+  line-height: 100%;
+  color: var(--main-green);
+
+  /*  */
+  @media (max-width: 1280px) {
+    font-size: 60px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 48px;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 26px;
+  }
+}
+
+.h3_32 {
+  font-family: var(--font-family);
+  font-weight: 300;
+  font-size: 32px;
+  line-height: 130%;
+  color: var(--main-green);
+
+  /*  */
+  @media (max-width: 1280px) {
+    font-size: 26px;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 18px;
+  }
+}
+
+.p_20 {
+  font-family: var(--font-family);
+  font-weight: 200;
+  font-size: 20px;
+  line-height: 140%;
+  color: var(--main-green);
+
+  /*  */
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 16px;
+  }
+}
