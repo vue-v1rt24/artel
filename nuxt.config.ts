@@ -22,6 +22,10 @@ export default defineNuxtConfig({
     },
   },
 
+  routeRules: {
+    '/catalog': { redirect: '/catalog/serebro' },
+  },
+
   modules: ['@nuxt/image', 'nuxt-viewport'],
 
   experimental: {

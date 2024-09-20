@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>Категории</div>
+  <div>Каталог</div>
 </template>
 
 <style lang="css" scoped></style>

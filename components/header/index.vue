@@ -4,14 +4,17 @@ const { menu } = useMenus();
 const isOpenMenu = useIsOpenMenu();
 const viewport = useViewport();
 
-const { data: catsStock, error } = await useFetch('/api/getCats');
-
-if (error.value) {
-  throw createError({
-    statusCode: 400,
-    statusMessage: 'Категории не найдены',
-  });
-}
+//
+watch(
+  () => isOpenMenu.value,
+  (isOpenMenu) => {
+    if (isOpenMenu) {
+      document.body.classList.add('open_menu');
+    } else {
+      document.body.classList.remove('open_menu');
+    }
+  },
+);
 </script>
 
 <template>
@@ -54,11 +57,7 @@ if (error.value) {
     </div>
 
     <!--  -->
-    <HeaderModalMenu
-      v-if="catsStock?.cats?.length"
-      :cats="catsStock.cats"
-      :stock="catsStock.stock"
-    />
+    <HeaderModalMenu />
   </header>
 </template>
 
@@ -193,7 +192,7 @@ if (error.value) {
 
 .btn_catalog.active .btn_catalog__lines::before {
   rotate: 90deg;
-  translate: 0px 7px;
+  translate: 0px 9px;
 }
 
 .btn_catalog.active .btn_catalog__lines::after {
