@@ -1,15 +1,23 @@
 <script setup lang="ts">
 import Swiper from 'swiper';
+import { Autoplay } from 'swiper/modules';
+
 import 'swiper/css';
+import 'swiper/css/autoplay';
 
 //
-const { data, error } = await useFetch('/api/getImageOffSite');
-console.log(data.value);
+const { data: sliders, error } = await useFetch('/api/getImageOffSite');
+console.log(sliders.value);
 
 //
 onMounted(() => {
   const swiper = new Swiper('.off_slider', {
+    modules: [Autoplay],
     direction: 'vertical',
+    autoplay: {
+      delay: 1000,
+    },
+    loop: true,
   });
 });
 </script>
@@ -17,9 +25,9 @@ onMounted(() => {
 <template>
   <div class="off_slider swiper">
     <div class="swiper-wrapper">
-      <div class="swiper-slide">Slide 1</div>
-      <div class="swiper-slide">Slide 2</div>
-      <div class="swiper-slide">Slide 3</div>
+      <div v-for="slider in sliders" :key="slider.id" class="swiper-slide">
+        <NuxtImg :src="slider.img" densities="x1" format="avif, webp" />
+      </div>
     </div>
   </div>
 </template>
