@@ -41,6 +41,7 @@ a {
   font-weight: 400;
   font-size: 56px;
   line-height: 110%;
+  text-wrap: pretty;
   color: var(--main-green);
 
   /*  */

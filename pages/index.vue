@@ -17,8 +17,17 @@ const { data: stocks } = await useFetch('/api/getStocksHome');
   margin-bottom: 150px;
 
   /*  */
+  @media (max-width: 1400px) {
+    margin-bottom: 140px;
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 100px;
+  }
+
   @media (max-width: 576px) {
     margin-top: 30px;
+    margin-bottom: 60px;
   }
 }
 </style>
