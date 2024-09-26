@@ -6,7 +6,9 @@ import 'swiper/css';
 import 'swiper/css/autoplay';
 
 //
-const { data: sliders, error } = await useFetch('/api/getImageOffSite');
+defineProps<{
+  sliders: { id: number; img: string }[];
+}>();
 
 //
 onMounted(() => {
@@ -17,7 +19,7 @@ onMounted(() => {
     centeredSlides: true,
     direction: 'vertical',
     autoplay: {
-      delay: 100000,
+      delay: 1000,
     },
     loop: true,
 

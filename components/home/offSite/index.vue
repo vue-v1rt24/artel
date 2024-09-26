@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const { data: sliders } = await useFetch('/api/getImageOffSite');
+</script>
 
 <template>
   <div class="off_site">
@@ -22,7 +24,8 @@
 
     <!--  -->
     <div class="off_site__right">
-      <HomeOffSiteSlider />
+      <HomeOffSiteSlider v-if="sliders?.length" :sliders />
+
       <NuxtImg
         src="/images/off-site.jpg"
         width="581"
