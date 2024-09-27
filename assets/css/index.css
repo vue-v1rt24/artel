@@ -5,12 +5,12 @@
 
 body {
   min-width: 360px;
-  height: 300vh;
   font-family: var(--font-family);
   font-size: 20px;
   color: var(--main-green);
   line-height: 140%;
   background-color: white;
+  padding-bottom: 100vh;
   overflow-x: hidden;
 }
 
@@ -111,4 +111,19 @@ a {
   @media (max-width: 576px) {
     font-size: 16px;
   }
+}
+
+/* Кнопки слайдера */
+.swiper-btn {
+  width: 62px;
+  height: 62px;
+  background-image: url('/images/arrow-slider-white-bg.svg');
+  opacity: 0.5;
+  cursor: pointer;
+  z-index: 1;
+  transition: opacity var(--transition-speed);
+}
+
+.swiper-btn:hover {
+  opacity: 1;
 }

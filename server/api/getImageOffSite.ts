@@ -1,7 +1,22 @@
 import { TypeOffSLider } from '../types/getImageOffSite.types';
 
-export default defineEventHandler(async (event) => {
-  const res = await $fetch<string>('http://176.53.163.5:5000/wp-json/artel/off-site');
+const isTypeOffSLider = (data: TypeOffSLider): data is TypeOffSLider => {
+  return typeof data[0].id === 'number';
+};
 
-  return JSON.parse(res) as TypeOffSLider;
+export default defineEventHandler(async (event) => {
+  const { apiUrl } = useRuntimeConfig();
+  let res: TypeOffSLider | undefined;
+
+  const data = await $fetch<string>(`${apiUrl}/artel/off-site`);
+
+  if (data) {
+    res = JSON.parse(data);
+
+    if (res && isTypeOffSLider(res)) {
+      return res;
+    }
+  }
+
+  return res;
 });

@@ -1,13 +1,32 @@
 <script setup lang="ts">
+import type { TypeHomeQueryTransform } from '~/types/pages/pageHome.types';
+
+// Получение акций
 const { data: stocks } = await useFetch('/api/getStocksHome');
+
+// Получение данных страницы
+const { data: home } = await useFetch<TypeHomeQueryTransform>('/api/pages/pageHome');
+
+// Получение данных раздела: Специальные предложения
+const { data: specials } = await useFetch('/api/getSpecialOffers');
+
+//
+useSeoMeta({
+  title: home.value?.seo.titleSeo,
+  description: home.value?.seo.descriptionSeo,
+});
 </script>
 
 <template>
   <div class="container">
+    <!-- Слайдер акций -->
     <SlidersStocks v-if="stocks?.length" :stocks class="slider_stocks" />
 
-    <!--  -->
-    <HomeOffSite />
+    <!-- Раздел: Официальный сайт магазина «Золотая Артель» -->
+    <HomeOffSite v-if="home?.offSite" :content="home.offSite" />
+
+    <!-- Раздел: Специальные предложения -->
+    <SlidersSpecialOffers v-if="specials?.length" :specials />
   </div>
 </template>
 

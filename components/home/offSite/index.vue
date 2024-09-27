@@ -1,30 +1,32 @@
 <script setup lang="ts">
 const { data: sliders } = await useFetch('/api/getImageOffSite');
+
+//
+defineProps<{
+  content: {
+    homeOffSiteZagolovok: string;
+    homeOffSitePodzagolovok: string;
+    homeOffSiteTekst1: string;
+    homeOffSiteTekst2: string;
+  };
+}>();
 </script>
 
 <template>
   <div class="off_site">
     <div class="off_site__left">
-      <h2 class="h2_56">Официальный сайт магазина «Золотая Артель»</h2>
+      <h2 class="h2_56">{{ content.homeOffSiteZagolovok }}</h2>
 
-      <h3 class="h3_32">Неповторимый стиль</h3>
+      <h3 class="h3_32">{{ content.homeOffSitePodzagolovok }}</h3>
 
-      <p class="p_20">
-        Мы рады познакомить Вас с авторскими изделиями, которые уже много лет притягивают к себе
-        взгляды любителей всего удивительного и уникального. Наши украшения и аксессуары – это
-        наполненные вдохновением ювелирные сокровища, воплощенные в сложные фантазийные формы.
-      </p>
+      <p class="p_20">{{ content.homeOffSiteTekst1 }}</p>
 
-      <p class="p_20">
-        Сияние драгоценных камней, блеск золота и серебра в исполнении ведущих производителей уже
-        много лет приносят радость своим обладателям, подчеркивают их индивидуальность и раскрывают
-        характер.
-      </p>
+      <p class="p_20">{{ content.homeOffSiteTekst2 }}</p>
     </div>
 
     <!--  -->
     <div class="off_site__right">
-      <HomeOffSiteSlider v-if="sliders?.length" :sliders />
+      <HomeOffSiteSlider v-if="sliders?.length && sliders.length > 7" :sliders />
 
       <NuxtImg
         src="/images/off-site.jpg"

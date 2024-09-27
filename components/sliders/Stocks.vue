@@ -22,6 +22,8 @@ onMounted(() => {
   const swiper = new Swiper('.swiper_stocks', {
     modules: [Navigation, Pagination],
 
+    lazyPreloaderClass: 'swiper_stocks__preloader',
+
     navigation: {
       nextEl: '.swiper-button-white-next',
       prevEl: '.swiper-button-white-prev',
@@ -44,6 +46,7 @@ onMounted(() => {
             :src="stock.img1600"
             format="avif, webp"
             densities="x1"
+            loading="lazy"
           />
 
           <NuxtImg
@@ -51,8 +54,13 @@ onMounted(() => {
             :src="stock.img688"
             format="avif, webp"
             densities="x1"
+            loading="lazy"
           />
         </NuxtLink>
+
+        <div class="swiper_stocks__preloader">
+          <UiPreloader />
+        </div>
       </div>
     </div>
 
@@ -71,6 +79,11 @@ onMounted(() => {
 </template>
 
 <style lang="css" scoped>
+.swiper_stocks__preloader {
+  height: 250px;
+}
+
+/*  */
 .swiper-slide img {
   border-radius: 10px;
 }
