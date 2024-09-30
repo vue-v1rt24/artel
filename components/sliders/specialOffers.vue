@@ -16,7 +16,13 @@ onMounted(() => {
   const swiper = new Swiper('.special_swiper', {
     modules: [Navigation, Pagination],
 
+    slidesPerView: 1,
+
+    spaceBetween: 100,
+
     loop: true,
+
+    speed: 1000,
 
     pagination: {
       el: '.swiper-special-pagination',
@@ -28,6 +34,8 @@ onMounted(() => {
       prevEl: '.swiper-special-button-prev',
     },
   });
+
+  //
 });
 </script>
 
@@ -49,21 +57,30 @@ onMounted(() => {
           />
 
           <!--  -->
-          <div class="special__info">
-            <div class="special__price">
-              {{ special.price }}
+          <div class="special__info_bx">
+            <div class="special__info">
+              <div class="special__price_bx">
+                <div class="special__price">
+                  {{ special.price }}
+                </div>
 
-              <div v-if="special.isOnSale" class="special_price__old">
-                <s>{{ special.regularPrice }}</s>
-                <div class="sale_text">Скидка 34%</div>
+                <div v-if="special.isOnSale" class="special_price__old_bx">
+                  <s class="special_price__old">{{ special.regularPrice }}</s>
+                  <div class="sale_text">Скидка 34%</div>
+                </div>
               </div>
+
+              <div class="name_product">{{ special.title }}</div>
             </div>
 
-            <div class="name_product">{{ special.title }}</div>
+            <!--  -->
+            <UiButton
+              width="278px"
+              height="91px"
+              title="Узнать подробнее"
+              class="special__info_btn"
+            />
           </div>
-
-          <!--  -->
-          <UiButtonDark title="Узнать подробнее" />
         </div>
       </div>
 
@@ -107,8 +124,71 @@ onMounted(() => {
   place-content: center;
 }
 
+/*  */
 .special_swiper__img {
   mix-blend-mode: darken;
+}
+
+/*  */
+.special__info_bx {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+/*  */
+.special__price_bx {
+  display: flex;
+  align-items: center;
+  column-gap: 24px;
+}
+
+.special__price {
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 100%;
+  color: var(--main-green);
+}
+
+.special_price__old_bx {
+  display: flex;
+  align-items: center;
+  column-gap: 24px;
+}
+
+.special_price__old {
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 100%;
+  color: var(--light-gray2);
+}
+
+.sale_text {
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 100%;
+  color: var(--main-green);
+  background: var(--main--sand);
+  border-radius: 20px;
+  padding: 8px 10px;
+}
+
+/*  */
+.name_product {
+  max-width: 345px;
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 140%;
+  color: var(--main-green);
+  margin-top: 24px;
+}
+
+/*  */
+.special__info_btn {
+  margin-top: auto;
 }
 
 /*  */
@@ -155,5 +235,19 @@ onMounted(() => {
   padding: 10px 22px;
 
   pointer-events: none;
+}
+
+/* Анимация изображения слайда */
+.special_swiper__img {
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.5s, opacity 0.5s;
+}
+
+.swiper-slide-active .special_swiper__img {
+  transform: scale(1);
+  opacity: 1;
+  transition: transform 1s, opacity 1s;
+  transition-delay: 0.15s;
 }
 </style>
