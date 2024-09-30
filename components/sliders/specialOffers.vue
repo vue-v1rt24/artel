@@ -61,12 +61,15 @@ onMounted(() => {
             <div class="special__info">
               <div class="special__price_bx">
                 <div class="special__price">
-                  {{ special.price }}
+                  {{ numberFormatter(+special.price) }}
                 </div>
 
                 <div v-if="special.isOnSale" class="special_price__old_bx">
-                  <s class="special_price__old">{{ special.regularPrice }}</s>
-                  <div class="sale_text">Скидка 34%</div>
+                  <s class="special_price__old">{{ numberFormatter(+special.regularPrice) }}</s>
+
+                  <div class="sale_text">
+                    Скидка {{ discountPercentage(+special.regularPrice, +special.salePrice) }}
+                  </div>
                 </div>
               </div>
 
@@ -88,6 +91,15 @@ onMounted(() => {
 
       <div class="swiper-btn swiper-special-button-prev"></div>
       <div class="swiper-btn swiper-special-button-next"></div>
+
+      <!--  -->
+      <UiButton
+        width="278px"
+        height="91px"
+        title="Узнать подробнее100"
+        class="special__info_btn100"
+      />
+      <!--  -->
     </div>
   </div>
 </template>
@@ -249,5 +261,12 @@ onMounted(() => {
   opacity: 1;
   transition: transform 1s, opacity 1s;
   transition-delay: 0.15s;
+}
+
+/* wwwwwwwwwwwwwww */
+.special__info_btn100 {
+  position: absolute;
+  bottom: 0;
+  z-index: 100;
 }
 </style>
