@@ -77,12 +77,7 @@ onMounted(() => {
             </div>
 
             <!--  -->
-            <UiButton
-              width="278px"
-              height="91px"
-              title="Узнать подробнее"
-              class="special__info_btn"
-            />
+            <UiButton width="278px" title="Узнать подробнее" class="special__info_btn" />
           </div>
         </div>
       </div>
@@ -91,15 +86,6 @@ onMounted(() => {
 
       <div class="swiper-btn swiper-special-button-prev"></div>
       <div class="swiper-btn swiper-special-button-next"></div>
-
-      <!--  -->
-      <UiButton
-        width="278px"
-        height="91px"
-        title="Узнать подробнее100"
-        class="special__info_btn100"
-      />
-      <!--  -->
     </div>
   </div>
 </template>
@@ -107,7 +93,16 @@ onMounted(() => {
 <style lang="css" scoped>
 .special {
   position: relative;
-  /* height: 864px; */
+  margin-bottom: 105px;
+
+  /*  */
+  @media (max-width: 768px) {
+    margin-bottom: 100px;
+  }
+
+  @media (max-width: 576px) {
+    margin-bottom: 60px;
+  }
 }
 
 /*  */
@@ -115,6 +110,15 @@ onMounted(() => {
   position: absolute;
   top: 10px;
   left: 0;
+
+  /*  */
+  @media (max-width: 768px) {
+    max-width: 300px;
+  }
+
+  @media (max-width: 576px) {
+    max-width: 150px;
+  }
 }
 
 /*  */
@@ -124,11 +128,40 @@ onMounted(() => {
   left: 50%;
   translate: -50% -50%;
   pointer-events: none;
+  z-index: -1;
+
+  /*  */
+  @media (max-width: 1280px) {
+    max-width: 720px;
+  }
+
+  @media (max-width: 768px) {
+    max-width: 550px;
+    margin-top: -75px;
+  }
+
+  @media (max-width: 576px) {
+    max-width: 280px;
+    margin-top: -65px;
+  }
 }
 
 /*  */
 .special_swiper {
   height: 864px;
+
+  /*  */
+  @media (max-width: 1280px) {
+    height: 808px;
+  }
+
+  @media (max-width: 768px) {
+    height: 760px;
+  }
+
+  @media (max-width: 576px) {
+    height: 513px;
+  }
 }
 
 .special_swiper .swiper-slide {
@@ -149,6 +182,11 @@ onMounted(() => {
   width: 100%;
   display: flex;
   justify-content: space-between;
+
+  /*  */
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 }
 
 /*  */
@@ -156,6 +194,11 @@ onMounted(() => {
   display: flex;
   align-items: center;
   column-gap: 24px;
+
+  /*  */
+  @media (max-width: 576px) {
+    column-gap: 12px;
+  }
 }
 
 .special__price {
@@ -163,12 +206,22 @@ onMounted(() => {
   font-size: 28px;
   line-height: 100%;
   color: var(--main-green);
+
+  /*  */
+  @media (max-width: 576px) {
+    font-size: 20px;
+  }
 }
 
 .special_price__old_bx {
   display: flex;
   align-items: center;
   column-gap: 24px;
+
+  /*  */
+  @media (max-width: 576px) {
+    width: 100%;
+  }
 }
 
 .special_price__old {
@@ -176,6 +229,11 @@ onMounted(() => {
   font-size: 24px;
   line-height: 100%;
   color: var(--light-gray2);
+
+  /*  */
+  @media (max-width: 576px) {
+    font-size: 16px;
+  }
 }
 
 .sale_text {
@@ -186,6 +244,12 @@ onMounted(() => {
   background: var(--main--sand);
   border-radius: 20px;
   padding: 8px 10px;
+
+  /*  */
+  @media (max-width: 576px) {
+    font-size: 12px;
+    margin-left: auto;
+  }
 }
 
 /*  */
@@ -194,13 +258,35 @@ onMounted(() => {
   font-weight: 300;
   font-size: 28px;
   line-height: 140%;
+  text-wrap: balance;
   color: var(--main-green);
   margin-top: 24px;
+
+  /*  */
+  @media (max-width: 768px) {
+    max-width: 100%;
+    font-size: 24px;
+    margin-bottom: 42px;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 18px;
+    margin: 12px 0 24px 0;
+  }
 }
 
 /*  */
 .special__info_btn {
   margin-top: auto;
+
+  /*  */
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+
+  @media (max-width: 576px) {
+    border-radius: 16px;
+  }
 }
 
 /*  */
@@ -211,6 +297,18 @@ onMounted(() => {
   width: 68px;
   height: 68px;
   z-index: 1;
+
+  /*  */
+  @media (max-width: 768px) {
+    width: 56px;
+    height: 56px;
+    background-size: 56px;
+    margin-top: -105px;
+  }
+
+  @media (max-width: 576px) {
+    display: none;
+  }
 }
 
 .swiper-special-button-prev {
@@ -247,6 +345,21 @@ onMounted(() => {
   padding: 10px 22px;
 
   pointer-events: none;
+
+  /*  */
+  @media (max-width: 1280px) {
+    top: 12px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+    padding: 8px 18px;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 15px;
+    padding: 6px 14px;
+  }
 }
 
 /* Анимация изображения слайда */
@@ -254,6 +367,17 @@ onMounted(() => {
   transform: scale(0);
   opacity: 0;
   transition: transform 0.5s, opacity 0.5s;
+
+  /*  */
+  @media (max-width: 768px) {
+    max-width: 380px;
+    margin-top: -168px;
+  }
+
+  @media (max-width: 576px) {
+    max-width: 230px;
+    margin-top: -140px;
+  }
 }
 
 .swiper-slide-active .special_swiper__img {
@@ -261,12 +385,5 @@ onMounted(() => {
   opacity: 1;
   transition: transform 1s, opacity 1s;
   transition-delay: 0.15s;
-}
-
-/* wwwwwwwwwwwwwww */
-.special__info_btn100 {
-  position: absolute;
-  bottom: 0;
-  z-index: 100;
 }
 </style>

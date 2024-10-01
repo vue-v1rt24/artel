@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const {
+  height = '91px',
   fontSize = '22px',
   textColor = 'white',
   textColorHover = 'white',
@@ -10,7 +11,7 @@ const {
   borderRadius = '20px',
 } = defineProps<{
   width: string;
-  height: string;
+  height?: string;
   title: string;
   fontSize?: string;
   textColor?: string;
@@ -40,11 +41,25 @@ const {
   scale: 1;
   transition: color var(--transition-speed), background-color var(--transition-speed),
     scale var(--transition-speed);
+
+  /*  */
+  @media (max-width: 768px) {
+    height: 76px;
+    font-size: 20px;
+  }
+
+  @media (max-width: 576px) {
+    height: 65px;
+    font-size: 18px;
+    border-radius: 16px;
+  }
 }
 
-.btn:hover {
-  color: v-bind(textColorHover);
-  background-color: v-bind(bgHover);
+@media (hover: hover) {
+  .btn:hover {
+    color: v-bind(textColorHover);
+    background-color: v-bind(bgHover);
+  }
 }
 
 .btn:active {
