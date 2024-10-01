@@ -12,6 +12,15 @@ defineProps<{
 }>();
 
 //
+const modal = useTemplateRef('modal');
+const dataModal = ref<TypeSpecialOffers | null>(null);
+
+const productAvailability = (special: TypeSpecialOffers) => {
+  dataModal.value = special;
+  modal.value?.modalOpen();
+};
+
+//
 onMounted(() => {
   const swiper = new Swiper('.special_swiper', {
     modules: [Navigation, Pagination],
@@ -34,8 +43,6 @@ onMounted(() => {
       prevEl: '.swiper-special-button-prev',
     },
   });
-
-  //
 });
 </script>
 
@@ -61,11 +68,11 @@ onMounted(() => {
             <div class="special__info">
               <div class="special__price_bx">
                 <div class="special__price">
-                  {{ numberFormatter(+special.price) }}
+                  {{ priceFormatter(+special.price) }}
                 </div>
 
                 <div v-if="special.isOnSale" class="special_price__old_bx">
-                  <s class="special_price__old">{{ numberFormatter(+special.regularPrice) }}</s>
+                  <s class="special_price__old">{{ priceFormatter(+special.regularPrice) }}</s>
 
                   <div class="sale_text">
                     Скидка {{ discountPercentage(+special.regularPrice, +special.salePrice) }}
@@ -77,7 +84,12 @@ onMounted(() => {
             </div>
 
             <!--  -->
-            <UiButton width="278px" title="Узнать подробнее" class="special__info_btn" />
+            <UiButton
+              width="278px"
+              title="Узнать подробнее"
+              class="special__info_btn"
+              @click="productAvailability(special)"
+            />
           </div>
         </div>
       </div>
@@ -88,6 +100,14 @@ onMounted(() => {
       <div class="swiper-btn swiper-special-button-next"></div>
     </div>
   </div>
+
+  <Teleport to="body">
+    <UiModal ref="modal">
+      <ModalTemplateShell>
+        <ModalTemplateFindAvailability title="Узнайте о наличии товара:" :special="dataModal" />
+      </ModalTemplateShell>
+    </UiModal>
+  </Teleport>
 </template>
 
 <style lang="css" scoped>

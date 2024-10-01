@@ -1,5 +1,6 @@
 export type TypeSpecialOffers = {
   id: number;
+  sku: string;
   slug: string;
   title: string;
   img: string;

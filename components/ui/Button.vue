@@ -9,6 +9,7 @@ const {
   bgHover = 'var(--medium-green)',
   bgActive = 'var(--green-dark)',
   borderRadius = '20px',
+  type = 'button',
 } = defineProps<{
   width: string;
   height?: string;
@@ -21,11 +22,12 @@ const {
   bgHover?: string;
   bgActive?: string;
   borderRadius?: string;
+  type?: 'button' | 'submit';
 }>();
 </script>
 
 <template>
-  <button class="btn" type="button">{{ title }}</button>
+  <button class="btn" :type>{{ title }}</button>
 </template>
 
 <style lang="css" scoped>

@@ -41,6 +41,16 @@ export default defineNuxtConfig({
   // Настройка изображений (плагин @nuxt/image)
   image: {
     domains: [process.env.NUXT_API_URL || 'http://176.53.163.5:5000'],
+    screens: {
+      xs: 320,
+      xs576: 576,
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280,
+      xxl: 1536,
+      '2xl': 1536,
+    },
   },
 
   // Настройка медиа-запросов (плагин nuxt-viewport)
