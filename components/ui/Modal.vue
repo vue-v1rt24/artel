@@ -10,6 +10,12 @@ const modalOpen = () => {
     closeButton: false,
     autoFocus: false,
     // dragToClose: false,
+    on: {
+      close() {
+        useIsCloseModal().value = true;
+        setTimeout(() => (useIsCloseModal().value = false), 300);
+      },
+    },
   });
 };
 

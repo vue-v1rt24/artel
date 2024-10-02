@@ -1,8 +1,20 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const checkbox = useTemplateRef('checkbox');
+
+//
+watch(
+  () => useIsCloseModal().value,
+  (val) => {
+    if (val && checkbox.value?.checked) {
+      checkbox.value.checked = false;
+    }
+  },
+);
+</script>
 
 <template>
   <label class="checkbox_bx">
-    <input type="checkbox" name="checkbox" class="checkbox" />
+    <input type="checkbox" name="checkbox" class="checkbox" ref="checkbox" />
     <span>Я согласен с <NuxtLink to="/">политикой конфиденциальности</NuxtLink></span>
   </label>
 </template>
@@ -67,5 +79,10 @@
 .checkbox_bx a {
   color: inherit;
   text-decoration: underline;
+}
+
+/*  */
+.checkbox.just-validate-error-field {
+  outline-color: var(--red);
 }
 </style>

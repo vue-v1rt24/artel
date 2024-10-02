@@ -1,10 +1,64 @@
 <script setup lang="ts">
+//@ts-ignore
+import JustValidate from 'just-validate';
 import type { TypeSpecialOffers } from '~/types/sliderSpecialOffers.types';
 
-defineProps<{
+const { btnSubmitTitle = 'Узнать наличие' } = defineProps<{
   title: string;
   special?: TypeSpecialOffers | null;
+  btnSubmitTitle?: string;
 }>();
+
+//
+const validator = ref<JustValidate | null>(null);
+
+//
+onMounted(() => {
+  validator.value = new JustValidate('.form_valid', {});
+
+  validator.value
+    .addField('[name="username"]', [
+      {
+        rule: 'required',
+      },
+    ])
+    .addField('[name="tel"]', [
+      {
+        rule: 'required',
+      },
+      {
+        rule: 'minLength',
+        value: 18,
+      },
+    ])
+    .addField('[name="checkbox"]', [
+      {
+        rule: 'required',
+      },
+    ])
+    .onSuccess((event: SubmitEvent) => {
+      console.log('Отправлено');
+      validator.value.refresh();
+    });
+});
+
+//
+onUnmounted(() => {
+  if (validator.value && validator.value.destroy) {
+    validator.value.destroy();
+  }
+});
+
+//
+watch(
+  () => useIsCloseModal().value,
+  (val) => {
+    if (val && validator.value && validator.value.refresh) {
+      validator.value.form.reset();
+      validator.value.refresh();
+    }
+  },
+);
 </script>
 
 <template>
@@ -44,13 +98,13 @@ defineProps<{
     </div>
 
     <!-- Форма -->
-    <form class="fa__form">
+    <form class="form_valid fa__form">
       <div class="fa__form_title">Заполните Ваши контактные данные</div>
 
-      <UiInput name="name" placeholder="Ваше имя" />
+      <UiInput name="username" placeholder="Ваше имя" />
       <UiInput name="tel" placeholder="Номер телефона" type="tel" />
 
-      <UiButton width="100%" title="Узнать наличие" type="submit" />
+      <UiButton width="100%" :title="btnSubmitTitle" type="submit" />
 
       <UiCheckbox />
     </form>
@@ -169,7 +223,17 @@ defineProps<{
 }
 
 /*  */
+.fa__form .label_group:has(.just-validate-error-field) {
+  outline: 2px solid var(--red);
+}
+
+/*  */
 .fa__form .btn {
   margin-top: 6px;
+}
+
+/*  */
+:global(.just-validate-error-label) {
+  display: none;
 }
 </style>
