@@ -2,11 +2,16 @@
 import * as FancyboxAll from '@fancyapps/ui';
 
 //
+const { idModal } = defineProps<{
+  idModal: string;
+}>();
+
+//
 const { Fancybox } = FancyboxAll;
 
 //
 const modalOpen = () => {
-  Fancybox.show([{ src: '#modal', type: 'inline' }], {
+  Fancybox.show([{ src: idModal, type: 'inline' }], {
     closeButton: false,
     autoFocus: false,
     // dragToClose: false,
@@ -31,7 +36,7 @@ defineExpose({
 </script>
 
 <template>
-  <div id="modal" class="modal">
+  <div :id="idModal" class="modal">
     <slot />
   </div>
 </template>

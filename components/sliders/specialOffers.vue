@@ -102,9 +102,13 @@ onMounted(() => {
   </div>
 
   <Teleport to="body">
-    <UiModal ref="modal">
+    <UiModal id-modal="fa-modal" ref="modal">
       <ModalTemplateShell>
-        <ModalTemplateFindAvailability title="Узнайте о наличии товара:" :special="dataModal" />
+        <ModalTemplateFindAvailability
+          form-class="form-valid-special"
+          title="Узнайте о наличии товара:"
+          :special="dataModal"
+        />
       </ModalTemplateShell>
     </UiModal>
   </Teleport>

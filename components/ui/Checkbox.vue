@@ -26,14 +26,21 @@ watch(
   font-size: 16px;
   line-height: 90%;
   color: var(--gray-text);
-
   display: flex;
   align-items: center;
   column-gap: 18px;
-
   cursor: pointer;
-
   margin-top: 16px;
+
+  /*  */
+  @media (max-width: 768px) {
+    font-size: 15px;
+    column-gap: 16px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 13px;
+  }
 }
 
 .checkbox {
@@ -55,6 +62,12 @@ watch(
     background-color: var(--main-green);
     outline-color: transparent;
   }
+
+  /*  */
+  @media (max-width: 768px) {
+    width: 18px;
+    height: 18px;
+  }
 }
 
 .checkbox::before {
@@ -73,6 +86,13 @@ watch(
 
 .checkbox:checked::before {
   opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .checkbox::before {
+    top: 4px;
+    left: 4px;
+  }
 }
 
 /*  */

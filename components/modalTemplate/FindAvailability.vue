@@ -1,20 +1,57 @@
 <script setup lang="ts">
 //@ts-ignore
 import JustValidate from 'just-validate';
+import { Fancybox } from '@fancyapps/ui';
+
 import type { TypeSpecialOffers } from '~/types/sliderSpecialOffers.types';
 
-const { btnSubmitTitle = 'Узнать наличие' } = defineProps<{
+const {
+  formClass,
+  title,
+  special,
+  btnSubmitTitle = 'Узнать наличие',
+} = defineProps<{
+  formClass: string;
   title: string;
   special?: TypeSpecialOffers | null;
   btnSubmitTitle?: string;
 }>();
 
 //
+const mail = useMail();
+
+//
+const fields = reactive({
+  username: '',
+  phone: '',
+  linkProduct: '',
+});
+
+// === Формирование письма
+const setMail = () => {
+  const message = {
+    subject: title,
+    // text: 'Текстовое сообщение',
+    html: `
+          <div>Имя: <strong>${fields.username}</strong></div>
+          <div>Номер телефона: <strong>${fields.phone}</strong></div>
+          ${
+            fields.linkProduct &&
+            `<div>Выбранный товар: <strong>${fields.linkProduct}</strong></div>`
+          }
+        `,
+  };
+
+  //
+  return message;
+};
+
+//
 const validator = ref<JustValidate | null>(null);
 
 //
 onMounted(() => {
-  validator.value = new JustValidate('.form_valid', {});
+  validator.value = new JustValidate(`.${formClass}`, {});
 
   validator.value
     .addField('[name="username"]', [
@@ -36,9 +73,16 @@ onMounted(() => {
         rule: 'required',
       },
     ])
-    .onSuccess((event: SubmitEvent) => {
-      console.log('Отправлено');
-      validator.value.refresh();
+    .onSuccess(async (event: SubmitEvent) => {
+      if (special) {
+        fields.linkProduct = `<a href="#${special?.slug}">${special?.title}</a>`;
+      }
+
+      // Отправка письма
+      await mail.send(setMail());
+
+      // Закрытие модального окна
+      Fancybox.close();
     });
 });
 
@@ -49,7 +93,7 @@ onUnmounted(() => {
   }
 });
 
-//
+// Сброс формы и валидации
 watch(
   () => useIsCloseModal().value,
   (val) => {
@@ -98,11 +142,11 @@ watch(
     </div>
 
     <!-- Форма -->
-    <form class="form_valid fa__form">
+    <form :class="[formClass, 'fa__form']">
       <div class="fa__form_title">Заполните Ваши контактные данные</div>
 
-      <UiInput name="username" placeholder="Ваше имя" />
-      <UiInput name="tel" placeholder="Номер телефона" type="tel" />
+      <UiInput name="username" placeholder="Ваше имя" v-model="fields.username" />
+      <UiInput name="tel" placeholder="Номер телефона" type="tel" v-model="fields.phone" />
 
       <UiButton width="100%" :title="btnSubmitTitle" type="submit" />
 
@@ -138,6 +182,17 @@ watch(
   border-bottom: 1px solid var(--light-gray);
   padding-bottom: 28px;
   margin-bottom: 28px;
+
+  /*  */
+  @media (max-width: 768px) {
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+  }
+
+  @media (max-width: 480px) {
+    padding-bottom: 18px;
+    margin-bottom: 18px;
+  }
 }
 
 /*  */
@@ -162,6 +217,13 @@ watch(
 }
 
 /*  */
+.fa__product_info {
+  display: flex;
+  flex-direction: column-reverse;
+  row-gap: 8px;
+}
+
+/*  */
 .fa__product_info__title {
   font-weight: 400;
   font-size: 18px;
@@ -169,6 +231,17 @@ watch(
   text-wrap: balance;
   color: var(--main-green);
   margin-bottom: 15px;
+
+  /*  */
+  @media (max-width: 768px) {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+    margin-bottom: 0;
+  }
 }
 
 /*  */
@@ -176,6 +249,15 @@ watch(
   display: flex;
   align-items: center;
   column-gap: 16px;
+
+  /*  */
+  @media (max-width: 768px) {
+    column-gap: 14px;
+  }
+
+  @media (max-width: 480px) {
+    column-gap: 12px;
+  }
 }
 
 .fa__product_info__price_current {
@@ -183,6 +265,15 @@ watch(
   font-size: 24px;
   line-height: 100%;
   color: var(--main-green);
+
+  /*  */
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 15px;
+  }
 }
 
 /*  */
@@ -190,6 +281,11 @@ watch(
   display: flex;
   align-items: center;
   column-gap: 16px;
+
+  /*  */
+  @media (max-width: 768px) {
+    column-gap: 24px;
+  }
 }
 
 .fa__product_info__price_sale__price {
@@ -197,6 +293,15 @@ watch(
   font-size: 18px;
   line-height: 100%;
   color: var(--light-gray2);
+
+  /*  */
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+  }
 }
 
 .fa__product_info__price_sale__sale {
@@ -207,6 +312,15 @@ watch(
   background-color: var(--green-50);
   border-radius: 20px;
   padding: 6px 5px;
+
+  /*  */
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
+
+  @media (max-width: 480px) {
+    display: none;
+  }
 }
 
 /*  */
@@ -216,10 +330,26 @@ watch(
   line-height: 140%;
   color: var(--main-green);
   margin-bottom: 24px;
+
+  /*  */
+  @media (max-width: 768px) {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
 }
 
 .fa__form .label_group {
   margin-bottom: 14px;
+
+  /*  */
+  @media (max-width: 480px) {
+    margin-bottom: 12px;
+  }
 }
 
 /*  */
@@ -230,6 +360,11 @@ watch(
 /*  */
 .fa__form .btn {
   margin-top: 6px;
+
+  /*  */
+  @media (max-width: 480px) {
+    margin-top: 4px;
+  }
 }
 
 /*  */

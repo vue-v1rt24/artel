@@ -27,7 +27,7 @@ export default defineNuxtConfig({
     '/catalog': { redirect: '/catalog/serebro' },
   },
 
-  modules: ['@nuxt/image', 'nuxt-viewport'],
+  modules: ['@nuxt/image', 'nuxt-viewport', 'nuxt-mail'],
 
   experimental: {
     typedPages: true,
@@ -76,6 +76,24 @@ export default defineNuxtConfig({
     fallbackBreakpoint: 'desktop',
 
     feature: 'minWidth', */
+  },
+
+  // Отправка почты. Плагин 'nuxt-mail'
+  //@ts-ignore
+  mail: {
+    message: {
+      from: 'rrublyov@yandex.ru', // от кого письмо
+      to: 'rrublyov@yandex.ru', // вот так нескольким получателям: 'pranaittech@mail.ru, pranaittech@yandex.ru' либо ['info@pranait.ru, pranaittech@yandex.ru']
+    },
+    smtp: {
+      host: 'smtp.yandex.ru',
+      port: 465,
+      secure: true,
+      auth: {
+        user: 'rrublyov',
+        pass: 'mbsczeudzclhdidd', // пароль для приложений. Создаётся в учётной записи почты
+      },
+    },
   },
 
   //

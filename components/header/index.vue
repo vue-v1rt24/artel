@@ -3,6 +3,12 @@ const route = useRoute();
 const { menu } = useMenus();
 const isOpenMenu = useIsOpenMenu();
 const viewport = useViewport();
+const modal = useTemplateRef('modal');
+
+//
+const contactUs = () => {
+  modal.value?.modalOpen();
+};
 
 //
 watch(
@@ -52,7 +58,18 @@ watch(
         </ul>
 
         <!--  -->
-        <button type="button" class="contact_us">Связаться с нами</button>
+        <button type="button" class="contact_us" @click="contactUs">Связаться с нами</button>
+
+        <Teleport to="body">
+          <UiModal id-modal="contact-us-header" ref="modal">
+            <ModalTemplateShell>
+              <ModalTemplateFindAvailability
+                form-class="contact-us-form"
+                title="Связаться с нами"
+              />
+            </ModalTemplateShell>
+          </UiModal>
+        </Teleport>
       </div>
     </div>
 
