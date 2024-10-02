@@ -27,6 +27,9 @@ useSeoMeta({
 
     <!-- Раздел: Специальные предложения -->
     <SlidersSpecialOffers v-if="specials?.length" :specials />
+
+    <!-- Раздел: Каталог -->
+    <HomeCatalog />
   </div>
 </template>
 

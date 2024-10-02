@@ -63,6 +63,8 @@ export default defineNuxtConfig({
       screen1200: 1200,
 
       screen320: 320,
+      screen360: 360,
+      screen480: 480,
       screen576: 576,
       screen768: 768,
     },

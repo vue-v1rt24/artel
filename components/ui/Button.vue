@@ -12,8 +12,8 @@ const {
   type = 'button',
 } = defineProps<{
   width: string;
-  height?: string;
   title: string;
+  height?: string;
   fontSize?: string;
   textColor?: string;
   textColorHover?: string;
@@ -24,10 +24,15 @@ const {
   borderRadius?: string;
   type?: 'button' | 'submit';
 }>();
+
+//
+const emit = defineEmits<{
+  btnClick: [];
+}>();
 </script>
 
 <template>
-  <button class="btn" :type>{{ title }}</button>
+  <button class="btn" :type @click="emit('btnClick')">{{ title }}</button>
 </template>
 
 <style lang="css" scoped>
