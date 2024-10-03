@@ -3,7 +3,7 @@ import { getCatsQuery } from '../queries/getCats.queries';
 import { TypeCatsStocksQuery } from '../types/getCatsMenu.types';
 
 export default defineEventHandler(async (event) => {
-  const catsStocks = (await requestFetch(getCatsQuery)) as TypeCatsStocksQuery;
+  const catsStocks = await requestFetch<TypeCatsStocksQuery>(getCatsQuery);
 
   //
   const stockInMenu = catsStocks.data.stocks.nodes.filter((s) => s.stocksFields.stockVMenyu)[0];

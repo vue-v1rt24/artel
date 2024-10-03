@@ -113,11 +113,17 @@ a {
   }
 }
 
+/*  */
+s {
+  text-decoration-color: var(--light-gray3);
+}
+
 /* Кнопки слайдера */
 .swiper-btn {
   width: 62px;
   height: 62px;
   background-image: url('/images/arrow-slider-white-bg.svg');
+  background-size: contain;
   opacity: 0.5;
   cursor: pointer;
   z-index: 1;

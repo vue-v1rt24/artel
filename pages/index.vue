@@ -30,6 +30,9 @@ useSeoMeta({
 
     <!-- Раздел: Каталог -->
     <HomeCatalog />
+
+    <!-- Раздел: Популярные товары -->
+    <SlidersPopularProducts />
   </div>
 </template>
 

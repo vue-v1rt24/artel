@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>Товар</div>
+  <div>Страница продукта</div>
 </template>
 
 <style lang="css" scoped></style>

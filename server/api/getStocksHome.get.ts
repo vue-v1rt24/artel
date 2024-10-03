@@ -3,7 +3,7 @@ import { getStocksHomeQuery } from '../queries/getStocksHome.queries';
 import { TypeGetStocksHomeQuery } from '../types/getStocksHome.types';
 
 export default defineEventHandler(async (event) => {
-  const stocksData = (await requestFetch(getStocksHomeQuery)) as TypeGetStocksHomeQuery;
+  const stocksData = await requestFetch<TypeGetStocksHomeQuery>(getStocksHomeQuery);
 
   //
   const stocks = stocksData.data.stocks.nodes

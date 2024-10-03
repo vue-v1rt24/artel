@@ -13,7 +13,6 @@
   translate: -50% -50%;
   width: 150px;
   height: 150px;
-  margin: 30px auto;
   border-radius: 50%;
   border: 3px solid transparent;
   border-top-color: #337ab7;
