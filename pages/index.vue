@@ -33,6 +33,9 @@ useSeoMeta({
 
     <!-- Раздел: Популярные товары -->
     <SlidersPopularProducts />
+
+    <!-- Раздел: Хранители ювелирного искусства -->
+    <HomeGuardiansArt />
   </div>
 </template>
 
