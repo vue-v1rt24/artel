@@ -8,6 +8,7 @@ defineProps<{
     homeOffSitePodzagolovok: string;
     homeOffSiteTekst1: string;
     homeOffSiteTekst2: string;
+    image: string;
   };
 }>();
 </script>
@@ -29,7 +30,7 @@ defineProps<{
       <HomeOffSiteSlider v-if="sliders?.length && sliders.length > 7" :sliders />
 
       <NuxtImg
-        src="/images/off-site.jpg"
+        :src="content.image"
         width="581"
         densities="x1"
         format="avif, webp"

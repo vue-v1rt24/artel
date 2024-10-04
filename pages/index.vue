@@ -29,13 +29,13 @@ useSeoMeta({
     <SlidersSpecialOffers v-if="specials?.length" :specials />
 
     <!-- Раздел: Каталог -->
-    <HomeCatalog />
+    <HomeCatalog v-if="home?.catalog" :catalog="home.catalog" />
 
     <!-- Раздел: Популярные товары -->
     <SlidersPopularProducts />
 
     <!-- Раздел: Хранители ювелирного искусства -->
-    <HomeGuardiansArt />
+    <HomeGuardiansArt v-if="home?.guardians" :guardians="home.guardians" />
   </div>
 </template>
 

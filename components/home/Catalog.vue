@@ -1,4 +1,15 @@
 <script setup lang="ts">
+defineProps<{
+  catalog: {
+    title: string;
+    desc: string;
+    image1600: string;
+    image1200: string;
+    image688: string;
+    image320: string;
+  };
+}>();
+
 const viewport = useViewport();
 </script>
 
@@ -6,7 +17,7 @@ const viewport = useViewport();
   <div class="catalog_home_bx">
     <NuxtImg
       v-if="viewport.isGreaterOrEquals('screen1280')"
-      src="/images/home/catalog/catalog-home-1920.jpg"
+      :src="catalog.image1600"
       densities="x1"
       loading="lazy"
       format="avif, webp"
@@ -14,7 +25,7 @@ const viewport = useViewport();
 
     <NuxtImg
       v-else-if="viewport.isGreaterOrEquals('screen768')"
-      src="/images/home/catalog/catalog-home-1280.jpg"
+      :src="catalog.image1200"
       densities="x1"
       loading="lazy"
       format="avif, webp"
@@ -22,30 +33,20 @@ const viewport = useViewport();
 
     <NuxtImg
       v-else-if="viewport.isGreaterOrEquals('screen576')"
-      src="/images/home/catalog/catalog-home-768.jpg"
+      :src="catalog.image688"
       densities="x1"
       loading="lazy"
       format="avif, webp"
     />
 
-    <NuxtImg
-      v-else
-      src="/images/home/catalog/catalog-home-360.jpg"
-      densities="x1"
-      loading="lazy"
-      format="avif, webp"
-    />
+    <NuxtImg v-else :src="catalog.image320" densities="x1" loading="lazy" format="avif, webp" />
 
     <!--  -->
     <div class="catalog_home">
       <div class="catalog_home__text">
-        <h2 class="h2_56">Каталог</h2>
+        <h2 class="h2_56">{{ catalog.title }}</h2>
 
-        <p class="p_20">
-          Ювелирный каталог магазина «Золотая Артель» представляет Вашему вниманию огромный выбор
-          украшений из золота и серебра. Кольца, серьги, подвески и множество других великолепных
-          изделий порадуют Вас оригинальным дизайном, качественным исполнением и приятными ценами. 
-        </p>
+        <p class="p_20">{{ catalog.desc }}</p>
       </div>
 
       <UiButton
