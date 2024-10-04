@@ -107,6 +107,7 @@ onMounted(() => {
         <ModalTemplateFindAvailability
           form-class="form-valid-special"
           title="Узнайте о наличии товара:"
+          subject="Узнать о наличии товара"
           :special="dataModal"
         />
       </ModalTemplateShell>

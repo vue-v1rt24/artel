@@ -8,11 +8,13 @@ import type { TypeSpecialOffers } from '~/types/sliderSpecialOffers.types';
 const {
   formClass,
   title,
+  subject,
   special,
   btnSubmitTitle = 'Узнать наличие',
 } = defineProps<{
   formClass: string;
   title: string;
+  subject: string;
   special?: TypeSpecialOffers | null;
   btnSubmitTitle?: string;
 }>();
@@ -30,7 +32,7 @@ const fields = reactive({
 // === Формирование письма
 const setMail = () => {
   const message = {
-    subject: title,
+    subject,
     // text: 'Текстовое сообщение',
     html: `
           <div>Имя: <strong>${fields.username}</strong></div>

@@ -36,6 +36,12 @@ useSeoMeta({
 
     <!-- Раздел: Хранители ювелирного искусства -->
     <HomeGuardiansArt v-if="home?.guardians" :guardians="home.guardians" />
+
+    <!-- Раздел: Ювелирные украшения на заказ -->
+    <HomeCustomJewelry v-if="home?.customJewelry" :custom-jewelry="home.customJewelry" />
+
+    <!-- Раздел: Ремонт ювелирных изделий -->
+    <HomeJewelryRepair />
   </div>
 </template>
 

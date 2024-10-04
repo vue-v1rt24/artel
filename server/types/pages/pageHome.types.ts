@@ -50,6 +50,13 @@ export type TypeGeneralQuery = {
             mediaItemUrl: string;
           };
         };
+        customJewelryZagolovok: string;
+        customJewelryOpisanie: string;
+        customJewelryIzobrazhenie: {
+          node: {
+            mediaItemUrl: string;
+          };
+        };
       };
     };
   };

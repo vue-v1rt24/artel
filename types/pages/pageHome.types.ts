@@ -24,4 +24,9 @@ export type TypeHomeQueryTransform = {
     image1: string;
     image2: string;
   };
+  customJewelry: {
+    title: string;
+    desc: string;
+    image1600: string;
+  };
 };

@@ -50,6 +50,13 @@ export const pageHomeQuery = (pageId: number) => {
               mediaItemUrl
             }
           }
+          customJewelryZagolovok
+          customJewelryOpisanie
+          customJewelryIzobrazhenie {
+            node {
+              mediaItemUrl
+            }
+          }
         }
       }
     }

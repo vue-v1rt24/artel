@@ -28,5 +28,10 @@ export default defineEventHandler(async (event) => {
       image1: data.data.pageBy.homeContent.guardiansHomeIzobrazhenie1.node.mediaItemUrl,
       image2: data.data.pageBy.homeContent.guardiansHomeIzobrazhenie2.node.mediaItemUrl,
     },
+    customJewelry: {
+      title: data.data.pageBy.homeContent.customJewelryZagolovok,
+      desc: data.data.pageBy.homeContent.customJewelryOpisanie,
+      image1600: data.data.pageBy.homeContent.customJewelryIzobrazhenie.node.mediaItemUrl,
+    },
   };
 });
