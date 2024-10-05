@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { gsap } from 'gsap';
 
+//
 defineProps<{
   customJewelry: {
     title: string;
@@ -9,12 +10,37 @@ defineProps<{
   };
 }>();
 
+//
 const modal = useTemplateRef('modal');
 
 //
 const modalOpen = () => {
   modal.value?.modalOpen();
 };
+
+//
+onMounted(() => {
+  const customJewelryEl = document.querySelector<HTMLDivElement>('.custom_jewelry');
+
+  if (!customJewelryEl) return;
+
+  const customJewelryImgEl = customJewelryEl.querySelector('.custom_jewelry__img');
+
+  customJewelryEl.addEventListener('mousemove', (evt: MouseEvent) => {
+    const { offsetX, offsetY } = evt;
+    const { clientWidth, clientHeight } = customJewelryEl;
+    console.log(evt);
+
+    const xPos = offsetX / clientWidth - 0.5;
+    const yPos = offsetY / clientHeight - 0.5;
+
+    gsap.to(customJewelryImgEl, {
+      duration: 1.2,
+      x: xPos * 30,
+      y: yPos * 40,
+    });
+  });
+});
 </script>
 
 <template>
@@ -28,7 +54,7 @@ const modalOpen = () => {
     <!--  -->
     <div class="custom_jewelry__right">
       <UiButton
-        width="278px"
+        width="308px"
         title="Узнать подробнее"
         class="special__info_btn"
         @click="modalOpen"
@@ -60,24 +86,113 @@ const modalOpen = () => {
   display: grid;
   grid-template-columns: 687px 1fr;
   overflow: hidden;
+
+  /*  */
+  @media (max-width: 1280px) {
+    grid-template-columns: 546px 1fr;
+  }
+
+  @media (max-width: 1100px) {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
 }
 
 /*  */
 .h2_56 {
   margin-bottom: 42px;
+
+  /*  */
+  @media (max-width: 1280px) {
+    margin-bottom: 52px;
+  }
+
+  @media (max-width: 576px) {
+    margin-bottom: 32px;
+  }
+}
+
+/*  */
+.custom_jewelry__left {
+  pointer-events: none;
+
+  /*  */
+  @media (max-width: 1100px) {
+    margin-bottom: 42px;
+  }
 }
 
 /*  */
 .custom_jewelry__right {
+  pointer-events: none;
   display: flex;
   flex-direction: column;
 }
 
 .custom_jewelry__right .btn {
+  pointer-events: all;
   margin-left: auto;
+
+  /*  */
+  @media (max-width: 1280px) {
+    transform: translateX(-70px);
+  }
+
+  @media (max-width: 1100px) {
+    width: 266px;
+    height: 76px;
+    transform: translateX(0);
+    margin-left: 0;
+  }
+
+  @media (max-width: 576px) {
+    width: 248px;
+    height: 65px;
+  }
 }
 
 .custom_jewelry__img {
-  margin: 65px 0 0 85px;
+  will-change: transform;
+  margin: 65px 0 0 70px;
+
+  /*  */
+  @media (max-width: 1400px) {
+    margin: 110px 0 0 85px;
+  }
+
+  @media (max-width: 1280px) {
+    max-width: 585px;
+    height: 315px;
+    aspect-ratio: 1/1;
+    margin: 90px 0 0 70px;
+  }
+
+  @media (max-width: 1100px) {
+    width: 603px;
+    max-width: 100%;
+    margin: 0px auto 0 auto;
+    transform: translateY(72px);
+  }
+
+  @media (max-width: 680px) {
+    width: 100%;
+  }
+
+  @media (max-width: 576px) {
+    width: 60%;
+    height: 191px;
+    transform: translateY(60px);
+  }
+
+  @media (max-width: 480px) {
+    width: 80%;
+    height: 202px;
+  }
+
+  @media (max-width: 375px) {
+    width: 100%;
+    height: 175px;
+    transform: translateY(45px);
+  }
 }
 </style>

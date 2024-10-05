@@ -35,7 +35,11 @@ defineProps<{
     margin: 200px 0 200px 0;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1250px) {
+    margin: 140px 0 140px 0;
+  }
+
+  @media (max-width: 1140px) {
     margin: 100px 0 100px 0;
   }
 
@@ -145,7 +149,8 @@ defineProps<{
 
   @media (max-width: 1140px) {
     position: static;
-    transform: translateY(-170px);
+    transform: translateY(0);
+    margin-top: -170px;
   }
 
   /*  */
