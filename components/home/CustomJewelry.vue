@@ -29,7 +29,6 @@ onMounted(() => {
   customJewelryEl.addEventListener('mousemove', (evt: MouseEvent) => {
     const { offsetX, offsetY } = evt;
     const { clientWidth, clientHeight } = customJewelryEl;
-    console.log(evt);
 
     const xPos = offsetX / clientWidth - 0.5;
     const yPos = offsetY / clientHeight - 0.5;

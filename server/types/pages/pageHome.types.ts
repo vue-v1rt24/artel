@@ -57,6 +57,17 @@ export type TypeGeneralQuery = {
             mediaItemUrl: string;
           };
         };
+        jewelryRepairZagolovok: string;
+        jewelryRepairOpisanie: string;
+        jewelryRepairVidyRemonta: {
+          jewelryRepairVidyRemontaTekstNaKartinke: string;
+          jewelryRepairVidyRemontaIzobrazhenie: {
+            node: {
+              mediaItemUrl: string;
+            };
+          };
+        }[];
+        jewelryRepairTekstPodlozhki: string;
       };
     };
   };

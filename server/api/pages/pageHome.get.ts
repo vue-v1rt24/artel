@@ -3,7 +3,7 @@ import { pageHomeQuery } from '~/server/queries/pages/pageHome.queries';
 import type { TypeGeneralQuery } from '~/server/types/pages/pageHome.types';
 
 export default defineEventHandler(async (event) => {
-  const data = await requestFetch<TypeGeneralQuery>(pageHomeQuery(121));
+  const data = await requestFetch<TypeGeneralQuery>(pageHomeQuery());
 
   return {
     seo: data.data.pageBy.seo,
@@ -32,6 +32,12 @@ export default defineEventHandler(async (event) => {
       title: data.data.pageBy.homeContent.customJewelryZagolovok,
       desc: data.data.pageBy.homeContent.customJewelryOpisanie,
       image1600: data.data.pageBy.homeContent.customJewelryIzobrazhenie.node.mediaItemUrl,
+    },
+    jewelryRepair: {
+      title: data.data.pageBy.homeContent.jewelryRepairZagolovok,
+      desc: data.data.pageBy.homeContent.jewelryRepairOpisanie,
+      typesRepairs: data.data.pageBy.homeContent.jewelryRepairVidyRemonta,
+      textPodlozhki: data.data.pageBy.homeContent.jewelryRepairTekstPodlozhki,
     },
   };
 });

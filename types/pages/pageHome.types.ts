@@ -29,4 +29,17 @@ export type TypeHomeQueryTransform = {
     desc: string;
     image1600: string;
   };
+  jewelryRepair: {
+    title: string;
+    desc: string;
+    typesRepairs: {
+      jewelryRepairVidyRemontaTekstNaKartinke: string;
+      jewelryRepairVidyRemontaIzobrazhenie: {
+        node: {
+          mediaItemUrl: string;
+        };
+      };
+    }[];
+    textPodlozhki: string;
+  };
 };

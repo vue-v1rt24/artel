@@ -1,7 +1,7 @@
-export const pageHomeQuery = (pageId: number) => {
+export const pageHomeQuery = () => {
   return `
     {
-      pageBy(pageId: ${pageId}) {
+      pageBy(pageId: 121) {
         seo {
           titleSeo
           descriptionSeo
@@ -57,6 +57,17 @@ export const pageHomeQuery = (pageId: number) => {
               mediaItemUrl
             }
           }
+          jewelryRepairZagolovok
+          jewelryRepairOpisanie
+          jewelryRepairVidyRemonta {
+            jewelryRepairVidyRemontaTekstNaKartinke
+            jewelryRepairVidyRemontaIzobrazhenie {
+              node {
+                mediaItemUrl
+              }
+            }
+          }
+          jewelryRepairTekstPodlozhki
         }
       }
     }
