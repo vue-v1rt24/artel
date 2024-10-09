@@ -50,6 +50,23 @@ defineProps<{
           v-html="jewelryRepair.textPodlozhki"
           class="jewelry_repair__podlozhka_text"
         ></p>
+
+        <div class="jewelry_repair__podlozhka_asd">
+          <NuxtImg
+            src="/images/home/jewelry_repair-almaz.png"
+            format="avif, webp"
+            densities="x1"
+            loading="lazy"
+          />
+
+          <UiButton
+            width="233px"
+            title="Подробнее"
+            text-color="var(--main-green)"
+            bg="white"
+            @btn-click="$router.push('/')"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -62,12 +79,41 @@ defineProps<{
   background-repeat: no-repeat;
   background-position: right top;
   padding: 120px 0;
+
+  /*  */
+  @media (max-width: 1280px) {
+    padding: 100px 0;
+    background-position-x: left;
+  }
+
+  @media (max-width: 1024px) {
+    padding: 80px 0;
+    background-size: 100%;
+  }
+
+  @media (max-width: 576px) {
+    background-image: none;
+    padding: 52px 0;
+  }
 }
 
 /*  */
 .jewelry_repair .h2_56 {
   color: white;
   margin-bottom: 60px;
+
+  /*  */
+  @media (max-width: 1280px) {
+    margin-bottom: 52px;
+  }
+
+  @media (max-width: 1024px) {
+    margin-bottom: 42px;
+  }
+
+  @media (max-width: 576px) {
+    margin-bottom: 22px;
+  }
 }
 
 /*  */
@@ -82,14 +128,59 @@ defineProps<{
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
   margin: 42px 0 60px 0;
+
+  /*  */
+  @media (max-width: 1280px) {
+    gap: 20px;
+  }
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(1, 1fr);
+    margin: 42px 0 52px 0;
+  }
+
+  @media (max-width: 576px) {
+    margin: 32px 0 32px 0;
+  }
 }
 
 .jewelry_repair__list_item {
   position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+
+  /*  */
+  @media (max-width: 768px) {
+    height: 390px;
+  }
+
+  @media (max-width: 576px) {
+    height: 320px;
+  }
+
+  @media (max-width: 480px) {
+    height: 250px;
+  }
+
+  @media (max-width: 375px) {
+    height: 190px;
+  }
 
   /*  */
   img {
-    border-radius: 20px;
+    @media (max-width: 1024px) {
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: bottom;
+    }
   }
 }
 
@@ -105,13 +196,44 @@ defineProps<{
   background-color: white;
   border-radius: 50px;
   padding: 12px 16px;
+  z-index: 1;
+
+  /*  */
+  @media (max-width: 1280px) {
+    font-size: 20px;
+  }
+
+  @media (max-width: 1024px) {
+    font-size: 24px;
+  }
+
+  @media (max-width: 576px) {
+    top: 16px;
+    left: 16px;
+    font-size: 16px;
+  }
 }
 
 /*  */
 .jewelry_repair__podlozhka {
   background-color: var(--main--sand);
   border-radius: 20px;
-  padding: 62px;
+  display: flex;
+  padding: 62px 62px 0 62px;
+  overflow: hidden;
+
+  /*  */
+  @media (max-width: 1024px) {
+    padding: 32px 32px 0 32px;
+  }
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
+
+  @media (max-width: 576px) {
+    padding: 28px 28px 0 28px;
+  }
 }
 
 .jewelry_repair__podlozhka_text {
@@ -121,10 +243,80 @@ defineProps<{
   font-size: 24px;
   line-height: 140%;
   color: var(--main-green);
+  padding-bottom: 62px;
 
   /*  */
   :global(span) {
     font-weight: 500;
+  }
+
+  /*  */
+  @media (max-width: 1280px) {
+    font-size: 22px;
+  }
+
+  @media (max-width: 1024px) {
+    padding-bottom: 32px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 16px;
+  }
+}
+
+.jewelry_repair__podlozhka_asd {
+  display: flex;
+  flex-shrink: 0;
+  column-gap: 50px;
+
+  /*  */
+  @media (max-width: 1400px) {
+    column-gap: 0;
+  }
+
+  @media (max-width: 1280px) {
+    flex-direction: column-reverse;
+    row-gap: 30px;
+  }
+}
+
+.jewelry_repair__podlozhka img {
+  flex-shrink: 0;
+  align-self: flex-end;
+
+  /*  */
+  @media (max-width: 1280px) {
+    width: 290px;
+  }
+
+  @media (max-width: 768px) {
+    width: 284px;
+    max-width: 284px;
+    transform: translateX(65px);
+  }
+
+  @media (max-width: 576px) {
+    width: 320px;
+    max-width: 320px;
+  }
+}
+
+.jewelry_repair__podlozhka .btn {
+  flex-shrink: 0;
+  margin-left: auto;
+  margin-bottom: auto;
+
+  /*  */
+  @media (max-width: 768px) {
+    width: 198px;
+  }
+
+  @media (max-width: 700px) {
+    width: 100%;
   }
 }
 </style>
