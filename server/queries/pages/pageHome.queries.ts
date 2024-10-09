@@ -68,6 +68,14 @@ export const pageHomeQuery = () => {
             }
           }
           jewelryRepairTekstPodlozhki
+          lombardHomeZagolovok
+          lombardHomeTekst
+          lombardHomeIzobrazhenie {
+            node {
+              mediaItemUrl
+            }
+          }
+          lombardHomeRedactor
         }
       }
     }

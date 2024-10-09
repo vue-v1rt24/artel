@@ -42,4 +42,10 @@ export type TypeHomeQueryTransform = {
     }[];
     textPodlozhki: string;
   };
+  lombard: {
+    title: string;
+    desc: string;
+    image: string;
+    modal: string;
+  };
 };

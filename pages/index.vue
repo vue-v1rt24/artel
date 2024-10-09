@@ -44,6 +44,9 @@ useSeoMeta({
 
     <!-- Раздел: Ремонт ювелирных изделий -->
     <HomeJewelryRepair v-if="home?.jewelryRepair" :jewelry-repair="home.jewelryRepair" />
+
+    <!-- Раздел: Ломбарды в Ставрополе и Михайловске -->
+    <HomeLombard v-if="home?.lombard" :lombard="home.lombard" />
   </div>
 </template>
 

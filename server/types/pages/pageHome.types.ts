@@ -68,6 +68,14 @@ export type TypeGeneralQuery = {
           };
         }[];
         jewelryRepairTekstPodlozhki: string;
+        lombardHomeZagolovok: string;
+        lombardHomeTekst: string;
+        lombardHomeIzobrazhenie: {
+          node: {
+            mediaItemUrl: string;
+          };
+        };
+        lombardHomeRedactor: string;
       };
     };
   };

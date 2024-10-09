@@ -39,5 +39,11 @@ export default defineEventHandler(async (event) => {
       typesRepairs: data.data.pageBy.homeContent.jewelryRepairVidyRemonta,
       textPodlozhki: data.data.pageBy.homeContent.jewelryRepairTekstPodlozhki,
     },
+    lombard: {
+      title: data.data.pageBy.homeContent.lombardHomeZagolovok,
+      desc: data.data.pageBy.homeContent.lombardHomeTekst,
+      image: data.data.pageBy.homeContent.lombardHomeIzobrazhenie.node.mediaItemUrl,
+      modal: data.data.pageBy.homeContent.lombardHomeRedactor,
+    },
   };
 });
