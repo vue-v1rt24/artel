@@ -3,6 +3,9 @@ export default defineNuxtConfig({
   runtimeConfig: {
     apiUrl: process.env.NUXT_API_URL,
     apiUrlGraphql: process.env.NUXT_API_URL_GRAPHQL,
+    public: {
+      apiYandexCardKey: process.env.NUXT_PUBLIC_API_YANDEX_CARD_KEY,
+    },
   },
 
   app: {
