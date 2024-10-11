@@ -3,7 +3,13 @@ import type {} from '@yandex/ymaps3-types';
 import settingsMap from '~/components/footer/Locations/mapSettings.json';
 import balloonPath from '~/public/images/balloon.svg';
 
+//
 const { apiYandexCardKey } = useRuntimeConfig().public;
+
+//
+const { coords } = defineProps<{
+  coords: string;
+}>();
 
 //
 useHead({
@@ -14,10 +20,7 @@ useHead({
 
 //
 let map: any = null;
-const centerMap = [45.017341640150015, 41.92643749206539];
-
-//
-initMap();
+const centerMap = JSON.parse(coords);
 
 async function initMap() {
   // Промис `ymaps3.ready` будет зарезолвлен, когда загрузятся все компоненты основного модуля API
@@ -80,6 +83,11 @@ async function initMap() {
 }
 
 //
+onMounted(() => {
+  initMap();
+});
+
+//
 onUnmounted(() => {
   if (map && map.destroy) {
     map.destroy();
@@ -107,11 +115,22 @@ onUnmounted(() => {
   @media (max-width: 768px) {
     height: 480px;
   }
+
+  @media (max-width: 576px) {
+    height: 320px;
+    border-radius: 14px;
+  }
 }
 
 /*  */
 :global(.balloon) {
   width: 69px;
   height: 79px;
+
+  /*  */
+  @media (max-width: 576px) {
+    width: 34px;
+    height: 42px;
+  }
 }
 </style>

@@ -1,4 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+defineProps<{
+  stav: string;
+  mix: string;
+  email: string;
+  phone: string;
+}>();
+</script>
 
 <template>
   <div class="contacts">
@@ -6,26 +13,26 @@
     <p class="contacts__desc">Официальные магазины сети находятся по адресам:</p>
 
     <ul class="contacts__list">
-      <li class="contacts__title__tem">
+      <li class="contacts__title__tem" style="--contact-url: url(/images/location.svg)">
         <div class="contacts__title">г. Ставрополь</div>
-        <div class="contacts__addr">ул. 50 лет ВЛКСМ, 8/1</div>
+        <div class="contacts__addr">{{ stav }}</div>
       </li>
 
-      <li class="contacts__title__tem">
+      <li class="contacts__title__tem" style="--contact-url: url(/images/location.svg)">
         <div class="contacts__title">г. Михайловск</div>
-        <div class="contacts__addr">ул. Почтовая, 79/2</div>
+        <div class="contacts__addr">{{ mix }}</div>
       </li>
 
-      <li class="contacts__title__tem">
+      <li class="contacts__title__tem" style="--contact-url: url(/images/email.svg)">
         <div class="contacts__title">Электронный адрес</div>
-        <div class="contacts__addr">mail@golden-artel.ru</div>
+        <div class="contacts__addr">{{ email }}</div>
       </li>
 
-      <li class="contacts__title__tem">
+      <li class="contacts__title__tem" style="--contact-url: url(/images/tel.svg)">
         <div class="contacts__title">Горячая линия</div>
 
         <div class="contacts__addr">
-          <a href="tel:8 (8652) 990-990">8 (8652) 990-990</a>
+          <a :href="`tel:{{ phone }}`">{{ phone }}</a>
         </div>
       </li>
     </ul>
@@ -80,6 +87,14 @@
   }
 }
 
+@media (max-width: 576px) {
+  .contacts::before {
+    top: -43px;
+    width: 203px;
+    height: 255px;
+  }
+}
+
 /*  */
 .contacts__desc {
   max-width: 400px;
@@ -123,12 +138,21 @@
     width: 100%;
     gap: 42px 10px;
   }
+
+  @media (max-width: 576px) {
+    gap: 24px 10px;
+  }
 }
 
 .contacts__title__tem {
   position: relative;
   width: 330px;
   padding-left: 70px;
+
+  /*  */
+  @media (max-width: 576px) {
+    padding-left: 52px;
+  }
 }
 
 /*  */
@@ -139,7 +163,7 @@
   left: 0;
   width: 48px;
   height: 48px;
-  background-image: url(/images/location.svg);
+  background-image: var(--contact-url);
   background-size: 100%;
   background-repeat: no-repeat;
 }
@@ -158,6 +182,12 @@
   line-height: 140%;
   color: var(--gray-text);
   margin-bottom: 10px;
+
+  /*  */
+  @media (max-width: 576px) {
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
 }
 
 .contacts__addr {
@@ -168,6 +198,10 @@
   /*  */
   @media (max-width: 768px) {
     font-size: 22px;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 18px;
   }
 }
 

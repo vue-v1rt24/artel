@@ -32,7 +32,7 @@ watch(
       <div class="header_wrap">
         <!--  -->
         <div class="logo">
-          <NuxtLink to="/" v-if="route.path !== '/'">
+          <NuxtLink v-if="route.path !== '/'" to="/">
             <img src="/images/logo.svg" alt="" />
           </NuxtLink>
 

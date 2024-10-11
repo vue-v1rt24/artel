@@ -1,9 +1,27 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const { data: footer } = await useFetch('/api/getFooter');
+</script>
 
 <template>
   <footer class="footer">
     <div class="container">
-      <FooterLocations />
+      <FooterLocations
+        v-if="footer"
+        :addr-s="footer.adresVStavropole"
+        :addr-m="footer.adresVMihajlovske"
+        :email="footer.pochta"
+        :phone="footer.nomerTelefona"
+        :coords="footer.koordinatyKarty"
+      />
+
+      <!--  -->
+      <FooterCopy
+        v-if="footer?.vkontakte"
+        :vk="footer.vkontakte"
+        :telegram="footer.telegram"
+        :whatsapp="footer.vatsap"
+        :instagram="footer.instagram"
+      />
     </div>
   </footer>
 </template>
