@@ -1,9 +1,9 @@
 import { requestFetch } from '~/server/utils/requestFetch';
-import { pageHomeQuery } from '~/server/queries/pages/pageHome.queries';
-import type { TypeGeneralQuery } from '~/server/types/pages/pageHome.types';
+import { homeQuery } from '~/server/queries/pages/home.queries';
+import type { TypeGeneralQuery } from '~/server/types/pages/home.types';
 
 export default defineEventHandler(async (event) => {
-  const data = await requestFetch<TypeGeneralQuery>(pageHomeQuery());
+  const data = await requestFetch<TypeGeneralQuery>(homeQuery);
 
   return {
     seo: data.data.pageBy.seo,

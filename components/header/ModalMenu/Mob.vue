@@ -1,21 +1,27 @@
 <script setup lang="ts">
 const { topMenu, menu } = useMenus();
+
+//
+const emit = defineEmits<{
+  eventClick: [];
+}>();
 </script>
 
 <template>
   <div class="mob_menu">
     <ul>
       <li>
-        <NuxtLink to="/catalog/serebro">Каталог</NuxtLink>
+        <NuxtLink to="/catalog/serebro" @click="emit('eventClick')">Каталог</NuxtLink>
       </li>
+
       <li v-for="m in menu" :key="m.link">
-        <NuxtLink :to="m.link">{{ m.title }}</NuxtLink>
+        <NuxtLink :to="m.link" @click="emit('eventClick')">{{ m.title }}</NuxtLink>
       </li>
     </ul>
 
     <ul>
       <li v-for="t in topMenu" :key="t.link">
-        <NuxtLink :to="t.link">{{ t.title }}</NuxtLink>
+        <NuxtLink :to="t.link" @click="emit('eventClick')">{{ t.title }}</NuxtLink>
       </li>
     </ul>
   </div>

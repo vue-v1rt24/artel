@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const viewport = useViewport();
 
+//
 const { cats, stock } = defineProps<{
   cats: {
     databaseId: number;
@@ -15,12 +16,21 @@ const { cats, stock } = defineProps<{
     slug: string;
   };
 }>();
+
+//
+const emit = defineEmits<{
+  eventClick: [];
+}>();
 </script>
 
 <template>
   <ul class="modal_menu__list">
     <li v-for="cat in cats" :key="cat.databaseId" class="modal_menu__item">
-      <NuxtLink :to="`/catalog/${cat.slug}`" class="modal_menu__item_link">
+      <NuxtLink
+        :to="`/catalog/${cat.slug}`"
+        class="modal_menu__item_link"
+        @click="emit('eventClick')"
+      >
         <span class="cat__title">{{ cat.name }}</span>
 
         <NuxtImg
@@ -33,7 +43,7 @@ const { cats, stock } = defineProps<{
     </li>
 
     <li v-if="viewport.isGreaterOrEquals('screen1280') && stock?.image" class="modal_menu__stock">
-      <NuxtLink :to="`/stocks/${stock.slug}`">
+      <NuxtLink :to="`/stocks/${stock.slug}`" @click="emit('eventClick')">
         <NuxtImg :src="stock.image" format="avif, webp" densities="x1" />
       </NuxtLink>
     </li>

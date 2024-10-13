@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { TypeHomeQueryTransform } from '~/types/pages/pageHome.types';
+import type { TypeHomeQueryTransform } from '~/types/pages/home.types';
 
 // Получение акций
 const { data: stocks } = await useFetch('/api/getStocksHome');

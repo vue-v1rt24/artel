@@ -73,7 +73,7 @@ async function initMap() {
   // Инициализируйте маркер
   const marker = new YMapMarker(
     {
-      coordinates: [41.926179999999945, 45.017684074600815],
+      coordinates: [centerMap[1], centerMap[0]],
     },
     balloon,
   );

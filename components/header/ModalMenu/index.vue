@@ -10,6 +10,13 @@ if (error.value) {
 
 const viewport = useViewport();
 const isOpenMenu = useIsOpenMenu();
+
+// Закрытие меню
+const closeModalMenu = () => {
+  if (isOpenMenu.value) {
+    isOpenMenu.value = false;
+  }
+};
 </script>
 
 <template>
@@ -21,9 +28,13 @@ const isOpenMenu = useIsOpenMenu();
         v-if="viewport.isGreaterOrEquals('screen768') && catsStock?.cats.length"
         :cats="catsStock?.cats"
         :stock="catsStock?.stock"
+        @event-click="isOpenMenu = false"
       />
 
-      <HeaderModalMenuMob v-if="viewport.isLessThan('screen768')" />
+      <HeaderModalMenuMob
+        v-if="viewport.isLessThan('screen768')"
+        @event-click="isOpenMenu = false"
+      />
     </div>
   </div>
 </template>

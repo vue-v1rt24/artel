@@ -1,5 +1,13 @@
 <script setup lang="ts">
 const { topMenu } = useMenus();
+const isOpenMenu = useIsOpenMenu();
+
+// Закрытие меню
+const closeModalMenu = () => {
+  if (isOpenMenu.value) {
+    isOpenMenu.value = false;
+  }
+};
 </script>
 
 <template>
@@ -8,7 +16,7 @@ const { topMenu } = useMenus();
       <div class="top_header">
         <ul class="top_header__list">
           <li v-for="menu in topMenu" :key="menu.link">
-            <NuxtLink :to="menu.link">{{ menu.title }}</NuxtLink>
+            <NuxtLink :to="menu.link" @click="closeModalMenu">{{ menu.title }}</NuxtLink>
           </li>
         </ul>
 

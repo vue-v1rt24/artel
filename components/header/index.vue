@@ -5,12 +5,19 @@ const isOpenMenu = useIsOpenMenu();
 const viewport = useViewport();
 const modal = useTemplateRef('modal');
 
-//
+// Открытие модального окна с формой
 const contactUs = () => {
   modal.value?.modalOpen();
 };
 
-//
+// Закрытие меню
+const closeModalMenu = () => {
+  if (isOpenMenu.value) {
+    isOpenMenu.value = false;
+  }
+};
+
+// Отслеживание открытия / закрытия меню
 watch(
   () => isOpenMenu.value,
   (isOpenMenu) => {
@@ -32,7 +39,7 @@ watch(
       <div class="header_wrap">
         <!--  -->
         <div class="logo">
-          <NuxtLink v-if="route.path !== '/'" to="/">
+          <NuxtLink v-if="route.path !== '/'" to="/" @click="closeModalMenu">
             <img src="/images/logo.svg" alt="" />
           </NuxtLink>
 
@@ -53,7 +60,7 @@ watch(
         <!--  -->
         <ul class="menu">
           <li v-for="{ title, link } in menu">
-            <NuxtLink :to="link">{{ title }}</NuxtLink>
+            <NuxtLink :to="link" @click="closeModalMenu">{{ title }}</NuxtLink>
           </li>
         </ul>
 
