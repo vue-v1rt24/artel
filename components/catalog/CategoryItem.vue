@@ -1,5 +1,6 @@
 <script setup lang="ts">
 defineProps<{
+  parentCategoryName: string;
   category: {
     databaseId: number;
     name: string;
@@ -11,7 +12,16 @@ defineProps<{
 
 <template>
   <li class="category">
-    <NuxtLink :to="`/catalog/:slug()/:slugcat()`"></NuxtLink>
+    <NuxtLink :to="`/catalog/${parentCategoryName}/${category.slug}`">
+      <span class="category__title">{{ category.name }}</span>
+
+      <NuxtImg
+        :src="category.image.mediaItemUrl"
+        format="avif, webp"
+        densities="x1"
+        class="category__img"
+      />
+    </NuxtLink>
   </li>
 </template>
 

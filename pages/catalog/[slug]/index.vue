@@ -59,6 +59,7 @@ useSeoMeta({
           <CatalogCategoryItem
             v-for="item in childrenCatalogs?.childrenCategories"
             :key="item.databaseId"
+            :parent-category-name="slug"
             :category="item"
           />
         </ul>
