@@ -1,10 +1,24 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+defineProps<{
+  fixed?: boolean;
+}>();
+</script>
 
 <template>
-  <div class="preloader-5"></div>
+  <div :class="{ fixed }">
+    <div class="preloader-5"></div>
+  </div>
 </template>
 
 <style lang="css" scoped>
+.fixed {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 100;
+}
+
+/*  */
 .preloader-5 {
   display: block;
   position: absolute;

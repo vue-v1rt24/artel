@@ -25,4 +25,75 @@ defineProps<{
   </li>
 </template>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+.category {
+  position: relative;
+  background-color: var(--green-50);
+  border-radius: 20px;
+  overflow: hidden;
+
+  /*  */
+  @media (max-width: 768px) {
+    border-radius: 16px;
+  }
+
+  /*  */
+  a {
+    height: 200px;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 120%;
+    color: var(--main-green);
+    display: block;
+    padding: 42px;
+
+    /*  */
+    @media (max-width: 1280px) {
+      height: 190px;
+      padding: 32px;
+    }
+
+    @media (max-width: 768px) {
+      height: 180px;
+      font-size: 20px;
+      padding: 26px;
+    }
+
+    @media (max-width: 700px) {
+      height: auto;
+      font-size: 17px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      row-gap: 10px;
+      padding: 22px;
+    }
+  }
+}
+
+.category__img {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  mix-blend-mode: darken;
+  scale: 1;
+  transition: scale 0.3s;
+
+  /*  */
+  .category:hover & {
+    scale: 1.2;
+  }
+
+  /*  */
+  @media (max-width: 1280px) {
+    width: 148px;
+    bottom: 10px;
+    right: 10px;
+  }
+
+  @media (max-width: 700px) {
+    position: static;
+    width: 136px;
+  }
+}
+</style>
