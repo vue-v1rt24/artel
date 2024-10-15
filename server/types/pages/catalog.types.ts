@@ -49,3 +49,26 @@ export type TypeDataParentQuery = {
     };
   };
 };
+
+// Типизация подкатегории и её товаров
+export type TypeSubCategory = {
+  data: {
+    products: {
+      nodes: {
+        databaseId: number;
+        name: string;
+        slug: string;
+        onSale: boolean;
+        price: string;
+        regularPrice: string;
+        salePrice: string;
+        image: {
+          mediaItemUrl: string;
+        };
+      }[];
+    };
+    productCategory: {
+      name: string;
+    };
+  };
+};

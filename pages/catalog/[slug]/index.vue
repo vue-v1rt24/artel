@@ -38,6 +38,11 @@ useSeoMeta({
   title: childrenCatalogs.value?.dataParentCategory.seo.titleSeo,
   description: childrenCatalogs.value?.dataParentCategory.seo.descriptionSeo,
 });
+
+//
+const titleChange = computed(() => {
+  return slug === 'zoloto' ? 'золота' : 'серебра';
+});
 </script>
 
 <template>
@@ -52,7 +57,7 @@ useSeoMeta({
     <div class="catalog">
       <div class="container">
         <div class="catalog__header">
-          <h1 class="h2_72">Каталог изделий из золота</h1>
+          <h1 class="h2_72">Каталог изделий из {{ titleChange }}</h1>
 
           <!-- Родительские категории -->
           <ul class="catalog__header_list">

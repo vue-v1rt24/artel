@@ -53,3 +53,30 @@ export const dataParentQuery = (id: number) => {
     }
   `;
 };
+
+// Получение подкатегории и её товаров
+export const subCategory = (slug: string) => {
+  return `
+    {
+      products(where: {category: "${slug}"}) {
+        nodes {
+          ... on SimpleProduct {
+            databaseId
+            name
+            slug
+            onSale
+            price(format: RAW)
+            regularPrice(format: RAW)
+            salePrice(format: RAW)
+            image {
+              mediaItemUrl
+            }
+          }
+        }
+      }
+      productCategory(id: "${slug}", idType: SLUG) {
+        name
+      }
+    }
+  `;
+};
