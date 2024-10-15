@@ -17,8 +17,6 @@ defineProps<{
           sizes="s768:322px s576:280px s360:127px"
           loading="lazy"
         />
-
-        <UiPreloader class="loader" />
       </div>
 
       <!--  -->

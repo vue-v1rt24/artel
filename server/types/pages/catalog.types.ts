@@ -65,10 +65,13 @@ export type TypeSubCategory = {
         image: {
           mediaItemUrl: string;
         };
+        sku: string;
+        type: 'SIMPLE';
       }[];
     };
     productCategory: {
       name: string;
+      description: string;
     };
   };
 };

@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
   // Получение дочерних категорий (каталогов)
   const dataChildrenCatalog = await requestFetch<TypeChildrenCatalog>(catalogChildrenQuery(slug));
 
-  // Получение дочерних категорий (каталогов)
+  // Получение данных категории (сео, описание)
   const dataParent = await requestFetch<TypeDataParentQuery>(
     dataParentQuery(+dataChildrenCatalog.data.productCategory.description),
   );

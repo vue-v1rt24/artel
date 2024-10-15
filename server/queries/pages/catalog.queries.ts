@@ -71,11 +71,14 @@ export const subCategory = (slug: string) => {
             image {
               mediaItemUrl
             }
+            sku
+            type
           }
         }
       }
       productCategory(id: "${slug}", idType: SLUG) {
         name
+        description
       }
     }
   `;

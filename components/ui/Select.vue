@@ -1,39 +1,39 @@
 <script setup lang="ts">
-const { select = 0 } = defineProps<{
+const { options, select = 0 } = defineProps<{
   options: string[];
   select?: number;
 }>();
 
 //
-const selectEl = useTemplateRef('select');
-const isOpen = ref(false);
+const emit = defineEmits<{
+  selectOptionVal: [val: string];
+}>();
 
 //
-const openSelect = () => {
-  isOpen.value = !isOpen.value;
+const titleSelect = ref(options[select]);
+const isOpen = ref(false);
 
-  if (isOpen.value) {
-    selectEl.value?.classList.add('active');
-  }
-
-  if (!isOpen.value) {
-    selectEl.value?.classList.remove('active');
-    selectEl.value?.classList.add('not_active');
-
-    setTimeout(() => selectEl.value?.classList.remove('not_active'), 300);
-  }
+// Получение значения селекта
+const changeOption = (option: string) => {
+  titleSelect.value = option;
+  emit('selectOptionVal', option);
 };
 </script>
 
 <template>
-  <div :class="['select']" @click="openSelect" ref="select">
+  <div :class="['select', { active: isOpen }]" @click="isOpen = !isOpen">
     <div class="select__title">
-      <span>{{ options[select] }}</span>
+      <span>{{ titleSelect }}</span>
       <ImagesArrowBgWhite />
     </div>
 
     <div class="select__options">
-      <span v-for="option in options" :key="option" class="select__option">
+      <span
+        v-for="option in options"
+        :key="option"
+        class="select__option"
+        @click="changeOption(option)"
+      >
         {{ option }}
       </span>
     </div>
@@ -48,6 +48,7 @@ const openSelect = () => {
   font-size: 16px;
   line-height: 90%;
   color: var(--main-green);
+  z-index: 1;
 }
 
 /*  */
@@ -108,21 +109,14 @@ const openSelect = () => {
   padding: 20px;
   opacity: 0;
   visibility: hidden;
-  transition: top var(--transition-speed), visibility var(--transition-speed);
+  transition: top var(--transition-speed), opacity var(--transition-speed),
+    visibility var(--transition-speed);
   cursor: pointer;
 
   .active & {
     top: 64px;
     opacity: 1;
     visibility: visible;
-    transition: top var(--transition-speed), visibility var(--transition-speed);
-  }
-
-  .not_active & {
-    top: 50px;
-    opacity: 0;
-    visibility: hidden;
-    transition: top var(--transition-speed), visibility var(--transition-speed);
   }
 }
 

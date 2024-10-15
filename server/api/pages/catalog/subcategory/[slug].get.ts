@@ -1,8 +1,8 @@
 import { requestFetch } from '~/server/utils/requestFetch';
 
-import { subCategory } from '~/server/queries/pages/catalog.queries';
+import { subCategory, dataParentQuery } from '~/server/queries/pages/catalog.queries';
 
-import type { TypeSubCategory } from '~/server/types/pages/catalog.types';
+import type { TypeSubCategory, TypeDataParentQuery } from '~/server/types/pages/catalog.types';
 
 export default defineEventHandler(async (event) => {
   const slug = getRouterParam(event, 'slug');
@@ -14,11 +14,18 @@ export default defineEventHandler(async (event) => {
     });
   }
 
+  // Получение товаров категории
   const getSubCategory = await requestFetch<TypeSubCategory>(subCategory(slug));
+
+  // Получение данных категории (сео, описание)
+  const dataParent = await requestFetch<TypeDataParentQuery>(
+    dataParentQuery(+getSubCategory.data.productCategory.description),
+  );
 
   //
   return {
     products: getSubCategory.data.products.nodes,
-    subCategoryName: getSubCategory.data.productCategory.name,
+    subCategory: getSubCategory.data.productCategory,
+    dataCategory: dataParent.data.catalogPageBy,
   };
 });
