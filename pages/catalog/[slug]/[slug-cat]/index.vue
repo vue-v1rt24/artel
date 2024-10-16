@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { TypeCatalog } from '~/types/pages/catalog.types';
+import { SortEnum } from '~/server/types/pages/catalog.types';
 import '~/assets/css/return-styles-wp.css';
 
 //
@@ -14,7 +16,15 @@ if (!slug && !slugcat) {
 // console.log(slug, slugcat);
 
 // Получаем данные подкатегории
-const { data: category, error } = await useFetch(`/api/pages/catalog/subcategory/${slugcat}`);
+const selectSortVal = ref<string | null>(null); // будет значение сортировки
+
+const { data: category, error } = await useFetch<TypeCatalog>(
+  `/api/pages/catalog/subcategory/${slugcat}`,
+  {
+    query: { sort: selectSortVal },
+    watch: [selectSortVal],
+  },
+);
 
 if (error.value) {
   throw createError({
@@ -23,7 +33,7 @@ if (error.value) {
   });
 }
 
-console.log(category.value);
+// console.log(category.value);
 
 // Мета данные
 useSeoMeta({
@@ -32,17 +42,17 @@ useSeoMeta({
 });
 
 // Значения для селекта
-const selectOptions = ['По популярности', 'По популярности 2', 'По популярности 3'];
+const selectOptions = [SortEnum.POPULAR, SortEnum.PRICE_UP, SortEnum.PRICE_DOWN];
 
 // Получаем название подкатегории
 const catName = computed(() => (slug === 'zoloto' ? 'Золото' : 'Серебро'));
 
 // Получаем значение сортировки
 const selectValHandler = (val: string) => {
-  console.log(val);
+  selectSortVal.value = val;
 };
 
-// Размер карточек товаров
+// Изменение количества карточек товаров на странице
 const sizeCards = (val: string) => {
   console.log(val);
 };

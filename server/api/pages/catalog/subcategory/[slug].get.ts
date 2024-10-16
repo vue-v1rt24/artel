@@ -1,10 +1,9 @@
 import { requestFetch } from '~/server/utils/requestFetch';
-
 import { subCategory, dataParentQuery } from '~/server/queries/pages/catalog.queries';
-
 import type { TypeSubCategory, TypeDataParentQuery } from '~/server/types/pages/catalog.types';
 
 export default defineEventHandler(async (event) => {
+  // Получение слага
   const slug = getRouterParam(event, 'slug');
 
   if (!slug) {
@@ -14,8 +13,13 @@ export default defineEventHandler(async (event) => {
     });
   }
 
+  // Получение значения сортировки
+  const { sort } = getQuery(event);
+
   // Получение товаров категории
-  const getSubCategory = await requestFetch<TypeSubCategory>(subCategory(slug));
+  const getSubCategory = await requestFetch<TypeSubCategory>(
+    subCategory(slug, sort as string | undefined),
+  );
 
   // Получение данных категории (сео, описание)
   const dataParent = await requestFetch<TypeDataParentQuery>(

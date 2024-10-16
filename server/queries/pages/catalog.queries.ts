@@ -1,3 +1,5 @@
+import { SortEnum } from '~/server/types/pages/catalog.types';
+
 // Получение родительских категорий
 export const catalogParentQuery = `
   {
@@ -54,11 +56,17 @@ export const dataParentQuery = (id: number) => {
   `;
 };
 
-// Получение подкатегории и её товаров
-export const subCategory = (slug: string) => {
+// Получение подкатегории и её товаров (так же передаём сортировку)
+export const subCategory = (slug: string, sort: string | undefined) => {
+  const sortVal: any = {
+    [SortEnum.POPULAR]: 'orderby: {field: POPULARITY}',
+    [SortEnum.PRICE_UP]: 'orderby: {field: PRICE, order: ASC}',
+    [SortEnum.PRICE_DOWN]: 'orderby: {field: PRICE, order: DESC}',
+  };
+
   return `
     {
-      products(where: {category: "${slug}"}) {
+      products(where: {category: "${slug}", ${sortVal[sort || SortEnum.POPULAR]}}) {
         nodes {
           ... on SimpleProduct {
             databaseId
