@@ -9,21 +9,18 @@ const { slug } = useRoute().params as { slug: string };
 const isLoadChildrenCats = ref(false);
 
 // Получение родительских категорий
-const { data: parentCatalogs, error: parentCatalogsError } = await useLazyFetch(
-  '/api/pages/catalog',
-  {
-    getCachedData(key) {
-      return nuxtApp.payload.data[key] || nuxtApp.static.data[key];
-    },
+const { data: parentCatalogs, error: parentCatalogsError } = await useFetch('/api/pages/catalog', {
+  getCachedData(key) {
+    return nuxtApp.payload.data[key] || nuxtApp.static.data[key];
   },
-);
+});
 
 // Получение дочерних категорий
 const {
   data: childrenCatalogs,
   status: childrenCatalogsStatus,
   error: childrenCatalogsError,
-} = await useLazyFetch(`/api/pages/catalog/${slug}`);
+} = await useFetch(`/api/pages/catalog/${slug}`);
 
 // console.log(parentCatalogs.value);
 // console.log(childrenCatalogs.value);
@@ -48,7 +45,8 @@ const titleChange = computed(() => {
 <template>
   <div>
     <!-- Предзагрузчик -->
-    <UiPreloader v-if="childrenCatalogsStatus === 'pending' || isLoadChildrenCats" fixed />
+    <!-- <UiPreloader v-if="childrenCatalogsStatus === 'pending' || isLoadChildrenCats" fixed /> -->
+    <UiPreloader v-if="isLoadChildrenCats" fixed />
 
     <!-- Хлебные крошки -->
     <UiBreadCrumbs :links="[{ title: 'Каталог' }]" />
