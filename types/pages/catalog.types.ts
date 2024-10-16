@@ -27,4 +27,8 @@ export type TypeCatalog = {
       opisanieKategorii: string;
     };
   };
+  pageInfo: {
+    endCursor: string;
+    hasNextPage: boolean;
+  };
 };

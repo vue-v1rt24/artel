@@ -57,7 +57,7 @@ export const dataParentQuery = (id: number) => {
 };
 
 // Получение подкатегории и её товаров (так же передаём сортировку)
-export const subCategory = (slug: string, sort: string | undefined) => {
+export const subCategory = (slug: string, sort: string | undefined, nextPage: string = '') => {
   const sortVal: any = {
     [SortEnum.POPULAR]: 'orderby: {field: POPULARITY}',
     [SortEnum.PRICE_UP]: 'orderby: {field: PRICE, order: ASC}',
@@ -66,7 +66,11 @@ export const subCategory = (slug: string, sort: string | undefined) => {
 
   return `
     {
-      products(where: {category: "${slug}", ${sortVal[sort || SortEnum.POPULAR]}}) {
+      products(
+        where: {category: "${slug}", ${sortVal[sort || SortEnum.POPULAR]}}
+        first: 3
+        after: "${nextPage}"
+      ) {
         nodes {
           ... on SimpleProduct {
             databaseId
@@ -82,6 +86,10 @@ export const subCategory = (slug: string, sort: string | undefined) => {
             sku
             type
           }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
         }
       }
       productCategory(id: "${slug}", idType: SLUG) {

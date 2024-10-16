@@ -18,11 +18,15 @@ if (!slug && !slugcat) {
 // Получаем данные подкатегории
 const selectSortVal = ref<string | null>(null); // будет значение сортировки
 
+// Будет храниться значение, полученное из БД, для подгрузки следующей страницы (для кнопки показать ещё)
+const nextPage = ref('');
+
+// Запрос
 const { data: category, error } = await useFetch<TypeCatalog>(
   `/api/pages/catalog/subcategory/${slugcat}`,
   {
-    query: { sort: selectSortVal },
-    watch: [selectSortVal],
+    query: { sort: selectSortVal, nextPage },
+    watch: [selectSortVal, nextPage],
   },
 );
 
@@ -55,6 +59,13 @@ const selectValHandler = (val: string) => {
 // Изменение количества карточек товаров на странице
 const sizeCards = (val: string) => {
   console.log(val);
+};
+
+// Показать ещё
+const loadMoe = () => {
+  if (category.value?.pageInfo.endCursor) {
+    nextPage.value = category.value.pageInfo.endCursor;
+  }
 };
 </script>
 
@@ -89,11 +100,13 @@ const sizeCards = (val: string) => {
 
       <!-- Кнопка "Показать ещё" -->
       <UiButton
+        v-if="category?.pageInfo.hasNextPage"
         width="100%"
         title="Показать ещё"
         bg="var(--green-50)"
         text-color="var(--main-green)"
         class="load_more"
+        @btn-click="loadMoe"
       />
 
       <!-- Описание категории -->

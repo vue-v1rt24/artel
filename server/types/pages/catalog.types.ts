@@ -68,6 +68,10 @@ export type TypeSubCategory = {
         sku: string;
         type: 'SIMPLE';
       }[];
+      pageInfo: {
+        endCursor: string;
+        hasNextPage: boolean;
+      };
     };
     productCategory: {
       name: string;

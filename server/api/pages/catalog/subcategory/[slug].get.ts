@@ -14,11 +14,11 @@ export default defineEventHandler(async (event) => {
   }
 
   // Получение значения сортировки
-  const { sort } = getQuery(event);
+  const { sort, nextPage } = getQuery(event);
 
   // Получение товаров категории
   const getSubCategory = await requestFetch<TypeSubCategory>(
-    subCategory(slug, sort as string | undefined),
+    subCategory(slug, sort as string | undefined, nextPage as string),
   );
 
   // Получение данных категории (сео, описание)
@@ -31,5 +31,6 @@ export default defineEventHandler(async (event) => {
     products: getSubCategory.data.products.nodes,
     subCategory: getSubCategory.data.productCategory,
     dataCategory: dataParent.data.catalogPageBy,
+    pageInfo: getSubCategory.data.products.pageInfo,
   };
 });
