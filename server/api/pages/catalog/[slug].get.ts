@@ -5,14 +5,7 @@ import { catalogChildrenQuery, dataParentQuery } from '~/server/queries/pages/ca
 import type { TypeChildrenCatalog, TypeDataParentQuery } from '~/server/types/pages/catalog.types';
 
 export default defineEventHandler(async (event) => {
-  const slug = getRouterParam(event, 'slug');
-
-  if (!slug) {
-    throw createError({
-      statusCode: 400,
-      statusMessage: 'Данные не получены',
-    });
-  }
+  const slug = getRouterParam(event, 'slug')!;
 
   // Получение дочерних категорий (каталогов)
   const dataChildrenCatalog = await requestFetch<TypeChildrenCatalog>(catalogChildrenQuery(slug));

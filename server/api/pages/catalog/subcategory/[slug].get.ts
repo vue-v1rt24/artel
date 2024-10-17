@@ -4,14 +4,7 @@ import type { TypeSubCategory, TypeDataParentQuery } from '~/server/types/pages/
 
 export default defineEventHandler(async (event) => {
   // Получение слага
-  const slug = getRouterParam(event, 'slug');
-
-  if (!slug) {
-    throw createError({
-      statusCode: 400,
-      statusMessage: 'Данные не получены',
-    });
-  }
+  const slug = getRouterParam(event, 'slug')!;
 
   // Получение значения сортировки
   const { sort, nextPage } = getQuery(event);
