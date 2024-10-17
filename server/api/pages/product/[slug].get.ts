@@ -7,7 +7,5 @@ export default defineEventHandler(async (event) => {
 
   const data = await requestFetch<TypeProduct>(productQuery(slug));
 
-  console.log(data);
-
-  return data.data.product;
+  return data;
 });

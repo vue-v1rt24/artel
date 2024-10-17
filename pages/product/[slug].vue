@@ -11,13 +11,13 @@ const { data: product, error } = await useFetch(`/api/pages/product/${slug}`);
   });
 } */
 
-// console.log(product.value);
+console.log(product.value);
 
 //
-useSeoMeta({
+/* useSeoMeta({
   title: product.value?.seo.titleSeo,
   description: product.value?.seo.descriptionSeo,
-});
+}); */
 </script>
 
 <template>
