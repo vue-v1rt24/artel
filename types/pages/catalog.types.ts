@@ -1,18 +1,21 @@
+export type TypeProducts = {
+  databaseId: number;
+  name: string;
+  slug: string;
+  onSale: boolean;
+  price: string;
+  regularPrice: string;
+  salePrice: string;
+  image: {
+    mediaItemUrl: string;
+  };
+  sku: string;
+  type: 'SIMPLE';
+};
+
+//
 export type TypeCatalog = {
-  products: {
-    databaseId: number;
-    name: string;
-    slug: string;
-    onSale: boolean;
-    price: string;
-    regularPrice: string;
-    salePrice: string;
-    image: {
-      mediaItemUrl: string;
-    };
-    sku: string;
-    type: 'SIMPLE';
-  }[];
+  products: TypeProducts[];
   subCategory: {
     name: string;
     description: string;

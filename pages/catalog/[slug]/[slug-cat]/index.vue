@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { TypeCatalog } from '~/types/pages/catalog.types';
 import { SortEnum } from '~/server/types/pages/catalog.types';
+import type { TypeProducts, TypeCatalog } from '~/types/pages/catalog.types';
 import '~/assets/css/return-styles-wp.css';
 
 //
@@ -15,26 +15,37 @@ if (!slug && !slugcat) {
 
 // console.log(slug, slugcat);
 
-// Получаем данные подкатегории
-const selectSortVal = ref<string | null>(null); // будет значение сортировки
+// Будет значение сортировки
+const selectSortVal = ref<string | null>(null);
 
 // Будет храниться значение, полученное из БД, для подгрузки следующей страницы (для кнопки показать ещё)
 const nextPage = ref('');
 
-// Запрос
-const { data: category, error } = await useFetch<TypeCatalog>(
-  `/api/pages/catalog/subcategory/${slugcat}`,
-  {
-    query: { sort: selectSortVal, nextPage },
-    watch: [selectSortVal, nextPage],
-  },
-);
+// Для хранения товаров из БД
+const products = ref<TypeProducts[]>([]);
+
+// Значение будет меняться при нажатии на кнопку "Показать ещё"
+const isLoadProducts = ref(false);
+
+// Получаем данные подкатегории
+const {
+  data: category,
+  status,
+  error,
+} = await useFetch<TypeCatalog>(`/api/pages/catalog/subcategory/${slugcat}`, {
+  query: { sort: selectSortVal, nextPage },
+  watch: [selectSortVal, nextPage],
+});
 
 if (error.value) {
   throw createError({
     statusCode: 404,
     statusMessage: 'Запись не найдена',
   });
+}
+
+if (category.value?.products) {
+  products.value = category.value.products;
 }
 
 // console.log(category.value);
@@ -45,7 +56,7 @@ useSeoMeta({
   description: category.value?.dataCategory.seo.descriptionSeo,
 });
 
-// Значения для селекта
+// Значения для селекта. Получаем из ENUM
 const selectOptions = [SortEnum.POPULAR, SortEnum.PRICE_UP, SortEnum.PRICE_DOWN];
 
 // Получаем название подкатегории
@@ -53,6 +64,7 @@ const catName = computed(() => (slug === 'zoloto' ? 'Золото' : 'Сереб
 
 // Получаем значение сортировки
 const selectValHandler = (val: string) => {
+  nextPage.value = '';
   selectSortVal.value = val;
 };
 
@@ -64,13 +76,32 @@ const sizeCards = (val: string) => {
 // Показать ещё
 const loadMoe = () => {
   if (category.value?.pageInfo.endCursor) {
+    isLoadProducts.value = true;
     nextPage.value = category.value.pageInfo.endCursor;
   }
 };
+
+//
+watch(
+  () => status.value,
+  (val) => {
+    if (val === 'success' && category.value?.products) {
+      if (isLoadProducts.value) {
+        products.value.push(...category.value.products);
+        isLoadProducts.value = false;
+      } else {
+        products.value = category.value.products;
+      }
+    }
+  },
+);
 </script>
 
 <template>
   <div class="subcategory">
+    <!-- Предзагрузчик -->
+    <UiPreloader fixed v-if="status === 'pending'" />
+
     <!-- Хлебные крошки -->
     <UiBreadCrumbs
       :links="[
@@ -93,7 +124,7 @@ const loadMoe = () => {
 
       <!-- Вывод товаров -->
       <ul class="products">
-        <li v-for="product in category?.products" :key="product.databaseId" class="products__item">
+        <li v-for="product in products" :key="product.databaseId" class="products__item">
           <CatalogProductCard :product />
         </li>
       </ul>
