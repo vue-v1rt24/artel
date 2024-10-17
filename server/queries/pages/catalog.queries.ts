@@ -23,7 +23,7 @@ export const catalogChildrenQuery = (slug: string) => {
       productCategory(id: "${slug}", idType: SLUG) {
         name
         description
-        children(first: 100) {
+        children(first: 100, where: {hideEmpty: true}) {
           nodes {
             databaseId
             name
@@ -68,7 +68,7 @@ export const subCategory = (slug: string, sort: string | undefined, nextPage: st
     {
       products(
         where: {category: "${slug}", ${sortVal[sort || SortEnum.POPULAR]}}
-        first: 3
+        first: 16
         after: "${nextPage}"
       ) {
         nodes {

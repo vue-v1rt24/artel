@@ -14,7 +14,6 @@ defineProps<{
           :src="product.image.mediaItemUrl"
           densities="x1"
           format="avif, webp"
-          sizes="s768:322px s576:280px s360:127px"
           loading="lazy"
         />
       </div>
@@ -39,24 +38,29 @@ defineProps<{
 </template>
 
 <style lang="css" scoped>
+.product {
+  position: relative;
+}
+
+/*  */
 .product__img {
   position: relative;
-  height: 378px;
   background-color: var(--low-green);
+  aspect-ratio: 1;
   border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 28px;
   margin-bottom: 20px;
 
   /*  */
   @media (max-width: 768px) {
-    height: 328px;
     margin-bottom: 18px;
   }
 
   @media (max-width: 576px) {
-    height: 150px;
+    padding: 10px;
     margin-bottom: 12px;
   }
 

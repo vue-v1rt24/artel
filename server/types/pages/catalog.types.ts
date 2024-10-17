@@ -83,6 +83,6 @@ export type TypeSubCategory = {
 // Значения сортировки
 export enum SortEnum {
   POPULAR = 'По популярности',
-  PRICE_UP = 'Цена по возрастанию',
-  PRICE_DOWN = 'Цена по убыванию',
+  PRICE_UP = 'Дешевле',
+  PRICE_DOWN = 'Дороже',
 }

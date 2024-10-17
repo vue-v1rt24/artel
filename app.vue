@@ -1,3 +1,11 @@
+<script setup lang="ts">
+useSeoMeta({
+  titleTemplate(titleChunk) {
+    return titleChunk ? titleChunk : 'Золотая Артель';
+  },
+});
+</script>
+
 <template>
   <NuxtLoadingIndicator />
   <div>

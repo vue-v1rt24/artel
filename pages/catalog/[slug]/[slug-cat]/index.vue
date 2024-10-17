@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { SortEnum } from '~/server/types/pages/catalog.types';
-import type { TypeProducts, TypeCatalog } from '~/types/pages/catalog.types';
+import { type TypeProducts, type TypeCatalog, EnumViewCard } from '~/types/pages/catalog.types';
 import '~/assets/css/return-styles-wp.css';
 
 //
@@ -69,8 +69,10 @@ const selectValHandler = (val: string) => {
 };
 
 // Изменение количества карточек товаров на странице
-const sizeCards = (val: string) => {
-  console.log(val);
+const viewCard = ref<EnumViewCard>(EnumViewCard.LITTLE);
+
+const sizeCards = (val: EnumViewCard) => {
+  viewCard.value = val;
 };
 
 // Показать ещё
@@ -123,7 +125,7 @@ watch(
       </div>
 
       <!-- Вывод товаров -->
-      <ul class="products">
+      <ul :class="['products', { big: viewCard === EnumViewCard.BIG }]">
         <li v-for="product in products" :key="product.databaseId" class="products__item">
           <CatalogProductCard :product />
         </li>
@@ -156,6 +158,29 @@ watch(
   justify-content: space-between;
   align-items: center;
   margin: 60px 0;
+
+  /*  */
+  @media (max-width: 1280px) {
+    margin: 70px 0 50px 0;
+  }
+
+  @media (max-width: 768px) {
+    margin: 42px 0 32px 0;
+  }
+
+  @media (max-width: 576px) {
+    margin: 32px 0 32px 0;
+  }
+}
+
+/*  */
+.sort .select {
+  min-width: 203px;
+
+  /*  */
+  @media (max-width: 576px) {
+    min-width: 166px;
+  }
 }
 
 /*  */
@@ -163,6 +188,33 @@ watch(
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 30px;
+
+  /*  */
+  @media (max-width: 1280px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 992px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 576px) {
+    gap: 24px 20px;
+  }
+
+  /*  */
+  &.big {
+    grid-template-columns: repeat(3, 1fr);
+
+    /*  */
+    @media (max-width: 1280px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
 }
 
 /*  */
@@ -174,7 +226,6 @@ watch(
 .subcategory__desc {
   margin-top: 150px;
 
-  /*  */
   /*  */
   @media (max-width: 1280px) {
     margin-top: 140px;

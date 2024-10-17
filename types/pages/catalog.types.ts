@@ -35,3 +35,9 @@ export type TypeCatalog = {
     hasNextPage: boolean;
   };
 };
+
+// Типизация изменение количества карточек товаров на странице
+export enum EnumViewCard {
+  LITTLE = 'little',
+  BIG = 'big',
+}

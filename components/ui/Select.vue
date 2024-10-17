@@ -31,7 +31,7 @@ const changeOption = (option: string) => {
       <span
         v-for="option in options"
         :key="option"
-        class="select__option"
+        :class="['select__option', { active: titleSelect === option }]"
         @click="changeOption(option)"
       >
         {{ option }}
@@ -49,6 +49,11 @@ const changeOption = (option: string) => {
   line-height: 90%;
   color: var(--main-green);
   z-index: 1;
+
+  /*  */
+  @media (max-width: 576px) {
+    font-size: 12px;
+  }
 }
 
 /*  */
@@ -67,11 +72,20 @@ const changeOption = (option: string) => {
   transition: background-color var(--transition-speed), border-color var(--transition-speed);
   user-select: none;
 
-  &:hover {
-    background-color: var(--green-50);
-    border-color: transparent;
+  /*  */
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--green-50);
+      border-color: transparent;
+    }
   }
 
+  /*  */
+  @media (max-width: 576px) {
+    height: 39px;
+  }
+
+  /*  */
   .active & {
     color: white;
     background-color: var(--main-green);
@@ -87,6 +101,13 @@ const changeOption = (option: string) => {
     rotate: 270deg;
     color: var(--gray-text);
 
+    /*  */
+    @media (max-width: 576px) {
+      top: -12px;
+      width: 26px;
+    }
+
+    /*  */
     .active & {
       rotate: 90deg;
       color: white;
@@ -113,14 +134,30 @@ const changeOption = (option: string) => {
     visibility var(--transition-speed);
   cursor: pointer;
 
+  /*  */
+  @media (max-width: 576px) {
+    top: 20px;
+  }
+
+  /*  */
   .active & {
     top: 64px;
     opacity: 1;
     visibility: visible;
+
+    /*  */
+    @media (max-width: 576px) {
+      top: 50px;
+    }
   }
 }
 
 .select__option {
   display: block;
+
+  /*  */
+  &.active {
+    pointer-events: none;
+  }
 }
 </style>

@@ -10,7 +10,6 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: 'Золотая Артель',
       htmlAttrs: {
         lang: 'ru',
       },
