@@ -10,12 +10,6 @@ export const productQuery = (slug: string) => `
       price(format: RAW)
       regularPrice(format: RAW)
       salePrice(format: RAW)
-      globalAttributes {
-        nodes {
-          label
-          name
-        }
-      }
       defaultAttributes {
         nodes {
           name

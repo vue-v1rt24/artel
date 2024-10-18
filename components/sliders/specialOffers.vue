@@ -24,13 +24,9 @@ const productAvailability = (special: TypeSpecialOffers) => {
 onMounted(() => {
   const swiper = new Swiper('.special_swiper', {
     modules: [Navigation, Pagination],
-
     slidesPerView: 1,
-
     spaceBetween: 100,
-
     loop: true,
-
     speed: 1000,
 
     pagination: {

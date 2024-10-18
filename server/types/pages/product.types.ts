@@ -9,12 +9,6 @@ export type TypeProduct = {
       price: string;
       regularPrice: string;
       salePrice: string;
-      globalAttributes: {
-        nodes: {
-          label: string;
-          name: string;
-        }[];
-      };
       defaultAttributes: {
         nodes: {
           name: string;

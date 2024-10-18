@@ -158,7 +158,7 @@ onMounted(() => {
 }
 
 .off_slider__img_bx {
-  background: var(--low-green);
+  background-color: var(--low-green);
   border-radius: 20px;
 }
 
