@@ -11,13 +11,16 @@ if (error.value || !product.value) {
   });
 }
 
-console.log(product.value);
+// console.log(product.value);
 
 // Мета данные
 useSeoMeta({
   title: product.value?.seo.titleSeo,
   description: product.value?.seo.descriptionSeo,
 });
+
+//
+const viewport = useViewport();
 
 // Атрибуты
 const attributes: any = {
@@ -37,6 +40,7 @@ const orderHandler = () => {
   <div>
     <!-- Хлебные крошки -->
     <UiBreadCrumbs
+      v-if="viewport.isGreaterOrEquals('screen768')"
       :links="[
         { title: 'Каталог', link: '/catalog/zoloto' },
         {
@@ -51,15 +55,13 @@ const orderHandler = () => {
       ]"
     />
 
+    <!-- Кнопка "Вернуться назад" в моб. -->
+    <UiGoBackBtn v-else />
+
     <!--  -->
     <div class="container">
       <div class="product">
-        <div class="product__gallery">
-          <ProductGallery
-            v-if="product?.galleryImages.nodes"
-            :images="product.galleryImages.nodes"
-          />
-        </div>
+        <ProductGallery v-if="product?.galleryImages.nodes" :images="product.galleryImages.nodes" />
 
         <!--  -->
         <div class="product__desc">
@@ -96,22 +98,32 @@ const orderHandler = () => {
         </div>
       </div>
 
-      <!--  -->
-      <!-- <SlidersPopularProducts /> -->
+      <!-- Популярные товары -->
+      <SlidersPopularProducts />
     </div>
   </div>
 </template>
 
 <style lang="css" scoped>
 .product {
-  display: flex;
+  display: grid;
+  grid-template-columns: 785px 1fr;
   column-gap: 60px;
-  justify-content: space-between;
   margin-bottom: 150px;
 
   /*  */
+  @media (max-width: 1440px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
   @media (max-width: 1280px) {
+    column-gap: 30px;
     margin-bottom: 140px;
+  }
+
+  @media (max-width: 1200px) {
+    grid-template-columns: 1fr;
+    row-gap: 42px;
   }
 
   @media (max-width: 768px) {
@@ -119,8 +131,15 @@ const orderHandler = () => {
   }
 
   @media (max-width: 576px) {
+    row-gap: 32px;
     margin-bottom: 60px;
   }
+}
+
+/*  */
+.product__desc {
+  display: flex;
+  flex-direction: column;
 }
 
 /*  */
@@ -138,6 +157,16 @@ const orderHandler = () => {
   line-height: 120%;
   color: var(--main-green);
   margin: 26px 0 32px 0;
+
+  /*  */
+  @media (max-width: 1280px) {
+    font-size: 36px;
+  }
+
+  @media (max-width: 1280px) {
+    font-size: 18px;
+    margin: 20px 0 18px 0;
+  }
 }
 
 /*  */
@@ -151,6 +180,11 @@ const orderHandler = () => {
   font-size: 32px;
   line-height: 100%;
   color: var(--main-green);
+
+  /*  */
+  @media (max-width: 576px) {
+    font-size: 20px;
+  }
 }
 
 .product__price_del {
@@ -159,6 +193,15 @@ const orderHandler = () => {
   line-height: 100%;
   color: #d7dcdc;
   margin: 0 24px 0 32px;
+
+  /*  */
+  @media (max-width: 576px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 400px) {
+    margin: 0 auto 0 12px;
+  }
 }
 
 .product__price_sale {
@@ -174,6 +217,11 @@ const orderHandler = () => {
 /*  */
 .attributes_list {
   margin: 42px 0 52px 0;
+
+  /*  */
+  @media (max-width: 576px) {
+    margin: 28px 0 28px 0;
+  }
 }
 
 .attributes_item {
@@ -184,6 +232,11 @@ const orderHandler = () => {
   column-gap: 50px;
 
   /*  */
+  @media (max-width: 576px) {
+    font-size: 15px;
+  }
+
+  /*  */
   &:not(:last-child) {
     border-bottom: 1px solid var(--light-gray);
     padding-bottom: 16px;
@@ -192,11 +245,17 @@ const orderHandler = () => {
 }
 
 .attributes_item_name {
+  flex-shrink: 0;
   width: 110px;
   color: var(--gray-text);
 }
 
 .attributes_item_val {
   color: var(--main-green);
+}
+
+/*  */
+.product__desc .btn {
+  margin-top: auto;
 }
 </style>

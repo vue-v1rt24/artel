@@ -10,6 +10,9 @@ defineProps<{
 }>();
 
 //
+const viewport = useViewport();
+
+//
 onMounted(() => {
   const thumbsSwiper = new Swiper('.swiper_little_image', {
     slidesPerView: 'auto',
@@ -18,6 +21,19 @@ onMounted(() => {
     direction: 'vertical',
     loop: true,
     watchSlidesProgress: true,
+
+    breakpoints: {
+      360: {
+        loop: false,
+        init: false,
+      },
+      577: {
+        direction: 'horizontal',
+      },
+      901: {
+        direction: 'vertical',
+      },
+    },
   });
 
   /*  */
@@ -42,7 +58,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="gallery">
+  <div class="gallery_product">
     <div class="swiper swiper_big_image">
       <div class="swiper-wrapper">
         <div v-for="image in images" :key="image.mediaItemUrl" class="swiper-slide">
@@ -63,32 +79,39 @@ onMounted(() => {
 
     <div class="swiper swiper_little_image">
       <div class="swiper-wrapper">
-        <div v-for="image in images" :key="image.mediaItemUrl" class="swiper-slide">
-          <div class="swiper_little_image_bx">
-            <NuxtImg
-              :src="image.mediaItemUrl"
-              format="avif, webp"
-              densities="x1"
-              class="swiper_little_image__img"
-            />
+        <template v-if="viewport.isGreaterOrEquals('screen576')">
+          <div v-for="image in images" :key="image.mediaItemUrl" class="swiper-slide">
+            <div class="swiper_little_image_bx">
+              <NuxtImg
+                :src="image.mediaItemUrl"
+                format="avif, webp"
+                densities="x1"
+                class="swiper_little_image__img"
+              />
+            </div>
           </div>
-        </div>
+        </template>
       </div>
     </div>
   </div>
 </template>
 
 <style lang="css" scoped>
-.gallery {
-  width: 785px;
+.gallery_product {
   height: 581px;
   display: flex;
   flex-direction: row-reverse;
   column-gap: 30px;
 
   /*  */
-  @media (max-width: 1440px) {
-    width: fit-content;
+  @media (max-width: 1200px) {
+    justify-content: center;
+  }
+
+  @media (max-width: 768px) {
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr;
   }
 }
 
@@ -97,6 +120,15 @@ onMounted(() => {
   width: 581px;
   background-color: var(--low-green);
   border-radius: 32px;
+
+  /*  */
+  @media (max-width: 1200px) {
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 }
 
 /*  */
@@ -105,6 +137,17 @@ onMounted(() => {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  /*  */
+  @media (max-width: 768px) {
+    width: 100%;
+    height: auto;
+    padding: 50px;
+  }
+
+  @media (max-width: 576px) {
+    padding: 23px;
+  }
 }
 
 /* ======== Мини слайдер */
@@ -118,24 +161,24 @@ onMounted(() => {
     display: none;
   }
 
-  /*  */
-  /* @media (max-width: 1400px) {
-    position: absolute;
-    left: 0px;
-    bottom: 0px;
-    width: 100%;
-    height: 174px;
+  @media (max-width: 1200px) {
+    display: block;
+  }
+
+  @media (max-width: 900px) {
+    display: none;
   }
 
   @media (max-width: 768px) {
-    position: relative;
-    height: 100%;
+    width: 100%;
+    height: 174px;
+    display: block;
+    margin-top: 24px;
   }
 
   @media (max-width: 576px) {
-    height: 150px;
-    margin-bottom: 18px;
-  } */
+    display: none;
+  }
 }
 
 .swiper_little_image::before {
@@ -155,7 +198,7 @@ onMounted(() => {
   pointer-events: none;
 }
 
-/* @media (max-width: 1400px) {
+@media (max-width: 768px) {
   .swiper_little_image::before {
     background: linear-gradient(
       to right,
@@ -165,52 +208,21 @@ onMounted(() => {
       rgba(255, 255, 255, 1) 100%
     );
   }
-} */
-
-/* @media (max-width: 768px) {
-  .swiper_little_image::before {
-    background: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 1) 0%,
-      rgba(255, 255, 255, 0) 20%,
-      rgba(255, 255, 255, 0) 50%,
-      rgba(255, 255, 255, 0) 80%,
-      rgba(255, 255, 255, 1) 100%
-    );
-  }
-} */
-
-/* @media (max-width: 576px) {
-  .swiper_little_image::before {
-    background: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 1) 0%,
-      rgba(255, 255, 255, 0) 10%,
-      rgba(255, 255, 255, 0) 90%,
-      rgba(255, 255, 255, 1) 100%
-    );
-  }
-} */
+}
 
 /*  */
 .swiper_little_image .swiper-wrapper {
   padding-top: 93px;
 
   /*  */
-  /* @media (max-width: 1400px) {
+  @media (max-width: 768px) {
     padding-top: 0;
-  } */
+  }
 }
 
 .swiper_little_image .swiper-slide {
   width: 174px;
   height: 174px;
-
-  /*  */
-  /* @media (max-width: 768px) {
-    width: 149px;
-    height: 149px;
-  } */
 }
 
 .swiper_little_image .swiper_little_image_bx {
@@ -239,29 +251,66 @@ onMounted(() => {
   z-index: 1;
 
   /*  */
-  /* @media (max-width: 768px) {
-    width: 56px;
-    height: 56px;
-    background-size: 56px;
-    margin-top: -105px;
+  @media (max-width: 768px) {
+    width: 48px;
+    height: 48px;
+    background-size: 48px;
   }
 
   @media (max-width: 576px) {
-    display: none;
-  } */
+    width: 30px;
+    height: 30px;
+    background-size: 30px;
+  }
 }
 
 .swiper-product-button-prev {
   left: 32px;
   rotate: 180deg;
+
+  /*  */
+  @media (max-width: 768px) {
+    left: 24px;
+  }
+
+  @media (max-width: 576px) {
+    left: 14px;
+  }
 }
 
 .swiper-product-button-next {
   right: 32px;
+
+  /*  */
+  @media (max-width: 768px) {
+    right: 24px;
+  }
+
+  @media (max-width: 576px) {
+    right: 14px;
+  }
 }
 
 /*  */
-.product_pagination {
-  bottom: 30px;
+.gallery_product .product_pagination {
+  bottom: 23px;
+  display: none;
+
+  /*  */
+  @media (max-width: 1440px) {
+    display: block;
+  }
+
+  @media (max-width: 1200px) {
+    display: none;
+  }
+
+  @media (max-width: 900px) {
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 </style>
