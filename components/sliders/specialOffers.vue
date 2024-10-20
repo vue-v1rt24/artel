@@ -5,17 +5,17 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-import type { TypeSpecialOffers } from '~/types/sliderSpecialOffers.types';
+import type { TypeProductOrder } from '~/types/productOrder.types';
 
 defineProps<{
-  specials: TypeSpecialOffers[];
+  specials: TypeProductOrder[];
 }>();
 
 //
 const modal = useTemplateRef('modal');
-const dataModal = ref<TypeSpecialOffers | null>(null);
+const dataModal = ref<TypeProductOrder | null>(null);
 
-const productAvailability = (special: TypeSpecialOffers) => {
+const productAvailability = (special: TypeProductOrder) => {
   dataModal.value = special;
   modal.value?.modalOpen();
 };
@@ -84,7 +84,7 @@ onMounted(() => {
               width="278px"
               title="Узнать подробнее"
               class="special__info_btn"
-              @click="productAvailability(special)"
+              @btn-click="productAvailability(special)"
             />
           </div>
         </div>

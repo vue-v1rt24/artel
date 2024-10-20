@@ -40,6 +40,17 @@ defineProps<{
 <style lang="css" scoped>
 .product {
   position: relative;
+
+  /*  */
+  &:hover .product__title {
+    text-decoration: underline var(--main-green) 0.5px;
+    text-decoration-skip-ink: none;
+  }
+
+  &:hover .product__img::before {
+    left: 150%;
+    transition: left calc(var(--transition-speed) * 3);
+  }
 }
 
 /*  */
@@ -53,6 +64,7 @@ defineProps<{
   align-items: center;
   padding: 28px;
   margin-bottom: 20px;
+  overflow: hidden;
 
   /*  */
   @media (max-width: 768px) {
@@ -68,6 +80,20 @@ defineProps<{
   img {
     mix-blend-mode: darken;
   }
+}
+
+.product__img::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 20px;
+  height: 100%;
+  background-color: white;
+  transform: skewX(-30deg);
+  filter: blur(10px);
+  box-shadow: 0 0 10px 0 white, 0 0 20px 0 white, 0 0 30px 0 white, 0 0 50px 0 white,
+    0 0 80px 0 white, 0 0 100px 0 white;
 }
 
 /*  */

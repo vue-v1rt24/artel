@@ -3,7 +3,7 @@
 import JustValidate from 'just-validate';
 import { Fancybox } from '@fancyapps/ui';
 
-import type { TypeSpecialOffers } from '~/types/sliderSpecialOffers.types';
+import type { TypeProductOrder } from '~/types/productOrder.types';
 
 const {
   formClass,
@@ -15,11 +15,12 @@ const {
   formClass: string;
   title: string;
   subject: string;
-  special?: TypeSpecialOffers | null;
+  special?: TypeProductOrder | null;
   btnSubmitTitle?: string;
 }>();
 
 //
+const router = useRouter();
 const mail = useMail();
 
 //
@@ -77,14 +78,17 @@ onMounted(() => {
     ])
     .onSuccess(async (event: SubmitEvent) => {
       if (special) {
-        fields.linkProduct = `<a href="#${special?.slug}">${special?.title}</a>`;
+        fields.linkProduct = `<a href="${location.protocol}//${location.host}/product/${special.slug}">${special.title}</a>`;
       }
 
       // Отправка письма
       await mail.send(setMail());
 
       // Закрытие модального окна
-      Fancybox.close();
+      // Fancybox.close();
+
+      // Отправка на страницу успешного письма
+      router.push('/success');
     });
 });
 
@@ -92,6 +96,10 @@ onMounted(() => {
 onUnmounted(() => {
   if (validator.value && validator.value.destroy) {
     validator.value.destroy();
+  }
+
+  if (Fancybox.destroy) {
+    Fancybox.destroy();
   }
 });
 
@@ -198,6 +206,7 @@ watch(
   height: 120px;
   background: var(--low-green);
   border-radius: 20px;
+  flex-shrink: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -216,8 +225,13 @@ watch(
 /*  */
 .fa__product_info {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   row-gap: 8px;
+
+  /*  */
+  @media (max-width: 576px) {
+    flex-direction: column-reverse;
+  }
 }
 
 /*  */

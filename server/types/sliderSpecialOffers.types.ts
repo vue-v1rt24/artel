@@ -1,4 +1,4 @@
-export type TypeSpecialOffers = {
+export type TypeProductOrder = {
   id: number;
   sku: string;
   slug: string;

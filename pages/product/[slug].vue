@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import type { TypeProductOrder } from '~/types/productOrder.types';
+
+//
 const { slug } = useRoute().params as { slug: string };
 
 //
@@ -31,8 +34,25 @@ const attributes: any = {
 };
 
 // Клик по кнопке
+const modal = useTemplateRef('modal');
+const dataModal = ref<TypeProductOrder | null>(null);
+
 const orderHandler = () => {
-  console.log('Заказ');
+  if (!product.value) return;
+
+  dataModal.value = {
+    id: product.value.databaseId,
+    sku: product.value.sku,
+    slug: product.value.slug,
+    title: product.value.name,
+    img: product.value.galleryImages.nodes[0].mediaItemUrl,
+    isOnSale: product.value.onSale,
+    price: product.value.price,
+    regularPrice: product.value.regularPrice,
+    salePrice: product.value.salePrice,
+  };
+
+  modal.value?.modalOpen();
 };
 </script>
 
@@ -101,6 +121,20 @@ const orderHandler = () => {
       <!-- Популярные товары -->
       <SlidersPopularProducts />
     </div>
+
+    <!--  -->
+    <Teleport to="body">
+      <UiModal id-modal="fa-modal" ref="modal">
+        <ModalTemplateShell>
+          <ModalTemplateFindAvailability
+            form-class="form-product"
+            title="Узнайте о наличии товара:"
+            subject="Узнать о наличии товара"
+            :special="dataModal"
+          />
+        </ModalTemplateShell>
+      </UiModal>
+    </Teleport>
   </div>
 </template>
 

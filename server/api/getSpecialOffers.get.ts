@@ -1,12 +1,12 @@
-import { TypeSpecialOffers } from '../types/sliderSpecialOffers.types';
+import { TypeProductOrder } from '~/types/productOrder.types';
 
-const isTypeSpecialOffers = (data: TypeSpecialOffers[]): data is TypeSpecialOffers[] => {
+const isTypeSpecialOffers = (data: TypeProductOrder[]): data is TypeProductOrder[] => {
   return typeof data[0].id === 'number';
 };
 
 export default defineEventHandler(async (event) => {
   const { apiUrl } = useRuntimeConfig();
-  let res: TypeSpecialOffers[] | undefined;
+  let res: TypeProductOrder[] | undefined;
 
   const data = await $fetch<string>(`${apiUrl}/artel/special-offers`);
 
