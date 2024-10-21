@@ -61,6 +61,7 @@ export default defineNuxtConfig({
   viewport: {
     breakpoints: {
       screen1600: 1600,
+      screen1281: 1281,
       screen1280: 1280,
       screen1024: 1024,
       screen1080: 1080,
@@ -71,6 +72,7 @@ export default defineNuxtConfig({
       screen480: 480,
       screen576: 576,
       screen768: 768,
+      screen769: 769,
     },
 
     /* defaultBreakpoints: {

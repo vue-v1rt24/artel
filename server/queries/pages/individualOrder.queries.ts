@@ -8,7 +8,17 @@ export const individualOrderQuery = `
       previewScreenPage {
         previewScreenZagolovok
         previewScreenOpisanie
-        previewScreenIzobrazhenie {
+        previewScreenIzobrazhenie1920 {
+          node {
+            mediaItemUrl
+          }
+        }
+        previewScreenIzobrazhenie1280 {
+          node {
+            mediaItemUrl
+          }
+        }
+        previewScreenIzobrazhenie768 {
           node {
             mediaItemUrl
           }

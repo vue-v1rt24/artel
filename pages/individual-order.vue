@@ -8,6 +8,9 @@ useSeoMeta({
   title: indOrder.value?.seo.titleSeo,
   description: indOrder.value?.seo.descriptionSeo,
 });
+
+//
+const viewport = useViewport();
 </script>
 
 <template>
@@ -19,7 +22,26 @@ useSeoMeta({
     <section class="preview_screen">
       <div class="container">
         <NuxtImg
-          :src="indOrder?.previewScreenPage.previewScreenIzobrazhenie.node.mediaItemUrl"
+          v-if="viewport.isGreaterOrEquals('screen1281')"
+          :src="indOrder?.previewScreenPage.previewScreenIzobrazhenie1920.node.mediaItemUrl"
+          format="avif, webp"
+          densities="x1"
+          class="preview_screen__img"
+        />
+
+        <NuxtImg
+          v-if="viewport.isGreaterOrEquals('screen769') && viewport.isLessThan('screen1281')"
+          :src="indOrder?.previewScreenPage.previewScreenIzobrazhenie1280.node.mediaItemUrl"
+          format="avif, webp"
+          densities="x1"
+          class="preview_screen__img"
+        />
+
+        <NuxtImg
+          v-if="viewport.isLessOrEquals('screen768')"
+          :src="indOrder?.previewScreenPage.previewScreenIzobrazhenie768.node.mediaItemUrl"
+          format="avif, webp"
+          densities="x1"
           class="preview_screen__img"
         />
 
@@ -29,6 +51,8 @@ useSeoMeta({
         </div>
       </div>
     </section>
+
+    111111111111111111
 
     <!--  -->
     <!-- <section class="order">
@@ -131,7 +155,7 @@ useSeoMeta({
 .preview_screen {
   position: relative;
   height: 630px;
-  margin-top: -257px;
+  margin-top: -259px;
   z-index: -1;
 }
 
@@ -142,7 +166,6 @@ useSeoMeta({
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 0px -50px;
   z-index: -1;
 }
 

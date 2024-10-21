@@ -110,6 +110,7 @@ watch(
 /*  */
 .logo svg {
   flex-shrink: 0;
+  height: auto;
 
   /*  */
   @media (max-width: 1366px) {
