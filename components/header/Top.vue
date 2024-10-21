@@ -18,10 +18,6 @@ const closeModalMenu = () => {
           <li v-for="menu in topMenu" :key="menu.link">
             <NuxtLink :to="menu.link" @click="closeModalMenu">{{ menu.title }}</NuxtLink>
           </li>
-
-          <li>
-            <NuxtLink to="/success">Отправлено</NuxtLink>
-          </li>
         </ul>
 
         <div class="top_header__tel_email">
