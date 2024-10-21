@@ -42,7 +42,7 @@ const closeModalMenu = () => {
 <style lang="css" scoped>
 .modal_menu {
   position: absolute;
-  top: 68px;
+  top: 56px;
   left: 0;
   z-index: 10;
   width: 100%;

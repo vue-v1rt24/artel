@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const route = useRoute();
+const theme = useTheme();
 const { menu } = useMenus();
 const isOpenMenu = useIsOpenMenu();
 const viewport = useViewport();
@@ -31,7 +32,7 @@ watch(
 </script>
 
 <template>
-  <header class="header">
+  <header :class="['header', { dark: theme === 'dark' }]">
     <HeaderTop />
 
     <!--  -->
@@ -40,10 +41,10 @@ watch(
         <!--  -->
         <div class="logo">
           <NuxtLink v-if="route.path !== '/'" to="/" @click="closeModalMenu">
-            <img src="/images/logo.svg" alt="" />
+            <ImagesLogoHeader />
           </NuxtLink>
 
-          <img v-else src="/images/logo.svg" alt="" />
+          <ImagesLogoHeader v-else />
         </div>
 
         <!--  -->
@@ -107,7 +108,7 @@ watch(
 }
 
 /*  */
-.logo {
+.logo svg {
   flex-shrink: 0;
 
   /*  */
@@ -138,6 +139,12 @@ watch(
   transition: color var(--transition-speed), background-color var(--transition-speed);
 
   /*  */
+  .dark & {
+    color: white;
+    border-color: white;
+  }
+
+  /*  */
   @media (max-width: 1280px) {
     margin: 0 75px 0 62px;
   }
@@ -162,6 +169,18 @@ watch(
 
 .btn_catalog:hover {
   background-color: var(--green-50);
+
+  .btn_catalog__lines {
+    background-color: var(--main-green);
+  }
+
+  .dark & {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .dark &.active {
+    background-color: var(--main-green);
+  }
 }
 
 .btn_catalog.active {
@@ -177,7 +196,7 @@ watch(
   background-color: var(--medium-green);
   border-radius: 6px;
   rotate: 0deg;
-  transition: rotate var(--transition-speed);
+  transition: background-color var(--transition-speed), rotate var(--transition-speed);
 
   /*  */
   @media (max-width: 576px) {
@@ -186,7 +205,12 @@ watch(
   }
 }
 
+.dark .btn_catalog:hover .btn_catalog__lines {
+  background-color: white;
+}
+
 .btn_catalog.active .btn_catalog__lines {
+  background-color: white;
   rotate: 45deg;
 }
 
@@ -203,8 +227,8 @@ watch(
   rotate: 0deg;
   translate: 0;
   opacity: 1;
-  transition: rotate var(--transition-speed), translate var(--transition-speed),
-    opacity var(--transition-speed);
+  transition: background-color var(--transition-speed), rotate var(--transition-speed),
+    translate var(--transition-speed), opacity var(--transition-speed);
 }
 
 .btn_catalog__lines::before {
@@ -215,7 +239,14 @@ watch(
   top: 9px;
 }
 
-.btn_catalog.active .btn_catalog__lines::before {
+.dark .btn_catalog:hover .btn_catalog__lines::before,
+.dark .btn_catalog:hover .btn_catalog__lines::after {
+  background-color: white;
+}
+
+.btn_catalog.active .btn_catalog__lines::before,
+.btn_catalog.active:hover .btn_catalog__lines::before {
+  background-color: white;
   rotate: 90deg;
   translate: 0px 9px;
 }
@@ -238,6 +269,11 @@ watch(
   }
 }
 
+.btn_catalog:hover .btn_catalog__lines::before,
+.btn_catalog:hover .btn_catalog__lines::after {
+  background-color: var(--main-green);
+}
+
 /*  */
 
 .menu {
@@ -258,6 +294,15 @@ watch(
   font-size: 18px;
   line-height: 90%;
   color: var(--main-green);
+
+  /*  */
+  .dark & {
+    color: white;
+  }
+
+  .open_menu .dark & {
+    color: var(--main-green);
+  }
 }
 
 /*  */

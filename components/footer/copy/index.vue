@@ -42,10 +42,10 @@ onMounted(() => {
   <div class="copy">
     <div class="copy__logo" ref="copyLogo">
       <NuxtLink v-if="route.path !== '/'" to="/">
-        <img src="/images/logo.svg" alt="" />
+        <ImagesLogoFooter />
       </NuxtLink>
 
-      <img v-else src="/images/logo.svg" alt="" />
+      <ImagesLogoFooter v-else />
     </div>
 
     <!--  -->
@@ -127,7 +127,7 @@ onMounted(() => {
   flex-shrink: 0;
 }
 
-.copy__logo img {
+.copy__logo svg {
   width: 314px;
 
   /*  */
@@ -137,6 +137,7 @@ onMounted(() => {
 
   @media (max-width: 576px) {
     width: 150px;
+    height: 66px;
   }
 }
 

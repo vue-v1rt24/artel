@@ -34,10 +34,14 @@ const closeModalMenu = () => {
   position: relative;
   z-index: 11;
   background-color: var(--green-50);
-  padding: 20px 0;
+  padding: 14px 0;
 
   /*  */
-  @media (max-width: 1200px) {
+  @media (max-width: 1280px) {
+    padding: 19px 0;
+  }
+
+  @media (max-width: 768px) {
     padding: 18px 0;
   }
 

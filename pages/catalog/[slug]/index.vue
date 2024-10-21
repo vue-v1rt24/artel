@@ -15,12 +15,22 @@ const { data: parentCatalogs, error: parentCatalogsError } = await useFetch('/ap
   },
 });
 
+if (parentCatalogsError.value) {
+  throw createError({
+    statusCode: 404,
+  });
+}
+
 // Получение дочерних категорий
-const {
-  data: childrenCatalogs,
-  status: childrenCatalogsStatus,
-  error: childrenCatalogsError,
-} = await useFetch(`/api/pages/catalog/${slug}`);
+const { data: childrenCatalogs, error: childrenCatalogsError } = await useFetch(
+  `/api/pages/catalog/${slug}`,
+);
+
+if (childrenCatalogsError.value) {
+  throw createError({
+    statusCode: 404,
+  });
+}
 
 // console.log(parentCatalogs.value);
 // console.log(childrenCatalogs.value);
@@ -45,7 +55,6 @@ const titleChange = computed(() => {
 <template>
   <div>
     <!-- Предзагрузчик -->
-    <!-- <UiPreloader v-if="childrenCatalogsStatus === 'pending' || isLoadChildrenCats" fixed /> -->
     <UiPreloader v-if="isLoadChildrenCats" fixed />
 
     <!-- Хлебные крошки -->

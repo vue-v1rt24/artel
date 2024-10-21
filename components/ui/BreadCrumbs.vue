@@ -7,7 +7,7 @@ defineProps<{
 
 <template>
   <div class="container">
-    <div class="breadcrumbs">
+    <div :class="['breadcrumbs', { dark }]">
       <NuxtLink to="/">Главная</NuxtLink>
       <span class="breadcrumbs_delimiter">/</span>
 
@@ -54,11 +54,10 @@ defineProps<{
   /*  */
   a {
     color: var(--gray-text);
-
-    /*  */
-    &.active {
-      color: var(--main-green);
-    }
   }
+}
+
+.dark .active {
+  color: white;
 }
 </style>
