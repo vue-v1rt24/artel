@@ -1,11 +1,4 @@
 <script setup lang="ts">
-definePageMeta({
-  pageTransition: {
-    name: 'rotate',
-    mode: 'out-in',
-  },
-});
-
 // Мета данные
 useSeoMeta({
   title: 'Отправка заявки',
@@ -55,18 +48,6 @@ useSeoMeta({
     </div>
   </div>
 </template>
-
-<!-- <style>
-.rotate-enter-active,
-.rotate-leave-active {
-  transition: all 0.4s;
-}
-.rotate-enter-from,
-.rotate-leave-to {
-  opacity: 0;
-  transform: rotate3d(1, 1, 1, 15deg);
-}
-</style> -->
 
 <style lang="css" scoped>
 .success_page {

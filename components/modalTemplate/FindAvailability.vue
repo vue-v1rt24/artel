@@ -20,7 +20,6 @@ const {
 }>();
 
 //
-const router = useRouter();
 const mail = useMail();
 
 //
@@ -51,6 +50,14 @@ const setMail = () => {
 
 //
 const validator = ref<JustValidate | null>(null);
+
+// Сброс формы
+const resetForm = () => {
+  if (validator.value && validator.value.refresh) {
+    validator.value.form.reset();
+    validator.value.refresh();
+  }
+};
 
 //
 onMounted(() => {
@@ -84,11 +91,11 @@ onMounted(() => {
       // Отправка письма
       await mail.send(setMail());
 
-      // Закрытие модального окна
-      // Fancybox.close();
+      // Сброс формы
+      resetForm();
 
       // Отправка на страницу успешного письма
-      router.push('/success');
+      navigateTo('/success');
     });
 });
 
@@ -107,9 +114,8 @@ onUnmounted(() => {
 watch(
   () => useIsCloseModal().value,
   (val) => {
-    if (val && validator.value && validator.value.refresh) {
-      validator.value.form.reset();
-      validator.value.refresh();
+    if (val) {
+      resetForm();
     }
   },
 );
