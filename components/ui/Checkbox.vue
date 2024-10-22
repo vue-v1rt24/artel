@@ -50,6 +50,7 @@ watch(
   height: 23px;
   background-color: var(--green-50);
   border-radius: 4px;
+  flex-shrink: 0;
   cursor: pointer;
   outline: 1px solid transparent;
   transition: outline var(--transition-speed);

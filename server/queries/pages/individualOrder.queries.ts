@@ -24,6 +24,31 @@ export const individualOrderQuery = `
           }
         }
       }
+      pageIndividualOrder {
+        individualOrderEtapyRabotyVariantyRepeat {
+          individualOrderEtapyRabotyVariantyRepeatIzobrazhenie {
+            node {
+              mediaItemUrl
+            }
+          }
+          individualOrderEtapyRabotyVariantyRepeatOpisanie
+          individualOrderEtapyRabotyVariantyRepeatZagolovok
+        }
+        individualOrderPredostavlyaemVariantyRepeat {
+          individualOrderPredostavlyaemVariantyRepeatIzobrazhenie {
+            node {
+              mediaItemUrl
+            }
+          }
+          individualOrderPredostavlyaemVariantyRepeatOpisanie
+          individualOrderPredostavlyaemVariantyRepeatZagolovok
+        }
+        individualOrderGallery {
+          nodes {
+            mediaItemUrl
+          }
+        }
+      }
     }
   }
 `;

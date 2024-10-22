@@ -14,7 +14,6 @@ onMounted(() => {
     slidesPerView: 'auto',
     spaceBetween: '30',
     loop: true,
-    lazyPreloaderClass: 'loader',
     navigation: {
       nextEl: '.swiper-popular-button-next',
       prevEl: '.swiper-popular-button-prev',
@@ -76,6 +75,8 @@ onMounted(() => {
 
 /*  */
 .swiper-btn {
+  flex-shrink: 0;
+
   @media (max-width: 768px) {
     width: 52px;
     height: 52px;

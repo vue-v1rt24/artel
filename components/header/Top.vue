@@ -38,7 +38,11 @@ const closeModalMenu = () => {
 
   /*  */
   @media (max-width: 1280px) {
-    padding: 19px 0;
+    padding: 12px 0;
+  }
+
+  @media (max-width: 1200px) {
+    padding: 17px 0;
   }
 
   @media (max-width: 768px) {

@@ -127,6 +127,7 @@ useSeoMeta({
   top: 95px;
   left: 117px;
   scale: 0;
+  mix-blend-mode: screen;
   animation: blik 3s infinite;
 
   /*  */
