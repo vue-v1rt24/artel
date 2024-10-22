@@ -26,7 +26,7 @@ const {
   pauseOnMouseEnter?: boolean;
 }>();
 
-/* Параметры:
+/* Параметры defineProps:
 
 gallery: массив изображений
 title: Заголовок;
@@ -37,6 +37,9 @@ autoplay: Автоматический запуск;
 delay: Время переключения слайда;
 pauseOnMouseEnter: По наведению останавливает автоматическое переключение слайдера;
 */
+
+//
+const isLoadSlideFancybox = ref(false);
 
 //
 onMounted(() => {
@@ -64,10 +67,34 @@ onMounted(() => {
     },
   });
 
-  //
+  // Если не передаём параметр, то авто переключения не будет
   if (swiper && !autoplay) {
     swiper.autoplay.stop();
   }
+
+  // Открытие изображения в модальном окне
+  Fancybox.bind('[data-fancybox="gallery"]', {
+    Thumbs: false,
+    Hash: false,
+    Toolbar: {
+      display: {
+        left: [''],
+        middle: [],
+        right: ['close'],
+      },
+    },
+    on: {
+      loading() {
+        if (!isLoadSlideFancybox.value && (isLoadSlideFancybox.value = true)) {
+          swiper.autoplay.pause();
+        }
+      },
+      shouldClose() {
+        swiper.autoplay.resume();
+        isLoadSlideFancybox.value = false;
+      },
+    },
+  });
 });
 
 //
@@ -97,7 +124,11 @@ onUnmounted(() => {
     <div class="popular_swiper swiper">
       <div class="swiper-wrapper">
         <div v-for="image in gallery" :key="image.mediaItemUrl" class="swiper-slide">
-          <div class="swiper_slide_img border_img_bx">
+          <div
+            class="swiper_slide_img border_img_bx"
+            data-fancybox="gallery"
+            :data-src="image.mediaItemUrl"
+          >
             <NuxtImg :src="image.mediaItemUrl" format="avif, webp" densities="x1" />
             <NuxtImg class="border_img" src="/images/border.svg" />
           </div>
@@ -169,8 +200,11 @@ onUnmounted(() => {
 
 .popular_swiper {
   @media (min-width: 1681px) {
-    padding: 0 50%;
-    margin: 0 -803px;
+    /* padding: 0 50%; */
+    /* margin: 0 -803px; */
+    padding-left: 50%;
+    /* padding-right: 40px; */
+    margin-left: -803px;
   }
 
   @media (max-width: 1680px) {
