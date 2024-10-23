@@ -11,7 +11,7 @@ useSeoMeta({
 
 //
 watchEffect(() => {
-  if (route.path.includes('individual-order')) {
+  if (route.path.includes('individual-order') || route.path.includes('remont-izdeliy')) {
     theme.value = 'dark';
   } else {
     theme.value = 'light';

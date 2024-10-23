@@ -56,6 +56,24 @@ useSeoMeta({
 </template>
 
 <style lang="css" scoped>
+:deep(.preview_screen) {
+  height: 630px;
+
+  /*  */
+  @media (max-width: 1280px) {
+    height: 605px;
+  }
+
+  @media (max-width: 768px) {
+    height: 516px;
+  }
+
+  @media (max-width: 576px) {
+    height: 384px;
+  }
+}
+
+/*  */
 .order {
   padding: 100px 0 150px 0;
 

@@ -63,23 +63,19 @@ const viewport = useViewport();
 <style lang="css" scoped>
 .preview_screen {
   position: relative;
-  height: 630px;
   margin-top: -259px;
   z-index: -1;
 
   /*  */
   @media (max-width: 1280px) {
-    height: 605px;
     margin-top: -240px;
   }
 
   @media (max-width: 768px) {
-    height: 516px;
     margin-top: -224px;
   }
 
   @media (max-width: 576px) {
-    height: 384px;
     margin-top: -150px;
   }
 }

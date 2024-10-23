@@ -56,6 +56,7 @@ const resetForm = () => {
   if (validator.value && validator.value.refresh) {
     validator.value.form.reset();
     validator.value.refresh();
+    fields.username = fields.phone = fields.linkProduct = '';
   }
 };
 

@@ -129,7 +129,12 @@ onUnmounted(() => {
             data-fancybox="gallery"
             :data-src="image.mediaItemUrl"
           >
-            <NuxtImg :src="image.mediaItemUrl" format="avif, webp" densities="x1" />
+            <NuxtImg
+              :src="image.mediaItemUrl"
+              format="avif, webp"
+              densities="x1"
+              sizes="378px s1280:378px s768:380px s576:329px s360:320px"
+            />
             <NuxtImg class="border_img" src="/images/border.svg" />
           </div>
         </div>
