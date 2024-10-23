@@ -1,16 +1,63 @@
 <script setup lang="ts">
 const slider = useTemplateRef('slider');
+const before = useTemplateRef('before');
+const after = useTemplateRef('after');
+const resize = useTemplateRef('resize');
+
+const isActive = ref(false);
+
+//
+const beforeAfterSlider = (x: number) => {
+  if (!slider.value || !before.value || !resize.value) return;
+
+  let shift = Math.max(0, Math.min(x, slider.value.offsetWidth));
+
+  before.value.style.width = shift + 'px';
+  resize.value.style.left = shift + 'px';
+};
 
 //
 onMounted(() => {
-  slider.value?.addEventListener('mousemove', (evt: MouseEvent) => {
-    const x = evt.offsetX;
+  if (!slider.value) return;
 
-    (slider.value!.lastChild as HTMLDivElement).style.width = x + 'px';
+  slider.value.addEventListener('mousedown', () => {
+    isActive.value = true;
   });
 
-  console.log(slider.value?.firstChild);
-  console.log(slider.value?.lastChild);
+  slider.value.addEventListener('mouseup', () => {
+    isActive.value = false;
+  });
+
+  slider.value.addEventListener('mouseleave', () => {
+    isActive.value = false;
+  });
+
+  //
+  slider.value.addEventListener('mousemove', (evt: MouseEvent) => {
+    if (!isActive.value) return;
+    beforeAfterSlider(evt.clientX);
+  });
+
+  // Для мобильного
+  slider.value.addEventListener('touchstart', () => {
+    isActive.value = true;
+  });
+
+  slider.value.addEventListener('touchend', () => {
+    isActive.value = false;
+  });
+
+  slider.value.addEventListener('touchcancel', () => {
+    isActive.value = false;
+  });
+
+  slider.value.addEventListener('touchmove', (evt: TouchEvent) => {
+    if (!isActive.value) return;
+
+    // const x = evt.changedTouches[0].clientX - slider.value!.getBoundingClientRect().left;
+    const x = evt.changedTouches[0].clientX - slider.value!.offsetLeft;
+    beforeAfterSlider(x);
+  });
 });
 </script>
 
@@ -20,13 +67,15 @@ onMounted(() => {
 
     <!--  -->
     <div class="slider_bx" ref="slider">
-      <div class="slider_before">
+      <div class="slider_before" ref="before">
         <img src="http://176.53.163.5:5000/wp-content/uploads/2024/10/do-1.jpg" alt="" />
       </div>
 
-      <div class="slider_after">
+      <div class="slider_after" ref="after">
         <img src="http://176.53.163.5:5000/wp-content/uploads/2024/10/posle-1.jpg" alt="" />
       </div>
+
+      <div class="slider_resize" ref="resize" data-type="resize"></div>
     </div>
   </div>
 </template>
@@ -47,9 +96,6 @@ onMounted(() => {
   left: 0;
   width: inherit;
   height: inherit;
-  overflow: hidden;
-  transition: all ease 0.1s;
-  /* transition: width ease 0.2s; */
 
   /*  */
   img {
@@ -57,8 +103,20 @@ onMounted(() => {
   }
 }
 
-.slider_after {
+.slider_before {
   width: 50%;
-  will-change: width;
+  overflow: hidden;
+  z-index: 2;
+}
+
+/*  */
+.slider_resize {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 5px;
+  height: 100%;
+  background-color: white;
+  cursor: e-resize;
 }
 </style>
