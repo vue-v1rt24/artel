@@ -3,7 +3,7 @@ export const useMenus = () => {
     { title: 'Новости', link: '/news' },
     { title: 'Акции', link: '/stocks' },
     { title: 'Отзывы и благодарности', link: '/reviews' },
-    { title: 'Партнеры', link: '/partners' },
+    { title: 'Партнёры', link: '/partners' },
     { title: 'Контакты', link: '/contacts' },
   ];
 
