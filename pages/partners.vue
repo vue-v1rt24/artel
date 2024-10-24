@@ -1,12 +1,31 @@
 <script setup lang="ts">
 const { data: dataPartners } = await useFetch('/api/pages/partners');
 
-console.log(dataPartners.value);
+// console.log(dataPartners.value);
 
 //
 useSeoMeta({
   title: dataPartners.value?.seo.titleSeo,
   description: dataPartners.value?.seo.descriptionSeo,
+});
+
+//
+const img = useTemplateRef('img');
+
+//
+onMounted(() => {
+  let idx = 0;
+
+  setInterval(() => {
+    if (++idx === dataPartners.value?.partners.partnerPatnyoryRepeat.length) {
+      idx = 0;
+    }
+
+    img.value!.src =
+      dataPartners.value!.partners.partnerPatnyoryRepeat[
+        idx
+      ].partnerPatnyoryRepeatIzobrazhenie.node.mediaItemUrl;
+  }, 1000);
 });
 </script>
 
@@ -27,10 +46,13 @@ useSeoMeta({
         <div class="partners_right">
           <div class="partners_right-img">
             <img
-              v-for="image in dataPartners?.partners.partnerPatnyoryRepeat"
-              :src="image.partnerPatnyoryRepeatIzobrazhenie.node.mediaItemUrl"
+              v-if="dataPartners?.partners.partnerPatnyoryRepeat.length"
+              :src="
+                dataPartners.partners.partnerPatnyoryRepeat[0].partnerPatnyoryRepeatIzobrazhenie
+                  .node.mediaItemUrl
+              "
+              ref="img"
               alt=""
-              class="partners_right-icon"
             />
           </div>
 
@@ -88,16 +110,15 @@ useSeoMeta({
   padding: 23px 21px;
   width: 90px;
   height: 90px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .partners_right-img img {
   position: absolute;
   width: 50px;
-  opacity: 0;
-}
-
-.partners_right-img img.active {
-  opacity: 1;
 }
 
 .partners_right-text {
@@ -231,8 +252,8 @@ useSeoMeta({
     height: 64px;
     padding: 16px 15px;
   }
-  .partners_right-icon {
-    width: 100%;
+  .partners_right-img img {
+    width: 34px;
   }
   .partners_right-text {
     max-width: 100%;

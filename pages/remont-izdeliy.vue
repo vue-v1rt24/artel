@@ -33,6 +33,12 @@ useSeoMeta({
         />
 
         <!--  -->
+        <SlidersResultWorksMasters
+          v-if="remont?.remontIzdelii.remontDoPosleRepeat"
+          :works="remont.remontIzdelii.remontDoPosleRepeat"
+        />
+
+        <!--  -->
         <RemontIzdeliyMaterial
           v-if="remont?.remontIzdelii.remontMaterialZagolovok"
           :material="{
@@ -40,12 +46,6 @@ useSeoMeta({
             desc: remont.remontIzdelii.remontMaterialOpisanie,
             img: remont.remontIzdelii.remontMaterialIzobrazhenie.node.mediaItemUrl,
           }"
-        />
-
-        <!--  -->
-        <SlidersWorks
-          v-if="remont?.remontIzdelii.remontDoPosleRepeat"
-          :works="remont.remontIzdelii.remontDoPosleRepeat"
         />
       </div>
     </div>
