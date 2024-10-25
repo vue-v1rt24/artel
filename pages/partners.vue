@@ -10,13 +10,14 @@ useSeoMeta({
 });
 
 //
+const interval = ref<ReturnType<typeof setInterval> | null>(null);
 const img = useTemplateRef('img');
 
 //
 onMounted(() => {
   let idx = 0;
 
-  setInterval(() => {
+  interval.value = setInterval(() => {
     if (++idx === dataPartners.value?.partners.partnerPatnyoryRepeat.length) {
       idx = 0;
     }
@@ -26,6 +27,12 @@ onMounted(() => {
         idx
       ].partnerPatnyoryRepeatIzobrazhenie.node.mediaItemUrl;
   }, 1000);
+});
+
+onUnmounted(() => {
+  if (interval.value) {
+    clearInterval(interval.value);
+  }
 });
 </script>
 
