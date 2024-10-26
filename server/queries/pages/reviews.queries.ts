@@ -1,6 +1,6 @@
-export const reviewsQuery = `
+export const reviewsQuery = (nextPage: string = '') => `
   {
-    reviewsTypes {
+    reviewsTypes(first: 1, after: "${nextPage}") {
       nodes {
         databaseId
         date
@@ -15,6 +15,10 @@ export const reviewsQuery = `
             }
           }
         }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
       }
     }
   }

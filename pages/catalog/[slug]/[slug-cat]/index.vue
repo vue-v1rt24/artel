@@ -44,11 +44,12 @@ if (error.value) {
   });
 }
 
+// console.log(category.value);
+
+// Помещаем пришедшие данные в переменную
 if (category.value?.products) {
   products.value = category.value.products;
 }
-
-// console.log(category.value);
 
 // Мета данные
 useSeoMeta({

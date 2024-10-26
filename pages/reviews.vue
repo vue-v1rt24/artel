@@ -1,10 +1,22 @@
 <script setup lang="ts">
 import type { TypeReview } from '~/types/pages/reviews.types';
 
+// Будет храниться значение следующей страницы (для кнопки показать ещё)
+const nextPage = ref('');
+const reviewsArr = ref<TypeReview[]>([]);
+
 //
-const { data: reviews } = await useFetch('/api/pages/reviews');
+const { data: reviews, status } = await useFetch('/api/pages/reviews', {
+  query: { nextPage },
+  watch: [nextPage],
+});
 
 // console.log(reviews.value);
+
+// Помещаем пришедшие данные в переменную
+if (reviews.value?.reviews) {
+  reviewsArr.value = reviews.value.reviews;
+}
 
 //
 const viewport = useViewport();
@@ -17,13 +29,30 @@ useSeoMeta({
 
 //
 const modal = useTemplateRef('modal');
-const reviewData = ref<TypeReview | null>(null);
+const reviewData = ref<TypeReview | null>(null); // будут данные отзыва для вывода в модальном окне
 
-//
+// Открытие модального окна
 const readComment = (review: TypeReview) => {
   reviewData.value = review;
   modal.value?.modalOpen();
 };
+
+// Загрузка отзывов (постраничная навигация)
+const loadNextPage = () => {
+  if (reviews.value?.pagination.endCursor) {
+    nextPage.value = reviews.value.pagination.endCursor;
+  }
+};
+
+//
+watch(status, (val) => {
+  if (val === 'pending') {
+    console.log('pending');
+  } else if (val === 'success' && reviews.value?.reviews) {
+    reviewsArr.value.push(...reviews.value.reviews);
+    console.log('success');
+  }
+});
 </script>
 
 <template>
@@ -56,7 +85,7 @@ const readComment = (review: TypeReview) => {
       <!--  -->
       <ul class="reviews_list">
         <ReviewsItem
-          v-for="review in reviews?.reviews"
+          v-for="review in reviewsArr"
           :key="review.databaseId"
           :review
           @read-comment="readComment(review)"
@@ -65,10 +94,12 @@ const readComment = (review: TypeReview) => {
 
       <!--  -->
       <UiButton
+        v-if="reviews?.pagination.hasNextPage"
         title="Показать ещё"
         width="100%"
         bg="var(--green-50)"
         text-color="var(--main-green)"
+        @btn-click="loadNextPage"
       />
 
       <!--  -->

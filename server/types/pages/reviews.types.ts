@@ -21,6 +21,10 @@ export type TypeReviews = {
           };
         };
       }[];
+      pageInfo: {
+        endCursor: string;
+        hasNextPage: boolean;
+      };
     };
   };
 };
