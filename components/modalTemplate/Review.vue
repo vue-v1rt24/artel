@@ -2,25 +2,16 @@
 import { EnumFrom } from '~/server/types/pages/reviews.types';
 import type { TypeReview } from '~/types/pages/reviews.types';
 
-const props = defineProps<{
+const { review } = defineProps<{
   review: TypeReview;
 }>();
 
 //
-const emit = defineEmits<{
-  readComment: [];
-}>();
-
-//
 const viewport = useViewport();
-const countRows = useTemplateRef('countRows');
-
-//
-const lineRows = ref(4);
 
 //
 const imgFrom = computed(() => {
-  const title = props.review.rewiewsTypeName.reviewsRepeatOtkudaOtzyv;
+  const title = review.rewiewsTypeName.reviewsRepeatOtkudaOtzyv;
 
   return title === EnumFrom.ЯНДЕКС
     ? '/images/reviews/yandex.svg'
@@ -28,25 +19,10 @@ const imgFrom = computed(() => {
     ? '/images/reviews/2gis.svg'
     : '/images/reviews/yandex.svg';
 });
-
-const countRowsComputed = computed(() => {
-  if (!countRows.value) return null;
-
-  return countingRows(countRows.value) - 1;
-});
-
-//
-watchEffect(() => {
-  if (viewport.isLessThan('screen576')) {
-    lineRows.value = 6;
-  } else {
-    lineRows.value = 4;
-  }
-});
 </script>
 
 <template>
-  <li class="reviews_list__item">
+  <div class="reviews_list__item">
     <div class="reviews_list__item_top">
       <div class="reviews_list__item_top_img">
         <NuxtImg
@@ -89,33 +65,24 @@ watchEffect(() => {
     </div>
 
     <!--  -->
-    <div
-      :class="{ reviews_list__item_overflow: countRowsComputed && countRowsComputed > lineRows }"
-    >
-      <p class="reviews_list__item_desc" ref="countRows">
-        {{ review.rewiewsTypeName.reviewsRepeatKommentarij }}
-      </p>
+    <p class="reviews_list__item_desc">
+      {{ review.rewiewsTypeName.reviewsRepeatKommentarij }}
+    </p>
 
-      <UiButton
-        v-if="countRowsComputed && countRowsComputed > lineRows"
-        title="ещё"
-        width="52px"
-        font-size="18px"
-        bg="var(--main--sand)"
-        text-color="var(--main-green)"
-        @btn-click="emit('readComment')"
-      />
-    </div>
-  </li>
+    <UiButton
+      v-if="viewport.isGreaterOrEquals('screen576')"
+      title="Закрыть отзыв"
+      width="100%"
+      font-size="18px"
+      bg="var(--green-50)"
+      text-color="var(--main-green)"
+      data-fancybox-close
+    />
+  </div>
 </template>
 
 <style lang="css" scoped>
 .reviews_list__item {
-  border: 2px solid var(--low-green);
-  border-radius: 24px;
-  padding: 42px;
-
-  /*  */
   @media (max-width: 576px) {
     padding: 24px;
   }
@@ -161,8 +128,14 @@ watchEffect(() => {
   margin-bottom: 6px;
 
   /*  */
+  @media (max-width: 768px) {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
   @media (max-width: 576px) {
     font-size: 15px;
+    margin-bottom: 6px;
   }
 }
 
@@ -174,6 +147,10 @@ watchEffect(() => {
   color: var(--gray-text);
 
   /*  */
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+
   @media (max-width: 576px) {
     font-size: 14px;
   }
@@ -183,14 +160,18 @@ watchEffect(() => {
 .reviews_list__item_stars {
   display: flex;
   column-gap: 6px;
-  margin: 18px 0 24px 0;
+  border-bottom: 1px solid var(--light-gray);
+  padding-bottom: 28px;
+  margin: 28px 0 28px 0;
 
   /*  */
   @media (max-width: 1280px) {
-    margin: 18px 0 24px 0;
+    margin: 24px 0 28px 0;
   }
 
   @media (max-width: 576px) {
+    border-bottom: none;
+    padding-bottom: 0;
     margin: 14px 0 20px 0;
   }
 
@@ -209,22 +190,6 @@ watchEffect(() => {
 .reviews_list__item_overflow {
   display: flex;
   align-items: flex-end;
-
-  /*  */
-  @media (max-width: 576px) {
-    flex-direction: column;
-    row-gap: 14px;
-  }
-
-  /*  */
-  .btn {
-    height: 27px;
-
-    /*  */
-    @media (max-width: 576px) {
-      width: 100%;
-    }
-  }
 }
 
 .reviews_list__item_desc {
@@ -232,15 +197,16 @@ watchEffect(() => {
   font-size: 18px;
   line-height: 140%;
   color: var(--main-green);
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: v-bind(lineRows);
-  -webkit-box-orient: vertical;
+  margin-bottom: 32px;
 
   /*  */
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+
   @media (max-width: 576px) {
     font-size: 15px;
-    -webkit-line-clamp: 6;
+    margin-bottom: 0;
   }
 }
 </style>

@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import type { TypeReview } from '~/types/pages/reviews.types';
+
+//
 const { data: reviews } = await useFetch('/api/pages/reviews');
 
-console.log(reviews.value);
+// console.log(reviews.value);
 
 //
 const viewport = useViewport();
@@ -11,6 +14,16 @@ useSeoMeta({
   title: 'Отзывы и благодарности',
   // description: '',
 });
+
+//
+const modal = useTemplateRef('modal');
+const reviewData = ref<TypeReview | null>(null);
+
+//
+const readComment = (review: TypeReview) => {
+  reviewData.value = review;
+  modal.value?.modalOpen();
+};
 </script>
 
 <template>
@@ -42,7 +55,12 @@ useSeoMeta({
 
       <!--  -->
       <ul class="reviews_list">
-        <ReviewsItem v-for="review in reviews?.reviews" :key="review.databaseId" :review />
+        <ReviewsItem
+          v-for="review in reviews?.reviews"
+          :key="review.databaseId"
+          :review
+          @read-comment="readComment(review)"
+        />
       </ul>
 
       <!--  -->
@@ -65,6 +83,13 @@ useSeoMeta({
         </div>
       </div>
     </div>
+
+    <!--  -->
+    <UiModal id-modal="review_modal" ref="modal">
+      <ModalTemplateShell>
+        <ModalTemplateReview v-if="reviewData" :review="reviewData" />
+      </ModalTemplateShell>
+    </UiModal>
   </div>
 </template>
 
