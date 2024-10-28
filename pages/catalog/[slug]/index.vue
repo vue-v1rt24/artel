@@ -108,7 +108,7 @@ const titleChange = computed(() => {
     <div
       v-if="childrenCatalogs?.dataParentCategory.catalogPageContent.opisanieKategorii"
       v-html="childrenCatalogs.dataParentCategory.catalogPageContent.opisanieKategorii"
-      class="container wp_content"
+      class="container catalog_wp"
     ></div>
   </div>
 </template>
@@ -267,7 +267,7 @@ const titleChange = computed(() => {
 }
 
 /*  */
-.wp_content {
+.catalog_wp {
   margin-top: 147px;
 
   /*  */
