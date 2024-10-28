@@ -3,6 +3,11 @@ import type { TypeReview } from '~/types/pages/reviews.types';
 
 // Будет храниться значение следующей страницы (для кнопки показать ещё)
 const nextPage = ref('');
+
+//
+const loading = useTemplateRef('loading');
+
+// Для хранения данных из БД
 const reviewsArr = ref<TypeReview[]>([]);
 
 //
@@ -47,16 +52,19 @@ const loadNextPage = () => {
 //
 watch(status, (val) => {
   if (val === 'pending') {
-    console.log('pending');
+    loading.value?.open();
   } else if (val === 'success' && reviews.value?.reviews) {
     reviewsArr.value.push(...reviews.value.reviews);
-    console.log('success');
+    loading.value?.close();
   }
 });
 </script>
 
 <template>
   <div class="reviews">
+    <!--  -->
+    <UiLoading ref="loading" />
+
     <!-- Хлебные крошки -->
     <UiBreadCrumbs :links="[{ title: 'Отзывы и благодарности' }]" />
 
