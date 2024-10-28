@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const route = useRoute();
 const theme = useTheme();
+const isFooter = ref(false);
 
 //
 useSeoMeta({
@@ -16,6 +17,12 @@ watchEffect(() => {
   } else {
     theme.value = 'light';
   }
+
+  if (route.path.includes('contacts')) {
+    isFooter.value = false;
+  } else {
+    isFooter.value = true;
+  }
 });
 </script>
 
@@ -30,6 +37,6 @@ watchEffect(() => {
       <NuxtPage />
     </main>
 
-    <Footer />
+    <Footer v-if="isFooter" />
   </div>
 </template>
