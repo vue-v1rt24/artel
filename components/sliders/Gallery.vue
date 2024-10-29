@@ -110,7 +110,7 @@ onUnmounted(() => {
     <div class="popular__title container">
       <div v-if="title" class="heading">
         <h2 class="h2_56">{{ title }}</h2>
-        <p class="p_20">{{ desc }}</p>
+        <p v-if="desc" class="p_20">{{ desc }}</p>
       </div>
 
       <!--  -->

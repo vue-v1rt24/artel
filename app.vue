@@ -12,7 +12,11 @@ useSeoMeta({
 
 //
 watchEffect(() => {
-  if (route.path.includes('individual-order') || route.path.includes('remont-izdeliy')) {
+  if (
+    route.path.includes('individual-order') ||
+    route.path.includes('remont-izdeliy') ||
+    route.path.includes('about')
+  ) {
     theme.value = 'dark';
   } else {
     theme.value = 'light';

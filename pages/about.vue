@@ -1,122 +1,64 @@
 <script setup lang="ts">
-const slider = useTemplateRef('slider');
-const before = useTemplateRef('before');
-const after = useTemplateRef('after');
-const resize = useTemplateRef('resize');
+const { data: about } = await useFetch('/api/pages/about');
 
-const isActive = ref(false);
+console.log(about.value);
 
 //
-const beforeAfterSlider = (x: number) => {
-  if (!slider.value || !before.value || !resize.value) return;
-
-  let shift = Math.max(0, Math.min(x, slider.value.offsetWidth));
-
-  before.value.style.width = shift + 'px';
-  resize.value.style.left = shift + 'px';
-};
-
-//
-onMounted(() => {
-  if (!slider.value) return;
-
-  slider.value.addEventListener('mousedown', () => {
-    isActive.value = true;
-  });
-
-  slider.value.addEventListener('mouseup', () => {
-    isActive.value = false;
-  });
-
-  slider.value.addEventListener('mouseleave', () => {
-    isActive.value = false;
-  });
-
-  //
-  slider.value.addEventListener('mousemove', (evt: MouseEvent) => {
-    if (!isActive.value) return;
-    beforeAfterSlider(evt.clientX);
-  });
-
-  // Для мобильного
-  slider.value.addEventListener('touchstart', () => {
-    isActive.value = true;
-  });
-
-  slider.value.addEventListener('touchend', () => {
-    isActive.value = false;
-  });
-
-  slider.value.addEventListener('touchcancel', () => {
-    isActive.value = false;
-  });
-
-  slider.value.addEventListener('touchmove', (evt: TouchEvent) => {
-    if (!isActive.value) return;
-
-    // const x = evt.changedTouches[0].clientX - slider.value!.getBoundingClientRect().left;
-    const x = evt.changedTouches[0].clientX - slider.value!.offsetLeft;
-    beforeAfterSlider(x);
-  });
+useSeoMeta({
+  title: about.value?.seo.titleSeo,
+  description: about.value?.seo.descriptionSeo,
 });
 </script>
 
 <template>
   <div>
-    О компании
+    <!-- Хлебные крошки -->
+    <UiBreadCrumbs dark :links="[{ title: 'О компании' }]" />
 
-    <!--  -->
-    <div class="slider_bx" ref="slider">
-      <div class="slider_before" ref="before">
-        <img src="http://176.53.163.5:5000/wp-content/uploads/2024/10/do-1.jpg" alt="" />
-      </div>
+    <!-- Первый экран -->
+    <PreviewScreen
+      v-if="about?.previewScreenPage"
+      :preview-screen-page="about.previewScreenPage"
+      title="О компании"
+    />
 
-      <div class="slider_after" ref="after">
-        <img src="http://176.53.163.5:5000/wp-content/uploads/2024/10/posle-1.jpg" alt="" />
-      </div>
-
-      <div class="slider_resize" ref="resize" data-type="resize"></div>
+    <!-- Награды -->
+    <div class="nagradi">
+      <SlidersGallery
+        v-if="about?.dostizheniya"
+        :gallery="about.dostizheniya"
+        title="Наши самые значимые награды и достижения:"
+        loop
+      />
     </div>
   </div>
 </template>
 
 <style lang="css" scoped>
-.slider_bx {
-  position: relative;
-  width: 785px;
-  height: 442px;
-  overflow: hidden;
+:deep(.preview_screen .p_20) {
+  max-width: 890px;
 }
 
 /*  */
-.slider_before,
-.slider_after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: inherit;
-  height: inherit;
+.nagradi {
+  margin: 120px 0;
 
   /*  */
-  img {
-    max-width: none;
+  @media (max-width: 1280px) {
+    margin: 140px 0 100px 0;
   }
-}
 
-.slider_before {
-  width: 50%;
-  overflow: hidden;
-  z-index: 2;
-}
+  @media (max-width: 768px) {
+    margin: 80px 0 100px 0;
+  }
 
-/*  */
-.slider_resize {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 5px;
-  height: 100%;
-  background-color: white;
-  cursor: e-resize;
+  @media (max-width: 576px) {
+    margin: 60px 0 60px 0;
+
+    /*  */
+    :deep(.swiper-slide) {
+      width: 150px;
+    }
+  }
 }
 </style>

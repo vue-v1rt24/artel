@@ -1,5 +1,6 @@
 <script setup lang="ts">
 defineProps<{
+  title?: string;
   previewScreenPage: {
     previewScreenZagolovok: string;
     previewScreenOpisanie: string;
@@ -53,8 +54,14 @@ const viewport = useViewport();
       />
 
       <div class="preview_screen__text">
-        <h1 class="h2_72">{{ previewScreenPage.previewScreenZagolovok }}</h1>
-        <p class="p_20">{{ previewScreenPage.previewScreenOpisanie }}</p>
+        <div v-if="title" :class="{ title }">
+          <h1 class="h2_72">{{ title }}</h1>
+          <h2 class="h2_56">{{ previewScreenPage.previewScreenZagolovok }}</h2>
+        </div>
+
+        <h1 v-else class="h2_72">{{ previewScreenPage.previewScreenZagolovok }}</h1>
+
+        <div v-html="previewScreenPage.previewScreenOpisanie" class="p_20"></div>
       </div>
     </div>
   </section>
@@ -91,6 +98,24 @@ const viewport = useViewport();
 }
 
 /*  */
+.title {
+  margin-bottom: 42px;
+
+  /*  */
+  @media (max-width: 1280px) {
+    margin-bottom: 38px;
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 26px;
+  }
+
+  @media (max-width: 576px) {
+    margin-bottom: 22px;
+  }
+}
+
+/*  */
 .h2_72 {
   max-width: 670px;
   color: white;
@@ -98,15 +123,30 @@ const viewport = useViewport();
   margin-bottom: 42px;
 
   /*  */
+  .title & {
+    margin-bottom: 80px;
+  }
+
+  /*  */
   @media (max-width: 1280px) {
     max-width: 585px;
     margin-bottom: 38px;
+
+    /*  */
+    .title & {
+      margin-bottom: 60px;
+    }
   }
 
   @media (max-width: 768px) {
     max-width: 483px;
     padding-top: 220px;
     margin-bottom: 26px;
+
+    /*  */
+    .title & {
+      margin-bottom: 42px;
+    }
   }
 
   @media (max-width: 576px) {
@@ -119,9 +159,15 @@ const viewport = useViewport();
   }
 }
 
+.h2_56 {
+  max-width: 921px;
+  color: white;
+}
+
 .p_20 {
   max-width: 670px;
   color: white;
+  padding-bottom: 80px;
 
   /*  */
   @media (max-width: 1280px) {
@@ -130,6 +176,10 @@ const viewport = useViewport();
 
   @media (max-width: 768px) {
     max-width: 600px;
+  }
+
+  @media (max-width: 576px) {
+    padding-bottom: 40px;
   }
 }
 </style>
