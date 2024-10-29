@@ -6,7 +6,7 @@ const nuxtApp = useNuxtApp();
 const { slug } = useRoute().params as { slug: string };
 
 //
-const isLoadChildrenCats = ref(false);
+const isLoading = ref(false);
 
 // Получение родительских категорий
 const { data: parentCatalogs, error: parentCatalogsError } = await useFetch('/api/pages/catalog', {
@@ -37,7 +37,7 @@ if (childrenCatalogsError.value) {
 
 //
 watch(childrenCatalogs, () => {
-  isLoadChildrenCats.value = false;
+  isLoading.value = false;
 });
 
 //
@@ -55,7 +55,7 @@ const titleChange = computed(() => {
 <template>
   <div>
     <!-- Предзагрузчик -->
-    <UiPreloader v-if="isLoadChildrenCats" fixed />
+    <UiLoading v-if="isLoading" />
 
     <!-- Хлебные крошки -->
     <UiBreadCrumbs :links="[{ title: 'Каталог' }]" />
@@ -73,7 +73,7 @@ const titleChange = computed(() => {
               :key="link.databaseId"
               :class="['catalog__header_list_item', { active: slug === link.slug }]"
             >
-              <NuxtLink :to="`/catalog/${link.slug}`" @click="isLoadChildrenCats = true">
+              <NuxtLink :to="`/catalog/${link.slug}`" @click="isLoading = true">
                 <span class="catalog__header_title">{{ link.name }}</span>
 
                 <NuxtImg

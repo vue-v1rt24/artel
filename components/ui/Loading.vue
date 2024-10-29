@@ -1,23 +1,7 @@
-<script setup lang="ts">
-const isLoading = ref(false);
-
-//
-const open = () => {
-  isLoading.value = true;
-};
-const close = () => {
-  isLoading.value = false;
-};
-
-//
-defineExpose({
-  open,
-  close,
-});
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <div v-if="isLoading" class="loader"></div>
+  <div class="loader"></div>
 </template>
 
 <style lang="css" scoped>

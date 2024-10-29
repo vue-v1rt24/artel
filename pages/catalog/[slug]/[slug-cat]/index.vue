@@ -103,7 +103,7 @@ watch(
 <template>
   <div class="subcategory">
     <!-- Предзагрузчик -->
-    <UiPreloader fixed v-if="status === 'pending'" />
+    <UiLoading v-if="status === 'pending'" />
 
     <!-- Хлебные крошки -->
     <UiBreadCrumbs
