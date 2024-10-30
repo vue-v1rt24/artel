@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { data: remont } = await useFetch('/api/pages/remontIzdeliy');
 
-console.log(remont.value);
+// console.log(remont.value);
 
 //
 useSeoMeta({

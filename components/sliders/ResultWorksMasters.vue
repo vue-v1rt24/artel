@@ -22,79 +22,110 @@ defineProps<{
 }>();
 
 //
-const slides = useTemplateRef('slides');
-const isActive = ref(false);
+const swiper = useTemplateRef('swiper'); // слайдер
+const swiperWrapper = useTemplateRef('swiper-wrapper'); // слайдер
+const swiperSlide = ref<HTMLDivElement | null>(null); // будет текущий элемент с классом swiper-slide
+const beforeImg = ref<HTMLDivElement | null>(null); // будет текущий элемент с классом before_img
+const target = ref<HTMLElement | null>(null); // будет текущий элемент на который нажали
 
-const bfImageBx = ref<Ref<HTMLElement> | null>(null);
-const resizeBx = ref<Ref<HTMLElement> | null>(null);
+//////// ============== Для ПК
+// Перемещение после нажатия на линию
+const mousemoveHandler = (evt: MouseEvent) => {
+  const transformEl = getComputedStyle(swiperWrapper.value!).transform;
+  const matrix = new DOMMatrixReadOnly(transformEl).m41;
 
-const changeIsActive = (evt: MouseEvent) => {
-  console.dir();
+  let x = evt.clientX - swiper.value!.offsetLeft - (swiperSlide.value!.offsetLeft - (0 - matrix));
 
-  switch (evt.type) {
-    case 'mousedown':
-      bfImageBx.value = evt.currentTarget.firstChild.firstChild.firstChild;
-      resizeBx.value = evt.currentTarget.firstChild.firstChild.lastChild;
-      isActive.value = true;
-      break;
-    case 'mouseup':
-    case 'mouseleave':
-      isActive.value = false;
-      resizeBx.value = null;
-      break;
+  beforeImg.value!.style.width = x + 'px';
+  target.value!.style.left = x + 'px';
+};
+
+// По нажатию на линию
+const mousedownHandler = (evt: MouseEvent) => {
+  target.value = evt.target as HTMLElement;
+  const resize = target.value.classList.contains('line_resize');
+
+  if (resize) {
+    swiperSlide.value = target.value.closest('.swiper-slide') as HTMLDivElement;
+    beforeImg.value = swiperSlide.value.querySelector('.before_img') as HTMLDivElement;
+
+    swiperSlide.value.addEventListener('mousemove', mousemoveHandler);
   }
 };
 
-const beforeAfterSlider = (evt: MouseEvent) => {
-  if (!slides.value || !isActive.value) return;
+// Сброс событий при отпускании мыши
+const mouseupHandler = () => {
+  if (!swiper.value) return;
+  swiperSlide.value?.removeEventListener('mousemove', mousemoveHandler);
+  swiperSlide.value = beforeImg.value = target.value = null;
+};
+//////// ============== /Для ПК
 
-  console.log(evt.clientX);
+//////// ============== Для мобильного
+// Перемещение после нажатия на линию
+const touchmoveHandler = (evt: TouchEvent) => {
+  const transformEl = getComputedStyle(swiperWrapper.value!).transform;
+  const matrix = new DOMMatrixReadOnly(transformEl).m41;
 
-  // console.log(evt.layerX + 1);
-  // console.dir(evt.currentTarget.firstChild.firstChild.lastChild);
+  let x =
+    evt.changedTouches[0].clientX -
+    swiper.value!.offsetLeft -
+    (swiperSlide.value!.offsetLeft - (0 - matrix));
 
-  // console.log((bfImageBx.value.style.width = '10px'));
-  // console.log(resizeBx.value);
+  if (x < 5) {
+    x = 5;
+  }
 
-  //@ts-ignore
-  // bfImageBx.value?.style.width = evt.layerX + 1 + 'px';
-  //@ts-ignore
-  // resizeBx.value?.style.left = evt.layerX + 1 + 'px';
+  if (x > swiperSlide.value!.offsetWidth - 5) {
+    x = swiperSlide.value!.offsetWidth - 5;
+  }
 
-  //@ts-ignore
-  // evt.currentTarget.firstChild.firstChild.firstChild.style.width = evt.layerX + 1 + 'px';
-  //@ts-ignore
-  // evt.currentTarget.firstChild.firstChild.lastChild.style.left = evt.layerX + 1 + 'px';
-  //@ts-ignore
-  // evt.currentTarget.firstChild.firstChild.lastChild.style.pointerEvents = 'none';
-
-  //
-
-  // let shift = Math.max(0, Math.min(x, slider.value.offsetWidth));
-
-  // before.value.style.width = shift + 'px';
-  // resize.value.style.left = shift + 'px';
+  beforeImg.value!.style.width = x + 'px';
+  target.value!.style.left = x + 'px';
 };
 
+// При нажатии на линию
+const touchstartHandler = (evt: TouchEvent) => {
+  target.value = evt.target as HTMLElement;
+  const resize = target.value.classList.contains('line_resize');
+
+  if (resize) {
+    swiperSlide.value = target.value.closest('.swiper-slide') as HTMLDivElement;
+    beforeImg.value = swiperSlide.value.querySelector('.before_img') as HTMLDivElement;
+
+    swiperSlide.value.addEventListener('touchmove', touchmoveHandler);
+  }
+};
+
+// Сброс событий при отпускании мыши
+const touchendHandler = () => {
+  if (!swiper.value) return;
+  swiperSlide.value?.removeEventListener('touchmove', touchmoveHandler);
+  swiperSlide.value = beforeImg.value = target.value = null;
+};
+//////// ============== /Для мобильного
+
+//
 const beforeAfter = () => {
-  if (!slides.value) return;
+  if (!swiper.value) return;
 
-  for (const slide of slides.value as HTMLDivElement[]) {
-    slide.addEventListener('mousedown', changeIsActive);
-    slide.addEventListener('mouseup', changeIsActive);
-    slide.addEventListener('mouseleave', changeIsActive);
+  // Для ПК
+  swiper.value.addEventListener('mousedown', mousedownHandler);
+  swiper.value.addEventListener('mouseup', mouseupHandler);
+  swiper.value.addEventListener('mouseleave', mouseupHandler);
 
-    slide.addEventListener('mousemove', beforeAfterSlider);
-  }
+  // Для мобильного
+  swiper.value.addEventListener('touchstart', touchstartHandler);
+  swiper.value.addEventListener('touchend', touchendHandler);
+  swiper.value.addEventListener('touchcancel', touchendHandler);
 };
 
 //
 onMounted(() => {
   const swiper = new Swiper('.popular_swiper', {
     modules: [Navigation],
-    slidesPerView: 'auto',
-    spaceBetween: '30',
-    loop: true,
+    slidesPerView: 2,
+    spaceBetween: 30,
     navigation: {
       nextEl: '.swiper-popular-button-next',
       prevEl: '.swiper-popular-button-prev',
@@ -102,24 +133,33 @@ onMounted(() => {
 
     simulateTouch: false,
     allowTouchMove: false,
-    nested: true,
-    // touchEventsTarget: 'container',
-    // touchMoveStopPropagation: true,
-    // touchReleaseOnEdges: true,
-    watchOverflow: false,
 
     breakpoints: {
-      360: {
-        spaceBetween: 20,
+      0: {
+        slidesPerView: 1,
       },
-      577: {
-        spaceBetween: 30,
+      1281: {
+        slidesPerView: 2,
       },
     },
   });
 
-  //
+  // До и После
   beforeAfter();
+});
+
+onUnmounted(() => {
+  if (swiper.value) {
+    // Для ПК
+    swiper.value.removeEventListener('mousedown', mousedownHandler);
+    swiper.value.removeEventListener('mouseup', mouseupHandler);
+    swiper.value.removeEventListener('mouseleave', mouseupHandler);
+
+    // Для мобильного
+    swiper.value.removeEventListener('touchstart', touchstartHandler);
+    swiper.value.removeEventListener('touchend', touchendHandler);
+    swiper.value.removeEventListener('touchcancel', touchendHandler);
+  }
 });
 </script>
 
@@ -134,9 +174,9 @@ onMounted(() => {
     </div>
 
     <!--  -->
-    <div class="popular_swiper swiper">
-      <div class="swiper-wrapper">
-        <div v-for="(work, key) in works" :key="key" class="swiper-slide" ref="slides">
+    <div class="popular_swiper swiper" ref="swiper">
+      <div class="swiper-wrapper" ref="swiper-wrapper">
+        <div v-for="(work, key) in works" :key="key" class="swiper-slide">
           <div class="before_after_bx">
             <div class="before_after__images">
               <div class="before_img">
@@ -146,6 +186,8 @@ onMounted(() => {
                   densities="x1"
                   loading="lazy"
                 />
+
+                <span class="before_after__slug">До</span>
               </div>
 
               <div class="after_img">
@@ -155,9 +197,11 @@ onMounted(() => {
                   densities="x1"
                   loading="lazy"
                 />
+
+                <span class="before_after__slug">После</span>
               </div>
 
-              <div class="line_resize" data-type="resize"></div>
+              <div class="line_resize"></div>
 
               <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
             </div>
@@ -201,25 +245,18 @@ onMounted(() => {
   }
 
   @media (max-width: 576px) {
-    display: none;
+    width: 32px;
+    height: 32px;
   }
 }
 
-/*  */
-.swiper-slide {
-  width: 785px;
+.swiper-popular-button-prev {
+  rotate: y 180deg;
+  margin: 0 42px 0 auto;
 
   /*  */
-  @media (max-width: 1280px) {
-    /* width: 328px; */
-  }
-
-  @media (max-width: 768px) {
-    /* width: 328px; */
-  }
-
   @media (max-width: 576px) {
-    /* width: 150px; */
+    margin: 0 14px 0 auto;
   }
 }
 
@@ -233,33 +270,83 @@ onMounted(() => {
 
 .before_after__images {
   position: relative;
-  width: 785px;
-  height: 442px;
   border-radius: 20px;
   margin-bottom: 32px;
   overflow: hidden;
 }
 
-.before_img,
-.after_img {
+.before_img {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 50%;
   height: 100%;
+  overflow: hidden;
+  z-index: 1;
 
   /*  */
   img {
     max-width: none;
+    height: 100%;
   }
 }
 
-.before_img {
-  width: 50%;
-  overflow: hidden;
-  z-index: 2;
+/*  */
+.after_img img {
+  width: 100%;
 }
 
+/*  */
+.before_after__slug {
+  position: absolute;
+  top: 42px;
+  font-size: 24px;
+  background-color: white;
+  border-radius: 50px;
+  padding: 12px 16px;
+  user-select: none;
+
+  /*  */
+  @media (max-width: 768px) {
+    top: 26px;
+  }
+
+  @media (max-width: 576px) {
+    top: 12px;
+    font-size: 15px;
+    padding: 8px 21px;
+  }
+
+  /*  */
+  .before_img & {
+    left: 42px;
+
+    /*  */
+    @media (max-width: 768px) {
+      left: 26px;
+    }
+
+    @media (max-width: 576px) {
+      left: 12px;
+    }
+  }
+
+  /*  */
+  .after_img & {
+    right: 42px;
+
+    /*  */
+    @media (max-width: 768px) {
+      right: 26px;
+    }
+
+    @media (max-width: 576px) {
+      right: 12px;
+    }
+  }
+}
+
+/*  */
 .line_resize {
   position: absolute;
   top: 0;
@@ -269,12 +356,11 @@ onMounted(() => {
   height: 100%;
   background-color: var(--main--sand);
   cursor: e-resize;
-  z-index: 3;
-}
+  z-index: 2;
 
-/*  */
-.swiper-popular-button-prev {
-  rotate: y 180deg;
-  margin: 0 42px 0 auto;
+  /*  */
+  @media (max-width: 768px) {
+    width: 8px;
+  }
 }
 </style>
