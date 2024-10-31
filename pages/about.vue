@@ -22,6 +22,9 @@ useSeoMeta({
       title="О компании"
     />
 
+    <!-- История бренда -->
+    <AboutHistoryBrand v-if="about?.historyBrand" :histories="about.historyBrand" />
+
     <!-- Награды -->
     <div class="nagradi">
       <SlidersGallery
@@ -31,6 +34,12 @@ useSeoMeta({
         loop
       />
     </div>
+
+    <!-- Наша компания является участником ГИИС ДМДК -->
+    <AboutGiis />
+
+    <!-- Сегодня "Золотая Артель" — это: -->
+    <AboutSegodnya v-if="about?.segodnya" :segodnya="about.segodnya" />
   </div>
 </template>
 

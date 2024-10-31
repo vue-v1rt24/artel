@@ -41,6 +41,10 @@ export type TypeAbout = {
             };
           }[];
         };
+        historyBrandRepeat: {
+          historyBrandRepeatGod: string;
+          historyBrandRepeatOpisanie: string;
+        }[];
       };
     };
   };

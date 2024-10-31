@@ -10,5 +10,6 @@ export default defineEventHandler(async (event) => {
     previewScreenPage: data.data.pageBy.previewScreenPage,
     dostizheniya: data.data.pageBy.aboutPage.aboutNagradyIDostizheniya.nodes,
     segodnya: data.data.pageBy.aboutPage.aboutSegodnyaGroup,
+    historyBrand: data.data.pageBy.aboutPage.historyBrandRepeat,
   };
 });

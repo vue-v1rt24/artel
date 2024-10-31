@@ -41,6 +41,10 @@ export const aboutQuery = `
           }
         }
       }
+      historyBrandRepeat {
+        historyBrandRepeatGod
+        historyBrandRepeatOpisanie
+      }
     }
   }
 }
