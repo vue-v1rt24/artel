@@ -5,6 +5,9 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 
 //
+const swiperSlider = ref<Swiper>();
+
+//
 defineProps<{
   works: {
     remontDoPosleRepeatIzobrazhenieDo: {
@@ -122,7 +125,7 @@ const beforeAfter = () => {
 
 //
 onMounted(() => {
-  const swiper = new Swiper('.popular_swiper', {
+  swiperSlider.value = new Swiper('.popular_swiper', {
     modules: [Navigation],
     slidesPerView: 2,
     spaceBetween: 30,
@@ -159,6 +162,11 @@ onUnmounted(() => {
     swiper.value.removeEventListener('touchstart', touchstartHandler);
     swiper.value.removeEventListener('touchend', touchendHandler);
     swiper.value.removeEventListener('touchcancel', touchendHandler);
+  }
+
+  //
+  if (swiperSlider.value && swiperSlider.value.destroy) {
+    swiperSlider.value.destroy();
   }
 });
 </script>

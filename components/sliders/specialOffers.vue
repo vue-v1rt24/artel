@@ -12,6 +12,7 @@ defineProps<{
 }>();
 
 //
+const swiper = ref<Swiper>();
 const modal = useTemplateRef('modal');
 const dataModal = ref<TypeProductOrder | null>(null);
 
@@ -22,7 +23,7 @@ const productAvailability = (special: TypeProductOrder) => {
 
 //
 onMounted(() => {
-  const swiper = new Swiper('.special_swiper', {
+  swiper.value = new Swiper('.special_swiper', {
     modules: [Navigation, Pagination],
     slidesPerView: 1,
     spaceBetween: 100,
@@ -39,6 +40,12 @@ onMounted(() => {
       prevEl: '.swiper-special-button-prev',
     },
   });
+});
+
+onUnmounted(() => {
+  if (swiper.value && swiper.value.destroy) {
+    swiper.value.destroy();
+  }
 });
 </script>
 

@@ -13,8 +13,12 @@ defineProps<{
 const viewport = useViewport();
 
 //
+const thumbsSwiper = ref<Swiper>();
+const bigSwiper = ref<Swiper>();
+
+//
 onMounted(() => {
-  const thumbsSwiper = new Swiper('.swiper_little_image', {
+  thumbsSwiper.value = new Swiper('.swiper_little_image', {
     slidesPerView: 'auto',
     spaceBetween: 10,
     centeredSlides: true,
@@ -38,7 +42,7 @@ onMounted(() => {
 
   /*  */
 
-  new Swiper('.swiper_big_image', {
+  bigSwiper.value = new Swiper('.swiper_big_image', {
     modules: [Navigation, Thumbs, Pagination],
     loop: true,
     spaceBetween: 10,
@@ -47,13 +51,23 @@ onMounted(() => {
       prevEl: '.swiper-product-button-prev',
     },
     thumbs: {
-      swiper: thumbsSwiper,
+      swiper: thumbsSwiper.value,
     },
     pagination: {
       el: '.swiper-pagination',
       type: 'bullets',
     },
   });
+});
+
+onUnmounted(() => {
+  if (thumbsSwiper.value && thumbsSwiper.value.destroy) {
+    thumbsSwiper.value.destroy();
+  }
+
+  if (bigSwiper.value && bigSwiper.value.destroy) {
+    bigSwiper.value.destroy();
+  }
 });
 </script>
 

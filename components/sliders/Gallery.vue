@@ -39,11 +39,12 @@ pauseOnMouseEnter: По наведению останавливает автом
 */
 
 //
+const swiper = ref<Swiper>();
 const isLoadSlideFancybox = ref(false);
 
 //
 onMounted(() => {
-  const swiper = new Swiper('.popular_swiper', {
+  swiper.value = new Swiper('.popular_swiper', {
     modules: [Navigation, Autoplay],
     slidesPerView: 'auto',
     spaceBetween: '30',
@@ -68,8 +69,8 @@ onMounted(() => {
   });
 
   // Если не передаём параметр, то авто переключения не будет
-  if (swiper && !autoplay) {
-    swiper.autoplay.stop();
+  if (swiper.value && !autoplay) {
+    swiper.value.autoplay.stop();
   }
 
   // Открытие изображения в модальном окне
@@ -86,11 +87,11 @@ onMounted(() => {
     on: {
       loading() {
         if (!isLoadSlideFancybox.value && (isLoadSlideFancybox.value = true)) {
-          swiper.autoplay.pause();
+          swiper.value?.autoplay.pause();
         }
       },
       shouldClose() {
-        swiper.autoplay.resume();
+        swiper.value?.autoplay.resume();
         isLoadSlideFancybox.value = false;
       },
     },
@@ -101,6 +102,10 @@ onMounted(() => {
 onUnmounted(() => {
   if (Fancybox.destroy) {
     Fancybox.destroy();
+  }
+
+  if (swiper.value && swiper.value.destroy) {
+    swiper.value.destroy();
   }
 });
 </script>

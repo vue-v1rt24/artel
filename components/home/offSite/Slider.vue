@@ -11,8 +11,11 @@ defineProps<{
 }>();
 
 //
+const swiper = ref<Swiper>();
+
+//
 onMounted(() => {
-  const swiper = new Swiper('.off_slider', {
+  swiper.value = new Swiper('.off_slider', {
     modules: [Autoplay],
     slidesPerView: 'auto',
     spaceBetween: 12,
@@ -42,6 +45,12 @@ onMounted(() => {
       },
     },
   });
+});
+
+onUnmounted(() => {
+  if (swiper.value && swiper.value.destroy) {
+    swiper.value.destroy();
+  }
 });
 </script>
 

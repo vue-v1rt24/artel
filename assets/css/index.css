@@ -13,7 +13,8 @@ body {
   overflow-x: hidden;
 }
 
-body.open_menu {
+body.open_menu,
+body.history {
   overflow: hidden;
 }
 

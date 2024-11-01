@@ -18,8 +18,11 @@ const { stocks } = defineProps<{
 const viewport = useViewport();
 
 //
+const swiper = ref<Swiper>();
+
+//
 onMounted(() => {
-  const swiper = new Swiper('.swiper_stocks', {
+  swiper.value = new Swiper('.swiper_stocks', {
     modules: [Navigation, Pagination],
 
     lazyPreloaderClass: 'swiper_stocks__preloader',
@@ -33,6 +36,12 @@ onMounted(() => {
       el: '.swiper-stock-pagination',
     },
   });
+});
+
+onUnmounted(() => {
+  if (swiper.value && swiper.value.destroy) {
+    swiper.value.destroy();
+  }
 });
 </script>
 

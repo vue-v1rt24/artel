@@ -31,8 +31,8 @@ onMounted(() => {
     setHeight.value = '100vh';
 
     //
-    const lastItem = document.querySelector<HTMLDivElement>('.assortment__item.scroll')!;
     const pinnedLi = gsap.utils.toArray<HTMLDivElement>('.pinned');
+    const lastItem = document.querySelector<HTMLDivElement>('.assortment__item.scroll')!;
 
     pinnedLi.forEach((section, index, sections) => {
       const nextSection = sections[index + 1] || lastItem;

@@ -26,7 +26,9 @@ const modalOpen = () => {
 
 //
 onUnmounted(() => {
-  Fancybox.destroy();
+  if (Fancybox.destroy) {
+    Fancybox.destroy();
+  }
 });
 
 //
