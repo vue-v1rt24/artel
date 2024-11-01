@@ -45,6 +45,20 @@ export type TypeAbout = {
           historyBrandRepeatGod: string;
           historyBrandRepeatOpisanie: string;
         }[];
+        assortment: {
+          assortmentIzobrazhenie1: {
+            node: {
+              mediaItemUrl: string;
+            };
+          };
+          assortmentIzobrazhenie2: {
+            node: {
+              mediaItemUrl: string;
+            };
+          };
+          assortmentZagolovok: string;
+          assortmentTekst: string;
+        }[];
       };
     };
   };

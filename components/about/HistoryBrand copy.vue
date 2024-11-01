@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import Swiper from 'swiper';
-import { FreeMode, Mousewheel } from 'swiper/modules';
-import 'swiper/css';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 //
 defineProps<{
@@ -12,37 +13,27 @@ defineProps<{
 }>();
 
 //
-onMounted(() => {
-  const swiper = new Swiper('.swiper_history', {
-    modules: [FreeMode, Mousewheel],
+const history = useTemplateRef('history');
+const historyList = useTemplateRef('historyList');
 
-    //
-    slidesPerView: 'auto',
-    spaceBetween: '30',
-    freeMode: true,
-    grabCursor: true,
-    mousewheel: {
-      // sensitivity: 0.1,
-    },
-  });
+//
+onMounted(() => {
+  if (!history || !historyList.value) return;
+
+  const w = historyList.value.scrollWidth - window.innerWidth;
 });
 </script>
 
 <template>
-  <div class="history">
+  <div class="history" ref="history">
     <h2 class="h2_56">История бренда</h2>
 
-    <!--  -->
-    <div class="swiper_history swiper">
-      <div class="swiper-wrapper">
-        <div v-for="history in histories" :key="history.historyBrandRepeatGod" class="swiper-slide">
-          <div class="history__slide">
-            <div class="history__year">{{ history.historyBrandRepeatGod }}</div>
-            <p class="p_20">{{ history.historyBrandRepeatOpisanie }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <ul class="history__list" ref="historyList">
+      <li v-for="history in histories" :key="history.historyBrandRepeatGod" class="history__item">
+        <div class="history__year">{{ history.historyBrandRepeatGod }}</div>
+        <p class="p_20">{{ history.historyBrandRepeatOpisanie }}</p>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -58,28 +49,21 @@ onMounted(() => {
 
   /*  */
   @media (min-width: 1681px) {
-    /* padding-left: 50%; */
-    /* margin-left: -803px; */
+    padding-left: 50%;
+    margin-left: -803px;
   }
 }
 
-.swiper_history {
-  padding-left: 50%;
-  margin-left: -803px;
+/*  */
+.history__list {
+  display: flex;
+  column-gap: 30px;
+  margin-top: 60px;
+  transition: 0.5s;
 }
 
 /*  */
-.h2_56 {
-  margin-bottom: 60px;
-}
-
-/*  */
-.swiper-slide {
-  width: 513px;
-}
-
-/*  */
-.history__slide {
+.history__item {
   position: relative;
   width: 513px;
   flex-shrink: 0;

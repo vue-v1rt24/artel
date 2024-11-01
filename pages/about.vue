@@ -40,6 +40,9 @@ useSeoMeta({
 
     <!-- Сегодня "Золотая Артель" — это: -->
     <AboutSegodnya v-if="about?.segodnya" :segodnya="about.segodnya" />
+
+    <!-- Наш ассортимент -->
+    <AboutAssortment v-if="about?.assortment" :assortment="about.assortment" />
   </div>
 </template>
 

@@ -45,6 +45,20 @@ export const aboutQuery = `
         historyBrandRepeatGod
         historyBrandRepeatOpisanie
       }
+      assortment {
+        assortmentIzobrazhenie1 {
+          node {
+            mediaItemUrl
+          }
+        }
+        assortmentIzobrazhenie2 {
+          node {
+            mediaItemUrl
+          }
+        }
+        assortmentZagolovok
+        assortmentTekst
+      }
     }
   }
 }

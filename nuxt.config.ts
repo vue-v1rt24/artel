@@ -53,6 +53,7 @@ export default defineNuxtConfig({
       s1024: 1024,
       s1250: 1250,
       s1280: 1280,
+      s1360: 1360,
       s1500: 1500,
     },
   },
