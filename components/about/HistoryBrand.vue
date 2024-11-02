@@ -18,20 +18,18 @@ defineProps<{
 
 //
 const swiper = ref<Swiper>();
+const scrollTriggerHistory = ref<ScrollTrigger | null>(null);
 
-//
-const scrollTriggerKillAll = () => {
-  if (ScrollTrigger.killAll) {
-    ScrollTrigger.killAll();
-  }
+// Удаление экземпляра ScrollTrigger
+const scrollTriggerHistoryFoo = () => {
+  scrollTriggerHistory.value?.kill();
+  scrollTriggerHistory.value = null;
 };
 
 //
 onMounted(() => {
   swiper.value = new Swiper('.swiper_history', {
     modules: [FreeMode, Mousewheel],
-
-    //
     slidesPerView: 'auto',
     spaceBetween: '30',
     freeMode: true,
@@ -42,28 +40,36 @@ onMounted(() => {
     },
     on: {
       reachEnd() {
-        document.body.classList.remove('history');
+        document.body.classList.remove('history_scroll');
         swiper.value?.mousewheel.disable();
-        scrollTriggerKillAll();
+        scrollTriggerHistoryFoo();
       },
     },
   });
 
-  ////////
-  if (ScrollTrigger.isTouch !== 1 && !swiper.value.isEnd) {
-    ScrollTrigger.create({
+  //
+  if (
+    window.scrollY <= document.querySelector<HTMLDivElement>('.history')!.offsetTop &&
+    ScrollTrigger.isTouch !== 1 &&
+    !swiper.value.isEnd
+  ) {
+    scrollTriggerHistory.value = ScrollTrigger.create({
       trigger: '.history',
       start: 'top top',
       end: 'top top',
       toggleClass: {
         targets: 'body',
-        className: 'history',
+        className: 'history_scroll',
       },
       once: true,
-      onEnter() {
+      onEnter(self) {
+        window.scrollTo({
+          top: (self.trigger as HTMLDivElement)?.offsetTop,
+          behavior: 'smooth',
+        });
+
         swiper.value?.mousewheel.enable();
       },
-      markers: true,
     });
   }
 });
@@ -73,7 +79,11 @@ onUnmounted(() => {
     swiper.value.destroy();
   }
 
-  scrollTriggerKillAll();
+  scrollTriggerHistoryFoo();
+
+  if (document.body.classList.contains('history_scroll')) {
+    document.body.classList.remove('history_scroll');
+  }
 });
 </script>
 

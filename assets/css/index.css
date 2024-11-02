@@ -14,7 +14,7 @@ body {
 }
 
 body.open_menu,
-body.history {
+body.history_scroll {
   overflow: hidden;
 }
 
