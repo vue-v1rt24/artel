@@ -52,6 +52,9 @@ onMounted(() => {
             pin: true,
             pinSpacing: false,
             scrub: 1,
+            onEnter(self) {
+              self.refresh();
+            },
           },
         },
       );
