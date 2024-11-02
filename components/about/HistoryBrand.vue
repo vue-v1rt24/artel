@@ -17,7 +17,7 @@ defineProps<{
 }>();
 
 //
-const swiper = ref<Swiper>();
+const swiperInstance = ref<Swiper | null>(null);
 const scrollTriggerHistory = ref<ScrollTrigger | null>(null);
 
 // Удаление экземпляра ScrollTrigger
@@ -28,7 +28,7 @@ const scrollTriggerHistoryFoo = () => {
 
 //
 onMounted(() => {
-  swiper.value = new Swiper('.swiper_history', {
+  swiperInstance.value = new Swiper('.swiper_history', {
     modules: [FreeMode, Mousewheel],
     slidesPerView: 'auto',
     spaceBetween: '30',
@@ -41,7 +41,7 @@ onMounted(() => {
     on: {
       reachEnd() {
         document.body.classList.remove('history_scroll');
-        swiper.value?.mousewheel.disable();
+        swiperInstance.value?.mousewheel.disable();
         scrollTriggerHistoryFoo();
       },
     },
@@ -51,7 +51,7 @@ onMounted(() => {
   if (
     window.scrollY <= document.querySelector<HTMLDivElement>('.history')!.offsetTop &&
     ScrollTrigger.isTouch !== 1 &&
-    !swiper.value.isEnd
+    !swiperInstance.value.isEnd
   ) {
     scrollTriggerHistory.value = ScrollTrigger.create({
       trigger: '.history',
@@ -68,15 +68,16 @@ onMounted(() => {
           behavior: 'smooth',
         });
 
-        swiper.value?.mousewheel.enable();
+        swiperInstance.value?.mousewheel.enable();
       },
     });
   }
 });
 
 onUnmounted(() => {
-  if (swiper.value && swiper.value.destroy) {
-    swiper.value.destroy();
+  if (swiperInstance.value && swiperInstance.value.destroy) {
+    swiperInstance.value.destroy();
+    swiperInstance.value = null;
   }
 
   scrollTriggerHistoryFoo();

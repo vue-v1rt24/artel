@@ -8,11 +8,11 @@ import 'swiper/css/navigation';
 const { data: products } = await useFetch('/api/getPopularProducts');
 
 //
-const swiper = ref<Swiper>();
+const swiperInstance = ref<Swiper | null>(null);
 
 //
 onMounted(() => {
-  swiper.value = new Swiper('.popular_swiper', {
+  swiperInstance.value = new Swiper('.popular_swiper', {
     modules: [Navigation],
     slidesPerView: 'auto',
     spaceBetween: '30',
@@ -34,8 +34,9 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-  if (swiper.value && swiper.value.destroy) {
-    swiper.value.destroy();
+  if (swiperInstance.value && swiperInstance.value.destroy) {
+    swiperInstance.value.destroy();
+    swiperInstance.value = null;
   }
 });
 </script>

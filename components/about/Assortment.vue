@@ -58,6 +58,11 @@ onMounted(() => {
     });
   }
 });
+
+onUnmounted(() => {
+  gsap.killTweensOf('.pinned');
+  ScrollTrigger.killAll();
+});
 </script>
 
 <template>
@@ -142,6 +147,7 @@ onMounted(() => {
   }
 }
 
+/*  */
 .assortment__item {
   height: v-bind(setHeight);
   background-color: white;

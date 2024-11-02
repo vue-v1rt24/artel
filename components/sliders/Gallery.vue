@@ -43,7 +43,7 @@ const swiper = ref<Swiper>();
 const isLoadSlideFancybox = ref(false);
 
 //
-onMounted(() => {
+onMounted(async () => {
   swiper.value = new Swiper('.popular_swiper', {
     modules: [Navigation, Autoplay],
     slidesPerView: 'auto',
@@ -74,6 +74,7 @@ onMounted(() => {
   }
 
   // Открытие изображения в модальном окне
+  await nextTick();
   Fancybox.bind('[data-fancybox="gallery"]', {
     Thumbs: false,
     Hash: false,

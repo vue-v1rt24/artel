@@ -1,6 +1,6 @@
 export const reviewsQuery = (nextPage: string = '') => `
   {
-    reviewsTypes(first: 1, after: "${nextPage}") {
+    reviewsTypes(first: 9, after: "${nextPage}") {
       nodes {
         databaseId
         date
