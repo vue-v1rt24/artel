@@ -43,6 +43,9 @@ useSeoMeta({
 
     <!-- Наш ассортимент -->
     <AboutAssortment v-if="about?.assortment" :assortment="about.assortment" />
+
+    <!-- Наши услуги -->
+    <AboutServices v-if="about?.services" :services="about.services" />
   </div>
 </template>
 

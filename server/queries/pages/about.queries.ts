@@ -59,6 +59,21 @@ export const aboutQuery = `
         assortmentZagolovok
         assortmentTekst
       }
+      servicesAboutUslugiRepeat {
+        servicesAboutUslugiRepeatZagolovok
+        servicesAboutUslugiRepeatTekst
+        servicesAboutUslugiRepeatTekstVModalnomOkne
+        servicesAboutUslugiRepeatIzobrazhenie {
+          node {
+            mediaItemUrl
+          }
+        }
+        servicesAboutUslugiRepeatSsylkaNaStraniczu {
+          nodes {
+            slug
+          }
+        }
+      }
     }
   }
 }

@@ -59,6 +59,23 @@ export type TypeAbout = {
           assortmentZagolovok: string;
           assortmentTekst: string;
         }[];
+        servicesAboutUslugiRepeat: {
+          servicesAboutUslugiRepeatZagolovok: string;
+          servicesAboutUslugiRepeatTekst: string;
+          servicesAboutUslugiRepeatTekstVModalnomOkne: string | null;
+          servicesAboutUslugiRepeatIzobrazhenie: {
+            node: {
+              mediaItemUrl: string;
+            };
+          };
+          servicesAboutUslugiRepeatSsylkaNaStraniczu: {
+            nodes: [
+              {
+                slug: string;
+              },
+            ];
+          } | null;
+        }[];
       };
     };
   };

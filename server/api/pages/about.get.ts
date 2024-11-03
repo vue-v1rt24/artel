@@ -12,5 +12,6 @@ export default defineEventHandler(async (event) => {
     segodnya: data.data.pageBy.aboutPage.aboutSegodnyaGroup,
     historyBrand: data.data.pageBy.aboutPage.historyBrandRepeat,
     assortment: data.data.pageBy.aboutPage.assortment,
+    services: data.data.pageBy.aboutPage.servicesAboutUslugiRepeat,
   };
 });
