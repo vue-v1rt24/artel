@@ -19,7 +19,7 @@ const thumbsSwiper = ref<Swiper>();
 const bigSwiper = ref<Swiper>();
 
 //
-onMounted(() => {
+onMounted(async () => {
   thumbsSwiper.value = new Swiper('.swiper_little_image', {
     slidesPerView: 'auto',
     spaceBetween: 10,
@@ -62,6 +62,7 @@ onMounted(() => {
   });
 
   //
+  await nextTick();
   Fancybox.bind('[data-fancybox="gallery-products"]', {
     Thumbs: false,
     Hash: false,
