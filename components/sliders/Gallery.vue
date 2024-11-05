@@ -142,6 +142,7 @@ onUnmounted(() => {
               densities="x1"
               sizes="378px s1280:378px s768:380px s576:329px s360:320px"
             />
+
             <NuxtImg class="border_img" src="/images/border.svg" />
           </div>
         </div>
@@ -272,8 +273,10 @@ onUnmounted(() => {
   transition: opacity var(--transition-speed);
 }
 
-.border_img_bx:hover::before {
-  opacity: 1;
+@media (hover: hover) {
+  .border_img_bx:hover::before {
+    opacity: 1;
+  }
 }
 
 .border_img {
@@ -285,8 +288,10 @@ onUnmounted(() => {
   transition: opacity var(--transition-speed);
 
   /*  */
-  .border_img_bx:hover & {
-    opacity: 1;
+  @media (hover: hover) {
+    .border_img_bx:hover & {
+      opacity: 1;
+    }
   }
 }
 

@@ -4,6 +4,8 @@ import { Navigation, Thumbs, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
+import { Fancybox } from '@fancyapps/ui';
+
 //
 defineProps<{
   images: { mediaItemUrl: string }[];
@@ -58,6 +60,19 @@ onMounted(() => {
       type: 'bullets',
     },
   });
+
+  //
+  Fancybox.bind('[data-fancybox="gallery-products"]', {
+    Thumbs: false,
+    Hash: false,
+    Toolbar: {
+      display: {
+        left: [''],
+        middle: [],
+        right: ['close'],
+      },
+    },
+  });
 });
 
 onUnmounted(() => {
@@ -68,6 +83,11 @@ onUnmounted(() => {
   if (bigSwiper.value && bigSwiper.value.destroy) {
     bigSwiper.value.destroy();
   }
+
+  //
+  if (Fancybox.destroy) {
+    Fancybox.destroy();
+  }
 });
 </script>
 
@@ -76,8 +96,14 @@ onUnmounted(() => {
     <div class="swiper swiper_big_image">
       <div class="swiper-wrapper">
         <div v-for="image in images" :key="image.mediaItemUrl" class="swiper-slide">
-          <div class="swiper_big_image_img">
+          <div
+            class="swiper_big_image_img border_img_bx"
+            data-fancybox="gallery-products"
+            :data-src="image.mediaItemUrl"
+          >
             <NuxtImg :src="image.mediaItemUrl" format="avif, webp" densities="x1" />
+
+            <NuxtImg class="border_img" src="/images/border.svg" />
           </div>
         </div>
       </div>
@@ -161,6 +187,47 @@ onUnmounted(() => {
 
   @media (max-width: 576px) {
     padding: 23px;
+  }
+}
+
+/*  */
+.border_img_bx {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  transition: filter var(--transition-speed);
+}
+
+.border_img_bx::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(23, 45, 45, 0.6);
+  opacity: 0;
+  transition: opacity var(--transition-speed);
+}
+
+@media (hover: hover) {
+  .border_img_bx:hover::before {
+    opacity: 1;
+  }
+}
+
+.border_img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  opacity: 0;
+  transition: opacity var(--transition-speed);
+
+  /*  */
+  @media (hover: hover) {
+    .border_img_bx:hover & {
+      opacity: 1;
+    }
   }
 }
 
