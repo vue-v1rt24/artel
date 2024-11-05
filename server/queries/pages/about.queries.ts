@@ -74,6 +74,11 @@ export const aboutQuery = `
           }
         }
       }
+      aboutTravelGuideGalereya {
+        nodes {
+          mediaItemUrl
+        }
+      }
     }
   }
 }

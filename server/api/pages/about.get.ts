@@ -13,5 +13,6 @@ export default defineEventHandler(async (event) => {
     historyBrand: data.data.pageBy.aboutPage.historyBrandRepeat,
     assortment: data.data.pageBy.aboutPage.assortment,
     services: data.data.pageBy.aboutPage.servicesAboutUslugiRepeat,
+    gallery: data.data.pageBy.aboutPage.aboutTravelGuideGalereya.nodes,
   };
 });

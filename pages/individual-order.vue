@@ -38,6 +38,7 @@ useSeoMeta({
     <!--  -->
     <SlidersGallery
       v-if="indOrder?.gallery"
+      id="individual"
       :gallery="indOrder.gallery"
       title='"Золотая Артель" - Ваш путеводитель в мире ювелирного искусства.'
       desc="Мы стремимся к тому, чтобы каждый наш клиент почувствовал себя особенным и нашел у нас то, что искал."

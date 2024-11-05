@@ -29,6 +29,7 @@ useSeoMeta({
     <div class="nagradi">
       <SlidersGallery
         v-if="about?.dostizheniya"
+        id="nagradi"
         :gallery="about.dostizheniya"
         title="Наши самые значимые награды и достижения:"
         loop
@@ -46,6 +47,18 @@ useSeoMeta({
 
     <!-- Наши услуги -->
     <AboutServices v-if="about?.services" :services="about.services" />
+
+    <!-- "Золотая Артель" - Ваш путеводитель в мире ювелирного искусства -->
+    <div class="aboutTravelGuideGallery">
+      <SlidersGallery
+        v-if="about?.gallery"
+        id="aboutTravelGuideGallery"
+        title='"Золотая Артель" - Ваш путеводитель в мире ювелирного искусства.'
+        desc="Мы стремимся к тому, чтобы каждый наш клиент почувствовал себя особенным и нашел у нас то, что искал."
+        :gallery="about.gallery"
+        loop
+      />
+    </div>
   </div>
 </template>
 
@@ -55,6 +68,7 @@ useSeoMeta({
 }
 
 /*  */
+
 .nagradi {
   margin: 120px 0;
 
@@ -74,6 +88,25 @@ useSeoMeta({
     :deep(.swiper-slide) {
       width: 150px;
     }
+  }
+}
+
+/*  */
+
+.aboutTravelGuideGallery {
+  padding-top: 150px;
+
+  /*  */
+  @media (max-width: 1280px) {
+    padding-top: 140px;
+  }
+
+  @media (max-width: 768px) {
+    padding-top: 100px;
+  }
+
+  @media (max-width: 576px) {
+    padding-top: 60px;
   }
 }
 </style>

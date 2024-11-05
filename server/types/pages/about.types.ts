@@ -76,6 +76,11 @@ export type TypeAbout = {
             ];
           } | null;
         }[];
+        aboutTravelGuideGalereya: {
+          nodes: {
+            mediaItemUrl: string;
+          }[];
+        };
       };
     };
   };

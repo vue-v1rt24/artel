@@ -8,12 +8,14 @@ import 'swiper/css/navigation';
 
 //
 const {
+  id,
   btn = true,
   loop = false,
   autoplay = false,
   delay = 3000,
   pauseOnMouseEnter = false,
 } = defineProps<{
+  id: string;
   gallery: {
     mediaItemUrl: string;
   }[];
@@ -44,7 +46,7 @@ const isLoadSlideFancybox = ref(false);
 
 //
 onMounted(async () => {
-  swiper.value = new Swiper('.popular_swiper', {
+  swiper.value = new Swiper(`.swiper-${id}`, {
     modules: [Navigation, Autoplay],
     slidesPerView: 'auto',
     spaceBetween: '30',
@@ -57,7 +59,6 @@ onMounted(async () => {
       nextEl: '.swiper-popular-button-next',
       prevEl: '.swiper-popular-button-prev',
     },
-
     breakpoints: {
       360: {
         spaceBetween: 20,
@@ -75,7 +76,7 @@ onMounted(async () => {
 
   // Открытие изображения в модальном окне
   await nextTick();
-  Fancybox.bind('[data-fancybox="gallery"]', {
+  Fancybox.bind(`[data-fancybox="gallery-${id}"]`, {
     Thumbs: false,
     Hash: false,
     Toolbar: {
@@ -127,12 +128,12 @@ onUnmounted(() => {
     </div>
 
     <!--  -->
-    <div class="popular_swiper swiper">
+    <div :class="[`swiper-${id}`, 'popular_swiper', 'swiper']">
       <div class="swiper-wrapper">
         <div v-for="image in gallery" :key="image.mediaItemUrl" class="swiper-slide">
           <div
             class="swiper_slide_img border_img_bx"
-            data-fancybox="gallery"
+            :data-fancybox="`gallery-${id}`"
             :data-src="image.mediaItemUrl"
           >
             <NuxtImg
