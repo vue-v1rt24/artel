@@ -60,8 +60,10 @@ watch(
 
         <!--  -->
         <ul class="menu">
-          <li v-for="{ title, link } in menu">
-            <NuxtLink :to="link" @click="closeModalMenu">{{ title }}</NuxtLink>
+          <li v-for="{ title, link, blank } in menu">
+            <NuxtLink :to="link" @click="closeModalMenu" :target="blank ? '_blank' : '_self'">
+              {{ title }}
+            </NuxtLink>
           </li>
         </ul>
 

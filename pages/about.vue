@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { data: about } = await useFetch('/api/pages/about');
 
-console.log(about.value);
+// console.log(about.value);
 
 //
 useSeoMeta({

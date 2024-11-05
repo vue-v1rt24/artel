@@ -8,10 +8,10 @@ export const useMenus = () => {
   ];
 
   const menu = [
-    { title: 'О компании', link: '/about' },
-    { title: 'Индивидуальный заказ', link: '/individual-order' },
-    { title: 'Ремонт изделий', link: '/remont-izdeliy' },
-    { title: 'Ломбард', link: '/lombard' },
+    { title: 'О компании', link: '/about', blank: false },
+    { title: 'Индивидуальный заказ', link: '/individual-order', blank: false },
+    { title: 'Ремонт изделий', link: '/remont-izdeliy', blank: false },
+    { title: 'Ломбард', link: 'https://vk.com/video', blank: true },
   ];
 
   //

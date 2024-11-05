@@ -1,7 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+useSeoMeta({
+  title: 'Новости',
+  // description: '',
+});
+</script>
 
 <template>
-  <div>Новости</div>
+  <div>
+    <NewsActual />
+  </div>
 </template>
 
 <style lang="css" scoped></style>
