@@ -19,6 +19,13 @@ const { data: actual } = await useFetch('/api/pages/news/actual');
 //
 const swiperActual = ref<Swiper | null>(null);
 
+// Элементы управления плеером
+const foo = () => {
+  const actualModal = document.querySelector('.actual_modal');
+  console.log(actualModal);
+};
+// /Элементы управления плеером
+
 //
 onMounted(async () => {
   swiperActual.value = new Swiper('.swiper-actual', {
@@ -46,16 +53,41 @@ onMounted(async () => {
         right: ['close'],
       },
     },
+    Carousel: {
+      Panzoom: {
+        touch: false,
+      },
+    },
     idle: false,
     mainClass: 'actual_modal',
     Html: {
-      videoTpl: `<video class="fancybox__html5video" loop controls poster="{{poster}}">
-  <source src="{{src}}" type="{{format}}" />К сожалению, ваш браузер не поддерживает встроенные видео.</video>`,
+      videoTpl: `<div class="actual_player_bx">
+                  <video class="fancybox__html5video actual_player" loop poster="{{poster}}">
+                    <source src="{{src}}" type="{{format}}" />
+                    К сожалению, ваш браузер не поддерживает встроенные видео.
+                  </video>
+
+                  <div type="button" class="actual_player_btn_control actual_player__play"><img src="/images/play-button.svg" /></div>
+                  <div type="button" class="actual_player_btn_control actual_player__pause"><img src="/images/pause-button.svg" /></div>
+                  <input type="range" class="actual_player__volume" />
+                </div>`,
       videoAutoplay: true,
     },
     tpl: {
       closeButton:
         '<buton type="button" data-fancybox-close class="actual_modal__ntn_close"><img src="/images/close-fon-selver.svg"/></buton>',
+    },
+    on: {
+      'Carousel.ready Carousel.change': (fancybox: any, slide: any) => {
+        const currentSlide = fancybox.getSlide();
+
+        if (fancybox.isCurrentSlide(currentSlide)) {
+          currentSlide.contentEl.addEventListener('click', (evt: Event) => {
+            const target = evt.target as HTMLElement;
+            console.log(target);
+          });
+        }
+      },
     },
   });
 });
@@ -313,5 +345,31 @@ onUnmounted(() => {
       width: 38px;
     }
   }
+}
+
+/* Кнопки плеера */
+:global(.actual_player_bx) {
+  position: relative;
+}
+
+:global(.actual_player) {
+}
+
+:global(.actual_player_btn_control) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 10;
+}
+
+:global(.actual_player__play) {
+  :global(img) {
+    width: 100px;
+  }
+}
+
+:global(.actual_player__pause) {
 }
 </style>

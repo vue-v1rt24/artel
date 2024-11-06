@@ -21,5 +21,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     CLOSE: 'Закрыть',
     TOGGLE_FULLSCREEN: 'Во весь экран',
     TOGGLE_ZOOM: 'Увеличить',
+    PREV: 'Предыдущий',
+    NEXT: 'Следующий',
   };
 });
