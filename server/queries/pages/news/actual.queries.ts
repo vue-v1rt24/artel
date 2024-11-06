@@ -10,7 +10,11 @@ export const actualQuery = `
             mediaItemUrl
           }
         }
-        actualVideo
+        actualVideo {
+          node {
+            mediaItemUrl
+          }
+        }
       }
     }
   }

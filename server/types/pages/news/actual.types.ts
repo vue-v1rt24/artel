@@ -10,7 +10,11 @@ export type TypeActual = {
               mediaItemUrl: string;
             };
           };
-          actualVideo: string;
+          actualVideo: {
+            node: {
+              mediaItemUrl: string;
+            };
+          };
         };
       }[];
     };
