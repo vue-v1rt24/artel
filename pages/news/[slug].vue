@@ -1,4 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+useSeoMeta({
+  title: 'Новости',
+  description: '',
+});
+</script>
 
 <template>
   <div>Новость</div>

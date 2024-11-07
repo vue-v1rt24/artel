@@ -5,9 +5,26 @@ import Swiper from 'swiper';
 import 'swiper/css';
 
 //
-const { data: actual } = await useFetch('/api/pages/news/actual');
+const { actual } = defineProps<{
+  actual: {
+    databaseId: 505;
+    date: string;
+    actualGroupField: {
+      actualIzobrazhenieDlyaVideo: {
+        node: {
+          mediaItemUrl: string;
+        };
+      };
+      actualVideo: {
+        node: {
+          mediaItemUrl: string;
+        };
+      };
+    };
+  }[];
+}>();
 
-// console.log(actual.value);
+// console.log(actual);
 
 //
 const swiperActual = ref<Swiper | null>(null); // объект слайдера

@@ -1,6 +1,6 @@
 export const actualQuery = `
 {
-  actualTypeFields {
+  actualTypeFields(first: 100) {
     nodes {
       databaseId
       date
