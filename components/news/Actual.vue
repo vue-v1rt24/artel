@@ -9,22 +9,30 @@ const { data: actual } = await useFetch('/api/pages/news/actual');
 
 // console.log(actual.value);
 
-// console.log(new Date(2024, 10, 4));
-// console.log(new Date(2024, 10, 18));
-
-// 1 209 600 000   /   1 209 600 000
-
-// console.log(new Date(2024, 10, 18).getTime() - new Date(2024, 10, 4).getTime());
-
 //
-const swiperActual = ref<Swiper | null>(null);
+const swiperActual = ref<Swiper | null>(null); // объект слайдера
 
-// Элементы управления плеером
-const foo = () => {
-  const actualModal = document.querySelector('.actual_modal');
-  console.log(actualModal);
+const activeElementVideo = ref<HTMLElement | null>(null); // будет текущий родительский блок видео
+const videoElem = ref<HTMLVideoElement | null>(null); // будет текущий блок видео
+const progressElem = ref<HTMLProgressElement | null>(null); // будет текущий блок шкалы времени видео
+
+// Вывод шкалы времени на видео в модальном окне
+const timeupdateHandler = () => {
+  if (!videoElem.value && !progressElem.value) return;
+
+  const d = videoElem.value!.duration;
+  const c = videoElem.value!.currentTime;
+
+  progressElem.value!.value = Math.trunc((100 * c) / d);
 };
-// /Элементы управления плеером
+
+const progressUpdate = () => {
+  videoElem.value?.addEventListener('timeupdate', timeupdateHandler);
+};
+
+const progressUpdateDestroy = () => {
+  videoElem.value?.removeEventListener('timeupdate', timeupdateHandler);
+};
 
 //
 onMounted(async () => {
@@ -69,7 +77,7 @@ onMounted(async () => {
 
                   <div type="button" class="actual_player_btn_control actual_player__play"><img src="/images/play-button.svg" /></div>
                   <div type="button" class="actual_player_btn_control actual_player__pause"><img src="/images/pause-button.svg" /></div>
-                  <input type="range" class="actual_player__volume" />
+                  <!-- <progress class="actual_player__progress" max="100" value="0"></progress> -->
                 </div>`,
       videoAutoplay: true,
     },
@@ -78,15 +86,48 @@ onMounted(async () => {
         '<buton type="button" data-fancybox-close class="actual_modal__ntn_close"><img src="/images/close-fon-selver.svg"/></buton>',
     },
     on: {
-      'Carousel.ready Carousel.change': (fancybox: any, slide: any) => {
-        const currentSlide = fancybox.getSlide();
+      'Carousel.ready': (fancybox) => {
+        const slide = fancybox.getSlide();
+        videoElem.value = slide.contentEl.children[0];
+        progressElem.value = slide.contentEl.children[3];
+        progressUpdate();
+      },
+      click(fancybox, slide: PointerEvent) {
+        const target = slide.target as HTMLElement;
 
-        if (fancybox.isCurrentSlide(currentSlide)) {
-          currentSlide.contentEl.addEventListener('click', (evt: Event) => {
-            const target = evt.target as HTMLElement;
-            console.log(target);
-          });
+        if (target.classList.contains('actual_player')) {
+          const video = target as HTMLVideoElement;
+          activeElementVideo.value = target.closest('.actual_player_bx');
+
+          if (video.paused) {
+            video.play();
+            activeElementVideo.value?.classList.remove('pause');
+            activeElementVideo.value?.classList.add('play');
+          } else {
+            video.pause();
+            activeElementVideo.value?.classList.remove('play');
+            activeElementVideo.value?.classList.add('pause');
+          }
         }
+      },
+      'Carousel.change': (fancybox) => {
+        activeElementVideo.value?.classList.remove('play', 'pause');
+
+        //
+        const slide = fancybox.getSlide();
+
+        if (fancybox.isCurrentSlide(slide)) {
+          // console.log(slide);
+          videoElem.value = slide.contentEl.children[0];
+          progressElem.value = slide.contentEl.children[3];
+          progressUpdate();
+        }
+      },
+      close() {
+        activeElementVideo.value = null;
+        videoElem.value = null;
+        progressElem.value = null;
+        progressUpdateDestroy();
       },
     },
   });
@@ -256,7 +297,6 @@ onUnmounted(() => {
 
 /*  */
 .actual_modal {
-  /*  */
   :global(.fancybox__content) {
     background-color: transparent;
     padding: 0;
@@ -346,30 +386,69 @@ onUnmounted(() => {
     }
   }
 }
+</style>
 
+<style>
 /* Кнопки плеера */
-:global(.actual_player_bx) {
+.actual_player_bx {
   position: relative;
 }
 
-:global(.actual_player) {
+.actual_player {
 }
 
-:global(.actual_player_btn_control) {
+.actual_player_btn_control {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   cursor: pointer;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s;
   z-index: 10;
 }
 
-:global(.actual_player__play) {
-  :global(img) {
+.actual_player__play {
+  .play & {
+    opacity: 1;
+    animation: fadeBtn 0.5s forwards;
+  }
+
+  /*  */
+  img {
     width: 100px;
   }
 }
 
-:global(.actual_player__pause) {
+.actual_player__pause {
+  .pause & {
+    opacity: 1;
+    animation: fadeBtn 0.5s forwards;
+  }
+}
+
+@keyframes fadeBtn {
+  to {
+    opacity: 0;
+  }
+}
+
+/*  */
+.actual_player__progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  appearance: none;
+}
+
+.actual_player__progress::-moz-progress-bar {
+  background: white;
+}
+
+.actual_player__progress::-webkit-progress-value {
+  background: white;
 }
 </style>
