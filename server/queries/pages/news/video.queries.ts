@@ -1,17 +1,17 @@
-export const blogQuery = (nextPage?: string) => `
+export const videoQuery = (nextPage?: string) => `
 {
-  blogsTypes(first: 6, after: "${nextPage}") {
+  videoTypes(first: 6, after: "${nextPage}") {
     nodes {
       databaseId
-      date
-      slug
       title
+      videoTypeFields {
+        videoSsylkaIzIframeVk
+      }
       featuredImage {
         node {
           mediaItemUrl
         }
       }
-      contentTypeName
     }
     pageInfo {
       hasNextPage

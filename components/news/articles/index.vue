@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { TypeArticles } from '~/types/pages/articles.types';
+import type { TypeArticles } from '~/types/pages/news.types';
 import { EnumTypeNewsBlog } from '~/server/types/pages/news/index.types';
 
 //

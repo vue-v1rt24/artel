@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import type { TypeArticles } from '~/types/pages/articles.types';
+import type { TypeArticles, TypesVideo } from '~/types/pages/news.types';
 import { EnumTypeNewsBlog } from '~/server/types/pages/news/index.types';
 
 // Для раздела "Новости"
 const news = ref<TypeArticles | null>(null);
 const newsNextPage = ref<string | null>(null);
+
+// Для раздела "Видео"
+const videos = ref<TypesVideo | null>(null);
+const videoNextPage = ref<string | null>(null);
 
 // Для раздела "Блог"
 const blog = ref<TypeArticles | null>(null);
@@ -28,6 +32,18 @@ const { data: newsData } = await useFetch('/api/pages/news', {
 // console.log(newsData.value);
 
 news.value = newsData.value;
+
+// Для раздела "Видео"
+const { data: videosData } = await useFetch('/api/pages/news/video', {
+  query: {
+    pagination: videoNextPage,
+  },
+  watch: [videoNextPage],
+});
+
+// console.log(videosData.value);
+
+videos.value = videosData.value;
 
 // Для раздела "Блог"
 const { data: blogData } = await useFetch('/api/pages/news/blog', {
@@ -58,7 +74,13 @@ const loadData = (nextPage: string, type: EnumTypeNewsBlog) => {
   }
 };
 
-// Срабатывает при клике на кнопку "Показать ещё" в разделах: Новости и Блог
+// Загрузка данных по кнопке "Показать ещё" в разделе: Видео
+const loadDataVideo = (nextPage: string) => {
+  isLoading.value = true;
+  videoNextPage.value = nextPage;
+};
+
+// Срабатывает при клике на кнопку "Показать ещё" в разделах: Новости, Видео и Блог
 watch(newsData, (val) => {
   if (!val || !news.value) return;
 
@@ -74,6 +96,14 @@ watch(blogData, (val) => {
   blog.value.pagination = val.pagination;
   isLoading.value = false;
 });
+
+watch(videosData, (val) => {
+  if (!val || !videos.value) return;
+
+  videos.value.content.push(...val.content);
+  videos.value.pagination = val.pagination;
+  isLoading.value = false;
+});
 </script>
 
 <template>
@@ -86,6 +116,9 @@ watch(blogData, (val) => {
 
     <!-- Новости -->
     <NewsArticles v-if="news" title="Новости" :articles="news" @load-data="loadData" />
+
+    <!-- Видео -->
+    <NewsVideo v-if="videos" :videos @load-data="loadDataVideo" />
 
     <!-- Блог -->
     <NewsArticles v-if="blog" title="Блог" :articles="blog" @load-data="loadData" />
