@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { EnumTypeNewsBlog } from '~/server/types/pages/news/news.types';
+import { EnumTypeNewsBlog } from '~/server/types/pages/news/index.types';
 
 //
-const { news } = defineProps<{
-  news: {
+const { article } = defineProps<{
+  article: {
     databaseId: number;
     date: string;
     slug: string;
@@ -17,24 +17,25 @@ const { news } = defineProps<{
   };
 }>();
 
-// console.log(news);
+// console.log(article);
+// console.log(article.contentTypeName);
 </script>
 
 <template>
   <div class="news">
-    <NuxtLink :to="{ path: `/${EnumTypeNewsBlog.NEWS}/${news.slug}` }">
+    <NuxtLink :to="{ path: `/${article.contentTypeName}/${article.slug}` }">
       <div class="news__img">
         <NuxtImg
-          :src="news.featuredImage.node.mediaItemUrl"
+          :src="article.featuredImage.node.mediaItemUrl"
           format="avif, webp"
           densities="x1"
           loading="lazy"
         />
       </div>
 
-      <h3 class="news__title">{{ news.title }}</h3>
+      <h3 class="news__title">{{ article.title }}</h3>
 
-      <time class="news__date" :datetime="news.date">{{ dateFormatter(news.date) }}</time>
+      <time class="news__date" :datetime="article.date">{{ dateFormatter(article.date) }}</time>
     </NuxtLink>
   </div>
 </template>

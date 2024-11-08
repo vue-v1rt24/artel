@@ -1,6 +1,6 @@
-export const newsQuery = `
+export const blogQuery = (nextPage?: string) => `
 {
-  newsTypes(first: 10) {
+  blogsTypes(first: 1, after: "${nextPage}") {
     nodes {
       databaseId
       date

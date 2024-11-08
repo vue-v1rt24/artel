@@ -1,5 +1,6 @@
 export enum EnumTypeNewsBlog {
   NEWS = 'news',
+  BLOG = 'blogs',
 }
 
 export type TypeNews = {

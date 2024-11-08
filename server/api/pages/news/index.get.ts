@@ -1,9 +1,11 @@
 import { requestFetch } from '~/server/utils/requestFetch';
-import { newsQuery } from '~/server/queries/pages/news/news.queries';
-import { TypeNews } from '~/server/types/pages/news/news.types';
+import { newsQuery } from '~/server/queries/pages/news/index.queries';
+import { TypeNews } from '~/server/types/pages/news/index.types';
 
 export default defineEventHandler(async (event) => {
-  const data = await requestFetch<TypeNews>(newsQuery);
+  const { pagination } = getQuery(event);
+
+  const data = await requestFetch<TypeNews>(newsQuery(pagination as string));
 
   return {
     content: data.data.newsTypes.nodes,

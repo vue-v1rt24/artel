@@ -1,28 +1,19 @@
 <script setup lang="ts">
-import { EnumTypeNewsBlog } from '~/server/types/pages/news/news.types';
+import type { TypeArticles } from '~/types/pages/articles.types';
+import { EnumTypeNewsBlog } from '~/server/types/pages/news/index.types';
 
 //
-const { news } = defineProps<{
+const { articles } = defineProps<{
   title: string;
-  news: {
-    databaseId: number;
-    date: string;
-    slug: string;
-    title: string;
-    featuredImage: {
-      node: {
-        mediaItemUrl: string;
-      };
-    };
-    contentTypeName: EnumTypeNewsBlog;
-  }[];
-  pagination: {
-    hasNextPage: boolean;
-    endCursor: string;
-  };
+  articles: TypeArticles;
 }>();
 
-// console.log(news);
+// console.log(articles);
+
+//
+const emit = defineEmits<{
+  loadData: [nextPage: string, type: EnumTypeNewsBlog];
+}>();
 </script>
 
 <template>
@@ -32,8 +23,20 @@ const { news } = defineProps<{
 
       <!--  -->
       <div class="news_list">
-        <NewsNewsBlockItem v-for="n in news" :key="n.databaseId" :news="n" />
+        <NewsNewsBlockItem v-for="n in articles.content" :key="n.databaseId" :article="n" />
       </div>
+
+      <!--  -->
+      <UiButton
+        v-if="articles.pagination.hasNextPage"
+        title="Показать ещё"
+        width="100%"
+        bg="var(--green-50)"
+        text-color="var(--main-green)"
+        @btn-click="
+          emit('loadData', articles.pagination.endCursor, articles.content[0].contentTypeName)
+        "
+      />
     </div>
   </div>
 </template>
@@ -73,6 +76,21 @@ const { news } = defineProps<{
 
   @media (max-width: 576px) {
     gap: 32px 30px;
+    margin-top: 32px;
+  }
+}
+
+/*  */
+
+.btn {
+  margin-top: 60px;
+
+  /*  */
+  @media (max-width: 768px) {
+    margin-top: 42px;
+  }
+
+  @media (max-width: 576px) {
     margin-top: 32px;
   }
 }
