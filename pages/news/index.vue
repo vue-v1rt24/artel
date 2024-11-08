@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { TypeArticles } from '~/types/pages/articles.types';
-
 import { EnumTypeNewsBlog } from '~/server/types/pages/news/index.types';
 
 // Для раздела "Новости"
@@ -86,10 +85,10 @@ watch(blogData, (val) => {
     <NewsActual v-if="actual" :actual />
 
     <!-- Новости -->
-    <NewsNewsBlock v-if="news" title="Новости" :articles="news" @load-data="loadData" />
+    <NewsArticles v-if="news" title="Новости" :articles="news" @load-data="loadData" />
 
     <!-- Блог -->
-    <NewsNewsBlock v-if="blog" title="Блог" :articles="blog" @load-data="loadData" />
+    <NewsArticles v-if="blog" title="Блог" :articles="blog" @load-data="loadData" />
   </div>
 </template>
 

@@ -23,7 +23,7 @@ const emit = defineEmits<{
 
       <!--  -->
       <div class="news_list">
-        <NewsNewsBlockItem v-for="n in articles.content" :key="n.databaseId" :article="n" />
+        <NewsArticlesItem v-for="article in articles.content" :key="article.databaseId" :article />
       </div>
 
       <!--  -->
