@@ -22,12 +22,14 @@ const loadModalIframe = (url: string) => {
         src: url + '&autoplay=1',
         type: 'iframe',
         preload: false,
-        width: 1100,
-        height: 594,
       },
     ],
     {
       mainClass: 'video_dec',
+      tpl: {
+        closeButton:
+          '<buton type="button" data-fancybox-close class="video_modal__ntn_close"><img src="/images/close-fon-selver.svg"/></buton>',
+      },
     },
   );
 };
@@ -144,6 +146,13 @@ onUnmounted(() => {
   .video:hover &::before {
     opacity: 1;
   }
+
+  /*  */
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 /*  */
@@ -174,12 +183,67 @@ onUnmounted(() => {
 <style>
 .video_dec {
   .fancybox__content {
+    width: auto !important;
+    height: auto !important;
     background-color: transparent;
     padding: 0;
   }
 
   .fancybox__iframe {
+    width: 1054px;
+    height: 594px;
+    margin: auto;
     border-radius: 24px;
+
+    /*  */
+    @media (max-width: 1300px) {
+      width: 996px;
+      height: 560px;
+    }
+
+    @media (max-width: 1240px) {
+      width: 690px;
+      height: 388px;
+    }
+
+    @media (max-width: 730px) {
+      width: 500px;
+      height: 281px;
+    }
+
+    @media (max-width: 576px) {
+      width: 400px;
+      height: 225px;
+      border-radius: 20px;
+    }
+
+    @media (max-width: 440px) {
+      width: 320px;
+      height: 180px;
+    }
+  }
+}
+
+/*  */
+.video_modal__ntn_close {
+  position: absolute;
+  top: 0;
+  right: -100px;
+  cursor: pointer;
+
+  /*  */
+  @media (max-width: 992px) {
+    top: -78px;
+    right: 0;
+  }
+
+  @media (max-width: 768px) {
+    width: 46px;
+  }
+
+  @media (max-width: 576px) {
+    top: -56px;
+    width: 38px;
   }
 }
 </style>
