@@ -19,6 +19,7 @@
     "nuxt-mail": "^5.1.1",
     "nuxt-viewport": "^2.1.6",
     "swiper": "^11.1.14",
+    "timeago.js": "^4.0.2",
     "vue": "latest",
     "vue-router": "latest"
   },

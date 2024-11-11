@@ -1,6 +1,12 @@
 <script setup lang="ts">
+import { format, render, cancel, register } from 'timeago.js';
+import ru from 'timeago.js/lib/lang/ru';
+register('ru', ru);
+
+//
 import { Fancybox } from '@fancyapps/ui';
 
+//
 import Swiper from 'swiper';
 import 'swiper/css';
 
@@ -189,7 +195,9 @@ onUnmounted(() => {
               loading="lazy"
             />
 
-            <div class="swiper_actual__date">1 час назад</div>
+            <div class="swiper_actual__date">
+              {{ format(new Date(video.date), 'ru', { minInterval: 60 }) }}
+            </div>
           </a>
 
           <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
