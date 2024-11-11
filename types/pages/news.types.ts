@@ -39,3 +39,30 @@ export type TypesVideo = {
     endCursor: string;
   };
 };
+
+// Типизация вывода полной новости
+export type TypeNewsFull = {
+  singleNews: {
+    databaseId: number;
+    date: string;
+    title: string;
+    content: string;
+    seo: {
+      titleSeo: string;
+      descriptionSeo: string;
+    };
+    newsFields: {
+      newsKolichestvoProsmotrov: number;
+    };
+  };
+  otherNews: {
+    databaseId: number;
+    slug: string;
+    title: string;
+    featuredImage: {
+      node: {
+        mediaItemUrl: string;
+      };
+    };
+  }[];
+};
