@@ -63,7 +63,7 @@ onMounted(async () => {
 
   //
   await nextTick();
-  Fancybox.bind('[data-fancybox="gallery-products"]', {
+  Fancybox.bind('.swiper_big_image_img', {
     Thumbs: false,
     Hash: false,
     Toolbar: {
@@ -97,11 +97,7 @@ onUnmounted(() => {
     <div class="swiper swiper_big_image">
       <div class="swiper-wrapper">
         <div v-for="image in images" :key="image.mediaItemUrl" class="swiper-slide">
-          <div
-            class="swiper_big_image_img border_img_bx"
-            data-fancybox="gallery-products"
-            :data-src="image.mediaItemUrl"
-          >
+          <div class="swiper_big_image_img border_img_bx" :data-src="image.mediaItemUrl">
             <NuxtImg :src="image.mediaItemUrl" format="avif, webp" densities="x1" />
 
             <NuxtImg class="border_img" src="/images/border.svg" />
