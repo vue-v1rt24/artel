@@ -361,22 +361,58 @@ onUnmounted(() => {
 
   :global(.is-horizontal .fancybox__nav .f-button.is-prev) {
     left: 50%;
-    margin-left: -247px;
+    margin-left: -377px;
+    width: 68px;
+    height: 68px;
 
     /*  */
+    @media (max-width: 1280px) {
+      margin-left: -310px;
+    }
+
+    @media (max-width: 768px) {
+      width: 52px;
+      height: 52px;
+      margin-left: -295px;
+    }
+
+    @media (max-width: 650px) {
+      margin-left: -264px;
+    }
+
     @media (max-width: 576px) {
-      margin-top: 305px;
+      width: 30px;
+      height: 30px;
+      margin-top: 316px;
       margin-left: -152px;
     }
   }
 
   :global(.is-horizontal .fancybox__nav .f-button.is-next) {
     right: 50%;
-    margin-right: -247px;
+    margin-right: -377px;
+    width: 68px;
+    height: 68px;
 
     /*  */
+    @media (max-width: 1280px) {
+      margin-right: -310px;
+    }
+
+    @media (max-width: 768px) {
+      width: 52px;
+      height: 52px;
+      margin-right: -295px;
+    }
+
+    @media (max-width: 650px) {
+      margin-right: -264px;
+    }
+
     @media (max-width: 576px) {
-      margin-top: 305px;
+      width: 30px;
+      height: 30px;
+      margin-top: 316px;
       margin-right: -152px;
     }
   }
@@ -417,9 +453,30 @@ onUnmounted(() => {
 /* Кнопки плеера */
 .actual_player_bx {
   position: relative;
+  width: auto !important;
+  height: auto !important;
 }
 
 .actual_player {
+  width: 513px;
+  height: 911px;
+
+  /*  */
+  @media (max-width: 1280px) {
+    width: 380px;
+    height: 674px;
+  }
+
+  @media (max-width: 650px) {
+    width: 320px;
+    height: 567px;
+  }
+}
+
+.actual_modal .fancybox__slide {
+  @media (max-width: 576px) {
+    padding: 80px 0;
+  }
 }
 
 .actual_player_btn_control {
