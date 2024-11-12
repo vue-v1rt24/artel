@@ -67,3 +67,31 @@ export type TypeNewsFull = {
     };
   }[];
 };
+
+// Типизация вывода полной блога
+export type TypeBlogFull = {
+  singleBlog: {
+    databaseId: number;
+    date: string;
+    title: string;
+    content: string;
+    seo: {
+      titleSeo: string;
+      descriptionSeo: string;
+    };
+    newsFields: {
+      newsKolichestvoProsmotrov: number;
+    };
+  };
+  otherBlog: {
+    databaseId: number;
+    date: string;
+    slug: string;
+    title: string;
+    featuredImage: {
+      node: {
+        mediaItemUrl: string;
+      };
+    };
+  }[];
+};

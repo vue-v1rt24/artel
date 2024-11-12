@@ -1,12 +1,19 @@
 import { requestFetch } from '~/server/utils/requestFetch';
-import { slugNewsQuery } from '~/server/queries/pages/news/slug-news.queries';
-import { TypeSlugNews } from '~/server/types/pages/news/slug-news.types';
+import { slugBlogQuery, otherBlogQuery } from '~/server/queries/pages/news/blog.queries';
+import type { TypeSlugBlog, TypeOtherArticle } from '~/server/types/pages/news/blog.types';
 
 export default defineEventHandler(async (event) => {
   const slug = getRouterParam(event, 'slug');
-  console.log(slug);
 
-  const data = await requestFetch<TypeSlugNews>(slugNewsQuery(slug as string));
+  const data = await requestFetch<TypeSlugBlog>(slugBlogQuery(slug as string));
 
-  return data.data.newsTypeBy;
+  // Получение других записей блога для раздела "Читайте другие статьи"
+  const otherBlog = await requestFetch<TypeOtherArticle>(
+    otherBlogQuery(data.data.blogTypeBy.databaseId),
+  );
+
+  return {
+    singleBlog: data.data.blogTypeBy,
+    otherBlog: otherBlog.data.blogsTypes?.nodes || [],
+  };
 });

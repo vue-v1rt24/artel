@@ -32,10 +32,7 @@ const viewport = useViewport();
     <!-- Хлебные крошки -->
     <UiBreadCrumbs
       v-if="viewport.isGreaterOrEquals('screen768')"
-      :links="[
-        { title: 'Новости', link: '/news' },
-        { title: 'Как выбрать полудрагоценный камень по гороскопу?' },
-      ]"
+      :links="[{ title: 'Новости', link: '/news' }, { title: news!.singleNews.title }]"
     />
 
     <!-- Вернуться назад -->
@@ -79,6 +76,7 @@ const viewport = useViewport();
           <NewsOtherArticle
             v-if="news?.otherNews"
             title="Читайте другие статьи"
+            parent-link="news"
             :articles="news.otherNews"
           />
         </div>

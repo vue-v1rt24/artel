@@ -1,6 +1,7 @@
 <script setup lang="ts">
 defineProps<{
   title: string;
+  parentLink: string;
   articles: {
     databaseId: number;
     date: string;
@@ -21,7 +22,7 @@ defineProps<{
 
     <ul class="other_article__list">
       <li v-for="article in articles" :key="article.databaseId" class="other_article__item">
-        <NuxtLink :to="article.slug">
+        <NuxtLink :to="`/${parentLink}/${article.slug}`">
           <NuxtImg
             :src="article.featuredImage.node.mediaItemUrl"
             format="avif, webp"
