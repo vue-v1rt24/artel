@@ -29,7 +29,7 @@ defineProps<{
   height: 150px;
   border-radius: 50%;
   border: 3px solid transparent;
-  border-top-color: #337ab7;
+  border-top-color: #172d2d;
   animation: preloader-5-spin 2s linear infinite;
 }
 .preloader-5:before {
@@ -41,7 +41,7 @@ defineProps<{
   bottom: 5px;
   border-radius: 50%;
   border: 3px solid transparent;
-  border-top-color: #bfe2ff;
+  border-top-color: #172d2d;
   animation: preloader-5-spin 3s linear infinite;
 }
 .preloader-5:after {
@@ -53,7 +53,7 @@ defineProps<{
   bottom: 15px;
   border-radius: 50%;
   border: 3px solid transparent;
-  border-top-color: #337ab7;
+  border-top-color: #172d2d;
   animation: preloader-5-spin 1.5s linear infinite;
 }
 @keyframes preloader-5-spin {
