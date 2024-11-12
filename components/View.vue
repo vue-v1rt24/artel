@@ -57,5 +57,18 @@ onMounted(() => {
   display: flex;
   align-items: center;
   column-gap: 10px;
+
+  /*  */
+  @media (max-width: 576px) {
+    font-size: 15px;
+    column-gap: 8px;
+  }
+
+  /*  */
+  img {
+    @media (max-width: 576px) {
+      width: 14px;
+    }
+  }
 }
 </style>

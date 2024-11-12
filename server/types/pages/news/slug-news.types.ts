@@ -22,6 +22,7 @@ export type TypeOtherArticle = {
     newsTypes: {
       nodes: {
         databaseId: number;
+        date: string;
         slug: string;
         title: string;
         featuredImage: {

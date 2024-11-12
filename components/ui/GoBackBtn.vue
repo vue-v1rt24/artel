@@ -3,8 +3,8 @@
 <template>
   <div class="container">
     <button type="button" class="back" @click="$router.back">
-      <ImagesArrowBgWhite />
-      <span>Вернуться назад</span>
+      <ImagesArrowLeft />
+      <span class="back__title">Вернуться назад</span>
     </button>
   </div>
 </template>
@@ -23,9 +23,8 @@
   margin: 24px 0 32px 0;
 
   /*  */
-  .arrow_stock {
-    width: 34px;
-    margin-left: -17px;
+  .back__title {
+    margin-left: 15px;
   }
 }
 </style>

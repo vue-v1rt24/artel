@@ -25,6 +25,7 @@ export const otherNewsQuery = (id: number) => {
       newsTypes(where: {notIn: "${id}"}, first: 3) {
         nodes {
           databaseId
+          date
           slug
           title
           featuredImage {

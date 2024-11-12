@@ -57,6 +57,7 @@ export type TypeNewsFull = {
   };
   otherNews: {
     databaseId: number;
+    date: string;
     slug: string;
     title: string;
     featuredImage: {
