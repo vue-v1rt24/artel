@@ -11,6 +11,7 @@ export const catalogParentQuery = `
         image {
           mediaItemUrl
         }
+        count
       }
     }
   }
@@ -31,6 +32,7 @@ export const catalogChildrenQuery = (slug: string) => {
             image {
               mediaItemUrl
             }
+            count
           }
         }
       }

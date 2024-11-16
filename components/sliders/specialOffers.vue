@@ -59,43 +59,45 @@ onUnmounted(() => {
     <!--  -->
     <div class="special_swiper swiper">
       <div class="swiper-wrapper">
-        <div class="swiper-slide" v-for="special in specials" :key="special.id">
-          <NuxtImg
-            class="special_swiper__img"
-            format="avif, webp"
-            :src="special.img"
-            densities="x1"
-          />
-
-          <!--  -->
-          <div class="special__info_bx">
-            <div class="special__info">
-              <div class="special__price_bx">
-                <div class="special__price">
-                  {{ priceFormatter(+special.price) }}
-                </div>
-
-                <div v-if="special.isOnSale" class="special_price__old_bx">
-                  <s class="special_price__old">{{ priceFormatter(+special.regularPrice) }}</s>
-
-                  <div class="sale_text">
-                    Скидка {{ discountPercentage(+special.regularPrice, +special.salePrice) }}
-                  </div>
-                </div>
-              </div>
-
-              <div class="name_product">{{ special.title }}</div>
-            </div>
+        <template v-for="special in specials" :key="special.id">
+          <div v-if="special.img" class="swiper-slide">
+            <NuxtImg
+              class="special_swiper__img"
+              format="avif, webp"
+              :src="special.img"
+              densities="x1"
+            />
 
             <!--  -->
-            <UiButton
-              width="278px"
-              title="Узнать подробнее"
-              class="special__info_btn"
-              @btn-click="productAvailability(special)"
-            />
+            <div class="special__info_bx">
+              <div class="special__info">
+                <div class="special__price_bx">
+                  <div class="special__price">
+                    {{ priceFormatter(+special.price) }}
+                  </div>
+
+                  <div v-if="special.isOnSale" class="special_price__old_bx">
+                    <s class="special_price__old">{{ priceFormatter(+special.regularPrice) }}</s>
+
+                    <div class="sale_text">
+                      Скидка {{ discountPercentage(+special.regularPrice, +special.salePrice) }}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="name_product">{{ special.title }}</div>
+              </div>
+
+              <!--  -->
+              <UiButton
+                width="278px"
+                title="Узнать подробнее"
+                class="special__info_btn"
+                @btn-click="productAvailability(special)"
+              />
+            </div>
           </div>
-        </div>
+        </template>
       </div>
 
       <div class="swiper-special-pagination"></div>

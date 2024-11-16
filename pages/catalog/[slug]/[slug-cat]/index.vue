@@ -127,9 +127,11 @@ watch(
 
       <!-- Вывод товаров -->
       <ul :class="['products', { big: viewCard === EnumViewCard.BIG }]">
-        <li v-for="product in products" :key="product.databaseId" class="products__item">
-          <CatalogProductCard :product />
-        </li>
+        <template v-for="product in products" :key="product.databaseId">
+          <li v-if="product.image" class="products__item">
+            <CatalogProductCard :product />
+          </li>
+        </template>
       </ul>
 
       <!-- Кнопка "Показать ещё" -->

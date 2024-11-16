@@ -68,33 +68,31 @@ const titleChange = computed(() => {
 
           <!-- Родительские категории -->
           <ul class="catalog__header_list">
-            <li
-              v-for="link in parentCatalogs"
-              :key="link.databaseId"
-              :class="['catalog__header_list_item', { active: slug === link.slug }]"
-            >
-              <NuxtLink :to="`/catalog/${link.slug}`" @click="isLoading = true">
-                <span class="catalog__header_title">{{ link.name }}</span>
+            <template v-for="link in parentCatalogs" :key="link.databaseId">
+              <li
+                v-if="link.count"
+                :class="['catalog__header_list_item', { active: slug === link.slug }]"
+              >
+                <NuxtLink :to="`/catalog/${link.slug}`" @click="isLoading = true">
+                  <span class="catalog__header_title">{{ link.name }}</span>
 
-                <NuxtImg
-                  :src="link.image.mediaItemUrl"
-                  format="avif, webp"
-                  densities="x1"
-                  class="catalog__header_img"
-                />
-              </NuxtLink>
-            </li>
+                  <NuxtImg
+                    :src="link.image.mediaItemUrl"
+                    format="avif, webp"
+                    densities="x1"
+                    class="catalog__header_img"
+                  />
+                </NuxtLink>
+              </li>
+            </template>
           </ul>
         </div>
 
         <!-- Дочернии категории -->
         <ul class="catalog_children_list">
-          <CatalogCategoryItem
-            v-for="item in childrenCatalogs?.childrenCategories"
-            :key="item.databaseId"
-            :parent-category-name="slug"
-            :category="item"
-          />
+          <template v-for="item in childrenCatalogs?.childrenCategories" :key="item.databaseId">
+            <CatalogCategoryItem v-if="item.count" :parent-category-name="slug" :category="item" />
+          </template>
         </ul>
       </div>
     </div>

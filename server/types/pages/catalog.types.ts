@@ -9,6 +9,7 @@ export type TypeParentCatalog = {
         image: {
           mediaItemUrl: string;
         };
+        count: number;
       }[];
     };
   };
@@ -28,6 +29,7 @@ export type TypeChildrenCatalog = {
           image: {
             mediaItemUrl: string;
           };
+          count: number;
         }[];
       };
     };
