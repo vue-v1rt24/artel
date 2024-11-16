@@ -297,6 +297,19 @@ watch(
   font-size: 18px;
   line-height: 90%;
   color: var(--main-green);
+  transition: color var(--transition-speed);
+
+  /*  */
+  &.active {
+    text-decoration: underline;
+  }
+
+  /*  */
+  @media (hover: hover) {
+    &:hover {
+      color: var(--green-akcent);
+    }
+  }
 
   /*  */
   .dark & {
@@ -305,6 +318,12 @@ watch(
 
   .open_menu .dark & {
     color: var(--main-green);
+
+    @media (hover: hover) {
+      &:hover {
+        color: var(--green-akcent);
+      }
+    }
   }
 }
 

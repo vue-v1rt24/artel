@@ -59,19 +59,19 @@ onMounted(() => {
     <div class="social" ref="social">
       <div class="social__list">
         <a class="social__link" :href="vk" target="_blank">
-          <img src="/images/social/vk.svg" alt="" />
+          <ImagesSocialVK />
         </a>
 
         <a class="social__link" :href="telegram" target="_blank">
-          <img src="/images/social/telegram.svg" alt="" />
+          <ImagesSocialTelegram />
         </a>
 
         <a class="social__link" :href="whatsapp" target="_blank">
-          <img src="/images/social/whatsapp.svg" alt="" />
+          <ImagesSocialWhatsapp />
         </a>
 
         <a class="social__link" :href="instagram" target="_blank">
-          <img src="/images/social/instagram.svg" alt="" />
+          <ImagesSocialInstagram />
         </a>
       </div>
 
@@ -258,6 +258,24 @@ onMounted(() => {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: background-color var(--transition-speed);
+
+  /*  */
+  svg {
+    color: var(--main-green);
+    transition: color var(--transition-speed);
+  }
+
+  /*  */
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--main-green);
+
+      svg {
+        color: white;
+      }
+    }
+  }
 
   /*  */
   @media (max-width: 576px) {
@@ -265,8 +283,9 @@ onMounted(() => {
     height: 42px;
 
     /*  */
-    img {
+    svg {
       width: 20px;
+      height: 20px;
     }
   }
 }

@@ -71,16 +71,33 @@ const changeBtnVal = (val: EnumViewCard) => {
     border-radius: 12px;
     user-select: none;
     padding: 14px 18px;
+    transition: background-color var(--transition-speed);
 
     /*  */
-    &.active {
-      background-color: var(--green-50);
-      border-color: var(--green-50);
-      pointer-events: none;
+    @media (hover: hover) {
+      &:hover {
+        background-color: var(--green-50);
+        border-color: var(--green-50);
+      }
+
+      &.active {
+        background-color: var(--green-50);
+        border-color: var(--green-50);
+        pointer-events: none;
+      }
+    }
+
+    @media (hover: none) {
+      opacity: 0.3;
+
+      &.active {
+        opacity: 1;
+      }
     }
 
     /*  */
     @media (max-width: 767px) {
+      border: none;
       padding: 0;
     }
 

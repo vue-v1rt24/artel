@@ -99,6 +99,15 @@ const emit = defineEmits<{
   bottom: 20px;
   right: 20px;
   mix-blend-mode: darken;
+  scale: 1;
+  transition: scale var(--transition-speed);
+
+  /*  */
+  @media (hover: hover) {
+    .modal_menu__item:hover & {
+      scale: 1.2;
+    }
+  }
 
   /*  */
   @media (max-width: 1280px) {

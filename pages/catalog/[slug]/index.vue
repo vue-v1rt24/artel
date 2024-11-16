@@ -182,7 +182,15 @@ const titleChange = computed(() => {
   background-color: white;
   border: 2px solid var(--low-green);
   border-radius: 20px;
+  transition: background-color var(--transition-speed);
   overflow: hidden;
+
+  /*  */
+  @media (hover: hover) {
+    &:hover {
+      background-color: #fbfbfb;
+    }
+  }
 
   /*  */
   @media (max-width: 600px) {
@@ -225,6 +233,19 @@ const titleChange = computed(() => {
       right: 30px;
       width: 134px;
       mix-blend-mode: darken;
+      scale: 1;
+      transition: scale var(--transition-speed);
+
+      /*  */
+      @media (hover: hover) {
+        .catalog__header_list_item:hover & {
+          scale: 1.2;
+        }
+
+        .catalog__header_list_item.active:hover & {
+          scale: 1;
+        }
+      }
 
       /*  */
       @media (max-width: 700px) {

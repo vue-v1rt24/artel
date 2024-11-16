@@ -21,6 +21,7 @@ onMounted(() => {
     spaceBetween: 12,
     centeredSlides: true,
     direction: 'vertical',
+    speed: 5000,
     autoplay: {
       delay: 1000,
     },

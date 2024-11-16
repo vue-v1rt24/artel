@@ -25,7 +25,13 @@ defineProps<{
 
       <li class="contacts__title__tem" style="--contact-url: url(/images/email.svg)">
         <div class="contacts__title">Электронный адрес</div>
-        <div class="contacts__addr">{{ email }}</div>
+        <div class="contacts__addr">
+          {{ email }}
+
+          <div class="contacts__copy">
+            <UiCopyBtn :email="email" />
+          </div>
+        </div>
       </li>
 
       <li class="contacts__title__tem" style="--contact-url: url(/images/tel.svg)">
@@ -156,6 +162,13 @@ defineProps<{
 }
 
 /*  */
+.contacts__copy {
+  position: absolute;
+  bottom: 0px;
+  right: -32px;
+}
+
+/*  */
 .contacts__title__tem::before {
   content: '';
   position: absolute;
@@ -191,9 +204,18 @@ defineProps<{
 }
 
 .contacts__addr {
+  width: fit-content;
   font-weight: 400;
   font-size: 24px;
   line-height: 140%;
+  border-bottom: 1px solid transparent;
+  transition: border var(--transition-speed);
+
+  /*  */
+  &:hover {
+    color: var(--green-akcent);
+    border-color: var(--transition-speed);
+  }
 
   /*  */
   @media (max-width: 768px) {

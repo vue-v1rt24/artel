@@ -82,6 +82,19 @@ const closeModalMenu = () => {
     font-size: 17px;
     line-height: 90%;
     color: var(--main-green);
+    transition: color var(--transition-speed);
+
+    /*  */
+    &.active {
+      text-decoration: underline;
+    }
+
+    /*  */
+    @media (hover: hover) {
+      &:hover {
+        color: var(--green-akcent);
+      }
+    }
 
     /*  */
     @media (max-width: 1366px) {
@@ -105,6 +118,7 @@ const closeModalMenu = () => {
   line-height: 90%;
   color: var(--main-green);
   display: inline-block;
+  transition: color var(--transition-speed);
 
   &:nth-child(1) {
     margin-right: 62px;
@@ -112,6 +126,13 @@ const closeModalMenu = () => {
     /*  */
     @media (max-width: 1200px) {
       margin-right: 0;
+    }
+  }
+
+  /*  */
+  @media (hover: hover) {
+    &:hover {
+      color: var(--green-akcent);
     }
   }
 

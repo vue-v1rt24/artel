@@ -63,6 +63,12 @@ const { article } = defineProps<{
   margin: 26px 0 14px 0;
 
   /*  */
+  .news:hover & {
+    text-decoration: underline solid var(--main-green) 0.5px;
+    text-decoration-skip-ink: none;
+  }
+
+  /*  */
   @media (max-width: 768px) {
     max-width: 100%;
   }

@@ -78,11 +78,11 @@ onUnmounted(() => {
 
     <!--  -->
     <div class="stock_arrow swiper-button-white-prev">
-      <ImagesArrowBgWhite />
+      <div class="stock_arrow__circle"><ImagesArrowBgWhite /></div>
     </div>
 
     <div class="stock_arrow swiper-button-white-next">
-      <ImagesArrowBgWhite />
+      <div class="stock_arrow__circle"><ImagesArrowBgWhite /></div>
     </div>
   </div>
 </template>
@@ -124,6 +124,14 @@ onUnmounted(() => {
 
 .stock_arrow:hover {
   background-color: rgba(255, 255, 255, 0.3);
+}
+
+/*  */
+.stock_arrow__circle {
+  width: 56px;
+  height: 56px;
+  background-color: white;
+  border-radius: 50%;
 }
 
 /*  */

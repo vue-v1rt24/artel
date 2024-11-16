@@ -85,6 +85,12 @@ useSeoMeta({
   font-weight: 400;
   font-size: 24px;
   padding-top: 26px;
+
+  /*  */
+  .sales_item:hover & {
+    text-decoration: underline solid var(--main-green) 0.5px;
+    text-decoration-skip-ink: none;
+  }
 }
 .sales_item-descr {
   font-weight: 300;
