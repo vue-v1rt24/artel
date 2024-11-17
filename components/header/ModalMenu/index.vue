@@ -25,16 +25,13 @@ const closeModalMenu = () => {
   <div :class="['modal_menu', { open: isOpenMenu }]">
     <div class="container">
       <HeaderModalMenuPC
-        v-if="viewport.isGreaterOrEquals('screen768') && catsStock?.cats.length"
+        v-if="viewport.isGreaterOrEquals('screen1201') && catsStock?.cats.length"
         :cats="catsStock?.cats"
         :stock="catsStock?.stock"
         @event-click="isOpenMenu = false"
       />
 
-      <HeaderModalMenuMob
-        v-if="viewport.isLessThan('screen768')"
-        @event-click="isOpenMenu = false"
-      />
+      <HeaderModalMenuMob v-else @event-click="isOpenMenu = false" />
     </div>
   </div>
 </template>

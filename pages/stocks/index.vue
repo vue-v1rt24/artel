@@ -134,10 +134,11 @@ useSeoMeta({
   }
   .sales_item-title {
     font-size: 18px;
+    padding-top: 16px;
   }
   .sales_item-descr {
     font-size: 16px;
-    padding-top: 16px;
+    padding-top: 10px;
   }
   .sales-text {
     display: none;

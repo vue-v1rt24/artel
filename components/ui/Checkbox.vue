@@ -15,7 +15,7 @@ watch(
 <template>
   <label class="checkbox_bx">
     <input type="checkbox" name="checkbox" class="checkbox" ref="checkbox" />
-    <span>Я согласен с <NuxtLink to="/">политикой конфиденциальности</NuxtLink></span>
+    <span>Я согласен с <NuxtLink to="/privacy-policy">политикой конфиденциальности</NuxtLink></span>
   </label>
 </template>
 

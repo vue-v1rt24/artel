@@ -23,10 +23,8 @@ onMounted(async () => {
   thumbsSwiper.value = new Swiper('.swiper_little_image', {
     slidesPerView: 'auto',
     spaceBetween: 10,
-    centeredSlides: true,
     direction: 'vertical',
     loop: true,
-    watchSlidesProgress: true,
 
     breakpoints: {
       360: {
@@ -289,15 +287,6 @@ onUnmounted(() => {
 }
 
 /*  */
-.swiper_little_image .swiper-wrapper {
-  padding-top: 93px;
-
-  /*  */
-  @media (max-width: 768px) {
-    padding-top: 0;
-  }
-}
-
 .swiper_little_image .swiper-slide {
   width: 174px;
   height: 174px;
@@ -389,6 +378,10 @@ onUnmounted(() => {
 
   @media (max-width: 768px) {
     display: none;
+  }
+
+  @media (max-width: 576px) {
+    display: block;
   }
 }
 </style>

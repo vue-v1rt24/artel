@@ -3,7 +3,7 @@ const { slug } = useRoute().params as { slug: string };
 
 const { data: stock, error } = await useFetch(`/api/pages/stocks/${slug}`);
 
-console.log(stock.value);
+// console.log(stock.value);
 
 if (error.value) {
   throw createError({
@@ -17,17 +17,24 @@ useSeoMeta({
   title: stock.value?.seo.titleSeo,
   description: stock.value?.seo.descriptionSeo,
 });
+
+//
+const viewport = useViewport();
 </script>
 
 <template>
   <div class="sale">
     <!-- Хлебные крошки -->
     <UiBreadCrumbs
+      v-if="viewport.isGreaterOrEquals('screen768')"
       :links="[
         { title: 'Акции', link: '/stocks' },
         { title: stock?.stock.stockZagolovok || 'Нет названия' },
       ]"
     />
+
+    <!-- Кнопка "Вернуться назад" в моб. -->
+    <UiGoBackBtn v-else />
 
     <!--  -->
     <div class="container">

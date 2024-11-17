@@ -166,6 +166,20 @@ defineProps<{
   position: absolute;
   bottom: 0px;
   right: -32px;
+
+  /*  */
+  @media (max-width: 768px) {
+    right: -10px;
+  }
+
+  @media (max-width: 576px) {
+    bottom: -3px;
+    right: 50px;
+  }
+
+  @media (max-width: 370px) {
+    right: 40px;
+  }
 }
 
 /*  */

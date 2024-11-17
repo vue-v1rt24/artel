@@ -54,6 +54,12 @@ defineProps<{
   /*  */
   a {
     color: var(--gray-text);
+    transition: color var(--transition-speed);
+
+    /*  */
+    &:hover {
+      color: var(--main-green);
+    }
   }
 }
 

@@ -20,6 +20,7 @@
   border: none;
   display: flex;
   align-items: center;
+  padding-left: 0;
   margin: 24px 0 32px 0;
 
   /*  */

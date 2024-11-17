@@ -132,6 +132,15 @@ onUnmounted(() => {
   height: 56px;
   background-color: white;
   border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /*  */
+  @media (max-width: 1280px) {
+    width: 48px;
+    height: 48px;
+  }
 }
 
 /*  */

@@ -102,6 +102,7 @@ onUnmounted(() => {
 }
 
 .partners_left {
+  font-weight: 200;
   max-width: 510px;
 }
 
@@ -129,6 +130,7 @@ onUnmounted(() => {
 }
 
 .partners_right-text {
+  font-weight: 200;
   max-width: 480px;
 }
 

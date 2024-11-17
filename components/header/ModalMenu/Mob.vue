@@ -38,10 +38,15 @@ const emit = defineEmits<{
   transition-delay: var(--transition-speed);
 
   display: flex;
-  justify-content: space-between;
+  column-gap: 300px;
   row-gap: 28px;
 
   /*  */
+  @media (max-width: 1024px) {
+    column-gap: 0;
+    justify-content: space-between;
+  }
+
   @media (max-width: 700px) {
     flex-direction: column;
   }

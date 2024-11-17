@@ -64,7 +64,8 @@ defineProps<{
             title="Подробнее"
             text-color="var(--main-green)"
             bg="white"
-            @btn-click="$router.push('/')"
+            bg-hover="var(--main-green)"
+            @btn-click="$router.push('/remont-izdeliy')"
           />
         </div>
       </div>

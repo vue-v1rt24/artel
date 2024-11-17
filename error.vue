@@ -59,7 +59,7 @@
 }
 
 .title {
-  font-family: 'Federov', sans-serif;
+  font-family: var(--second-family);
   font-weight: 400;
   font-size: 72px;
   line-height: 100%;

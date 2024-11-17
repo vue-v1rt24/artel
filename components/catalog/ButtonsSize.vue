@@ -87,14 +87,6 @@ const changeBtnVal = (val: EnumViewCard) => {
       }
     }
 
-    @media (hover: none) {
-      opacity: 0.3;
-
-      &.active {
-        opacity: 1;
-      }
-    }
-
     /*  */
     @media (max-width: 767px) {
       border: none;
@@ -106,6 +98,15 @@ const changeBtnVal = (val: EnumViewCard) => {
       display: flex;
       align-items: center;
       column-gap: 14px;
+    }
+
+    /*  */
+    svg {
+      opacity: 0.3;
+
+      button.active & {
+        opacity: 1;
+      }
     }
   }
 }
