@@ -10,7 +10,9 @@ export const footerQuery = `
         telegram
         vatsap
         instagram
+        czentrKarty
         koordinatyKarty
+        koordinatyKartyAdresaVMihajlovske
       }
     }
   }

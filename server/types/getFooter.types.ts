@@ -10,7 +10,9 @@ export type TypeFooter = {
         telegram: string;
         vatsap: string;
         instagram: string;
+        czentrKarty: string;
         koordinatyKarty: string;
+        koordinatyKartyAdresaVMihajlovske: string;
       };
     };
   };

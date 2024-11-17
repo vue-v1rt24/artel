@@ -67,15 +67,20 @@ useSeoMeta({
               <div class="contacts_link-box">
                 <img src="/images/email.svg" alt="" class="contacts_item-img" />
 
-                <div class="contacts_item-text">
+                <div v-if="contacts?.contacts.pochta" class="contacts_item-text">
                   <div class="contacts_link-title">Электронный адрес</div>
-                  <a :href="`mailto:${contacts?.contacts.pochta}`" class="contacts_item-link">
-                    {{ contacts?.contacts.pochta }}
-                  </a>
+
+                  <div class="contacts_item-link">
+                    {{ contacts.contacts.pochta }}
+
+                    <div class="contacts__copy">
+                      <UiCopyBtn :email="contacts.contacts.pochta" />
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <div class="contacts_link-box">
+              <div class="contacts_link-box contacts_link-box-hot-line">
                 <img src="/images/tel.svg" alt="" class="contacts_item-img" />
 
                 <div class="contacts_item-text">
@@ -92,8 +97,14 @@ useSeoMeta({
 
       <!-- Карта -->
       <FooterLocationsMap
-        v-if="contacts?.contacts.koordinatyKarty"
+        v-if="
+          contacts?.contacts.czentrKarty &&
+          contacts?.contacts.koordinatyKarty &&
+          contacts?.contacts.koordinatyKartyAdresaVMihajlovske
+        "
+        :czentr-karty="contacts.contacts.czentrKarty"
         :coords="contacts.contacts.koordinatyKarty"
+        :coords-mix="contacts.contacts.koordinatyKartyAdresaVMihajlovske"
       />
 
       <!-- Подвал -->
@@ -193,6 +204,7 @@ useSeoMeta({
   height: 48px;
 }
 .contacts_item-link {
+  position: relative;
   display: block;
   font-weight: 400;
   font-size: 24px;
@@ -221,6 +233,16 @@ useSeoMeta({
   color: #b9c0c0;
 }
 
+.contacts_link-box-hot-line {
+  margin-left: 40px;
+}
+
+.contacts__copy {
+  position: absolute;
+  bottom: -3px;
+  right: -45px;
+}
+
 /* Медиа запросы Контакты плашки */
 @media (max-width: 1660px) {
   .contacts_box {
@@ -233,6 +255,9 @@ useSeoMeta({
   .contacts_item-title {
     font-weight: 300;
     line-height: 130%;
+  }
+  .contacts_link-box-hot-line {
+    margin-left: 0;
   }
 }
 @media (max-width: 960px) {
@@ -297,10 +322,9 @@ useSeoMeta({
 }
 
 /*  */
-:deep(.copy) {
+/* :deep(.copy) {
   padding-bottom: 34px;
 
-  /*  */
   @media (max-width: 1280px) {
     padding-bottom: 20px;
   }
@@ -312,5 +336,5 @@ useSeoMeta({
   @media (max-width: 576px) {
     padding-bottom: 20px;
   }
-}
+} */
 </style>

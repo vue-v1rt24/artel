@@ -12,7 +12,9 @@ export const contactsQuery = `
       adresVMihajlovske
       pochta
       nomerTelefona
+      czentrKarty
       koordinatyKarty
+      koordinatyKartyAdresaVMihajlovske
       instagram
       telegram
       vatsap

@@ -12,7 +12,9 @@ export type TypeContacts = {
         adresVMihajlovske: string;
         pochta: string;
         nomerTelefona: string;
+        czentrKarty: string;
         koordinatyKarty: string;
+        koordinatyKartyAdresaVMihajlovske: string;
         instagram: string;
         telegram: string;
         vatsap: string;

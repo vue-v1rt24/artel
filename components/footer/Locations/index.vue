@@ -4,7 +4,9 @@ defineProps<{
   addrM: string;
   email: string;
   phone: string;
+  czentrKarty: string;
   coords: string;
+  coordsMix: string;
 }>();
 </script>
 
@@ -12,7 +14,12 @@ defineProps<{
   <div class="locations">
     <FooterLocationsContacts :stav="addrS" :mix="addrM" :email :phone />
 
-    <FooterLocationsMap v-if="coords" :coords />
+    <FooterLocationsMap
+      v-if="czentrKarty && coords && coordsMix"
+      :czentr-karty="czentrKarty"
+      :coords
+      :coords-mix="coordsMix"
+    />
   </div>
 </template>
 

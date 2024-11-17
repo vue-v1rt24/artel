@@ -11,7 +11,9 @@ const { data: footer } = await useFetch('/api/getFooter');
         :addr-m="footer.adresVMihajlovske"
         :email="footer.pochta"
         :phone="footer.nomerTelefona"
+        :czentr-karty="footer.czentrKarty"
         :coords="footer.koordinatyKarty"
+        :coords-mix="footer.koordinatyKartyAdresaVMihajlovske"
       />
 
       <!--  -->
