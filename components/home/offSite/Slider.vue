@@ -23,7 +23,7 @@ onMounted(() => {
     direction: 'vertical',
     speed: 5000,
     autoplay: {
-      delay: 1000,
+      delay: 0,
     },
     loop: true,
 
@@ -150,6 +150,7 @@ onUnmounted(() => {
 
 /*  */
 .swiper-wrapper {
+  transition-timing-function: linear;
   padding-top: 93px;
 
   /*  */

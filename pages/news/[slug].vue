@@ -125,7 +125,7 @@ const viewport = useViewport();
 
   /*  */
   @media (max-width: 576px) {
-    font-size: 15px;
+    /* font-size: 15px; */
     column-gap: 28px;
   }
 }
@@ -179,7 +179,7 @@ const viewport = useViewport();
 
       /*  */
       @media (max-width: 576px) {
-        font-size: 14px;
+        /* font-size: 14px; */
       }
     }
   }
@@ -190,11 +190,11 @@ const viewport = useViewport();
 
     /*  */
     @media (max-width: 1280px) {
-      font-size: 22px;
+      /* font-size: 22px; */
     }
 
     @media (max-width: 576px) {
-      font-size: 18px;
+      /* font-size: 18px; */
     }
   }
 
@@ -207,11 +207,11 @@ const viewport = useViewport();
 
     /*  */
     @media (max-width: 1280px) {
-      font-size: 18px;
+      /* font-size: 18px; */
     }
 
     @media (max-width: 576px) {
-      font-size: 15px;
+      /* font-size: 15px; */
     }
   }
 }

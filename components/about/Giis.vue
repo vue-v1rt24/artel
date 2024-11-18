@@ -17,7 +17,13 @@ const viewport = useViewport();
       </div>
 
       <!--  -->
-      <UiButton width="325px" title="Проверить изделие" bg="white" text-color="var(--main-green)" />
+      <UiButton
+        width="325px"
+        title="Проверить изделие"
+        bg="white"
+        text-color="var(--main-green)"
+        @btn-click="navigateTo('https://dmdk.ru', { external: true, open: { target: '_blank' } })"
+      />
 
       <!--  -->
       <NuxtImg

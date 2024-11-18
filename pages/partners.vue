@@ -103,6 +103,7 @@ onUnmounted(() => {
 
 .partners_left {
   font-weight: 200;
+  line-height: 140%;
   max-width: 510px;
 }
 
@@ -267,9 +268,11 @@ onUnmounted(() => {
   .partners_right-text {
     max-width: 100%;
     font-size: 15px;
+    line-height: 140%;
   }
   .partners-subtitle {
     font-size: 22px;
+    line-height: 110%;
   }
   .partners_wrap {
     padding-top: 32px;

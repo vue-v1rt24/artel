@@ -370,5 +370,49 @@ onUnmounted(() => {
   @media (max-width: 768px) {
     width: 8px;
   }
+
+  /*  */
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%);
+    width: 38px;
+    height: 46px;
+    background-color: white;
+    background-image: url(/images/arrow.svg);
+    background-repeat: no-repeat;
+    background-position: 14px center;
+    border-radius: 100px 0 0 100px;
+  }
+
+  &::before {
+    left: -12px;
+  }
+
+  &::after {
+    right: -33px;
+    transform: rotateY(180deg);
+  }
+
+  /*  */
+  @media (max-width: 576px) {
+    &::before,
+    &::after {
+      width: 27.5px;
+      height: 28px;
+      background-size: 9px;
+      background-position: 9px center;
+    }
+
+    &::before {
+      left: -10px;
+    }
+
+    &::after {
+      right: -24px;
+    }
+  }
 }
 </style>

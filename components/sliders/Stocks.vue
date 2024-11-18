@@ -124,6 +124,11 @@ onUnmounted(() => {
 
 .stock_arrow:hover {
   background-color: rgba(255, 255, 255, 0.3);
+
+  /*  */
+  .stock_arrow__circle {
+    opacity: 1;
+  }
 }
 
 /*  */
@@ -135,11 +140,18 @@ onUnmounted(() => {
   display: flex;
   justify-content: center;
   align-items: center;
+  opacity: 0.6;
+  transition: opacity var(--transition-speed);
 
   /*  */
   @media (max-width: 1280px) {
     width: 48px;
     height: 48px;
+  }
+
+  @media (max-width: 576px) {
+    width: 30px;
+    height: 30px;
   }
 }
 
@@ -161,16 +173,6 @@ onUnmounted(() => {
 
 .stock_arrow.swiper-button-white-next .arrow_stock {
   transform: rotate(180deg);
-}
-
-/*  */
-.stock_arrow .arrow_stock {
-  opacity: 0.6;
-  transition: opacity var(--transition-speed);
-}
-
-.stock_arrow:hover .arrow_stock {
-  opacity: 1;
 }
 
 /*  */
