@@ -267,7 +267,8 @@ watch(
     top: 6px;
   }
 
-  .btn_catalog.active .btn_catalog__lines::before {
+  .btn_catalog.active .btn_catalog__lines::before,
+  .btn_catalog.active:hover .btn_catalog__lines::before {
     translate: 0px 6px;
   }
 }
