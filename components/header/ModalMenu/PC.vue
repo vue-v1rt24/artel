@@ -118,11 +118,15 @@ const emit = defineEmits<{
 
 /*  */
 .modal_menu__stock {
+  width: 785px;
+  height: 315px;
   border-radius: 10px;
   overflow: hidden;
 }
 
 .modal_menu__stock img {
-  max-width: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 </style>
