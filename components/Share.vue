@@ -50,7 +50,6 @@ onMounted(() => {
           target="_blank"
           title="ВКонтакте"
         >
-          <!-- <img src="/images/social/vk.svg" alt="" /> -->
           <ImagesSocialVK />
         </a>
       </li>
@@ -63,7 +62,6 @@ onMounted(() => {
           target="_blank"
           title="Telegram"
         >
-          <!-- <img src="/images/social/telegram.svg" alt="" /> -->
           <ImagesSocialTelegram />
         </a>
       </li>
@@ -76,7 +74,6 @@ onMounted(() => {
           target="_blank"
           title="Одноклассники"
         >
-          <!-- <img src="/images/social/OK.svg" alt="" /> -->
           <ImagesSocialOK />
         </a>
       </li>
@@ -89,7 +86,6 @@ onMounted(() => {
           target="_blank"
           title="WhatsApp"
         >
-          <!-- <img src="/images/social/whatsapp.svg" alt="" /> -->
           <ImagesSocialWhatsapp />
         </a>
       </li>
@@ -125,6 +121,7 @@ onMounted(() => {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: background-color var(--transition-speed);
 
     /*  */
     @media (max-width: 576px) {
@@ -133,9 +130,23 @@ onMounted(() => {
     }
 
     /*  */
-    img {
+    &:hover {
+      background-color: var(--main-green);
+    }
+
+    /*  */
+    svg {
+      color: var(--main-green);
+      transition: color var(--transition-speed);
+
+      /*  */
       @media (max-width: 576px) {
         width: 22px;
+      }
+
+      /*  */
+      a:hover & {
+        color: white;
       }
     }
   }

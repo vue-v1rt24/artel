@@ -25,11 +25,13 @@ defineProps<{
 
       <li class="contacts__title__tem" style="--contact-url: url(/images/email.svg)">
         <div class="contacts__title">Электронный адрес</div>
-        <div class="contacts__addr">
+        <div class="contacts__addr hover" @click="copyBuffer">
           {{ email }}
 
           <div class="contacts__copy">
-            <UiCopyBtn :email="email" />
+            <span class="hidden">{{ email }}</span>
+            <ImagesCopy />
+            <!-- <ImagesCheckBoxBlack /> -->
           </div>
         </div>
       </li>
@@ -37,7 +39,7 @@ defineProps<{
       <li class="contacts__title__tem" style="--contact-url: url(/images/tel.svg)">
         <div class="contacts__title">Горячая линия</div>
 
-        <div class="contacts__addr">
+        <div class="contacts__addr hover">
           <a :href="`tel:{{ phone }}`">{{ phone }}</a>
         </div>
       </li>
@@ -162,27 +164,6 @@ defineProps<{
 }
 
 /*  */
-.contacts__copy {
-  position: absolute;
-  bottom: 0px;
-  right: -32px;
-
-  /*  */
-  @media (max-width: 768px) {
-    right: -10px;
-  }
-
-  @media (max-width: 576px) {
-    bottom: -3px;
-    right: 50px;
-  }
-
-  @media (max-width: 370px) {
-    right: 40px;
-  }
-}
-
-/*  */
 .contacts__title__tem::before {
   content: '';
   position: absolute;
@@ -226,18 +207,82 @@ defineProps<{
   transition: border var(--transition-speed);
 
   /*  */
-  &:hover {
-    color: var(--green-akcent);
-    border-color: var(--transition-speed);
-  }
-
-  /*  */
   @media (max-width: 768px) {
     font-size: 22px;
   }
 
   @media (max-width: 576px) {
     font-size: 18px;
+  }
+
+  /*  */
+  &.hover {
+    cursor: pointer;
+
+    @media (hover: hover) {
+      &:hover {
+        color: var(--green-akcent);
+        border-color: var(--transition-speed);
+      }
+    }
+
+    @media (hover: none) {
+      &:active {
+        color: var(--green-akcent);
+        border-color: var(--transition-speed);
+      }
+    }
+  }
+}
+
+/*  */
+.contacts__copy {
+  position: absolute;
+  bottom: 0px;
+  right: -32px;
+  width: 34px;
+  height: 34px;
+  background-color: var(--green-50);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color var(--transition-speed);
+
+  /*  */
+  @media (max-width: 768px) {
+    right: -10px;
+  }
+
+  @media (max-width: 576px) {
+    bottom: -3px;
+    right: 50px;
+  }
+
+  @media (max-width: 370px) {
+    right: 40px;
+  }
+
+  /*  */
+  .hidden {
+    display: none;
+  }
+
+  /*  */
+  svg {
+    pointer-events: none;
+    color: var(--main-green);
+    transition: color var(--transition-speed);
+  }
+
+  /*  */
+  .hover:hover & {
+    background-color: var(--green-akcent);
+
+    svg {
+      color: white;
+    }
   }
 }
 

@@ -290,19 +290,26 @@ watch(status, (val) => {
   /*  */
   @media (max-width: 768px) {
     column-gap: 32px;
-
-    /*  */
-    img {
-      width: 62px;
-    }
   }
 
   @media (max-width: 576px) {
     column-gap: 24px;
+  }
+
+  /*  */
+  img {
+    width: 80px;
+    height: 80px;
 
     /*  */
-    img {
+    @media (max-width: 768px) {
+      width: 62px;
+      height: 62px;
+    }
+
+    @media (max-width: 576px) {
       width: 52px;
+      height: 52px;
     }
   }
 }
