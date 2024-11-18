@@ -171,7 +171,7 @@ watch(
 .fa__title {
   font-weight: 300;
   font-size: 32px;
-  line-height: 90%;
+  line-height: 120%;
   color: var(--main-green);
   margin-bottom: 32px;
 

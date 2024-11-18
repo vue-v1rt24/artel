@@ -8,6 +8,22 @@ const { type = 'text', bg = 'var(--green-50)' } = defineProps<{
 
 //
 const modelValue = defineModel();
+
+//
+const inp = useTemplateRef('inp');
+
+//
+onMounted(() => {
+  if (!inp.value) return;
+
+  inp.value.addEventListener('blur', () => {
+    if (inp.value!.value.length > 0) {
+      inp.value!.classList.add('open');
+    } else {
+      inp.value!.classList.remove('open');
+    }
+  });
+});
 </script>
 
 <template>
@@ -18,11 +34,12 @@ const modelValue = defineModel();
       :name
       class="inp"
       placeholder=""
+      ref="inp"
       v-maska="'+7 (###) ###-##-##'"
       v-model="modelValue"
     />
 
-    <input v-else :type :name class="inp" placeholder="" v-model="modelValue" />
+    <input v-else :type :name class="inp" placeholder="" ref="inp" v-model="modelValue" />
 
     <span class="label_group__title">{{ placeholder }}</span>
   </label>
@@ -77,8 +94,10 @@ const modelValue = defineModel();
   background-color: transparent;
   border: none;
   transform: translateY(6px);
+  padding: 0;
 
-  &:focus + .label_group__title {
+  &:focus + .label_group__title,
+  &.open + .label_group__title {
     font-size: 13px;
     transform: translateY(-16px);
   }
@@ -87,10 +106,5 @@ const modelValue = defineModel();
   @media (max-width: 768px) {
     font-size: 16px;
   }
-}
-
-.inp:not(:placeholder-shown) + .label_group__title {
-  font-size: 13px;
-  transform: translateY(-16px);
 }
 </style>

@@ -60,6 +60,10 @@ defineProps<{
     &:hover {
       color: var(--main-green);
     }
+
+    .dark &:hover {
+      color: var(--main--sand);
+    }
   }
 }
 

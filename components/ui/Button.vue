@@ -43,6 +43,7 @@ const emit = defineEmits<{
   font-size: v-bind(fontSize);
   color: v-bind(textColor);
   background-color: v-bind(bg);
+  font-weight: 400;
   border: none;
   border-radius: v-bind(borderRadius);
   scale: 1;
