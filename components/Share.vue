@@ -50,7 +50,8 @@ onMounted(() => {
           target="_blank"
           title="ВКонтакте"
         >
-          <img src="/images/social/vk.svg" alt="" />
+          <!-- <img src="/images/social/vk.svg" alt="" /> -->
+          <ImagesSocialVK />
         </a>
       </li>
       <li>
@@ -62,7 +63,8 @@ onMounted(() => {
           target="_blank"
           title="Telegram"
         >
-          <img src="/images/social/telegram.svg" alt="" />
+          <!-- <img src="/images/social/telegram.svg" alt="" /> -->
+          <ImagesSocialTelegram />
         </a>
       </li>
       <li>
@@ -74,7 +76,8 @@ onMounted(() => {
           target="_blank"
           title="Одноклассники"
         >
-          <img src="/images/social/OK.svg" alt="" />
+          <!-- <img src="/images/social/OK.svg" alt="" /> -->
+          <ImagesSocialOK />
         </a>
       </li>
       <li>
@@ -86,7 +89,8 @@ onMounted(() => {
           target="_blank"
           title="WhatsApp"
         >
-          <img src="/images/social/whatsapp.svg" alt="" />
+          <!-- <img src="/images/social/whatsapp.svg" alt="" /> -->
+          <ImagesSocialWhatsapp />
         </a>
       </li>
     </ul>
