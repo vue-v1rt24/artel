@@ -24,7 +24,7 @@ useSeoMeta({
 </template>
 
 <style lang="css">
-.privacy_wp {
+.wp_content.privacy_wp {
   font-weight: 500;
   font-size: 18px;
   line-height: 140%;

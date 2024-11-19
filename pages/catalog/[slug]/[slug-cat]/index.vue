@@ -149,7 +149,7 @@ watch(
       <div
         v-if="category?.dataCategory.catalogPageContent.opisanieKategorii"
         v-html="category.dataCategory.catalogPageContent.opisanieKategorii"
-        class="subcategory__desc wp_content"
+        class="wp_content subcategory__desc"
       ></div>
     </div>
   </div>
@@ -226,7 +226,7 @@ watch(
 }
 
 /*  */
-.subcategory__desc {
+.wp_content.subcategory__desc {
   margin-top: 150px;
 
   /*  */
