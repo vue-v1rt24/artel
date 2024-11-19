@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type {} from '@yandex/ymaps3-types';
-import { type YMapDefaultMarkerProps } from '@yandex/ymaps3-default-ui-theme';
 import settingsMap from '~/components/footer/Locations/mapSettings.json';
+import balloonPath from '~/public/images/balloon.svg';
 
 //
 const { apiYandexCardKey } = useRuntimeConfig().public;
@@ -27,16 +27,10 @@ const centerMap = JSON.parse(coords);
 const coordsBalloonMix = JSON.parse(coordsMix);
 
 async function initMap() {
+  // Промис `ymaps3.ready` будет зарезолвлен, когда загрузятся все компоненты основного модуля API
   await ymaps3.ready;
 
-  await ymaps3.import.registerCdn(
-    'https://cdn.jsdelivr.net/npm/{package}',
-    '@yandex/ymaps3-default-ui-theme@0.0.2',
-  );
-
-  const { YMapDefaultMarker } = await ymaps3.import('@yandex/ymaps3-default-ui-theme');
-
-  const { YMap, YMapDefaultSchemeLayer, YMapDefaultFeaturesLayer } = ymaps3;
+  const { YMap, YMapDefaultSchemeLayer, YMapDefaultFeaturesLayer, YMapMarker } = ymaps3;
 
   // Иницилиазируем карту
   map = new YMap(
@@ -63,25 +57,50 @@ async function initMap() {
     }),
   );
 
+  /////////////////////////////
+
   // Добавьте слой для маркеров
   map.addChild(new YMapDefaultFeaturesLayer({}));
 
-  // Метки
-  const markerStavropol = new YMapDefaultMarker({
-    coordinates: [centerMap[1], centerMap[0]],
-    color: 'lightgreen',
-    size: 'normal',
-    iconName: 'fallback',
-  } as YMapDefaultMarkerProps);
-  map.addChild(markerStavropol);
+  // Создайте DOM-элемент для содержимого маркера.
+  // Важно это сделать до инициализации маркера!
+  // Элемент можно создавать пустым. Добавить HTML-разметку внутрь можно после инициализации маркера.
+  const balloon = document.createElement('div');
+  balloon.classList.add('balloon');
 
-  const markerMixailovsk = new YMapDefaultMarker({
-    coordinates: [coordsBalloonMix[1], coordsBalloonMix[0]],
-    color: 'lightgreen',
-    size: 'normal',
-    iconName: 'fallback',
-  } as YMapDefaultMarkerProps);
-  map.addChild(markerMixailovsk);
+  const balloon2 = document.createElement('div');
+  balloon2.classList.add('balloon');
+
+  const img = document.createElement('img');
+  img.src = balloonPath;
+  img.alt = '';
+
+  const img2 = document.createElement('img');
+  img2.src = balloonPath;
+  img2.alt = '';
+
+  // Добавьте произвольную HTML-разметку внутрь содержимого маркера
+  balloon.append(img);
+  balloon2.append(img2);
+
+  // Инициализируйте маркер
+  const marker = new YMapMarker(
+    {
+      coordinates: [centerMap[1], centerMap[0]],
+    },
+    balloon,
+  );
+
+  const marker2 = new YMapMarker(
+    {
+      coordinates: [coordsBalloonMix[1], coordsBalloonMix[0]],
+    },
+    balloon2,
+  );
+
+  // Добавьте маркер на карту
+  map.addChild(marker);
+  map.addChild(marker2);
 }
 
 //
