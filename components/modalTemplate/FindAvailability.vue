@@ -99,7 +99,7 @@ onMounted(() => {
       resetForm();
 
       // Отправка на страницу успешного письма
-      navigateTo('/success');
+      navigateTo('/success', { external: true });
     });
 });
 
