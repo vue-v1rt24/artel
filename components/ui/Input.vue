@@ -24,6 +24,16 @@ onMounted(() => {
     }
   });
 });
+
+// Сброс класса open
+watch(
+  () => useIsCloseModal().value,
+  (val) => {
+    if (val) {
+      inp.value?.classList.remove('open');
+    }
+  },
+);
 </script>
 
 <template>

@@ -76,16 +76,6 @@ export default defineNuxtConfig({
       screen768: 768,
       screen769: 769,
     },
-
-    /* defaultBreakpoints: {
-      desktop: 'desktop',
-      mobile: 'mobile',
-      tablet: 'tablet',
-    },
-
-    fallbackBreakpoint: 'desktop',
-
-    feature: 'minWidth', */
   },
 
   // Отправка почты. Плагин 'nuxt-mail'

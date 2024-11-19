@@ -92,6 +92,9 @@ onMounted(() => {
       // Отправка письма
       await mail.send(setMail());
 
+      //
+      Fancybox.close();
+
       // Сброс формы
       resetForm();
 
