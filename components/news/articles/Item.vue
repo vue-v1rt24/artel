@@ -75,7 +75,7 @@ const { article } = defineProps<{
 
   @media (max-width: 576px) {
     font-size: 18px;
-    margin: 24px 0 16px 0;
+    margin: 16px 0 10px 0;
   }
 }
 

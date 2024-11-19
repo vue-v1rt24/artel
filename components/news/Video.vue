@@ -163,6 +163,12 @@ onUnmounted(() => {
   line-height: 140%;
   color: var(--main-green);
   margin-top: 26px;
+
+  /*  */
+  @media (max-width: 576px) {
+    font-size: 18px;
+    margin-top: 16px;
+  }
 }
 
 /*  */
