@@ -152,7 +152,7 @@ const viewport = useViewport();
 </style>
 
 <style>
-.news_single_content {
+.wp_content.news_single_content {
   img {
     width: 100%;
     border-radius: 20px;
