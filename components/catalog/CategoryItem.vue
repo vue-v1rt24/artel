@@ -60,7 +60,7 @@ defineProps<{
     }
 
     @media (max-width: 700px) {
-      height: auto;
+      height: 100%;
       font-size: 17px;
       display: flex;
       flex-direction: column;
@@ -71,10 +71,16 @@ defineProps<{
   }
 }
 
+.category__title {
+  max-width: 180px;
+  display: block;
+}
+
 .category__img {
   position: absolute;
   bottom: 20px;
   right: 20px;
+  width: 130px;
   mix-blend-mode: darken;
   scale: 1;
   transition: scale 0.3s;
@@ -94,6 +100,7 @@ defineProps<{
   @media (max-width: 700px) {
     position: static;
     width: 136px;
+    margin-top: auto;
   }
 }
 </style>

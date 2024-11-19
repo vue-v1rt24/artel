@@ -25,14 +25,8 @@ defineProps<{
 
       <li class="contacts__title__tem" style="--contact-url: url(/images/email.svg)">
         <div class="contacts__title">Электронный адрес</div>
-        <div class="contacts__addr hover" @click="copyBuffer">
-          {{ email }}
-
-          <div class="contacts__copy">
-            <span class="hidden">{{ email }}</span>
-            <ImagesCopy />
-            <!-- <ImagesCheckBoxBlack /> -->
-          </div>
+        <div class="contacts__addr">
+          <FooterLocationsEmail :email />
         </div>
       </li>
 
@@ -231,57 +225,6 @@ defineProps<{
         color: var(--green-akcent);
         border-color: var(--transition-speed);
       }
-    }
-  }
-}
-
-/*  */
-.contacts__copy {
-  position: absolute;
-  bottom: 0px;
-  right: -32px;
-  width: 34px;
-  height: 34px;
-  background-color: var(--green-50);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: background-color var(--transition-speed);
-
-  /*  */
-  @media (max-width: 768px) {
-    right: -10px;
-  }
-
-  @media (max-width: 576px) {
-    bottom: -3px;
-    right: 50px;
-  }
-
-  @media (max-width: 370px) {
-    right: 40px;
-  }
-
-  /*  */
-  .hidden {
-    display: none;
-  }
-
-  /*  */
-  svg {
-    pointer-events: none;
-    color: var(--main-green);
-    transition: color var(--transition-speed);
-  }
-
-  /*  */
-  .hover:hover & {
-    background-color: var(--green-akcent);
-
-    svg {
-      color: white;
     }
   }
 }

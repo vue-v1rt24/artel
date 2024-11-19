@@ -71,11 +71,7 @@ useSeoMeta({
                   <div class="contacts_link-title">Электронный адрес</div>
 
                   <div class="contacts_item-link">
-                    {{ contacts.contacts.pochta }}
-
-                    <div class="contacts__copy">
-                      <UiCopyBtn :email="contacts.contacts.pochta" />
-                    </div>
+                    <FooterLocationsEmail :email="contacts.contacts.pochta" />
                   </div>
                 </div>
               </div>
@@ -85,7 +81,10 @@ useSeoMeta({
 
                 <div class="contacts_item-text">
                   <div class="contacts_link-title">Горячая линия</div>
-                  <a :href="`tel:${contacts?.contacts.nomerTelefona}`" class="contacts_item-link">
+                  <a
+                    :href="`tel:${contacts?.contacts.nomerTelefona}`"
+                    class="contacts_item-link hover"
+                  >
                     {{ contacts?.contacts.nomerTelefona }}
                   </a>
                 </div>
@@ -213,9 +212,15 @@ useSeoMeta({
   text-decoration: none;
   cursor: pointer;
 }
-.contacts_item-link:hover {
-  text-decoration: underline;
-  text-decoration-skip-ink: none;
+.contacts_item-link.hover {
+  border-bottom: 1px solid transparent;
+  transition: border var(--transition-speed);
+}
+.contacts_item-link.hover:hover {
+  /* text-decoration: underline; */
+  /* text-decoration-skip-ink: none; */
+  color: var(--green-akcent);
+  border-color: var(--transition-speed);
 }
 .contacts_item-link.adres {
   cursor: auto;
@@ -235,12 +240,6 @@ useSeoMeta({
 
 .contacts_link-box-hot-line {
   margin-left: 40px;
-}
-
-.contacts__copy {
-  position: absolute;
-  bottom: -3px;
-  right: -45px;
 }
 
 /* Медиа запросы Контакты плашки */
