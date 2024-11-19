@@ -214,5 +214,10 @@ const viewport = useViewport();
       font-size: 15px;
     }
   }
+
+  /*  */
+  strong {
+    font-weight: 400;
+  }
 }
 </style>
