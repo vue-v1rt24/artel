@@ -11,7 +11,7 @@ export const useMenus = () => {
     { title: 'О компании', link: '/about', blank: false },
     { title: 'Индивидуальный заказ', link: '/individual-order', blank: false },
     { title: 'Ремонт изделий', link: '/remont-izdeliy', blank: false },
-    { title: 'Ломбард', link: 'https://vk.com/video', blank: true },
+    { title: 'Ломбард', link: 'https://lombardgran.ru', blank: true },
   ];
 
   //

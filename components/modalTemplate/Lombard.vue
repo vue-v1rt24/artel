@@ -16,7 +16,9 @@ defineProps<{
     bg="var(--green-50)"
     text-color="var(--main-green)"
     class="lombard_modal__btn"
-    @btn-click="$router.push('/')"
+    @btn-click="
+      navigateTo('https://lombardgran.ru', { external: true, open: { target: '_blank' } })
+    "
   />
 </template>
 
