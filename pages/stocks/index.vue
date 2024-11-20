@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { data: stocks } = await useFetch('/api/pages/stocks');
 
-console.log(stocks.value);
+// console.log(stocks.value);
 
 /*  */
 useSeoMeta({

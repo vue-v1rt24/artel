@@ -8,6 +8,11 @@ useSeoMeta({
   title: remont.value?.seo.titleSeo,
   description: remont.value?.seo.descriptionSeo,
 });
+
+//
+onMounted(() => {
+  sdvigGallery();
+});
 </script>
 
 <template>

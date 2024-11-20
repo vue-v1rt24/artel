@@ -15,6 +15,11 @@ useSeoMeta({
   title: home.value?.seo.titleSeo,
   description: home.value?.seo.descriptionSeo,
 });
+
+//
+onMounted(() => {
+  sdvigGallery();
+});
 </script>
 
 <template>

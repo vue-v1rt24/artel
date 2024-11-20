@@ -183,7 +183,7 @@ onUnmounted(() => {
 
     <!--  -->
     <div class="popular_swiper swiper" ref="swiper">
-      <div class="swiper-wrapper" ref="swiper-wrapper">
+      <div class="swiper-wrapper sdvig" ref="swiper-wrapper">
         <div v-for="(work, key) in works" :key="key" class="swiper-slide">
           <div class="before_after_bx">
             <div class="before_after__images">

@@ -58,7 +58,7 @@ onUnmounted(() => {
 
     <!--  -->
     <div class="special_swiper swiper">
-      <div class="swiper-wrapper">
+      <div class="swiper-wrapper sdvig">
         <template v-for="special in specials" :key="special.id">
           <div v-if="special.img" class="swiper-slide">
             <NuxtImg

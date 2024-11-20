@@ -8,6 +8,11 @@ useSeoMeta({
   title: about.value?.seo.titleSeo,
   description: about.value?.seo.descriptionSeo,
 });
+
+//
+onMounted(() => {
+  sdvigGallery();
+});
 </script>
 
 <template>

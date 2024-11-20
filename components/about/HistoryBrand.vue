@@ -4,11 +4,6 @@ import { FreeMode, Mousewheel } from 'swiper/modules';
 import 'swiper/css';
 
 //
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-gsap.registerPlugin(ScrollTrigger);
-
-//
 defineProps<{
   histories: {
     historyBrandRepeatGod: string;
@@ -18,13 +13,6 @@ defineProps<{
 
 //
 const swiperInstance = ref<Swiper | null>(null);
-const scrollTriggerHistory = ref<ScrollTrigger | null>(null);
-
-// Удаление экземпляра ScrollTrigger
-const scrollTriggerHistoryFoo = () => {
-  scrollTriggerHistory.value?.kill();
-  scrollTriggerHistory.value = null;
-};
 
 //
 onMounted(() => {
@@ -34,56 +22,13 @@ onMounted(() => {
     spaceBetween: '30',
     freeMode: true,
     grabCursor: true,
-    mousewheel: {
-      enabled: false,
-      // sensitivity: 0.1,
-    },
-    on: {
-      reachEnd() {
-        document.body.classList.remove('history_scroll');
-        swiperInstance.value?.mousewheel.disable();
-        scrollTriggerHistoryFoo();
-      },
-    },
   });
-
-  //
-  if (
-    window.scrollY <= document.querySelector<HTMLDivElement>('.history')!.offsetTop &&
-    ScrollTrigger.isTouch !== 1 &&
-    !swiperInstance.value.isEnd
-  ) {
-    scrollTriggerHistory.value = ScrollTrigger.create({
-      trigger: '.history',
-      start: 'top top',
-      end: 'top top',
-      toggleClass: {
-        targets: 'body',
-        className: 'history_scroll',
-      },
-      once: true,
-      onEnter(self) {
-        window.scrollTo({
-          top: (self.trigger as HTMLDivElement)?.offsetTop,
-          behavior: 'smooth',
-        });
-
-        swiperInstance.value?.mousewheel.enable();
-      },
-    });
-  }
 });
 
 onUnmounted(() => {
   if (swiperInstance.value && swiperInstance.value.destroy) {
     swiperInstance.value.destroy();
     swiperInstance.value = null;
-  }
-
-  scrollTriggerHistoryFoo();
-
-  if (document.body.classList.contains('history_scroll')) {
-    document.body.classList.remove('history_scroll');
   }
 });
 </script>
@@ -96,7 +41,7 @@ onUnmounted(() => {
 
     <!--  -->
     <div class="swiper_history swiper">
-      <div class="swiper-wrapper">
+      <div class="swiper-wrapper sdvig" data-stvig-type="transform">
         <div v-for="history in histories" :key="history.historyBrandRepeatGod" class="swiper-slide">
           <div class="history__slide">
             <div class="history__year">{{ history.historyBrandRepeatGod }}</div>

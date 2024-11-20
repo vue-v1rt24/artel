@@ -129,7 +129,7 @@ onUnmounted(() => {
 
     <!--  -->
     <div :class="[`swiper-${id}`, 'popular_swiper', 'swiper']">
-      <div class="swiper-wrapper">
+      <div class="swiper-wrapper sdvig">
         <div v-for="image in gallery" :key="image.mediaItemUrl" class="swiper-slide">
           <div
             class="swiper_slide_img border_img_bx"

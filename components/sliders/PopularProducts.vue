@@ -53,7 +53,7 @@ onUnmounted(() => {
 
     <!--  -->
     <div class="popular_swiper swiper">
-      <div class="swiper-wrapper">
+      <div class="swiper-wrapper sdvig">
         <div v-for="product in products" :key="product.databaseId" class="swiper-slide">
           <CatalogProductCard :product />
         </div>

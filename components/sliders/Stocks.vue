@@ -26,6 +26,7 @@ onMounted(() => {
     modules: [Navigation, Pagination],
 
     lazyPreloaderClass: 'swiper_stocks__preloader',
+    loop: true,
 
     navigation: {
       nextEl: '.swiper-button-white-next',
@@ -47,7 +48,7 @@ onUnmounted(() => {
 
 <template>
   <div class="swiper_stocks swiper">
-    <div class="swiper-wrapper">
+    <div class="swiper-wrapper sdvig">
       <div v-for="stock in stocks" :key="stock.id" class="swiper-slide">
         <NuxtLink :to="`/stocks/${stock.slug}`">
           <NuxtImg

@@ -133,3 +133,39 @@ s {
 .swiper-btn:hover {
   opacity: 1;
 }
+
+/* Анимация сдвига слайдеров при достижении их видимости */
+.sdvig_margin {
+  margin-left: 0;
+  animation: animate_sdvig_margin 1s ease;
+}
+
+@keyframes animate_sdvig_margin {
+  0% {
+    margin-left: 0;
+  }
+  50% {
+    margin-left: -100px;
+  }
+  100% {
+    margin-left: 0;
+  }
+}
+
+/*  */
+.sdvig_transform_x {
+  transform: translateX(0);
+  animation: animate_sdvig_transform 1s ease;
+}
+
+@keyframes animate_sdvig_transform {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-100px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
