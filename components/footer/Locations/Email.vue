@@ -5,13 +5,17 @@ const { email } = defineProps<{
 
 //
 const isCopy = ref(false);
+const isVisibleMessage = ref(false);
 
 //
 const copyBuffer = () => {
   isCopy.value = true;
+  isVisibleMessage.value = true;
+
   navigator.clipboard.writeText(email);
 
   setTimeout(() => (isCopy.value = false), 500);
+  setTimeout(() => (isVisibleMessage.value = false), 3000);
 };
 </script>
 
@@ -24,6 +28,9 @@ const copyBuffer = () => {
       <ImagesCheckBoxBlack v-else />
     </div>
   </div>
+
+  <!--  -->
+  <div :class="['copy_success', { open: isVisibleMessage }]">Почта скопирована</div>
 </template>
 
 <style lang="css" scoped>
@@ -90,6 +97,36 @@ const copyBuffer = () => {
         color: white;
       }
     }
+  }
+}
+
+/*  */
+
+.copy_success {
+  position: fixed;
+  bottom: 30px;
+  right: -100%;
+  z-index: 10;
+  font-family: var(--font-family);
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 90%;
+  color: #fff;
+  background-color: var(--main-green);
+  box-shadow: 0 2px 10px 0 #9eb0aa;
+  border-radius: 80px;
+  padding: 14px 24px;
+  transition: right 0.5s ease-in-out;
+
+  /*  */
+  @media (max-width: 576px) {
+    font-size: 13px;
+    padding: 12px 18px;
+  }
+
+  /*  */
+  &.open {
+    right: 10px;
   }
 }
 </style>
