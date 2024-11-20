@@ -116,7 +116,7 @@ const copyBuffer = () => {
   box-shadow: 0 2px 10px 0 #9eb0aa;
   border-radius: 80px;
   padding: 14px 24px;
-  transition: right 1s cubic-bezier(0.39, 0.575, 0.565, 1);
+  transition: right 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
   /*  */
   @media (max-width: 576px) {

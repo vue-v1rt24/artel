@@ -42,5 +42,7 @@ watchEffect(() => {
     </main>
 
     <Footer v-if="isFooter" />
+
+    <UiUpButton />
   </div>
 </template>
