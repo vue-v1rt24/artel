@@ -29,14 +29,6 @@ const viewport = useViewport();
 <template>
   <section class="preview_screen">
     <div class="container">
-      <!-- <NuxtImg
-        v-if="viewport.isGreaterOrEquals('screen1281')"
-        :src="previewScreenPage.previewScreenIzobrazhenie1920.node.mediaItemUrl"
-        format="avif, webp"
-        densities="x1"
-        class="preview_screen__img"
-      /> -->
-
       <img
         v-if="viewport.isGreaterOrEquals('screen1281')"
         class="preview_screen__img"
@@ -44,28 +36,12 @@ const viewport = useViewport();
         alt=""
       />
 
-      <!-- <NuxtImg
-        v-if="viewport.isGreaterOrEquals('screen769') && viewport.isLessThan('screen1281')"
-        :src="previewScreenPage.previewScreenIzobrazhenie1280.node.mediaItemUrl"
-        format="avif, webp"
-        densities="x1"
-        class="preview_screen__img"
-      /> -->
-
       <img
         v-if="viewport.isGreaterOrEquals('screen769') && viewport.isLessThan('screen1281')"
         class="preview_screen__img"
         :src="previewScreenPage.previewScreenIzobrazhenie1280.node.mediaItemUrl"
         alt=""
       />
-
-      <!-- <NuxtImg
-        v-if="viewport.isLessOrEquals('screen768')"
-        :src="previewScreenPage.previewScreenIzobrazhenie768.node.mediaItemUrl"
-        format="avif, webp"
-        densities="x1"
-        class="preview_screen__img"
-      /> -->
 
       <img
         v-if="viewport.isLessOrEquals('screen768')"
