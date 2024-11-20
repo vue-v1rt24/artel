@@ -98,8 +98,8 @@ watchEffect(() => {
 
       <UiButton
         v-if="countRowsComputed && countRowsComputed > lineRows"
-        title="ещё"
-        width="52px"
+        title="Читать"
+        width="90px"
         font-size="18px"
         bg="var(--main--sand)"
         text-color="var(--main-green)"
@@ -219,6 +219,7 @@ watchEffect(() => {
   /*  */
   .btn {
     height: 27px;
+    flex-shrink: 0;
 
     /*  */
     @media (max-width: 576px) {

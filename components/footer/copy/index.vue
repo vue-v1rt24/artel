@@ -52,7 +52,7 @@ onMounted(() => {
     <div class="copy__text" ref="copyText">
       <div class="copy__text_1">© Золотая Артель, 2024</div>
       <NuxtLink class="copy__policy" to="/privacy-policy">Политика конфиденциальности</NuxtLink>
-      <NuxtLink class="copy__oferta" to="/">Публичная оферта</NuxtLink>
+      <NuxtLink class="copy__oferta" to="/oferta">Публичная оферта</NuxtLink>
     </div>
 
     <!--  -->

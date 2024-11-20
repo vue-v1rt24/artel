@@ -75,6 +75,11 @@ defineProps<{
   }
 
   /*  */
+  &:hover {
+    text-decoration: underline solid var(--main-green) 0.5px;
+  }
+
+  /*  */
   a {
     font-family: var(--font-family);
     font-weight: 400;

@@ -2,24 +2,24 @@
 import '~/assets/css/return-styles-wp.css';
 
 //
-const { data: privacyPolicy } = await useFetch('/api/pages/privacyPolicy');
+const { data: oferta } = await useFetch('/api/pages/oferta');
 
-// console.log(privacyPolicy.value);
+// console.log(oferta.value);
 
 //
 useSeoMeta({
-  title: privacyPolicy.value?.seo.titleSeo,
-  description: privacyPolicy.value?.seo.descriptionSeo,
+  title: oferta.value?.seo.titleSeo,
+  description: oferta.value?.seo.descriptionSeo,
 });
 </script>
 
 <template>
   <div class="wp_content privacy_wp">
     <!-- Хлебные крошки -->
-    <UiBreadCrumbs :links="[{ title: 'Политика конфиденциальности' }]" />
+    <UiBreadCrumbs :links="[{ title: 'Публичная оферта' }]" />
 
     <!--  -->
-    <div v-if="privacyPolicy?.content" v-html="privacyPolicy.content" class="container"></div>
+    <div v-if="oferta?.content" v-html="oferta.content" class="container"></div>
   </div>
 </template>
 
