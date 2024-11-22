@@ -5,9 +5,6 @@ export type TypeCatsStocksQuery = {
         databaseId: number;
         name: string;
         slug: string;
-        image: {
-          mediaItemUrl: string;
-        };
       }[];
     };
     stocks: {

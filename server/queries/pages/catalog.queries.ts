@@ -8,9 +8,6 @@ export const catalogParentQuery = `
         databaseId
         name
         slug
-        image {
-          mediaItemUrl
-        }
         count
       }
     }

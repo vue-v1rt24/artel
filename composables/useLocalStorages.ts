@@ -8,3 +8,6 @@ export const useIsCloseModal = () => useState<boolean>('isCloseModal', () => fal
 
 // Цвет темы
 export const useTheme = () => useState<'light' | 'dark'>('theme', () => 'light');
+
+// Для показа сообщения (пример при копировании почты)
+export const useMessage = () => useState<string | null>('message', () => null);

@@ -7,9 +7,6 @@ const { cats, stock } = defineProps<{
     databaseId: number;
     name: string;
     slug: string;
-    image: {
-      mediaItemUrl: string;
-    };
   }[];
   stock?: {
     image: string;
@@ -25,20 +22,17 @@ const emit = defineEmits<{
 
 <template>
   <ul class="modal_menu__list">
-    <li v-for="cat in cats" :key="cat.databaseId" class="modal_menu__item">
+    <li
+      v-for="cat in cats"
+      :key="cat.databaseId"
+      :class="['modal_menu__item', `modal_menu__item_${cat.slug}`]"
+    >
       <NuxtLink
         :to="`/catalog/${cat.slug}`"
         class="modal_menu__item_link"
         @click="emit('eventClick')"
       >
         <span class="cat__title">{{ cat.name }}</span>
-
-        <NuxtImg
-          :src="cat.image.mediaItemUrl"
-          format="avif, webp"
-          densities="x1"
-          class="modal_menu__item_img"
-        />
       </NuxtLink>
     </li>
 
@@ -72,8 +66,16 @@ const emit = defineEmits<{
   position: relative;
   width: 377px;
   height: 315px;
-  background-color: var(--green-50);
   border-radius: 20px;
+
+  /*  */
+  &.modal_menu__item_zoloto {
+    background-color: var(--main--sand);
+  }
+
+  &.modal_menu__item_serebro {
+    background-color: var(--low-green);
+  }
 
   /*  */
   @media (max-width: 1280px) {
@@ -87,33 +89,10 @@ const emit = defineEmits<{
   inset: 0;
   font-family: var(--font-family);
   font-weight: 400;
-  font-size: 24px;
+  font-size: 28px;
   line-height: 90%;
   color: var(--main-green);
   padding: 42px;
-}
-
-/*  */
-.modal_menu__item_img {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  mix-blend-mode: darken;
-  scale: 1;
-  transition: scale var(--transition-speed);
-
-  /*  */
-  @media (hover: hover) {
-    .modal_menu__item:hover & {
-      scale: 1.2;
-    }
-  }
-
-  /*  */
-  @media (max-width: 1280px) {
-    bottom: 10px;
-    right: 10px;
-  }
 }
 
 /*  */

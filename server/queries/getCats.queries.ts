@@ -5,9 +5,6 @@ export const getCatsQuery = `
           databaseId
           name
           slug
-          image {
-            mediaItemUrl
-          }
         }
       }
       stocks {

@@ -6,9 +6,6 @@ export type TypeParentCatalog = {
         databaseId: number;
         name: string;
         slug: string;
-        image: {
-          mediaItemUrl: string;
-        };
         count: number;
       }[];
     };

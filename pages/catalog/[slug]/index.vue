@@ -71,17 +71,15 @@ const titleChange = computed(() => {
             <template v-for="link in parentCatalogs" :key="link.databaseId">
               <li
                 v-if="link.count"
-                :class="['catalog__header_list_item', { active: slug === link.slug }]"
+                :class="[
+                  'catalog__header_list_item',
+                  `catalog__header_list_item_${link.slug}`,
+                  { active: slug === link.slug },
+                ]"
               >
                 <NuxtLink :to="`/catalog/${link.slug}`" @click="isLoading = true">
                   <span class="catalog__header_title">{{ link.name }}</span>
-
-                  <NuxtImg
-                    :src="link.image.mediaItemUrl"
-                    format="avif, webp"
-                    densities="x1"
-                    class="catalog__header_img"
-                  />
+                  <ImagesFigureStar class="catalog__header_star" />
                 </NuxtLink>
               </li>
             </template>
@@ -179,17 +177,16 @@ const titleChange = computed(() => {
   position: relative;
   width: 378px;
   height: 110px;
-  background-color: white;
-  border: 2px solid var(--low-green);
   border-radius: 20px;
-  transition: background-color var(--transition-speed);
   overflow: hidden;
 
   /*  */
-  @media (hover: hover) {
-    &:hover {
-      background-color: #fbfbfb;
-    }
+  &.catalog__header_list_item_zoloto {
+    background-color: var(--main--sand);
+  }
+
+  &.catalog__header_list_item_serebro {
+    background-color: var(--low-green);
   }
 
   /*  */
@@ -220,47 +217,40 @@ const titleChange = computed(() => {
     }
 
     /*  */
-    &.active {
-      background-color: var(--low-green);
-      pointer-events: none;
-      user-select: none;
-    }
-
-    /*  */
-    img {
+    .catalog__header_star {
+      opacity: 0;
       position: absolute;
-      bottom: -40px;
-      right: 30px;
-      width: 134px;
-      mix-blend-mode: darken;
-      scale: 1;
-      transition: scale var(--transition-speed);
+      right: 20px;
+      bottom: 20px;
+      color: #cecfcd;
+      transition: opacity var(--transition-speed);
 
       /*  */
       @media (hover: hover) {
-        .catalog__header_list_item:hover & {
-          scale: 1.2;
-        }
-
-        .catalog__header_list_item.active:hover & {
-          scale: 1;
+        a:hover & {
+          opacity: 1;
         }
       }
 
       /*  */
-      @media (max-width: 700px) {
-        right: 0;
+      a.active & {
+        color: var(--main-green);
+        opacity: 1;
       }
 
+      /*  */
       @media (max-width: 600px) {
-        bottom: -30px;
-        width: 100px;
+        right: 10px;
+        bottom: 10px;
+        width: 43px;
+        height: 43px;
       }
+    }
 
-      @media (max-width: 576px) {
-        right: -3px;
-        width: 93px;
-      }
+    /*  */
+    &.active {
+      pointer-events: none;
+      user-select: none;
     }
   }
 }
