@@ -83,16 +83,16 @@ export default defineNuxtConfig({
   //@ts-ignore
   mail: {
     message: {
-      from: 'rrublyov@yandex.ru', // от кого письмо
-      to: 'rrublyov@yandex.ru', // вот так нескольким получателям: 'pranaittech@mail.ru, pranaittech@yandex.ru' либо ['info@pranait.ru, pranaittech@yandex.ru']
+      from: 'mail@golden-artel.ru', // от кого письмо
+      to: 'mail@golden-artel.ru', // вот так нескольким получателям: 'pranaittech@mail.ru, pranaittech@yandex.ru' либо ['info@pranait.ru, pranaittech@yandex.ru']
     },
     smtp: {
       host: 'smtp.yandex.ru',
       port: 465,
       secure: true,
       auth: {
-        user: 'rrublyov',
-        pass: 'mbsczeudzclhdidd', // пароль для приложений. Создаётся в учётной записи почты
+        user: 'mail@golden-artel.ru',
+        pass: 'avcnhkcqihvjvonq', // пароль для приложений. Создаётся в учётной записи почты
       },
     },
   },
