@@ -34,7 +34,7 @@ defineProps<{
         <div class="contacts__title">Горячая линия</div>
 
         <div class="contacts__addr hover">
-          <a :href="`tel:{{ phone }}`">{{ phone }}</a>
+          <a :href="`tel:${phone}`">{{ phone }}</a>
         </div>
       </li>
     </ul>
