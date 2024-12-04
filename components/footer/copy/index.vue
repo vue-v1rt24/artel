@@ -52,7 +52,8 @@ onMounted(() => {
     <div class="copy__text" ref="copyText">
       <div class="copy__text_1">© Золотая Артель, 2024</div>
       <NuxtLink class="copy__policy" to="/privacy-policy">Политика конфиденциальности</NuxtLink>
-      <NuxtLink class="copy__oferta" to="/oferta">Публичная оферта</NuxtLink>
+      <!-- <NuxtLink class="copy__oferta" to="/oferta">Не является публичной офертой</NuxtLink> -->
+      <div class="copy__oferta">Не является публичной офертой</div>
     </div>
 
     <!--  -->
@@ -214,6 +215,11 @@ onMounted(() => {
   @media (max-width: 1100px) {
     position: static;
   }
+}
+
+/*  */
+.copy__oferta {
+  color: var(--gray-text);
 }
 
 /*  */
