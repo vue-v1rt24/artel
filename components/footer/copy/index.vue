@@ -71,15 +71,15 @@ onMounted(() => {
           <ImagesSocialWhatsapp />
         </a>
 
-        <a class="social__link" :href="instagram" target="_blank">
+        <!-- <a class="social__link" :href="instagram" target="_blank">
           <ImagesSocialInstagram />
-        </a>
+        </a> -->
       </div>
 
-      <div class="social__text">
+      <!-- <div class="social__text">
         Социальная сеть Instagram запрещены в РФ. Компания Meta признана экстремистской организацией
         на территории Российской Федерации.
-      </div>
+      </div> -->
     </div>
 
     <!--  -->
