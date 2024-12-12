@@ -14,6 +14,7 @@ export default defineNuxtConfig({
         lang: 'ru',
       },
       link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }],
+      meta: [{ name: 'yandex-verification', content: '706d456e1c11c274' }],
     },
   },
 
@@ -30,7 +31,7 @@ export default defineNuxtConfig({
     '/catalog': { redirect: '/catalog/serebro' },
   },
 
-  modules: ['@nuxt/image', 'nuxt-viewport', 'nuxt-mail'],
+  modules: ['@nuxt/image', 'nuxt-viewport', 'nuxt-mail', 'nuxt-yandex-metrika'],
 
   experimental: {
     typedPages: true,
@@ -94,6 +95,14 @@ export default defineNuxtConfig({
         user: 'mail@golden-artel.ru',
         pass: 'avcnhkcqihvjvonq', // пароль для приложений. Создаётся в учётной записи почты
       },
+    },
+  },
+
+  // Яндекс метрика
+  yandexMetrika: {
+    id: '99195525',
+    options: {
+      webvisor: true,
     },
   },
 
