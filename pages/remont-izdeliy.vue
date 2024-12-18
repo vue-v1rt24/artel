@@ -70,15 +70,19 @@ onMounted(() => {
 
   /*  */
   @media (max-width: 1280px) {
-    height: 427px;
+    height: 500px;
   }
 
   @media (max-width: 768px) {
-    height: 390px;
+    height: 415px;
   }
 
   @media (max-width: 576px) {
-    height: 236px;
+    height: 250px;
+  }
+
+  @media (max-width: 480px) {
+    height: 300px;
   }
 }
 
