@@ -170,9 +170,6 @@ onUnmounted(() => {
 
 <template>
   <div class="actual_bx">
-    <!-- Хлебные крошки -->
-    <UiBreadCrumbs :links="[{ title: 'Новости' }]" />
-
     <div class="container">
       <h2 class="h2_56">Актуальное</h2>
     </div>

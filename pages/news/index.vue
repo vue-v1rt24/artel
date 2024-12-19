@@ -111,6 +111,9 @@ watch(videosData, (val) => {
     <!--  -->
     <UiLoading v-if="isLoading" />
 
+    <!-- Хлебные крошки -->
+    <UiBreadCrumbs :links="[{ title: 'Новости' }]" />
+
     <!-- Актуальное -->
     <NewsActual v-if="actual" :actual />
 
