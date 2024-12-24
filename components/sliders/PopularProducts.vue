@@ -12,6 +12,8 @@ const swiperInstance = ref<Swiper | null>(null);
 
 //
 onMounted(() => {
+  if (!products.value?.length) return;
+
   swiperInstance.value = new Swiper('.popular_swiper', {
     modules: [Navigation],
     slidesPerView: 'auto',
@@ -34,6 +36,8 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
+  if (!products.value?.length) return;
+
   if (swiperInstance.value && swiperInstance.value.destroy) {
     swiperInstance.value.destroy();
     swiperInstance.value = null;
