@@ -11,7 +11,7 @@ defineProps<{
     <div class="product">
       <div class="product__img">
         <NuxtImg
-          :src="product.image.mediaItemUrl"
+          :src="product.image?.mediaItemUrl"
           densities="x1"
           format="avif, webp"
           loading="lazy"
