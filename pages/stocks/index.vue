@@ -26,14 +26,14 @@ useSeoMeta({
 
           <div class="sales_item-baner">
             <NuxtImg
-              :src="stock.stocksFields.stockIzobrazhenie785.node.mediaItemUrl"
+              :src="stock.stocksFields.stockIzobrazhenie785.node?.mediaItemUrl"
               format="avif, webp"
               densities="x1"
               class="sales_item-desc"
             />
 
             <NuxtImg
-              :src="stock.stocksFields.stockIzobrazhenie688.node.mediaItemUrl"
+              :src="stock.stocksFields.stockIzobrazhenie688.node?.mediaItemUrl"
               format="avif, webp"
               densities="x1"
               class="sales_item-mobile"

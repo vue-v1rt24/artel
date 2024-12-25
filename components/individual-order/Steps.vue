@@ -25,7 +25,7 @@ defineProps<{
 
         <div class="order_right-box">
           <NuxtImg
-            :src="step.individualOrderEtapyRabotyVariantyRepeatIzobrazhenie.node.mediaItemUrl"
+            :src="step.individualOrderEtapyRabotyVariantyRepeatIzobrazhenie.node?.mediaItemUrl"
             format="avif, webp"
             densities="x1"
             class="order_right-img"

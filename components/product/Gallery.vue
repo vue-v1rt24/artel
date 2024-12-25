@@ -94,9 +94,9 @@ onUnmounted(() => {
   <div class="gallery_product">
     <div class="swiper swiper_big_image">
       <div class="swiper-wrapper">
-        <div v-for="image in images" :key="image.mediaItemUrl" class="swiper-slide">
-          <div class="swiper_big_image_img border_img_bx" :data-src="image.mediaItemUrl">
-            <NuxtImg :src="image.mediaItemUrl" format="avif, webp" densities="x1" />
+        <div v-for="image in images" :key="image?.mediaItemUrl" class="swiper-slide">
+          <div class="swiper_big_image_img border_img_bx" :data-src="image?.mediaItemUrl">
+            <NuxtImg :src="image?.mediaItemUrl" format="avif, webp" densities="x1" />
 
             <NuxtImg class="border_img" src="/images/border.svg" />
           </div>
@@ -115,10 +115,10 @@ onUnmounted(() => {
     <div class="swiper swiper_little_image">
       <div class="swiper-wrapper">
         <template v-if="viewport.isGreaterOrEquals('screen576')">
-          <div v-for="image in images" :key="image.mediaItemUrl" class="swiper-slide">
+          <div v-for="image in images" :key="image?.mediaItemUrl" class="swiper-slide">
             <div class="swiper_little_image_bx">
               <NuxtImg
-                :src="image.mediaItemUrl"
+                :src="image?.mediaItemUrl"
                 format="avif, webp"
                 densities="x1"
                 class="swiper_little_image__img"

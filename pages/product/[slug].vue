@@ -31,6 +31,7 @@ const attributes: any = {
   pa_proba: 'Проба',
   pa_kamen: 'Камень',
   pa_ves: 'Вес, г',
+  pa_size: 'Размер',
 };
 
 // Клик по кнопке
@@ -45,7 +46,7 @@ const orderHandler = () => {
     sku: product.value.sku,
     slug: product.value.slug,
     title: product.value.name,
-    img: product.value.galleryImages.nodes[0].mediaItemUrl,
+    img: product.value.galleryImages.nodes[0]?.mediaItemUrl,
     isOnSale: product.value.onSale,
     price: product.value.price,
     regularPrice: product.value.regularPrice,

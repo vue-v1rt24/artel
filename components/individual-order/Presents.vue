@@ -20,7 +20,7 @@ defineProps<{
       class="order_bottom-item"
     >
       <NuxtImg
-        :src="pres.individualOrderPredostavlyaemVariantyRepeatIzobrazhenie.node.mediaItemUrl"
+        :src="pres.individualOrderPredostavlyaemVariantyRepeatIzobrazhenie.node?.mediaItemUrl"
         format="avif, webp"
         densities="x1"
         class="order_bottom-img"

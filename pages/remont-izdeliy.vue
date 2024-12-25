@@ -49,7 +49,7 @@ onMounted(() => {
           :material="{
             title: remont.remontIzdelii.remontMaterialZagolovok,
             desc: remont.remontIzdelii.remontMaterialOpisanie,
-            img: remont.remontIzdelii.remontMaterialIzobrazhenie.node.mediaItemUrl,
+            img: remont.remontIzdelii.remontMaterialIzobrazhenie.node?.mediaItemUrl,
           }"
         />
       </div>

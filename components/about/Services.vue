@@ -46,7 +46,7 @@ const dataModalHandler = (text: string) => {
         >
           <div class="services__img">
             <NuxtImg
-              :src="service.servicesAboutUslugiRepeatIzobrazhenie.node.mediaItemUrl"
+              :src="service.servicesAboutUslugiRepeatIzobrazhenie.node?.mediaItemUrl"
               format="avif, webp"
               densities="x1"
               loading="lazy"

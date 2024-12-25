@@ -50,7 +50,7 @@ watchEffect(() => {
     <div class="reviews_list__item_top">
       <div class="reviews_list__item_top_img">
         <NuxtImg
-          :src="review.rewiewsTypeName.reviewsRepeatIzobrazhenie.node.mediaItemUrl"
+          :src="review.rewiewsTypeName.reviewsRepeatIzobrazhenie.node?.mediaItemUrl"
           format="avif, webp"
           densities="x1"
           sizes="s576:80px s360:60px"

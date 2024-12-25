@@ -16,7 +16,7 @@ defineProps<{
       <span class="category__title">{{ category.name }}</span>
 
       <NuxtImg
-        :src="category.image.mediaItemUrl"
+        :src="category.image?.mediaItemUrl"
         format="avif, webp"
         densities="x1"
         class="category__img"

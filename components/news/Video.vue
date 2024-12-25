@@ -57,7 +57,7 @@ onUnmounted(() => {
         >
           <div class="video__img">
             <NuxtImg
-              :src="video.featuredImage.node.mediaItemUrl"
+              :src="video.featuredImage.node?.mediaItemUrl"
               format="avif, webp"
               densities="x1"
               loading="lazy"

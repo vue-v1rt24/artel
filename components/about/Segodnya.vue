@@ -26,7 +26,7 @@ defineProps<{
         class="segodnya_list__item"
       >
         <div class="segodnya_list__img">
-          <img :src="item.aboutSegodnyaGroupVariantyIzobrazhenie.node.mediaItemUrl" alt="" />
+          <img :src="item.aboutSegodnyaGroupVariantyIzobrazhenie.node?.mediaItemUrl" alt="" />
         </div>
 
         <div class="segodnya_list__desc">{{ item.aboutSegodnyaGroupVariantyTekst }}</div>

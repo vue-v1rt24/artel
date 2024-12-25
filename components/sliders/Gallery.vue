@@ -130,14 +130,14 @@ onUnmounted(() => {
     <!--  -->
     <div :class="[`swiper-${id}`, 'popular_swiper', 'swiper']">
       <div class="swiper-wrapper sdvig">
-        <div v-for="image in gallery" :key="image.mediaItemUrl" class="swiper-slide">
+        <div v-for="image in gallery" :key="image?.mediaItemUrl" class="swiper-slide">
           <div
             class="swiper_slide_img border_img_bx"
             :data-fancybox="`gallery-${id}`"
-            :data-src="image.mediaItemUrl"
+            :data-src="image?.mediaItemUrl"
           >
             <NuxtImg
-              :src="image.mediaItemUrl"
+              :src="image?.mediaItemUrl"
               format="avif, webp"
               densities="x1"
               sizes="378px s1280:378px s768:380px s576:329px s360:320px"

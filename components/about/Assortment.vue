@@ -86,7 +86,7 @@ onUnmounted(() => {
             <div class="assortment__images">
               <div class="assortment__images_bx">
                 <NuxtImg
-                  :src="assort.assortmentIzobrazhenie1.node.mediaItemUrl"
+                  :src="assort.assortmentIzobrazhenie1.node?.mediaItemUrl"
                   format="avif, webp"
                   densities="x1"
                 />
@@ -94,7 +94,7 @@ onUnmounted(() => {
 
               <div class="assortment__images_bx">
                 <NuxtImg
-                  :src="assort.assortmentIzobrazhenie2.node.mediaItemUrl"
+                  :src="assort.assortmentIzobrazhenie2.node?.mediaItemUrl"
                   format="avif, webp"
                   densities="x1"
                 />

@@ -179,14 +179,14 @@ onUnmounted(() => {
       <div class="swiper-wrapper">
         <div v-for="video in actual" :key="video.databaseId" class="swiper-slide">
           <a
-            :href="video.actualGroupField.actualVideo?.node.mediaItemUrl"
+            :href="video.actualGroupField.actualVideo?.node?.mediaItemUrl"
             data-fancybox="actual-video"
             data-width="513"
             data-height="911"
             class="swiper_actual__link"
           >
             <NuxtImg
-              :src="video.actualGroupField.actualIzobrazhenieDlyaVideo?.node.mediaItemUrl"
+              :src="video.actualGroupField.actualIzobrazhenieDlyaVideo?.node?.mediaItemUrl"
               format="avif, webp"
               densities="x1"
               loading="lazy"

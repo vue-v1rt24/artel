@@ -32,21 +32,21 @@ const viewport = useViewport();
       <img
         v-if="viewport.isGreaterOrEquals('screen1281')"
         class="preview_screen__img"
-        :src="previewScreenPage.previewScreenIzobrazhenie1920.node.mediaItemUrl"
+        :src="previewScreenPage.previewScreenIzobrazhenie1920.node?.mediaItemUrl"
         alt=""
       />
 
       <img
         v-if="viewport.isGreaterOrEquals('screen769') && viewport.isLessThan('screen1281')"
         class="preview_screen__img"
-        :src="previewScreenPage.previewScreenIzobrazhenie1280.node.mediaItemUrl"
+        :src="previewScreenPage.previewScreenIzobrazhenie1280.node?.mediaItemUrl"
         alt=""
       />
 
       <img
         v-if="viewport.isLessOrEquals('screen768')"
         class="preview_screen__img"
-        :src="previewScreenPage.previewScreenIzobrazhenie768.node.mediaItemUrl"
+        :src="previewScreenPage.previewScreenIzobrazhenie768.node?.mediaItemUrl"
         alt=""
       />
 

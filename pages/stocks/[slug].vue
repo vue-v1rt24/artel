@@ -40,14 +40,14 @@ const viewport = useViewport();
     <div class="container">
       <div class="sale_top">
         <NuxtImg
-          :src="stock?.stock.stockFullIzobrazhenie1600.node.mediaItemUrl"
+          :src="stock?.stock.stockFullIzobrazhenie1600.node?.mediaItemUrl"
           format="avif, webp"
           densities="x1"
           class="sale_top-desc"
         />
 
         <NuxtImg
-          :src="stock?.stock.stockFullIzobrazhenie688.node.mediaItemUrl"
+          :src="stock?.stock.stockFullIzobrazhenie688.node?.mediaItemUrl"
           format="avif, webp"
           densities="x1"
           class="sale_top-mobile"

@@ -11,8 +11,8 @@ export default defineEventHandler(async (event) => {
     .map((stock) => ({
       id: stock.databaseId,
       slug: stock.slug,
-      img1600: stock.stocksFields.stockFullIzobrazhenie1600.node.mediaItemUrl,
-      img688: stock.stocksFields.stockFullIzobrazhenie688.node.mediaItemUrl,
+      img1600: stock.stocksFields.stockFullIzobrazhenie1600.node?.mediaItemUrl,
+      img688: stock.stocksFields.stockFullIzobrazhenie688.node?.mediaItemUrl,
     }));
 
   //

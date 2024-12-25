@@ -25,7 +25,7 @@ onMounted(() => {
     img.value!.src =
       dataPartners.value!.partners.partnerPatnyoryRepeat[
         idx
-      ].partnerPatnyoryRepeatIzobrazhenie.node.mediaItemUrl;
+      ].partnerPatnyoryRepeatIzobrazhenie.node?.mediaItemUrl;
   }, 1000);
 });
 
@@ -56,7 +56,7 @@ onUnmounted(() => {
               v-if="dataPartners?.partners.partnerPatnyoryRepeat.length"
               :src="
                 dataPartners.partners.partnerPatnyoryRepeat[0].partnerPatnyoryRepeatIzobrazhenie
-                  .node.mediaItemUrl
+                  .node?.mediaItemUrl
               "
               ref="img"
               alt=""
@@ -80,7 +80,7 @@ onUnmounted(() => {
           class="partners_item"
         >
           <img
-            :src="partner.partnerPatnyoryRepeatIzobrazhenie.node.mediaItemUrl"
+            :src="partner.partnerPatnyoryRepeatIzobrazhenie.node?.mediaItemUrl"
             alt=""
             class="partners_item-img"
           />

@@ -35,7 +35,7 @@ defineProps<{
           </span>
 
           <NuxtImg
-            :src="item.jewelryRepairVidyRemontaIzobrazhenie.node.mediaItemUrl"
+            :src="item.jewelryRepairVidyRemontaIzobrazhenie.node?.mediaItemUrl"
             format="avif, webp"
             densities="x1"
             loading="lazy"
