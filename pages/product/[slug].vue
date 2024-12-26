@@ -34,6 +34,23 @@ const attributes: any = {
   pa_size: 'Размер',
 };
 
+// Объединение значений одинаковых атрибутов
+type TypeAttr = { name: string; value: string };
+
+const attArr: TypeAttr[] = [];
+
+for (const item of product.value.defaultAttributes.nodes) {
+  const idx = attArr.findIndex((t) => t.name === item.name);
+
+  if (idx > -1) {
+    attArr[idx].value += `, ${item.value}`;
+  } else {
+    attArr.push(item);
+  }
+}
+
+product.value.defaultAttributes.nodes = attArr;
+
 // Клик по кнопке
 const modal = useTemplateRef('modal');
 const dataModal = ref<TypeProductOrder | null>(null);
