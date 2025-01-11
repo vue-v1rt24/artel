@@ -12,6 +12,8 @@
   "dependencies": {
     "@fancyapps/ui": "^5.0.36",
     "@nuxt/image": "^1.8.0",
+    "@nuxtjs/robots": "^5.1.0",
+    "@nuxtjs/sitemap": "^7.0.1",
     "@yandex/ymaps3-default-ui-theme": "^0.0.15",
     "gsap": "^3.12.5",
     "just-validate": "^4.3.0",

@@ -31,7 +31,14 @@ export default defineNuxtConfig({
     '/catalog': { redirect: '/catalog/serebro' },
   },
 
-  modules: ['@nuxt/image', 'nuxt-viewport', 'nuxt-mail', 'nuxt-yandex-metrika'],
+  modules: [
+    '@nuxt/image',
+    'nuxt-viewport',
+    'nuxt-mail',
+    'nuxt-yandex-metrika',
+    '@nuxtjs/robots',
+    '@nuxtjs/sitemap',
+  ],
 
   experimental: {
     typedPages: true,
@@ -104,6 +111,12 @@ export default defineNuxtConfig({
     options: {
       webvisor: true,
     },
+  },
+
+  // Настройка файла sitemap. Плагин @nuxtjs/sitemap
+  site: {
+    url: 'https://golden-artel.ru',
+    name: 'Золотая Артель',
   },
 
   //

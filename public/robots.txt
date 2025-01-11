@@ -1,1 +1,6 @@
+User-agent: *
 
+Allow: *
+
+Sitemap: https://golden-artel.ru/sitemap.xml
+Host: https://golden-artel.ru
