@@ -38,7 +38,7 @@ const emit = defineEmits<{
 
     <li v-if="viewport.isGreaterOrEquals('screen1280') && stock?.image" class="modal_menu__stock">
       <NuxtLink :to="`/stocks/${stock.slug}`" @click="emit('eventClick')">
-        <NuxtImg :src="stock.image" format="avif, webp" densities="x1" />
+        <NuxtImg :src="stock.image" format="avif, webp" densities="x1" alt="" />
       </NuxtLink>
     </li>
   </ul>

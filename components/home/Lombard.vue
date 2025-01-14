@@ -37,6 +37,7 @@ const modal = useTemplateRef('modal');
             densities="x1"
             loading="lazy"
             class="lombard__right_img"
+            alt=""
           />
 
           <NuxtImg
@@ -45,6 +46,7 @@ const modal = useTemplateRef('modal');
             densities="x1"
             loading="lazy"
             class="lombard__right_decor"
+            alt=""
           />
         </div>
       </div>

@@ -60,7 +60,7 @@ onMounted(() => {
       />
 
       <div class="custom_jewelry__img">
-        <NuxtImg :src="customJewelry.image1600" densities="x1" />
+        <NuxtImg :src="customJewelry.image1600" densities="x1" alt="" />
       </div>
     </div>
 

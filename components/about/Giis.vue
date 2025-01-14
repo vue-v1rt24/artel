@@ -34,6 +34,7 @@ const viewport = useViewport();
         loading="lazy"
         sizes="s1500:513px s1200:639px s1024:450px s576:317px"
         class="giis__img"
+        alt=""
       />
 
       <NuxtImg
@@ -44,6 +45,7 @@ const viewport = useViewport();
         loading="lazy"
         sizes="s576:317px s360:320px"
         class="giis__img"
+        alt=""
       />
     </div>
   </div>

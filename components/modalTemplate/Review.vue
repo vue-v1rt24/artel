@@ -30,6 +30,7 @@ const imgFrom = computed(() => {
           format="avif, webp"
           densities="x1"
           sizes="s576:80px s360:60px"
+          alt=""
         />
 
         <NuxtImg
@@ -37,6 +38,7 @@ const imgFrom = computed(() => {
           densities="x1"
           sizes="s576:32px s360:22px"
           class="reviews_list__item_top_img_from"
+          alt=""
         />
       </div>
 

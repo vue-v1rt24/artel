@@ -19,8 +19,8 @@ defineProps<{
     </div>
 
     <div class="guardians_art__right">
-      <NuxtImg :src="guardians.image1" densities="x1" format="avif, webp" loading="lazy" />
-      <NuxtImg :src="guardians.image2" densities="x1" format="avif, webp" loading="lazy" />
+      <NuxtImg :src="guardians.image1" densities="x1" format="avif, webp" loading="lazy" alt="" />
+      <NuxtImg :src="guardians.image2" densities="x1" format="avif, webp" loading="lazy" alt="" />
     </div>
   </div>
 </template>

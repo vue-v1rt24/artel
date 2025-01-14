@@ -27,6 +27,7 @@ defineProps<{
             :src="article.featuredImage.node?.mediaItemUrl"
             format="avif, webp"
             densities="x1"
+            alt=""
           />
 
           {{ article.title }}

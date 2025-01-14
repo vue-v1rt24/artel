@@ -54,7 +54,7 @@ onUnmounted(() => {
   <div class="special">
     <h2 class="h2_56">Специальные предложения</h2>
 
-    <NuxtImg class="special_figure" src="/images/special-figure.svg" densities="x1" />
+    <NuxtImg class="special_figure" src="/images/special-figure.svg" densities="x1" alt="" />
 
     <!--  -->
     <div class="special_swiper swiper">
@@ -66,6 +66,7 @@ onUnmounted(() => {
               format="avif, webp"
               :src="special.img"
               densities="x1"
+              alt=""
             />
 
             <!--  -->

@@ -21,7 +21,7 @@ defineProps<{
     </div>
 
     <div class="repair_bottom-right">
-      <NuxtImg :src="material.img" format="avif, webp" densities="x1" />
+      <NuxtImg :src="material.img" format="avif, webp" densities="x1" alt="" />
     </div>
   </div>
 </template>

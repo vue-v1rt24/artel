@@ -190,6 +190,7 @@ onUnmounted(() => {
               format="avif, webp"
               densities="x1"
               loading="lazy"
+              alt=""
             />
 
             <div class="swiper_actual__date">

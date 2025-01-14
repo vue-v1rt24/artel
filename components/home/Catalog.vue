@@ -21,6 +21,7 @@ const viewport = useViewport();
       densities="x1"
       loading="lazy"
       format="avif, webp"
+      alt=""
     />
 
     <NuxtImg
@@ -29,6 +30,7 @@ const viewport = useViewport();
       densities="x1"
       loading="lazy"
       format="avif, webp"
+      alt=""
     />
 
     <NuxtImg
@@ -37,9 +39,17 @@ const viewport = useViewport();
       densities="x1"
       loading="lazy"
       format="avif, webp"
+      alt=""
     />
 
-    <NuxtImg v-else :src="catalog.image320" densities="x1" loading="lazy" format="avif, webp" />
+    <NuxtImg
+      v-else
+      :src="catalog.image320"
+      densities="x1"
+      loading="lazy"
+      format="avif, webp"
+      alt=""
+    />
 
     <!--  -->
     <div class="catalog_home">

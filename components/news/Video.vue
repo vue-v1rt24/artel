@@ -61,6 +61,7 @@ onUnmounted(() => {
               format="avif, webp"
               densities="x1"
               loading="lazy"
+              alt=""
             />
           </div>
 

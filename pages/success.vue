@@ -35,6 +35,7 @@ useSeoMeta({
             densities="x1"
             format="avif, webp"
             class="success_page__veshalka"
+            alt=""
           />
 
           <NuxtImg
@@ -42,6 +43,7 @@ useSeoMeta({
             densities="x1"
             format="avif, webp"
             class="success_page__blik"
+            alt=""
           />
         </div>
       </div>

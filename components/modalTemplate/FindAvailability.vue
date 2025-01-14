@@ -133,7 +133,13 @@ watch(
     <!-- Блок товара -->
     <div v-if="special" class="fa__product">
       <div class="fa__product_img">
-        <NuxtImg :src="special.img" densities="x1" sizes="s576:102px s:76px" format="avif, webp" />
+        <NuxtImg
+          :src="special.img"
+          densities="x1"
+          sizes="s576:102px s:76px"
+          format="avif, webp"
+          alt=""
+        />
       </div>
 
       <!--  -->

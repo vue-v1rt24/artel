@@ -54,6 +54,7 @@ const modalOpen = (idx: number) => {
         format="avif, webp"
         densities="x1"
         class="repair_item-img"
+        alt=""
       />
 
       <UiButton

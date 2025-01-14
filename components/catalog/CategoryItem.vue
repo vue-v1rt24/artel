@@ -20,6 +20,7 @@ defineProps<{
         format="avif, webp"
         densities="x1"
         class="category__img"
+        alt=""
       />
     </NuxtLink>
   </li>

@@ -24,6 +24,7 @@ defineProps<{
         format="avif, webp"
         densities="x1"
         class="order_bottom-img"
+        alt=""
       />
 
       <img src="/public/images/individualOrder/bg.svg" alt="" class="order_bottom-bg" />

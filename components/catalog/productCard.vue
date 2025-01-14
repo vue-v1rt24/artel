@@ -15,6 +15,7 @@ defineProps<{
           densities="x1"
           format="avif, webp"
           loading="lazy"
+          alt=""
         />
       </div>
 

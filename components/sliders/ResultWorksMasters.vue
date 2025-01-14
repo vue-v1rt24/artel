@@ -193,6 +193,7 @@ onUnmounted(() => {
                   format="avif, webp"
                   densities="x1"
                   loading="lazy"
+                  alt=""
                 />
 
                 <span class="before_after__slug">До</span>
@@ -204,6 +205,7 @@ onUnmounted(() => {
                   format="avif, webp"
                   densities="x1"
                   loading="lazy"
+                  alt=""
                 />
 
                 <span class="before_after__slug">После</span>

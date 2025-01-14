@@ -39,6 +39,7 @@ defineProps<{
             format="avif, webp"
             densities="x1"
             loading="lazy"
+            alt=""
           />
         </li>
       </ul>
@@ -57,6 +58,7 @@ defineProps<{
             format="avif, webp"
             densities="x1"
             loading="lazy"
+            alt=""
           />
 
           <UiButton

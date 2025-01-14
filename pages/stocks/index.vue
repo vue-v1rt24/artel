@@ -30,6 +30,7 @@ useSeoMeta({
               format="avif, webp"
               densities="x1"
               class="sales_item-desc"
+              alt=""
             />
 
             <NuxtImg
@@ -37,6 +38,7 @@ useSeoMeta({
               format="avif, webp"
               densities="x1"
               class="sales_item-mobile"
+              alt=""
             />
           </div>
 

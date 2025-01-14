@@ -57,6 +57,7 @@ onUnmounted(() => {
             format="avif, webp"
             densities="x1"
             loading="lazy"
+            alt=""
           />
 
           <NuxtImg
@@ -65,6 +66,7 @@ onUnmounted(() => {
             format="avif, webp"
             densities="x1"
             loading="lazy"
+            alt=""
           />
         </NuxtLink>
 

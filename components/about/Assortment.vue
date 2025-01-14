@@ -89,6 +89,7 @@ onUnmounted(() => {
                   :src="assort.assortmentIzobrazhenie1.node?.mediaItemUrl"
                   format="avif, webp"
                   densities="x1"
+                  alt=""
                 />
               </div>
 
@@ -97,6 +98,7 @@ onUnmounted(() => {
                   :src="assort.assortmentIzobrazhenie2.node?.mediaItemUrl"
                   format="avif, webp"
                   densities="x1"
+                  alt=""
                 />
               </div>
             </div>

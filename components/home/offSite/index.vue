@@ -35,6 +35,7 @@ defineProps<{
         densities="x1"
         format="avif, webp"
         class="off_site__right_img"
+        alt=""
       />
     </div>
   </div>

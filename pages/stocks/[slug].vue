@@ -44,6 +44,7 @@ const viewport = useViewport();
           format="avif, webp"
           densities="x1"
           class="sale_top-desc"
+          alt=""
         />
 
         <NuxtImg
@@ -51,6 +52,7 @@ const viewport = useViewport();
           format="avif, webp"
           densities="x1"
           class="sale_top-mobile"
+          alt=""
         />
       </div>
 

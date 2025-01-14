@@ -29,6 +29,7 @@ defineProps<{
             format="avif, webp"
             densities="x1"
             class="order_right-img"
+            alt=""
           />
 
           <div class="order_right-text">
