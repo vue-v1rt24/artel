@@ -107,13 +107,15 @@ useSeoMeta({
       />
 
       <!-- Подвал -->
-      <FooterCopy
-        v-if="contacts?.contacts.vkontakte"
-        :vk="contacts?.contacts.vkontakte"
-        :telegram="contacts?.contacts.telegram"
-        :whatsapp="contacts?.contacts.vatsap"
-        :instagram="contacts?.contacts.instagram"
-      />
+      <footer class="footer">
+        <FooterCopy
+          v-if="contacts?.contacts.vkontakte"
+          :vk="contacts?.contacts.vkontakte"
+          :telegram="contacts?.contacts.telegram"
+          :whatsapp="contacts?.contacts.vatsap"
+          :instagram="contacts?.contacts.instagram"
+        />
+      </footer>
     </div>
   </div>
 </template>
@@ -217,8 +219,6 @@ useSeoMeta({
   transition: border var(--transition-speed);
 }
 .contacts_item-link.hover:hover {
-  /* text-decoration: underline; */
-  /* text-decoration-skip-ink: none; */
   color: var(--green-akcent);
   border-color: var(--transition-speed);
 }
@@ -321,11 +321,13 @@ useSeoMeta({
 }
 
 /*  */
-/* :deep(.copy) {
-  padding-bottom: 34px;
 
+.footer {
+  padding-bottom: 44px;
+
+  /*  */
   @media (max-width: 1280px) {
-    padding-bottom: 20px;
+    padding-bottom: 38px;
   }
 
   @media (max-width: 768px) {
@@ -333,7 +335,7 @@ useSeoMeta({
   }
 
   @media (max-width: 576px) {
-    padding-bottom: 20px;
+    padding-bottom: 24px;
   }
-} */
+}
 </style>
