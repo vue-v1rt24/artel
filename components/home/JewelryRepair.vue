@@ -149,24 +149,25 @@ defineProps<{
 
 .jewelry_repair__list_item {
   position: relative;
+  aspect-ratio: 1 / 0.66;
   border-radius: 20px;
   overflow: hidden;
 
   /*  */
   @media (max-width: 768px) {
-    height: 390px;
+    /* height: 390px; */
   }
 
   @media (max-width: 576px) {
-    height: 320px;
+    /* height: 320px; */
   }
 
   @media (max-width: 480px) {
-    height: 250px;
+    /* height: 250px; */
   }
 
   @media (max-width: 375px) {
-    height: 190px;
+    /* height: 190px; */
   }
 
   /*  */

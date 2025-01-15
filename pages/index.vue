@@ -2,19 +2,13 @@
 import type { TypeHomeQueryTransform } from '~/types/pages/home.types';
 
 // Получение акций
-const { data: stocks } = await useFetch('/api/getStocksHome', {
-  lazy: true,
-});
+const { data: stocks } = await useLazyFetch('/api/getStocksHome');
 
 // Получение данных страницы
-const { data: home } = await useFetch<TypeHomeQueryTransform>('/api/pages/pageHome', {
-  lazy: true,
-});
+const { data: home } = await useLazyFetch<TypeHomeQueryTransform>('/api/pages/pageHome');
 
 // Получение данных раздела: Специальные предложения
-const { data: specials } = await useFetch('/api/getSpecialOffers', {
-  lazy: true,
-});
+const { data: specials } = await useLazyFetch('/api/getSpecialOffers');
 
 //
 useSeoMeta({
@@ -63,6 +57,7 @@ onMounted(() => {
 
 <style lang="css" scoped>
 .slider_stocks {
+  aspect-ratio: 1 / 0.401;
   margin-top: 40px;
   margin-bottom: 150px;
 

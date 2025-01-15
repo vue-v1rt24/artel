@@ -43,16 +43,16 @@ const emit = defineEmits<{
 
 <style lang="css" scoped>
 .news_bx {
-  margin-top: 140px;
+  /* margin-top: 140px; */
 
   /*  */
-  @media (max-width: 768px) {
+  /* @media (max-width: 768px) {
     margin-top: 100px;
   }
 
   @media (max-width: 576px) {
     margin-top: 60px;
-  }
+  } */
 }
 
 /*  */

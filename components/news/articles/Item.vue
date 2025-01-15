@@ -25,13 +25,7 @@ const { article } = defineProps<{
   <div class="news">
     <NuxtLink :to="{ path: `/${article.contentTypeName}/${article.slug}` }">
       <div class="news__img">
-        <NuxtImg
-          :src="article.featuredImage.node?.mediaItemUrl"
-          format="avif, webp"
-          densities="x1"
-          loading="lazy"
-          alt=""
-        />
+        <NuxtImg :src="article.featuredImage.node?.mediaItemUrl" densities="x1" loading="lazy" />
       </div>
 
       <h3 class="news__title">{{ article.title }}</h3>
@@ -43,6 +37,7 @@ const { article } = defineProps<{
 
 <style lang="css" scoped>
 .news__img {
+  height: 259px;
   border-radius: 20px;
   overflow: hidden;
 

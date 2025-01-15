@@ -114,18 +114,45 @@ watch(videosData, (val) => {
     <!-- Хлебные крошки -->
     <UiBreadCrumbs :links="[{ title: 'Новости' }]" />
 
-    <!-- Актуальное -->
-    <NewsActual v-if="actual" :actual />
+    <div class="news_page">
+      <!-- Актуальное -->
+      <NewsActual v-if="actual?.length" :actual />
 
-    <!-- Новости -->
-    <NewsArticles v-if="news" title="Новости" :articles="news" @load-data="loadData" />
+      <!-- Новости -->
+      <NewsArticles
+        v-if="news?.content.length"
+        title="Новости"
+        :articles="news"
+        @load-data="loadData"
+      />
 
-    <!-- Видео -->
-    <NewsVideo v-if="videos" :videos @load-data="loadDataVideo" />
+      <!-- Видео -->
+      <NewsVideo v-if="videos?.content.length" :videos @load-data="loadDataVideo" />
 
-    <!-- Блог -->
-    <NewsArticles v-if="blog" title="Блог" :articles="blog" @load-data="loadData" />
+      <!-- Блог -->
+      <NewsArticles
+        v-if="blog?.content.length"
+        title="Блог"
+        :articles="blog"
+        @load-data="loadData"
+      />
+    </div>
   </div>
 </template>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+.news_page {
+  display: flex;
+  flex-direction: column;
+  row-gap: 140px;
+
+  /*  */
+  @media (max-width: 768px) {
+    row-gap: 100px;
+  }
+
+  @media (max-width: 576px) {
+    row-gap: 60px;
+  }
+}
+</style>

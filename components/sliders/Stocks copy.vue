@@ -24,10 +24,7 @@ const swiperInstance = ref<Swiper | null>(null);
 onMounted(() => {
   swiperInstance.value = new Swiper('.swiper_stocks', {
     modules: [Navigation, Pagination],
-
-    lazyPreloaderClass: 'swiper_stocks__preloader',
     loop: true,
-
     navigation: {
       nextEl: '.swiper-button-white-next',
       prevEl: '.swiper-button-white-prev',
@@ -48,26 +45,9 @@ onUnmounted(() => {
 
 <template>
   <div class="swiper_stocks swiper">
-    <!-- <UiSkeleton v-if="!stocks?.length" width="100%" height="100%" /> -->
-
-    <!-- <div class="swiper-wrapper sdvig"> -->
-    <div class="swiper-wrapper">
+    <div class="swiper-wrapper sdvig">
       <div v-for="stock in stocks" :key="stock.id" class="swiper-slide">
         <NuxtLink :to="`/stocks/${stock.slug}`">
-          <!-- <NuxtImg
-            v-if="viewport.isGreaterOrEquals('screen768')"
-            :src="stock.img1600"
-            format="avif, webp"
-            densities="x1"
-            loading="lazy"
-          /> -->
-
-          <!-- <NuxtImg
-            v-if="viewport.isGreaterOrEquals('screen768')"
-            :src="stock.img1600"
-            densities="x1"
-            loading="lazy"
-          /> -->
           <img
             v-if="viewport.isGreaterOrEquals('screen768')"
             :src="stock.img1600"
@@ -75,27 +55,8 @@ onUnmounted(() => {
             alt=""
           />
 
-          <!-- <NuxtImg
-            v-if="viewport.isLessThan('screen768')"
-            :src="stock.img688"
-            format="avif, webp"
-            densities="x1"
-            loading="lazy"
-          /> -->
-
-          <!-- <NuxtImg
-            v-if="viewport.isLessThan('screen768')"
-            :src="stock.img688"
-            densities="x1"
-            loading="lazy"
-          /> -->
           <img v-if="viewport.isLessThan('screen768')" :src="stock.img688" loading="lazy" alt="" />
         </NuxtLink>
-
-        <div class="swiper_stocks__preloader">
-          <!-- <UiPreloader /> -->
-          <UiSkeleton width="100%" height="100%" />
-        </div>
       </div>
     </div>
 
@@ -115,8 +76,7 @@ onUnmounted(() => {
 
 <style lang="css" scoped>
 .swiper_stocks__preloader {
-  /* height: 250px; */
-  aspect-ratio: 1 / 0.401;
+  height: 250px;
 }
 
 /*  */
