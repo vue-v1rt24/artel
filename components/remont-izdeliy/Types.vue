@@ -155,6 +155,7 @@ const modalOpen = (idx: number) => {
 
 .repair_item-img {
   width: 100%;
+  aspect-ratio: 1 / 0.661;
   border-radius: 20px;
 }
 

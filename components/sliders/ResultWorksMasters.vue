@@ -280,6 +280,7 @@ onUnmounted(() => {
 
 .before_after__images {
   position: relative;
+  aspect-ratio: 1 / 0.563;
   border-radius: 20px;
   margin-bottom: 32px;
   overflow: hidden;
