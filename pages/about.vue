@@ -1,7 +1,5 @@
 <script setup lang="ts">
-const { data: about } = await useFetch('/api/pages/about', {
-  lazy: true,
-});
+const { data: about } = await useFetch('/api/pages/about');
 
 // console.log(about.value);
 
