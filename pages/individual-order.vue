@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const { data: indOrder } = await useFetch('/api/pages/getIndividualOrder');
+const { data: indOrder } = await useFetch('/api/pages/getIndividualOrder', {
+  lazy: true,
+});
 
 // console.log(indOrder.value);
 

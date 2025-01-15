@@ -28,15 +28,7 @@ defineProps<{
     <!--  -->
     <div class="off_site__right">
       <HomeOffSiteSlider v-if="sliders?.length && sliders.length > 7" :sliders />
-
-      <NuxtImg
-        :src="content.image"
-        width="581"
-        densities="x1"
-        format="avif, webp"
-        class="off_site__right_img"
-        alt=""
-      />
+      <img :src="content.image" class="off_site__right_img" alt="" />
     </div>
   </div>
 </template>

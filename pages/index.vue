@@ -2,13 +2,19 @@
 import type { TypeHomeQueryTransform } from '~/types/pages/home.types';
 
 // Получение акций
-const { data: stocks } = await useFetch('/api/getStocksHome');
+const { data: stocks } = await useFetch('/api/getStocksHome', {
+  lazy: true,
+});
 
 // Получение данных страницы
-const { data: home } = await useFetch<TypeHomeQueryTransform>('/api/pages/pageHome');
+const { data: home } = await useFetch<TypeHomeQueryTransform>('/api/pages/pageHome', {
+  lazy: true,
+});
 
 // Получение данных раздела: Специальные предложения
-const { data: specials } = await useFetch('/api/getSpecialOffers');
+const { data: specials } = await useFetch('/api/getSpecialOffers', {
+  lazy: true,
+});
 
 //
 useSeoMeta({

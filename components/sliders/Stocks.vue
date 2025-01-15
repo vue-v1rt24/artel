@@ -24,10 +24,7 @@ const swiperInstance = ref<Swiper | null>(null);
 onMounted(() => {
   swiperInstance.value = new Swiper('.swiper_stocks', {
     modules: [Navigation, Pagination],
-
-    lazyPreloaderClass: 'swiper_stocks__preloader',
     loop: true,
-
     navigation: {
       nextEl: '.swiper-button-white-next',
       prevEl: '.swiper-button-white-prev',
@@ -51,28 +48,15 @@ onUnmounted(() => {
     <div class="swiper-wrapper sdvig">
       <div v-for="stock in stocks" :key="stock.id" class="swiper-slide">
         <NuxtLink :to="`/stocks/${stock.slug}`">
-          <NuxtImg
+          <img
             v-if="viewport.isGreaterOrEquals('screen768')"
             :src="stock.img1600"
-            format="avif, webp"
-            densities="x1"
             loading="lazy"
             alt=""
           />
 
-          <NuxtImg
-            v-if="viewport.isLessThan('screen768')"
-            :src="stock.img688"
-            format="avif, webp"
-            densities="x1"
-            loading="lazy"
-            alt=""
-          />
+          <img v-if="viewport.isLessThan('screen768')" :src="stock.img688" loading="lazy" alt="" />
         </NuxtLink>
-
-        <div class="swiper_stocks__preloader">
-          <UiPreloader />
-        </div>
       </div>
     </div>
 
