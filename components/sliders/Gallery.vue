@@ -141,10 +141,11 @@ onUnmounted(() => {
               format="avif, webp"
               densities="x1"
               sizes="378px s1280:378px s768:380px s576:329px s360:320px"
+              loading="lazy"
               alt=""
             />
 
-            <NuxtImg class="border_img" src="/images/border.svg" alt="" />
+            <NuxtImg class="border_img" src="/images/border.svg" loading="lazy" alt="" />
           </div>
         </div>
       </div>
