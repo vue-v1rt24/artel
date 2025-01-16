@@ -54,27 +54,29 @@ onUnmounted(() => {
   <div class="special">
     <h2 class="h2_56">Специальные предложения</h2>
 
-    <NuxtImg
+    <!-- <NuxtImg
       class="special_figure"
       src="/images/special-figure.svg"
       loading="lazy"
       densities="x1"
       alt=""
-    />
+    /> -->
+    <img class="special_figure" src="/images/special-figure.svg" loading="lazy" alt="" />
 
     <!--  -->
     <div class="special_swiper swiper">
       <div class="swiper-wrapper sdvig">
         <template v-for="special in specials" :key="special.id">
           <div v-if="special.img" class="swiper-slide">
-            <NuxtImg
+            <!-- <NuxtImg
               class="special_swiper__img"
               format="avif, webp"
               :src="special.img"
               densities="x1"
               loading="lazy"
               alt=""
-            />
+            /> -->
+            <img class="special_swiper__img" :src="special.img" loading="lazy" alt="" />
 
             <!--  -->
             <div class="special__info_bx">

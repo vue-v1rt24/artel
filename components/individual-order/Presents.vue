@@ -19,11 +19,17 @@ defineProps<{
       :key="pres.individualOrderPredostavlyaemVariantyRepeatZagolovok"
       class="order_bottom-item"
     >
-      <NuxtImg
+      <!-- <NuxtImg
         :src="pres.individualOrderPredostavlyaemVariantyRepeatIzobrazhenie.node?.mediaItemUrl"
         format="avif, webp"
         densities="x1"
         class="order_bottom-img"
+        alt=""
+      /> -->
+      <img
+        class="order_bottom-img"
+        :src="pres.individualOrderPredostavlyaemVariantyRepeatIzobrazhenie.node?.mediaItemUrl"
+        loading="lazy"
         alt=""
       />
 

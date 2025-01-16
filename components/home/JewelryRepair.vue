@@ -34,10 +34,15 @@ defineProps<{
             {{ item.jewelryRepairVidyRemontaTekstNaKartinke }}
           </span>
 
-          <NuxtImg
+          <!-- <NuxtImg
             :src="item.jewelryRepairVidyRemontaIzobrazhenie.node?.mediaItemUrl"
             format="avif, webp"
             densities="x1"
+            loading="lazy"
+            alt=""
+          /> -->
+          <img
+            :src="item.jewelryRepairVidyRemontaIzobrazhenie.node?.mediaItemUrl"
             loading="lazy"
             alt=""
           />
@@ -53,13 +58,14 @@ defineProps<{
         ></p>
 
         <div class="jewelry_repair__podlozhka_asd">
-          <NuxtImg
+          <!-- <NuxtImg
             src="/images/home/jewelry_repair-almaz.png"
             format="avif, webp"
             densities="x1"
             loading="lazy"
             alt=""
-          />
+          /> -->
+          <img src="/images/home/jewelry_repair-almaz.png" loading="lazy" alt="" />
 
           <UiButton
             width="233px"

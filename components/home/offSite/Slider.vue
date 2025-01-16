@@ -68,7 +68,7 @@ onUnmounted(() => {
               class="off_slider__img"
               alt=""
             /> -->
-            <img :src="slider.img" class="off_slider__img" alt="" />
+            <img :src="slider.img" class="off_slider__img" loading="lazy" alt="" />
           </div>
         </div>
       </template>

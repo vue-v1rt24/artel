@@ -15,13 +15,14 @@ defineProps<{
     <NuxtLink :to="`/catalog/${parentCategoryName}/${category.slug}`">
       <span class="category__title">{{ category.name }}</span>
 
-      <NuxtImg
+      <!-- <NuxtImg
         :src="category.image?.mediaItemUrl"
         format="avif, webp"
         densities="x1"
         class="category__img"
         alt=""
-      />
+      /> -->
+      <img class="category__img" :src="category.image?.mediaItemUrl" loading="lazy" alt="" />
     </NuxtLink>
   </li>
 </template>

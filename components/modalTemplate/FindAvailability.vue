@@ -138,6 +138,7 @@ watch(
           densities="x1"
           sizes="s576:102px s:76px"
           format="avif, webp"
+          loading="lazy"
           alt=""
         />
       </div>
