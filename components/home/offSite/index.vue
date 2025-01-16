@@ -28,7 +28,7 @@ defineProps<{
     <!--  -->
     <div class="off_site__right">
       <HomeOffSiteSlider v-if="sliders?.length && sliders.length > 7" :sliders />
-      <img :src="content.image" class="off_site__right_img" alt="" />
+      <img :src="content.image" class="off_site__right_img" loading="lazy" alt="" />
     </div>
   </div>
 </template>
