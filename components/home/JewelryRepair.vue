@@ -59,13 +59,13 @@ defineProps<{
 
         <div class="jewelry_repair__podlozhka_asd">
           <!-- <NuxtImg
-            src="/images/home/jewelry_repair-almaz.png"
+            src="/images/home/jewelry_repair-almaz.webp"
             format="avif, webp"
             densities="x1"
             loading="lazy"
             alt=""
           /> -->
-          <img src="/images/home/jewelry_repair-almaz.png" loading="lazy" alt="" />
+          <img src="/images/home/jewelry_repair-almaz.webp" loading="lazy" alt="" />
 
           <UiButton
             width="233px"
