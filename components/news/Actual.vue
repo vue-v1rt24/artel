@@ -185,10 +185,15 @@ onUnmounted(() => {
             data-height="911"
             class="swiper_actual__link"
           >
-            <NuxtImg
+            <!-- <NuxtImg
               :src="video.actualGroupField.actualIzobrazhenieDlyaVideo?.node?.mediaItemUrl"
               format="avif, webp"
               densities="x1"
+              loading="lazy"
+              alt=""
+            /> -->
+            <img
+              :src="video.actualGroupField.actualIzobrazhenieDlyaVideo?.node?.mediaItemUrl"
               loading="lazy"
               alt=""
             />

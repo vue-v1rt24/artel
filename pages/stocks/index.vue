@@ -25,19 +25,33 @@ useSeoMeta({
           <NuxtLink :to="`/stocks/${stock.slug}`" class="sales_item__link"></NuxtLink>
 
           <div class="sales_item-baner">
-            <NuxtImg
+            <!-- <NuxtImg
               :src="stock.stocksFields.stockIzobrazhenie785.node?.mediaItemUrl"
               format="avif, webp"
               densities="x1"
               class="sales_item-desc"
+              loading="lazy"
+              alt=""
+            /> -->
+            <img
+              class="sales_item-desc"
+              :src="stock.stocksFields.stockIzobrazhenie785.node?.mediaItemUrl"
+              loading="lazy"
               alt=""
             />
 
-            <NuxtImg
+            <!-- <NuxtImg
               :src="stock.stocksFields.stockIzobrazhenie688.node?.mediaItemUrl"
               format="avif, webp"
               densities="x1"
               class="sales_item-mobile"
+              loading="lazy"
+              alt=""
+            /> -->
+            <img
+              class="sales_item-mobile"
+              :src="stock.stocksFields.stockIzobrazhenie688.node?.mediaItemUrl"
+              loading="lazy"
               alt=""
             />
           </div>

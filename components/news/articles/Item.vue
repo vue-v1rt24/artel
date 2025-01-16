@@ -25,7 +25,8 @@ const { article } = defineProps<{
   <div class="news">
     <NuxtLink :to="{ path: `/${article.contentTypeName}/${article.slug}` }">
       <div class="news__img">
-        <NuxtImg :src="article.featuredImage.node?.mediaItemUrl" densities="x1" loading="lazy" />
+        <!-- <NuxtImg :src="article.featuredImage.node?.mediaItemUrl" densities="x1" loading="lazy" /> -->
+        <img :src="article.featuredImage.node?.mediaItemUrl" loading="lazy" alt="" />
       </div>
 
       <h3 class="news__title">{{ article.title }}</h3>

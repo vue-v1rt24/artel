@@ -56,13 +56,14 @@ onUnmounted(() => {
           class="video"
         >
           <div class="video__img">
-            <NuxtImg
+            <!-- <NuxtImg
               :src="video.featuredImage.node?.mediaItemUrl"
               format="avif, webp"
               densities="x1"
               loading="lazy"
               alt=""
-            />
+            /> -->
+            <img :src="video.featuredImage.node?.mediaItemUrl" loading="lazy" alt="" />
           </div>
 
           <h3 class="video__title">{{ video.title }}</h3>
