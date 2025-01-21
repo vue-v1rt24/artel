@@ -16,7 +16,7 @@ defineProps<{
 <template>
   <div class="off_site">
     <div class="off_site__left">
-      <h2 class="h2_56">{{ content.homeOffSiteZagolovok }}</h2>
+      <h1 class="h2_56">{{ content.homeOffSiteZagolovok }}</h1>
 
       <h3 class="h3_32">{{ content.homeOffSitePodzagolovok }}</h3>
 

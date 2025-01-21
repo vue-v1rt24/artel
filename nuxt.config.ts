@@ -16,6 +16,7 @@ export default defineNuxtConfig({
       link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }],
       meta: [{ name: 'yandex-verification', content: '706d456e1c11c274' }],
     },
+    pageTransition: { name: 'page', mode: 'out-in' },
   },
 
   css: ['assets/css/index.css'],
