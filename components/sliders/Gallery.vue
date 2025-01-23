@@ -145,7 +145,6 @@ onUnmounted(() => {
               alt=""
             />
 
-            <!-- <NuxtImg class="border_img" src="/images/border.svg" loading="lazy" alt="" /> -->
             <img class="border_img" src="/images/border.svg" loading="lazy" alt="" />
           </div>
         </div>

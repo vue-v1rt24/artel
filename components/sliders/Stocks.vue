@@ -54,20 +54,6 @@ onUnmounted(() => {
     <div class="swiper-wrapper">
       <div v-for="stock in stocks" :key="stock.id" class="swiper-slide">
         <NuxtLink :to="`/stocks/${stock.slug}`">
-          <!-- <NuxtImg
-            v-if="viewport.isGreaterOrEquals('screen768')"
-            :src="stock.img1600"
-            format="avif, webp"
-            densities="x1"
-            loading="lazy"
-          /> -->
-
-          <!-- <NuxtImg
-            v-if="viewport.isGreaterOrEquals('screen768')"
-            :src="stock.img1600"
-            densities="x1"
-            loading="lazy"
-          /> -->
           <img
             v-if="viewport.isGreaterOrEquals('screen768')"
             :src="stock.img1600"
@@ -75,20 +61,6 @@ onUnmounted(() => {
             alt=""
           />
 
-          <!-- <NuxtImg
-            v-if="viewport.isLessThan('screen768')"
-            :src="stock.img688"
-            format="avif, webp"
-            densities="x1"
-            loading="lazy"
-          /> -->
-
-          <!-- <NuxtImg
-            v-if="viewport.isLessThan('screen768')"
-            :src="stock.img688"
-            densities="x1"
-            loading="lazy"
-          /> -->
           <img v-if="viewport.isLessThan('screen768')" :src="stock.img688" loading="lazy" alt="" />
         </NuxtLink>
 
@@ -115,7 +87,6 @@ onUnmounted(() => {
 
 <style lang="css" scoped>
 .swiper_stocks__preloader {
-  /* height: 250px; */
   aspect-ratio: 1 / 0.401;
 }
 

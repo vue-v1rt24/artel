@@ -30,13 +30,6 @@
         </div>
 
         <div class="right">
-          <!-- <NuxtImg
-            src="/images/404.webp"
-            format="avif, webp"
-            densities="x1"
-            class="right-img"
-            alt=""
-          /> -->
           <img src="/images/404.webp" class="right-img" loading="lazy" alt="" />
         </div>
       </div>

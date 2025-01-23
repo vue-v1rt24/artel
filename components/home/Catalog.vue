@@ -15,14 +15,6 @@ const viewport = useViewport();
 
 <template>
   <div class="catalog_home_bx">
-    <!-- <NuxtImg
-      v-if="viewport.isGreaterOrEquals('screen1280')"
-      :src="catalog.image1600"
-      densities="x1"
-      loading="lazy"
-      format="webp"
-      alt=""
-    /> -->
     <img
       v-if="viewport.isGreaterOrEquals('screen1280')"
       :src="catalog.image1600"
@@ -30,14 +22,6 @@ const viewport = useViewport();
       alt=""
     />
 
-    <!-- <NuxtImg
-      v-else-if="viewport.isGreaterOrEquals('screen768')"
-      :src="catalog.image1200"
-      densities="x1"
-      loading="lazy"
-      format="webp"
-      alt=""
-    /> -->
     <img
       v-else-if="viewport.isGreaterOrEquals('screen768')"
       :src="catalog.image1200"
@@ -45,14 +29,6 @@ const viewport = useViewport();
       alt=""
     />
 
-    <!-- <NuxtImg
-      v-else-if="viewport.isGreaterOrEquals('screen576')"
-      :src="catalog.image688"
-      densities="x1"
-      loading="lazy"
-      format="webp"
-      alt=""
-    /> -->
     <img
       v-else-if="viewport.isGreaterOrEquals('screen576')"
       :src="catalog.image688"
@@ -60,7 +36,6 @@ const viewport = useViewport();
       alt=""
     />
 
-    <!-- <NuxtImg v-else :src="catalog.image320" densities="x1" loading="lazy" format="webp" alt="" /> -->
     <img v-else :src="catalog.image320" loading="lazy" alt="" />
 
     <!--  -->

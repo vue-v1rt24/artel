@@ -31,24 +31,8 @@ const modal = useTemplateRef('modal');
         </div>
 
         <div class="lombard__right">
-          <!-- <NuxtImg
-            :src="lombard.image"
-            format="avif, webp"
-            densities="x1"
-            loading="lazy"
-            class="lombard__right_img"
-            alt=""
-          /> -->
           <img class="lombard__right_img" :src="lombard.image" loading="lazy" alt="" />
 
-          <!-- <NuxtImg
-            src="/images/home/lombard-decor.png"
-            format="avif, webp"
-            densities="x1"
-            loading="lazy"
-            class="lombard__right_decor"
-            alt=""
-          /> -->
           <img
             class="lombard__right_decor"
             src="/images/home/lombard-decor.png"

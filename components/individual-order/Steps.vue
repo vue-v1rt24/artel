@@ -24,13 +24,6 @@ defineProps<{
         <div v-if="idx > 0" class="order_right-line"></div>
 
         <div class="order_right-box">
-          <!-- <NuxtImg
-            :src="step.individualOrderEtapyRabotyVariantyRepeatIzobrazhenie.node?.mediaItemUrl"
-            format="avif, webp"
-            densities="x1"
-            class="order_right-img"
-            alt=""
-          /> -->
           <img
             class="order_right-img"
             :src="step.individualOrderEtapyRabotyVariantyRepeatIzobrazhenie.node?.mediaItemUrl"

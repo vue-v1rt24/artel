@@ -23,13 +23,6 @@ defineProps<{
     <ul class="other_article__list">
       <li v-for="article in articles" :key="article.databaseId" class="other_article__item">
         <NuxtLink :to="`/${parentLink}/${article.slug}`">
-          <!-- <NuxtImg
-            :src="article.featuredImage.node?.mediaItemUrl"
-            format="avif, webp"
-            densities="x1"
-            loading="lazy"
-            alt=""
-          /> -->
           <img :src="article.featuredImage.node?.mediaItemUrl" loading="lazy" alt="" />
 
           {{ article.title }}

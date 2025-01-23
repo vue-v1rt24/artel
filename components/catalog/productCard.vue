@@ -10,13 +10,6 @@ defineProps<{
   <NuxtLink :to="`/product/${product.slug}`">
     <div class="product">
       <div class="product__img">
-        <!-- <NuxtImg
-          :src="product.image?.mediaItemUrl"
-          densities="x1"
-          format="avif, webp"
-          loading="lazy"
-          alt=""
-        /> -->
         <img :src="product.image?.mediaItemUrl" loading="lazy" alt="" />
       </div>
 

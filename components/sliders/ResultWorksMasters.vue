@@ -188,13 +188,6 @@ onUnmounted(() => {
           <div class="before_after_bx">
             <div class="before_after__images">
               <div class="before_img">
-                <!-- <NuxtImg
-                  :src="work.remontDoPosleRepeatIzobrazhenieDo.node?.mediaItemUrl"
-                  format="avif, webp"
-                  densities="x1"
-                  loading="lazy"
-                  alt=""
-                /> -->
                 <img
                   :src="work.remontDoPosleRepeatIzobrazhenieDo.node?.mediaItemUrl"
                   loading="lazy"
@@ -205,13 +198,6 @@ onUnmounted(() => {
               </div>
 
               <div class="after_img">
-                <!-- <NuxtImg
-                  :src="work.remontDoPosleRepeatIzobrazheniePosle.node?.mediaItemUrl"
-                  format="avif, webp"
-                  densities="x1"
-                  loading="lazy"
-                  alt=""
-                /> -->
                 <img
                   :src="work.remontDoPosleRepeatIzobrazheniePosle.node?.mediaItemUrl"
                   loading="lazy"

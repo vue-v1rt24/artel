@@ -30,13 +30,6 @@ useSeoMeta({
 
         <!--  -->
         <div class="success_page__right">
-          <!-- <NuxtImg
-            src="/images/successPage/veshalka.png"
-            densities="x1"
-            format="avif, webp"
-            class="success_page__veshalka"
-            alt=""
-          /> -->
           <img
             src="/images/successPage/veshalka.png"
             class="success_page__veshalka"
@@ -44,13 +37,6 @@ useSeoMeta({
             alt=""
           />
 
-          <!-- <NuxtImg
-            src="/images/successPage/blik.png"
-            densities="x1"
-            format="avif, webp"
-            class="success_page__blik"
-            alt=""
-          /> -->
           <img
             src="/images/successPage/blik.png"
             class="success_page__blik"

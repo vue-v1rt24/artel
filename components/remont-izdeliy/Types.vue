@@ -49,13 +49,6 @@ const modalOpen = (idx: number) => {
     >
       <div class="repair_item-title">{{ item.remontNazvanieRemonta }}</div>
 
-      <!-- <NuxtImg
-        :src="item.remontIzobrazhenie.node?.mediaItemUrl"
-        format="avif, webp"
-        densities="x1"
-        class="repair_item-img"
-        alt=""
-      /> -->
       <img
         class="repair_item-img"
         :src="item.remontIzobrazhenie.node?.mediaItemUrl"

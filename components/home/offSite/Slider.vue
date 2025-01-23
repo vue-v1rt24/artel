@@ -61,13 +61,6 @@ onUnmounted(() => {
       <template v-for="slider in sliders" :key="slider.id">
         <div v-if="slider.img" class="swiper-slide">
           <div class="off_slider__img_bx">
-            <!-- <NuxtImg
-              :src="slider.img"
-              densities="x1"
-              format="avif, webp"
-              class="off_slider__img"
-              alt=""
-            /> -->
             <img :src="slider.img" class="off_slider__img" loading="lazy" alt="" />
           </div>
         </div>
