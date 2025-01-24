@@ -74,7 +74,7 @@ const modalOpen = (idx: number) => {
         <ModalTemplateFindAvailability
           form-class="remont-izdelii-form"
           :title="`Закажите ${titleModal} ювелирного изделия`"
-          :subject="`Вид ремонта: ${typeSubjectForm}`"
+          :subject="`Услуга: ${typeSubjectForm}`"
           btn-submit-title="Заказать"
         />
       </ModalTemplateShell>

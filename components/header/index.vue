@@ -76,7 +76,7 @@ watch(
               <ModalTemplateFindAvailability
                 form-class="contact-us-form"
                 title="Связаться с нами"
-                subject="Связаться с нами"
+                subject="Общая форма"
               />
             </ModalTemplateShell>
           </UiModal>

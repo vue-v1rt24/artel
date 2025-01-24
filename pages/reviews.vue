@@ -118,8 +118,19 @@ watch(status, (val) => {
         </div>
 
         <div class="reviews__leave_img">
-          <img src="/images/reviews/ya_big.svg" alt="" />
-          <img src="/images/reviews/2gis_big.svg" alt="" />
+          <a
+            href="https://yandex.ru/profile/1006092475?lang=ru&no-distribution=1&view-state=mini&source=wizbiz_new_map_single"
+            target="_blank"
+          >
+            <img src="/images/reviews/ya_big.svg" alt="" />
+          </a>
+
+          <a
+            href="https://2gis.ru/stavropol/branches/8022573707168741/firm/8022565117234149/41.925924%2C45.017826/tab/reviews?m=41.925857%2C45.020031%2F14.22"
+            target="_blank"
+          >
+            <img src="/images/reviews/2gis_big.svg" alt="" />
+          </a>
         </div>
       </div>
     </div>
