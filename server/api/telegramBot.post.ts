@@ -31,15 +31,14 @@ export default defineEventHandler(async (event) => {
   console.log(idUser);
 
   const formData = new FormData();
+  formData.append('chat_id', idUser);
+  formData.append('parse_mode', 'html');
   formData.append('text', message);
   // https://api.telegram.org/bot${tokenTelegram}/sendMessage?chat_id=${idUser}&parse_mode=html&text=${message}
-  const res = await $fetch(
-    `https://api.telegram.org/bot${tokenTelegram}/sendMessage?chat_id=${idUser}&parse_mode=html`,
-    {
-      method: 'POST',
-      body: formData,
-    },
-  );
+  const res = await $fetch(`https://api.telegram.org/bot${tokenTelegram}/sendMessage`, {
+    method: 'POST',
+    body: formData,
+  });
 
   return res;
 });
