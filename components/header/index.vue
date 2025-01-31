@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { EnumRole } from '~/server/types/telegramBot.types';
+
+//
 const route = useRoute();
 const theme = useTheme();
 const { menu } = useMenus();
@@ -77,6 +80,7 @@ watch(
                 form-class="contact-us-form"
                 title="Связаться с нами"
                 subject="Общая форма"
+                :role="EnumRole.TOVAROVED"
               />
             </ModalTemplateShell>
           </UiModal>

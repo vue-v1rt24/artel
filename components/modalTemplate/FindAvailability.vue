@@ -4,20 +4,27 @@ import JustValidate from 'just-validate';
 import { Fancybox } from '@fancyapps/ui';
 
 import type { TypeProductOrder } from '~/types/productOrder.types';
+import type { EnumRole } from '~/server/types/telegramBot.types';
 
 const {
   formClass,
   title,
   subject,
+  role,
   special,
   btnSubmitTitle = 'Узнать наличие',
 } = defineProps<{
   formClass: string;
   title: string;
   subject: string;
+  role: EnumRole;
   special?: TypeProductOrder | null;
   btnSubmitTitle?: string;
 }>();
+
+//
+const res = await useTelegram(role, 'Сообщение');
+console.log(res);
 
 //
 const mail = useMail();
@@ -90,7 +97,11 @@ onMounted(() => {
       }
 
       // Отправка письма
-      await mail.send(setMail());
+      // await mail.send(setMail());
+
+      // Отправка в телеграм
+      // const res = await useTelegram(role, 'Сообщение');
+      // console.log(res);
 
       //
       Fancybox.close();
