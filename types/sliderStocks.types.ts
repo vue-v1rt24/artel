@@ -3,4 +3,5 @@ export type TypeStocksSlider = {
   slug: string;
   img1600: string;
   img688: string;
+  linkOtherSite: string;
 };

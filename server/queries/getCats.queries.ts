@@ -16,6 +16,7 @@ export const getCatsQuery = `
               }
             }
             stockVMenyu
+            stockSsylkaNaStoronnijSajt
           }
           slug
         }

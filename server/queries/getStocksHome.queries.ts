@@ -16,6 +16,7 @@ export const getStocksHomeQuery = `
                 mediaItemUrl
               }
             }
+            stockSsylkaNaStoronnijSajt
           }
         }
       }

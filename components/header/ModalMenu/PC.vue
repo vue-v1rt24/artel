@@ -11,8 +11,16 @@ const { cats, stock } = defineProps<{
   stock?: {
     image: string;
     slug: string;
+    linkOtherSite: string;
   };
 }>();
+
+//
+const linkStock = computed(() =>
+  stock?.linkOtherSite ? stock.linkOtherSite : stock?.slug ? `/stocks/${stock.slug}` : null,
+);
+
+const linkStockTargetBlank = computed(() => (stock?.linkOtherSite ? '_blank' : '_self'));
 
 //
 const emit = defineEmits<{
@@ -36,8 +44,11 @@ const emit = defineEmits<{
       </NuxtLink>
     </li>
 
-    <li v-if="viewport.isGreaterOrEquals('screen1280') && stock?.image" class="modal_menu__stock">
-      <NuxtLink :to="`/stocks/${stock.slug}`" @click="emit('eventClick')">
+    <li
+      v-if="viewport.isGreaterOrEquals('screen1280') && stock?.image && linkStock"
+      class="modal_menu__stock"
+    >
+      <NuxtLink :to="linkStock" @click="emit('eventClick')" :target="linkStockTargetBlank">
         <img :src="stock.image" loading="lazy" alt="" />
       </NuxtLink>
     </li>

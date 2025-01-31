@@ -13,6 +13,7 @@ export default defineEventHandler(async (event) => {
       slug: stock.slug,
       img1600: stock.stocksFields.stockFullIzobrazhenie1600.node?.mediaItemUrl,
       img688: stock.stocksFields.stockFullIzobrazhenie688.node?.mediaItemUrl,
+      linkOtherSite: stock.stocksFields.stockSsylkaNaStoronnijSajt,
     }));
 
   //

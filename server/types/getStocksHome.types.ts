@@ -16,6 +16,7 @@ export type TypeGetStocksHomeQuery = {
               mediaItemUrl: string;
             };
           };
+          stockSsylkaNaStoronnijSajt: string;
         };
       }[];
     };

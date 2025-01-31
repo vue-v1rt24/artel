@@ -79,7 +79,7 @@ watch(
               <ModalTemplateFindAvailability
                 form-class="contact-us-form"
                 title="Связаться с нами"
-                subject="Общая форма"
+                subject="Консультация"
                 :role="EnumRole.TOVAROVED"
               />
             </ModalTemplateShell>

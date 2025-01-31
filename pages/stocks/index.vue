@@ -22,7 +22,14 @@ useSeoMeta({
       <!--  -->
       <div class="sales_wrap">
         <div v-for="stock in stocks?.socks" :key="stock.databaseId" class="sales_item">
-          <NuxtLink :to="`/stocks/${stock.slug}`" class="sales_item__link"></NuxtLink>
+          <NuxtLink
+            v-if="stock.stocksFields.stockSsylkaNaStoronnijSajt"
+            :to="stock.stocksFields.stockSsylkaNaStoronnijSajt"
+            target="_blank"
+            class="sales_item__link"
+          ></NuxtLink>
+
+          <NuxtLink v-else :to="`/stocks/${stock.slug}`" class="sales_item__link"></NuxtLink>
 
           <div class="sales_item-baner">
             <img

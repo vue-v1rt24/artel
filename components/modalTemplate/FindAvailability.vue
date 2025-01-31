@@ -23,10 +23,6 @@ const {
 }>();
 
 //
-// const res = await useTelegram(role, 'Сообщение');
-// console.log(res);
-
-//
 const mail = useMail();
 
 //
@@ -100,8 +96,12 @@ onMounted(() => {
       // await mail.send(setMail());
 
       // Отправка в телеграм
-      const res = await useTelegram(role, 'Сообщение');
-      console.log(res);
+      const res = await useTelegram(
+        role,
+        `<b>Форма:</b> ${subject}\n<b>Имя:</b>: ${fields.username}\n<b>Номер телефона:</b> ${
+          fields.phone
+        }${fields.linkProduct && `\n<b>Выбранный товар:</b> ${fields.linkProduct}`}`,
+      );
 
       //
       Fancybox.close();

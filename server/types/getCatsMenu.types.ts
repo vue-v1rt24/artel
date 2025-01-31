@@ -16,6 +16,7 @@ export type TypeCatsStocksQuery = {
             };
           };
           stockVMenyu: boolean;
+          stockSsylkaNaStoronnijSajt: string;
         };
         slug: string;
       }[];

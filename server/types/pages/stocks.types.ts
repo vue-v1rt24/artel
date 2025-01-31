@@ -25,6 +25,7 @@ export type TypeStocks = {
               mediaItemUrl: string;
             };
           };
+          stockSsylkaNaStoronnijSajt: string;
         };
       }[];
     };

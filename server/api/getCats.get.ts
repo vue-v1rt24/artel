@@ -11,6 +11,7 @@ export default defineEventHandler(async (event) => {
   const stock = {
     slug: stockInMenu?.slug,
     image: stockInMenu?.stocksFields.stockIzobrazhenie785.node?.mediaItemUrl,
+    linkOtherSite: stockInMenu.stocksFields.stockSsylkaNaStoronnijSajt,
   };
 
   //

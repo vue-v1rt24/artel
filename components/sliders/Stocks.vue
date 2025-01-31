@@ -48,12 +48,27 @@ onUnmounted(() => {
 
 <template>
   <div class="swiper_stocks swiper">
-    <!-- <UiSkeleton v-if="!stocks?.length" width="100%" height="100%" /> -->
-
     <!-- <div class="swiper-wrapper sdvig"> -->
     <div class="swiper-wrapper">
       <div v-for="stock in stocks" :key="stock.id" class="swiper-slide">
-        <NuxtLink :to="`/stocks/${stock.slug}`">
+        <NuxtLink
+          v-if="stock.linkOtherSite"
+          :to="stock.linkOtherSite"
+          external
+          target="_blank"
+          class="link_Other_Site"
+        >
+          <img
+            v-if="viewport.isGreaterOrEquals('screen768')"
+            :src="stock.img1600"
+            loading="lazy"
+            alt=""
+          />
+
+          <img v-if="viewport.isLessThan('screen768')" :src="stock.img688" loading="lazy" alt="" />
+        </NuxtLink>
+
+        <NuxtLink v-else :to="`/stocks/${stock.slug}`">
           <img
             v-if="viewport.isGreaterOrEquals('screen768')"
             :src="stock.img1600"
@@ -214,5 +229,12 @@ onUnmounted(() => {
   @media (max-width: 576px) {
     width: 14px;
   }
+}
+
+/*  */
+
+.link_Other_Site {
+  position: absolute;
+  inset: 0;
 }
 </style>
