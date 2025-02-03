@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // Мета данные
 useSeoMeta({
-  title: 'Отправка заявки',
+  title: 'Ваша заявка успешно отправлена',
   // description: '',
 });
 </script>
@@ -52,6 +52,16 @@ useSeoMeta({
 <style lang="css" scoped>
 .success_page {
   overflow: hidden;
+  padding-bottom: 50px;
+
+  /*  */
+  @media (max-width: 1280px) {
+    padding-bottom: 80px;
+  }
+
+  @media (max-width: 1199px) {
+    padding-bottom: 0;
+  }
 }
 
 /*  */

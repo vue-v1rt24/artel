@@ -95,7 +95,7 @@ onMounted(() => {
       let linkProductTelegram: string | null = '';
 
       if (special) {
-        fields.linkProduct = `<a href="${location.protocol}/${location.host}/product/${special.slug}">${special.title}</a>`;
+        fields.linkProduct = `<a href="${siteUrlFrontend}/product/${special.slug}">${special.title}</a>`;
         linkProductTelegram = `\n<a href="${siteUrlFrontend}/product/${special.slug}">Ссылка на товар</a>`;
       }
 
