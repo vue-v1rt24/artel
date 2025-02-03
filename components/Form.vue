@@ -72,7 +72,7 @@ onMounted(() => {
     ])
     .onSuccess(async (event: SubmitEvent) => {
       // Отправка письма
-      // await mail.send(setMail());
+      await mail.send(setMail());
 
       // Отправка в телеграм
       const res = await useTelegram(

@@ -5,9 +5,9 @@ export default defineNuxtConfig({
     apiUrlGraphql: process.env.NUXT_API_URL_GRAPHQL,
 
     tokenTelegram: process.env.NUXT_TOKEN_TELEGRAM,
-    userIdTovaroVed: process.env.NUXT_USER_ID_TOVARO_VED, // Я
-    userIdProdavetc: process.env.NUXT_USER_ID_PRODAVETC, // Влад
-    userIdYouvelir: process.env.NUXT_USER_ID_YOUVELIR, // Владимир
+    userIdTovaroVed: process.env.NUXT_USER_ID_TOVARO_VED,
+    userIdProdavetc: process.env.NUXT_USER_ID_PRODAVETC,
+    userIdYouvelir: process.env.NUXT_USER_ID_YOUVELIR,
     public: {
       siteUrlFrontend: process.env.NUXT_PUBLIC_SITE_URL_FRONTEND,
       apiYandexCardKey: process.env.NUXT_PUBLIC_API_YANDEX_CARD_KEY,
