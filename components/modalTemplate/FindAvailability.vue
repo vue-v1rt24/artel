@@ -92,7 +92,7 @@ onMounted(() => {
 
       if (special) {
         fields.linkProduct = `<a href="${location.protocol}/${location.host}/product/${special.slug}">${special.title}</a>`;
-        linkProductTelegram = `\n<a href="${location.protocol}/${location.host}/product/${special?.slug}">Ссылка на товар</a>`;
+        linkProductTelegram = `\n<a href="https://golden-artel.ru/product/${special?.slug}">Ссылка на товар</a>`;
       }
 
       // Отправка письма
