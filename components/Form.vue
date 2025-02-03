@@ -1,12 +1,14 @@
 <script setup lang="ts">
 //@ts-ignore
 import JustValidate from 'just-validate';
+import { EnumRole } from '~/server/types/telegramBot.types';
 
 //
-const { subject } = defineProps<{
+const { subject, role } = defineProps<{
   title?: string;
   desc?: string;
   subject: string;
+  role: EnumRole;
 }>();
 
 //
@@ -70,7 +72,13 @@ onMounted(() => {
     ])
     .onSuccess(async (event: SubmitEvent) => {
       // Отправка письма
-      await mail.send(setMail());
+      // await mail.send(setMail());
+
+      // Отправка в телеграм
+      const res = await useTelegram(
+        role,
+        `<b>Форма:</b> ${subject}\n<b>Имя:</b>: ${fields.username}\n<b>Номер телефона:</b>${fields.phone}`,
+      );
 
       // Сброс формы
       resetForm();

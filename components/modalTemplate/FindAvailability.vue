@@ -88,8 +88,11 @@ onMounted(() => {
       },
     ])
     .onSuccess(async (event: SubmitEvent) => {
+      let linkProductTelegram: string | null = '';
+
       if (special) {
-        fields.linkProduct = `<a href="${location.protocol}//${location.host}/product/${special.slug}">${special.title}</a>`;
+        fields.linkProduct = `<a href="${location.protocol}/${location.host}/product/${special.slug}">${special.title}</a>`;
+        linkProductTelegram = `\n<a href="${location.protocol}/${location.host}/product/${special?.slug}">Ссылка на товар</a>`;
       }
 
       // Отправка письма
@@ -98,9 +101,11 @@ onMounted(() => {
       // Отправка в телеграм
       const res = await useTelegram(
         role,
-        `<b>Форма:</b> ${subject}\n<b>Имя:</b>: ${fields.username}\n<b>Номер телефона:</b> ${
+        `<b>Форма:</b> ${subject}\n<b>Имя:</b>: ${fields.username}\n<b>Номер телефона:</b>${
           fields.phone
-        }${fields.linkProduct && `\n<b>Выбранный товар:</b> ${fields.linkProduct}`}`,
+        }${
+          fields.linkProduct && `\n<b>Выбранный товар:</b> ${fields.linkProduct}`
+        }${linkProductTelegram}`,
       );
 
       //

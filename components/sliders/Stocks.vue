@@ -107,7 +107,7 @@ onUnmounted(() => {
 
 /*  */
 .swiper-slide img {
-  border-radius: 10px;
+  border-radius: 32px;
 }
 
 /*  */

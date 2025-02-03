@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { EnumRole } from '~/server/types/telegramBot.types';
+
+//
 defineProps<{
   types: {
     title: string;
@@ -75,6 +78,7 @@ const modalOpen = (idx: number) => {
           form-class="remont-izdelii-form"
           :title="`Закажите ${titleModal} ювелирного изделия`"
           :subject="`Услуга: ${typeSubjectForm}`"
+          :role="EnumRole.PRODAVETC"
           btn-submit-title="Заказать"
         />
       </ModalTemplateShell>

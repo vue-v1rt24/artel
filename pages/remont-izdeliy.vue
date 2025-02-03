@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { EnumRole } from '~/server/types/telegramBot.types';
+
+//
 const { data: remont } = await useFetch('/api/pages/remontIzdeliy');
 
 // console.log(remont.value);
@@ -59,7 +62,8 @@ onMounted(() => {
     <Form
       title="Выполним качественный ремонт Вашего изделия"
       desc="Оставьте заявку, и наши специалисты свяжутся с Вами для проведения консультации"
-      subject="Ремонт изделий"
+      subject="Консультация по ремонту изделия"
+      :role="EnumRole.PRODAVETC"
     />
   </div>
 </template>

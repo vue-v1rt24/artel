@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { TypeProductOrder } from '~/types/productOrder.types';
+import { EnumRole } from '~/server/types/telegramBot.types';
 
 //
 const { slug } = useRoute().params as { slug: string };
@@ -149,6 +150,7 @@ const orderHandler = () => {
             title="Узнайте о наличии товара:"
             subject="Узнать о наличии товара"
             :special="dataModal"
+            :role="EnumRole.TOVAROVED"
           />
         </ModalTemplateShell>
       </UiModal>

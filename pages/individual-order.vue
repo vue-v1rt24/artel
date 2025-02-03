@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { EnumRole } from '~/server/types/telegramBot.types';
+
+//
 const { data: indOrder } = await useFetch('/api/pages/getIndividualOrder');
 
 // console.log(indOrder.value);
@@ -51,7 +54,8 @@ useSeoMeta({
     <Form
       title="Создадим для Вас индивидуальное украшение"
       desc="Оставьте заявку, и наши специалисты свяжутся с Вами для проведения консультации"
-      subject="Индивидуальный заказ"
+      subject="Консультация по индивидуальному заказу"
+      :role="EnumRole.YOUVELIR"
     />
   </div>
 </template>

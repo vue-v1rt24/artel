@@ -2,6 +2,9 @@
 import { gsap } from 'gsap';
 
 //
+const router = useRouter();
+
+//
 defineProps<{
   customJewelry: {
     title: string;
@@ -9,14 +12,6 @@ defineProps<{
     image1600: string;
   };
 }>();
-
-//
-const modal = useTemplateRef('modal');
-
-//
-const modalOpen = () => {
-  modal.value?.modalOpen();
-};
 
 //
 onMounted(() => {
@@ -56,26 +51,13 @@ onMounted(() => {
         width="308px"
         title="Узнать подробнее"
         class="special__info_btn"
-        @click="modalOpen"
+        @btn-click="router.push('/individual-order')"
       />
 
       <div class="custom_jewelry__img">
         <img :src="customJewelry.image1600" loading="lazy" alt="" />
       </div>
     </div>
-
-    <!--  -->
-    <Teleport to="body">
-      <UiModal id-modal="contact-custom-jewelry" ref="modal">
-        <ModalTemplateShell>
-          <ModalTemplateFindAvailability
-            form-class="custom-jewelry-form"
-            title="Ювелирные украшения на заказ"
-            subject="Ювелирные украшения на заказ"
-          />
-        </ModalTemplateShell>
-      </UiModal>
-    </Teleport>
   </div>
 </template>
 
