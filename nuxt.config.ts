@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     userIdProdavetc: process.env.NUXT_USER_ID_PRODAVETC, // Влад
     userIdYouvelir: process.env.NUXT_USER_ID_YOUVELIR, // Владимир
     public: {
+      siteUrlFrontend: process.env.NUXT_PUBLIC_SITE_URL_FRONTEND,
       apiYandexCardKey: process.env.NUXT_PUBLIC_API_YANDEX_CARD_KEY,
     },
   },

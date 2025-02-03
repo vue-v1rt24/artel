@@ -6,6 +6,10 @@ import { Fancybox } from '@fancyapps/ui';
 import type { TypeProductOrder } from '~/types/productOrder.types';
 import type { EnumRole } from '~/server/types/telegramBot.types';
 
+//
+const { siteUrlFrontend } = useRuntimeConfig().public;
+
+//
 const {
   formClass,
   title,
@@ -92,7 +96,8 @@ onMounted(() => {
 
       if (special) {
         fields.linkProduct = `<a href="${location.protocol}/${location.host}/product/${special.slug}">${special.title}</a>`;
-        linkProductTelegram = `\n<a href="https://golden-artel.ru/product/${special?.slug}">Ссылка на товар</a>`;
+        // linkProductTelegram = `\n<a href="https://golden-artel.ru/product/${special.slug}">Ссылка на товар</a>`;
+        linkProductTelegram = `\n<a href="${siteUrlFrontend}/product/${special.slug}">Ссылка на товар</a>`;
       }
 
       // Отправка письма
