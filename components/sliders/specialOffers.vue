@@ -111,7 +111,7 @@ onUnmounted(() => {
           title="Узнайте о наличии товара:"
           subject="Узнать наличие товара"
           :special="dataModal"
-          :role="EnumRole.TOVAROVED"
+          :role="EnumRole.PRODAVETC"
         />
       </ModalTemplateShell>
     </UiModal>

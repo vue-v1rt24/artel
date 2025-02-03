@@ -80,7 +80,7 @@ watch(
                 form-class="contact-us-form"
                 title="Связаться с нами"
                 subject="Консультация"
-                :role="EnumRole.TOVAROVED"
+                :role="EnumRole.PRODAVETC"
               />
             </ModalTemplateShell>
           </UiModal>

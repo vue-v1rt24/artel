@@ -150,7 +150,7 @@ const orderHandler = () => {
             title="Узнайте о наличии товара:"
             subject="Узнать о наличии товара"
             :special="dataModal"
-            :role="EnumRole.TOVAROVED"
+            :role="EnumRole.PRODAVETC"
           />
         </ModalTemplateShell>
       </UiModal>

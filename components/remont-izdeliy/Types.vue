@@ -78,7 +78,7 @@ const modalOpen = (idx: number) => {
           form-class="remont-izdelii-form"
           :title="`Закажите ${titleModal} ювелирного изделия`"
           :subject="`Услуга: ${typeSubjectForm}`"
-          :role="EnumRole.PRODAVETC"
+          :role="EnumRole.YOUVELIR"
           btn-submit-title="Заказать"
         />
       </ModalTemplateShell>
