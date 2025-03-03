@@ -25,7 +25,6 @@ onMounted(() => {
   swiperInstance.value = new Swiper('.swiper_stocks', {
     modules: [Navigation, Pagination],
 
-    lazyPreloaderClass: 'swiper_stocks__preloader',
     loop: true,
 
     navigation: {
@@ -48,7 +47,6 @@ onUnmounted(() => {
 
 <template>
   <div class="swiper_stocks swiper">
-    <!-- <div class="swiper-wrapper sdvig"> -->
     <div class="swiper-wrapper">
       <div v-for="stock in stocks" :key="stock.id" class="swiper-slide">
         <NuxtLink
