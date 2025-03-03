@@ -78,11 +78,6 @@ onUnmounted(() => {
 
           <img v-if="viewport.isLessThan('screen768')" :src="stock.img688" loading="lazy" alt="" />
         </NuxtLink>
-
-        <div class="swiper_stocks__preloader">
-          <!-- <UiPreloader /> -->
-          <UiSkeleton width="100%" height="100%" />
-        </div>
       </div>
     </div>
 
@@ -101,11 +96,15 @@ onUnmounted(() => {
 </template>
 
 <style lang="css" scoped>
-.swiper_stocks__preloader {
+.swiper-slide {
   aspect-ratio: 1 / 0.401;
+
+  /*  */
+  @media (max-width: 767px) {
+    aspect-ratio: 1;
+  }
 }
 
-/*  */
 .swiper-slide img {
   border-radius: 32px;
 }

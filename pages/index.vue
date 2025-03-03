@@ -57,7 +57,6 @@ onMounted(() => {
 
 <style lang="css" scoped>
 .slider_stocks {
-  aspect-ratio: 1 / 0.401;
   margin-top: 40px;
   margin-bottom: 150px;
 
