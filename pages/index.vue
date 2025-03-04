@@ -65,13 +65,16 @@ onMounted(() => {
     margin-bottom: 140px;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1200px) {
     margin-bottom: 100px;
+  }
+
+  @media (max-width: 992px) {
+    margin-bottom: 60px;
   }
 
   @media (max-width: 576px) {
     margin-top: 30px;
-    margin-bottom: 60px;
   }
 }
 </style>
