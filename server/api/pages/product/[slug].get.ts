@@ -5,17 +5,12 @@ import type { TypeProduct } from '~/server/types/pages/product.types';
 export default defineEventHandler(async (event) => {
   const slug = getRouterParam(event, 'slug')!;
 
-  // Запрос
   const data = await requestFetch<TypeProduct>(productQuery(slug));
 
-  // Делаем нужную очерёдность категорий: Родительская категория -> Подкатегория:
-
-  // Родительская категория
   const cat1 = data.data.product.productCategories.nodes.find(
     (item) => item.slug === 'serebro' || item.slug === 'zoloto',
   );
 
-  // Подкатегория
   let cat2 = null;
 
   if (cat1?.slug === 'serebro') {

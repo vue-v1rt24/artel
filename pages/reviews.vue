@@ -1,13 +1,10 @@
 <script setup lang="ts">
 import type { TypeReview } from '~/types/pages/reviews.types';
 
-// Будет храниться значение следующей страницы (для кнопки показать ещё)
 const nextPage = ref('');
 
-//
 const isLoading = ref(false);
 
-// Для хранения данных из БД
 const reviewsArr = ref<TypeReview[]>([]);
 
 //
@@ -16,17 +13,12 @@ const { data: reviews, status } = await useFetch('/api/pages/reviews', {
   watch: [nextPage],
 });
 
-// console.log(reviews.value);
-
-// Помещаем пришедшие данные в переменную
 if (reviews.value?.reviews) {
   reviewsArr.value = reviews.value.reviews;
 }
 
-//
 const viewport = useViewport();
 
-//
 useSeoMeta({
   title: 'Отзывы – Сеть салонов Золотая Артель',
   description:
@@ -35,22 +27,19 @@ useSeoMeta({
 
 //
 const modal = useTemplateRef('modal');
-const reviewData = ref<TypeReview | null>(null); // будут данные отзыва для вывода в модальном окне
+const reviewData = ref<TypeReview | null>(null);
 
-// Открытие модального окна
 const readComment = (review: TypeReview) => {
   reviewData.value = review;
   modal.value?.modalOpen();
 };
 
-// Загрузка отзывов (постраничная навигация)
 const loadNextPage = () => {
   if (reviews.value?.pagination.endCursor) {
     nextPage.value = reviews.value.pagination.endCursor;
   }
 };
 
-//
 watch(status, (val) => {
   if (val === 'pending') {
     isLoading.value = true;
@@ -63,17 +52,13 @@ watch(status, (val) => {
 
 <template>
   <div class="reviews">
-    <!--  -->
     <UiLoading v-if="isLoading" />
 
-    <!-- Хлебные крошки -->
     <UiBreadCrumbs :links="[{ title: 'Отзывы и благодарности' }]" />
 
-    <!--  -->
     <div class="container">
       <h1 class="h2_72">Отзывы и благодарности</h1>
 
-      <!--  -->
       <div class="reviews__text">
         <div class="reviews__text_item">
           <h2 class="h3_32">

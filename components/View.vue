@@ -3,13 +3,12 @@ import { localStorageUtil } from '~/utils/localStorage.utils';
 
 //
 const { id, nameField, keyStorage } = defineProps<{
-  id: number; // id записи
-  count: number; // количество просмотров из админки
-  nameField: string; // название acf поля в админке
-  keyStorage: string; // название локального хранилища в браузере (localStorage)
+  id: number;
+  count: number;
+  nameField: string;
+  keyStorage: string;
 }>();
 
-// Отправка изменения количества просмотра на сервер
 const changeCount = async () => {
   await $fetch('/api/changeCountView', {
     method: 'POST',
@@ -20,7 +19,6 @@ const changeCount = async () => {
   });
 };
 
-// Запись в локальное хранилище
 const setLocalStorage = async () => {
   const loc = (localStorageUtil.getStorage(keyStorage) as number[]) || [];
 

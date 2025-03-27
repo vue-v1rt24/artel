@@ -1,12 +1,8 @@
 <script setup lang="ts">
 import '~/assets/css/return-styles-wp.css';
 
-//
 const { data: oferta } = await useFetch('/api/pages/oferta');
 
-// console.log(oferta.value);
-
-//
 useSeoMeta({
   title: oferta.value?.seo.titleSeo,
   description: oferta.value?.seo.descriptionSeo,
@@ -15,7 +11,6 @@ useSeoMeta({
 
 <template>
   <div class="wp_content privacy_wp">
-    <!-- Хлебные крошки -->
     <UiBreadCrumbs :links="[{ title: 'Публичная оферта' }]" />
 
     <!--  -->

@@ -28,23 +28,9 @@ const {
   pauseOnMouseEnter?: boolean;
 }>();
 
-/* Параметры defineProps:
-
-gallery: массив изображений
-title: Заголовок;
-desc: Описание;
-btn: Показ / Скрытие кнопок переключения;
-loop: Цикл;
-autoplay: Автоматический запуск;
-delay: Время переключения слайда;
-pauseOnMouseEnter: По наведению останавливает автоматическое переключение слайдера;
-*/
-
-//
 const swiper = ref<Swiper>();
 const isLoadSlideFancybox = ref(false);
 
-//
 onMounted(async () => {
   swiper.value = new Swiper(`.swiper-${id}`, {
     modules: [Navigation, Autoplay],
@@ -69,12 +55,10 @@ onMounted(async () => {
     },
   });
 
-  // Если не передаём параметр, то авто переключения не будет
   if (swiper.value && !autoplay) {
     swiper.value.autoplay.stop();
   }
 
-  // Открытие изображения в модальном окне
   await nextTick();
   Fancybox.bind(`[data-fancybox="gallery-${id}"]`, {
     Thumbs: false,
@@ -215,10 +199,7 @@ onUnmounted(() => {
 
 .popular_swiper {
   @media (min-width: 1681px) {
-    /* padding: 0 50%; */
-    /* margin: 0 -803px; */
     padding-left: 50%;
-    /* padding-right: 40px; */
     margin-left: -803px;
   }
 

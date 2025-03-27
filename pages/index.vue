@@ -1,22 +1,17 @@
 <script setup lang="ts">
 import type { TypeHomeQueryTransform } from '~/types/pages/home.types';
 
-// Получение акций
 const { data: stocks } = await useLazyFetch('/api/getStocksHome');
 
-// Получение данных страницы
 const { data: home } = await useLazyFetch<TypeHomeQueryTransform>('/api/pages/pageHome');
 
-// Получение данных раздела: Специальные предложения
 const { data: specials } = await useLazyFetch('/api/getSpecialOffers');
 
-//
 useSeoMeta({
   title: home.value?.seo.titleSeo,
   description: home.value?.seo.descriptionSeo,
 });
 
-//
 onMounted(() => {
   sdvigGallery();
 });

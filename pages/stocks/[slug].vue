@@ -3,8 +3,6 @@ const { slug } = useRoute().params as { slug: string };
 
 const { data: stock, error } = await useFetch(`/api/pages/stocks/${slug}`);
 
-// console.log(stock.value);
-
 if (error.value) {
   throw createError({
     statusCode: 404,
@@ -12,7 +10,6 @@ if (error.value) {
   });
 }
 
-// Мета данные
 useSeoMeta({
   title: stock.value?.seo.titleSeo,
   description: stock.value?.seo.descriptionSeo,
@@ -24,7 +21,6 @@ const viewport = useViewport();
 
 <template>
   <div class="sale">
-    <!-- Хлебные крошки -->
     <UiBreadCrumbs
       v-if="viewport.isGreaterOrEquals('screen768')"
       :links="[
@@ -33,7 +29,6 @@ const viewport = useViewport();
       ]"
     />
 
-    <!-- Кнопка "Вернуться назад" в моб. -->
     <UiGoBackBtn v-else />
 
     <!--  -->
@@ -107,7 +102,6 @@ const viewport = useViewport();
   max-width: 999px;
 }
 
-/* Медиа запросы Страница Акции */
 @media (max-width: 1360px) {
   .sale_text {
     gap: 52px;

@@ -1,15 +1,11 @@
 <script setup lang="ts">
 const { data: about } = await useFetch('/api/pages/about');
 
-// console.log(about.value);
-
-//
 useSeoMeta({
   title: about.value?.seo.titleSeo,
   description: about.value?.seo.descriptionSeo,
 });
 
-//
 onMounted(() => {
   sdvigGallery();
 });
@@ -27,10 +23,8 @@ onMounted(() => {
       title="О компании"
     />
 
-    <!-- История бренда -->
     <AboutHistoryBrand v-if="about?.historyBrand" :histories="about.historyBrand" />
 
-    <!-- Награды -->
     <div class="nagradi">
       <SlidersGallery
         v-if="about?.dostizheniya"
@@ -41,19 +35,14 @@ onMounted(() => {
       />
     </div>
 
-    <!-- Наша компания является участником ГИИС ДМДК -->
     <AboutGiis />
 
-    <!-- Сегодня "Золотая Артель" — это: -->
     <AboutSegodnya v-if="about?.segodnya" :segodnya="about.segodnya" />
 
-    <!-- Наш ассортимент -->
     <AboutAssortment v-if="about?.assortment" :assortment="about.assortment" />
 
-    <!-- Наши услуги -->
     <AboutServices v-if="about?.services" :services="about.services" />
 
-    <!-- "Золотая Артель" - Ваш путеводитель в мире ювелирного искусства -->
     <div class="aboutTravelGuideGallery">
       <SlidersGallery
         v-if="about?.gallery"

@@ -7,10 +7,8 @@ import type { TypeChildrenCatalog, TypeDataParentQuery } from '~/server/types/pa
 export default defineEventHandler(async (event) => {
   const slug = getRouterParam(event, 'slug')!;
 
-  // Получение дочерних категорий (каталогов)
   const dataChildrenCatalog = await requestFetch<TypeChildrenCatalog>(catalogChildrenQuery(slug));
 
-  // Получение данных категории (сео, описание)
   const dataParent = await requestFetch<TypeDataParentQuery>(
     dataParentQuery(+dataChildrenCatalog.data.productCategory.description),
   );

@@ -1,18 +1,13 @@
 <script setup lang="ts">
 import { EnumRole } from '~/server/types/telegramBot.types';
 
-//
 const { data: remont } = await useFetch('/api/pages/remontIzdeliy');
 
-// console.log(remont.value);
-
-//
 useSeoMeta({
   title: remont.value?.seo.titleSeo,
   description: remont.value?.seo.descriptionSeo,
 });
 
-//
 onMounted(() => {
   sdvigGallery();
 });
@@ -20,10 +15,8 @@ onMounted(() => {
 
 <template>
   <div>
-    <!-- Хлебные крошки -->
     <UiBreadCrumbs dark :links="[{ title: 'Ремонт ювелирных изделий' }]" />
 
-    <!-- Первый экран -->
     <PreviewScreen
       v-if="remont?.previewScreenPage"
       :preview-screen-page="remont.previewScreenPage"

@@ -1,14 +1,11 @@
 <script setup lang="ts">
-// Мета данные
 useSeoMeta({
   title: 'Ваша заявка успешно отправлена',
-  // description: '',
 });
 </script>
 
 <template>
   <div class="success_page">
-    <!-- Хлебные крошки -->
     <UiBreadCrumbs :links="[{ title: 'Заявка отправлена' }]" />
 
     <!--  -->

@@ -52,7 +52,6 @@ onMounted(() => {
     <div class="copy__text" ref="copyText">
       <div class="copy__text_1">© Золотая Артель, 2024</div>
       <NuxtLink class="copy__policy" to="/privacy-policy">Политика конфиденциальности</NuxtLink>
-      <!-- <NuxtLink class="copy__oferta" to="/oferta">Не является публичной офертой</NuxtLink> -->
       <div class="copy__oferta">Не является публичной офертой</div>
     </div>
 
@@ -70,16 +69,7 @@ onMounted(() => {
         <a class="social__link" :href="whatsapp" target="_blank">
           <ImagesSocialWhatsapp />
         </a>
-
-        <!-- <a class="social__link" :href="instagram" target="_blank">
-          <ImagesSocialInstagram />
-        </a> -->
       </div>
-
-      <!-- <div class="social__text">
-        Социальная сеть Instagram запрещены в РФ. Компания Meta признана экстремистской организацией
-        на территории Российской Федерации.
-      </div> -->
     </div>
 
     <!--  -->

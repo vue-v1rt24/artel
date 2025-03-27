@@ -16,9 +16,6 @@ const { article } = defineProps<{
     contentTypeName: EnumTypeNewsBlog;
   };
 }>();
-
-// console.log(article);
-// console.log(article.contentTypeName);
 </script>
 
 <template>

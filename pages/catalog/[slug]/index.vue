@@ -8,7 +8,6 @@ const { slug } = useRoute().params as { slug: string };
 //
 const isLoading = ref(false);
 
-// Получение родительских категорий
 const { data: parentCatalogs, error: parentCatalogsError } = await useFetch('/api/pages/catalog', {
   getCachedData(key) {
     return nuxtApp.payload.data[key] || nuxtApp.static.data[key];
@@ -21,7 +20,6 @@ if (parentCatalogsError.value) {
   });
 }
 
-// Получение дочерних категорий
 const { data: childrenCatalogs, error: childrenCatalogsError } = await useFetch(
   `/api/pages/catalog/${slug}`,
 );
@@ -32,15 +30,10 @@ if (childrenCatalogsError.value) {
   });
 }
 
-// console.log(parentCatalogs.value);
-// console.log(childrenCatalogs.value);
-
-//
 watch(childrenCatalogs, () => {
   isLoading.value = false;
 });
 
-//
 useSeoMeta({
   title: childrenCatalogs.value?.dataParentCategory.seo.titleSeo,
   description: childrenCatalogs.value?.dataParentCategory.seo.descriptionSeo,
@@ -54,19 +47,15 @@ const titleChange = computed(() => {
 
 <template>
   <div>
-    <!-- Предзагрузчик -->
     <UiLoading v-if="isLoading" />
 
-    <!-- Хлебные крошки -->
     <UiBreadCrumbs :links="[{ title: 'Каталог' }]" />
 
-    <!-- Каталог -->
     <div class="catalog">
       <div class="container">
         <div class="catalog__header">
           <h1 class="h2_72">Каталог изделий из {{ titleChange }}</h1>
 
-          <!-- Родительские категории -->
           <ul class="catalog__header_list">
             <template v-for="link in parentCatalogs" :key="link.databaseId">
               <li
@@ -86,7 +75,6 @@ const titleChange = computed(() => {
           </ul>
         </div>
 
-        <!-- Дочернии категории -->
         <ul class="catalog_children_list">
           <template v-for="item in childrenCatalogs?.childrenCategories" :key="item.databaseId">
             <CatalogCategoryItem v-if="item.count" :parent-category-name="slug" :category="item" />
@@ -95,12 +83,10 @@ const titleChange = computed(() => {
       </div>
     </div>
 
-    <!-- Популярные товары -->
     <div class="container">
       <SlidersPopularProducts />
     </div>
 
-    <!-- Описание категории -->
     <div
       v-if="childrenCatalogs?.dataParentCategory.catalogPageContent.opisanieKategorii"
       v-html="childrenCatalogs.dataParentCategory.catalogPageContent.opisanieKategorii"

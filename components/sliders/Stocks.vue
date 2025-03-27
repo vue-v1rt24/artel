@@ -12,12 +12,7 @@ const { stocks } = defineProps<{
   stocks?: TypeStocksSlider[];
 }>();
 
-// console.log(stocks);
-
-//
 const viewport = useViewport();
-
-//
 const swiperInstance = ref<Swiper | null>(null);
 
 //

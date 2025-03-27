@@ -4,8 +4,6 @@ import { EnumRole } from '~/server/types/telegramBot.types';
 //
 const { data: indOrder } = await useFetch('/api/pages/getIndividualOrder');
 
-// console.log(indOrder.value);
-
 //
 useSeoMeta({
   title: indOrder.value?.seo.titleSeo,
@@ -18,7 +16,6 @@ useSeoMeta({
     <!-- Хлебные крошки -->
     <UiBreadCrumbs dark :links="[{ title: 'Индивидуальный заказ' }]" />
 
-    <!-- Первый экран -->
     <PreviewScreen
       v-if="indOrder?.previewScreenPage"
       :preview-screen-page="indOrder.previewScreenPage"

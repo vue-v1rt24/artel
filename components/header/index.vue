@@ -9,19 +9,16 @@ const isOpenMenu = useIsOpenMenu();
 const viewport = useViewport();
 const modal = useTemplateRef('modal');
 
-// Открытие модального окна с формой
 const contactUs = () => {
   modal.value?.modalOpen();
 };
 
-// Закрытие меню
 const closeModalMenu = () => {
   if (isOpenMenu.value) {
     isOpenMenu.value = false;
   }
 };
 
-// Отслеживание открытия / закрытия меню
 watch(
   () => isOpenMenu.value,
   (isOpenMenu) => {

@@ -36,11 +36,9 @@ const fields = reactive({
   linkProduct: '',
 });
 
-// === Формирование письма
 const setMail = () => {
   const message = {
     subject,
-    // text: 'Текстовое сообщение',
     html: `
           <div>Имя: <strong>${fields.username}</strong></div>
           <div>Номер телефона: <strong>${fields.phone}</strong></div>
@@ -58,7 +56,6 @@ const setMail = () => {
 //
 const validator = ref<JustValidate | null>(null);
 
-// Сброс формы
 const resetForm = () => {
   if (validator.value && validator.value.refresh) {
     validator.value.form.reset();
@@ -99,10 +96,8 @@ onMounted(() => {
         linkProductTelegram = `\n<a href="${siteUrlFrontend}/product/${special.slug}">Ссылка на товар</a>`;
       }
 
-      // Отправка письма
       await mail.send(setMail());
 
-      // Отправка в телеграм
       const res = await useTelegram(
         role,
         `<b>Форма:</b> ${subject}\n<b>Имя:</b>: ${fields.username}\n<b>Номер телефона:</b>${
@@ -115,10 +110,8 @@ onMounted(() => {
       //
       Fancybox.close();
 
-      // Сброс формы
       resetForm();
 
-      // Отправка на страницу успешного письма
       navigateTo('/success', { external: true });
     });
 });
@@ -134,7 +127,6 @@ onUnmounted(() => {
   }
 });
 
-// Сброс формы и валидации
 watch(
   () => useIsCloseModal().value,
   (val) => {
@@ -147,10 +139,8 @@ watch(
 
 <template>
   <div class="fa_bx">
-    <!-- Заголовок -->
     <div class="fa__title">{{ title }}</div>
 
-    <!-- Блок товара -->
     <div v-if="special" class="fa__product">
       <div class="fa__product_img">
         <NuxtImg
@@ -183,7 +173,6 @@ watch(
       </div>
     </div>
 
-    <!-- Форма -->
     <form :class="[formClass, 'fa__form']">
       <div class="fa__form_title">Заполните Ваши контактные данные</div>
 

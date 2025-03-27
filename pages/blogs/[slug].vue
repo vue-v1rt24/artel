@@ -15,9 +15,6 @@ if (!blog.value || error.value) {
   });
 }
 
-// console.log(blog.value);
-
-//
 useSeoMeta({
   title: blog.value.singleBlog.seo.titleSeo,
   description: blog.value.singleBlog.seo.descriptionSeo,
@@ -29,16 +26,13 @@ const viewport = useViewport();
 
 <template>
   <div class="news_single_bx">
-    <!-- Хлебные крошки -->
     <UiBreadCrumbs
       v-if="viewport.isGreaterOrEquals('screen768')"
       :links="[{ title: 'Блог', link: '/news' }, { title: blog!.singleBlog.title }]"
     />
 
-    <!-- Вернуться назад -->
     <UiGoBackBtn v-if="viewport.isLessThan('screen768')" />
 
-    <!--  -->
     <div class="container">
       <div class="news_single">
         <div class="news_single__left">
@@ -48,7 +42,6 @@ const viewport = useViewport();
           >
             <time :datetime="blog.singleBlog.date">{{ dateFormatter(blog.singleBlog.date) }}</time>
 
-            <!-- Счётчик просмотров записи -->
             <View
               :id="blog.singleBlog.databaseId"
               :count="blog.singleBlog.newsFields.newsKolichestvoProsmotrov"
@@ -69,10 +62,8 @@ const viewport = useViewport();
         </div>
 
         <div class="news_single__right">
-          <!-- Поделиться -->
           <Share v-if="blog?.singleBlog.title" :title="blog.singleBlog.title" />
 
-          <!-- Другие статьи -->
           <NewsOtherArticle
             v-if="blog?.otherBlog"
             title="Читайте другие статьи"

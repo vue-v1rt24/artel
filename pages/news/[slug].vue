@@ -15,8 +15,6 @@ if (!news.value || error.value) {
   });
 }
 
-// console.log(news.value);
-
 //
 useSeoMeta({
   title: news.value.singleNews.seo.titleSeo,

@@ -1,9 +1,6 @@
 <script setup lang="ts">
 const { data: stocks } = await useFetch('/api/pages/stocks');
 
-// console.log(stocks.value);
-
-/*  */
 useSeoMeta({
   title: stocks.value?.home.seo.titleSeo,
   description: stocks.value?.home.seo.descriptionSeo,
@@ -111,8 +108,6 @@ useSeoMeta({
   color: #5b6b6b;
   max-width: 1190px;
 }
-
-/* Медиа запросы Страницы со всеми акциями */
 
 @media (max-width: 1360px) {
   .sales_wrap {

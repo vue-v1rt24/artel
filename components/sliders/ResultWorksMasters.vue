@@ -25,14 +25,12 @@ defineProps<{
 }>();
 
 //
-const swiper = useTemplateRef('swiper'); // слайдер
-const swiperWrapper = useTemplateRef('swiper-wrapper'); // слайдер
-const swiperSlide = ref<HTMLDivElement | null>(null); // будет текущий элемент с классом swiper-slide
-const beforeImg = ref<HTMLDivElement | null>(null); // будет текущий элемент с классом before_img
-const target = ref<HTMLElement | null>(null); // будет текущий элемент на который нажали
+const swiper = useTemplateRef('swiper');
+const swiperWrapper = useTemplateRef('swiper-wrapper');
+const swiperSlide = ref<HTMLDivElement | null>(null);
+const beforeImg = ref<HTMLDivElement | null>(null);
+const target = ref<HTMLElement | null>(null);
 
-//////// ============== Для ПК
-// Перемещение после нажатия на линию
 const mousemoveHandler = (evt: MouseEvent) => {
   const transformEl = getComputedStyle(swiperWrapper.value!).transform;
   const matrix = new DOMMatrixReadOnly(transformEl).m41;
@@ -43,7 +41,6 @@ const mousemoveHandler = (evt: MouseEvent) => {
   target.value!.style.left = x + 'px';
 };
 
-// По нажатию на линию
 const mousedownHandler = (evt: MouseEvent) => {
   target.value = evt.target as HTMLElement;
   const resize = target.value.classList.contains('line_resize');
@@ -56,16 +53,12 @@ const mousedownHandler = (evt: MouseEvent) => {
   }
 };
 
-// Сброс событий при отпускании мыши
 const mouseupHandler = () => {
   if (!swiper.value) return;
   swiperSlide.value?.removeEventListener('mousemove', mousemoveHandler);
   swiperSlide.value = beforeImg.value = target.value = null;
 };
-//////// ============== /Для ПК
 
-//////// ============== Для мобильного
-// Перемещение после нажатия на линию
 const touchmoveHandler = (evt: TouchEvent) => {
   const transformEl = getComputedStyle(swiperWrapper.value!).transform;
   const matrix = new DOMMatrixReadOnly(transformEl).m41;
@@ -87,7 +80,6 @@ const touchmoveHandler = (evt: TouchEvent) => {
   target.value!.style.left = x + 'px';
 };
 
-// При нажатии на линию
 const touchstartHandler = (evt: TouchEvent) => {
   target.value = evt.target as HTMLElement;
   const resize = target.value.classList.contains('line_resize');
@@ -100,24 +92,19 @@ const touchstartHandler = (evt: TouchEvent) => {
   }
 };
 
-// Сброс событий при отпускании мыши
 const touchendHandler = () => {
   if (!swiper.value) return;
   swiperSlide.value?.removeEventListener('touchmove', touchmoveHandler);
   swiperSlide.value = beforeImg.value = target.value = null;
 };
-//////// ============== /Для мобильного
 
-//
 const beforeAfter = () => {
   if (!swiper.value) return;
 
-  // Для ПК
   swiper.value.addEventListener('mousedown', mousedownHandler);
   swiper.value.addEventListener('mouseup', mouseupHandler);
   swiper.value.addEventListener('mouseleave', mouseupHandler);
 
-  // Для мобильного
   swiper.value.addEventListener('touchstart', touchstartHandler);
   swiper.value.addEventListener('touchend', touchendHandler);
   swiper.value.addEventListener('touchcancel', touchendHandler);
@@ -147,18 +134,15 @@ onMounted(() => {
     },
   });
 
-  // До и После
   beforeAfter();
 });
 
 onUnmounted(() => {
   if (swiper.value) {
-    // Для ПК
     swiper.value.removeEventListener('mousedown', mousedownHandler);
     swiper.value.removeEventListener('mouseup', mouseupHandler);
     swiper.value.removeEventListener('mouseleave', mouseupHandler);
 
-    // Для мобильного
     swiper.value.removeEventListener('touchstart', touchstartHandler);
     swiper.value.removeEventListener('touchend', touchendHandler);
     swiper.value.removeEventListener('touchcancel', touchendHandler);
@@ -176,12 +160,10 @@ onUnmounted(() => {
     <div class="popular__title">
       <h2 class="h2_56">Результат работ наших мастеров</h2>
 
-      <!--  -->
       <div class="swiper-btn swiper-popular-button-prev"></div>
       <div class="swiper-btn swiper-popular-button-next"></div>
     </div>
 
-    <!--  -->
     <div class="popular_swiper swiper" ref="swiper">
       <div class="swiper-wrapper sdvig" ref="swiper-wrapper">
         <div v-for="(work, key) in works" :key="key" class="swiper-slide">

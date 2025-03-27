@@ -1,15 +1,11 @@
 <script setup lang="ts">
 const { data: dataPartners } = await useFetch('/api/pages/partners');
 
-// console.log(dataPartners.value);
-
-//
 useSeoMeta({
   title: dataPartners.value?.seo.titleSeo,
   description: dataPartners.value?.seo.descriptionSeo,
 });
 
-//
 const interval = ref<ReturnType<typeof setInterval> | null>(null);
 const img = useTemplateRef('img');
 
@@ -38,7 +34,6 @@ onUnmounted(() => {
 
 <template>
   <div class="partners">
-    <!-- Хлебные крошки -->
     <UiBreadCrumbs :links="[{ title: 'Партнёры' }]" />
 
     <!--  -->

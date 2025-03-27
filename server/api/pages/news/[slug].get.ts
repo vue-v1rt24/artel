@@ -7,7 +7,6 @@ export default defineEventHandler(async (event) => {
 
   const data = await requestFetch<TypeSlugNews>(slugNewsQuery(slug as string));
 
-  // Получение других новостей для раздела "Читайте другие статьи"
   const otherNews = await requestFetch<TypeOtherArticle>(
     otherNewsQuery(data.data.newsTypeBy.databaseId),
   );

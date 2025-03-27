@@ -8,9 +8,6 @@ const { articles } = defineProps<{
   articles: TypeArticles;
 }>();
 
-// console.log(articles);
-
-//
 const emit = defineEmits<{
   loadData: [nextPage: string, type: EnumTypeNewsBlog];
 }>();
@@ -42,20 +39,6 @@ const emit = defineEmits<{
 </template>
 
 <style lang="css" scoped>
-.news_bx {
-  /* margin-top: 140px; */
-
-  /*  */
-  /* @media (max-width: 768px) {
-    margin-top: 100px;
-  }
-
-  @media (max-width: 576px) {
-    margin-top: 60px;
-  } */
-}
-
-/*  */
 .news_list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

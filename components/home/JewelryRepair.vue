@@ -146,23 +146,6 @@ defineProps<{
   overflow: hidden;
 
   /*  */
-  @media (max-width: 768px) {
-    /* height: 390px; */
-  }
-
-  @media (max-width: 576px) {
-    /* height: 320px; */
-  }
-
-  @media (max-width: 480px) {
-    /* height: 250px; */
-  }
-
-  @media (max-width: 375px) {
-    /* height: 190px; */
-  }
-
-  /*  */
   img {
     @media (max-width: 1024px) {
       width: 100%;

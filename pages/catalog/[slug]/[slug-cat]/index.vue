@@ -13,21 +13,14 @@ if (!slug && !slugcat) {
   });
 }
 
-// console.log(slug, slugcat);
-
-// Будет значение сортировки
 const selectSortVal = ref<string | null>(null);
 
-// Будет храниться значение, полученное из БД, для подгрузки следующей страницы (для кнопки показать ещё)
 const nextPage = ref('');
 
-// Для хранения товаров из БД
 const products = ref<TypeProducts[]>([]);
 
-// Значение будет меняться при нажатии на кнопку "Показать ещё"
 const isLoadProducts = ref(false);
 
-// Получаем данные подкатегории
 const {
   data: category,
   status,
@@ -44,39 +37,30 @@ if (error.value) {
   });
 }
 
-// console.log(category.value);
-
-// Помещаем пришедшие данные в переменную
 if (category.value?.products) {
   products.value = category.value.products;
 }
 
-// Мета данные
 useSeoMeta({
   title: category.value?.dataCategory.seo.titleSeo,
   description: category.value?.dataCategory.seo.descriptionSeo,
 });
 
-// Значения для селекта. Получаем из ENUM
 const selectOptions = [SortEnum.POPULAR, SortEnum.PRICE_UP, SortEnum.PRICE_DOWN];
 
-// Получаем название подкатегории
 const catName = computed(() => (slug === 'zoloto' ? 'Золото' : 'Серебро'));
 
-// Получаем значение сортировки
 const selectValHandler = (val: string) => {
   nextPage.value = '';
   selectSortVal.value = val;
 };
 
-// Изменение количества карточек товаров на странице
 const viewCard = ref<EnumViewCard>(EnumViewCard.LITTLE);
 
 const sizeCards = (val: EnumViewCard) => {
   viewCard.value = val;
 };
 
-// Показать ещё
 const loadMoe = () => {
   if (category.value?.pageInfo.endCursor) {
     isLoadProducts.value = true;
@@ -84,7 +68,6 @@ const loadMoe = () => {
   }
 };
 
-//
 watch(
   () => status.value,
   (val) => {
@@ -102,10 +85,8 @@ watch(
 
 <template>
   <div class="subcategory">
-    <!-- Предзагрузчик -->
     <UiLoading v-if="status === 'pending'" />
 
-    <!-- Хлебные крошки -->
     <UiBreadCrumbs
       :links="[
         { title: 'Каталог', link: '/catalog/zoloto' },
@@ -114,18 +95,15 @@ watch(
       ]"
     />
 
-    <!-- Содержание -->
     <div class="container">
       <h1 class="h2_72">{{ category?.subCategory.name }}</h1>
 
-      <!-- Сортировка -->
       <div class="sort">
         <UiSelect :options="selectOptions" @select-option-val="selectValHandler" />
 
         <CatalogButtonsSize @size-cards="sizeCards" />
       </div>
 
-      <!-- Вывод товаров -->
       <ul :class="['products', { big: viewCard === EnumViewCard.BIG }]">
         <template v-for="product in products" :key="product.databaseId">
           <li v-if="product.image" class="products__item">
@@ -134,7 +112,6 @@ watch(
         </template>
       </ul>
 
-      <!-- Кнопка "Показать ещё" -->
       <UiButton
         v-if="category?.pageInfo.hasNextPage"
         width="100%"
@@ -145,7 +122,6 @@ watch(
         @btn-click="loadMoe"
       />
 
-      <!-- Описание категории -->
       <div
         v-if="category?.dataCategory.catalogPageContent.opisanieKategorii"
         v-html="category.dataCategory.catalogPageContent.opisanieKategorii"

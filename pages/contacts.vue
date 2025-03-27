@@ -1,9 +1,6 @@
 <script setup lang="ts">
 const { data: contacts } = await useFetch('/api/pages/contacts');
 
-// console.log(contacts.value);
-
-//
 useSeoMeta({
   title: contacts.value?.seo.titleSeo,
   description: contacts.value?.seo.descriptionSeo,
@@ -30,8 +27,6 @@ useSeoMeta({
           Если у Вас возникли вопросы, предложения или Вы хотите оставить отзыв о нашем ювелирном
           магазине, мы всегда рады помочь.
         </div>
-
-        <!-- --------- Контакты плашки --------- -->
 
         <div class="contacts_box">
           <div class="contacts_item">
@@ -94,7 +89,6 @@ useSeoMeta({
         </div>
       </div>
 
-      <!-- Карта -->
       <FooterLocationsMap
         v-if="
           contacts?.contacts.czentrKarty &&
@@ -106,7 +100,6 @@ useSeoMeta({
         :coords-mix="contacts.contacts.koordinatyKartyAdresaVMihajlovske"
       />
 
-      <!-- Подвал -->
       <footer class="footer">
         <FooterCopy
           v-if="contacts?.contacts.vkontakte"
@@ -142,7 +135,6 @@ useSeoMeta({
   font-weight: 200;
 }
 
-/* Медиа запросы Контакты текст */
 @media (max-width: 1360px) {
   .contacts_bg {
     top: 0;
@@ -179,7 +171,6 @@ useSeoMeta({
   }
 }
 
-/* ============ Контакты плашки ============ */
 .contacts_box {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

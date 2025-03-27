@@ -7,7 +7,6 @@ export default defineEventHandler(async (event) => {
 
   const data = await requestFetch<TypeSlugBlog>(slugBlogQuery(slug as string));
 
-  // Получение других записей блога для раздела "Читайте другие статьи"
   const otherBlog = await requestFetch<TypeOtherArticle>(
     otherBlogQuery(data.data.blogTypeBy.databaseId),
   );

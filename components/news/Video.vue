@@ -7,9 +7,6 @@ const { videos } = defineProps<{
   videos: TypesVideo;
 }>();
 
-// console.log(videos);
-
-//
 const emit = defineEmits<{
   loadData: [nextPage: string];
 }>();
@@ -77,20 +74,6 @@ onUnmounted(() => {
 </template>
 
 <style lang="css" scoped>
-.videos_bx {
-  /* margin-top: 140px; */
-
-  /*  */
-  /* @media (max-width: 768px) {
-    margin-top: 100px;
-  }
-
-  @media (max-width: 576px) {
-    margin-top: 60px;
-  } */
-}
-
-/*  */
 .videos {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

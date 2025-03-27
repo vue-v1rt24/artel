@@ -2,7 +2,6 @@
 const { topMenu } = useMenus();
 const isOpenMenu = useIsOpenMenu();
 
-// Закрытие меню
 const closeModalMenu = () => {
   if (isOpenMenu.value) {
     isOpenMenu.value = false;

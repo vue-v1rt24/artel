@@ -38,35 +38,22 @@ async function initMap() {
 
   const { YMap, YMapDefaultSchemeLayer, YMapDefaultFeaturesLayer } = ymaps3;
 
-  // Иницилиазируем карту
-  map = new YMap(
-    // Передаём ссылку на HTMLElement контейнера
-    document.getElementById('map')!,
-
-    // Передаём параметры инициализации карты
-    {
-      location: {
-        // Координаты центра карты
-        center: [cooredsCzentrKarty[1], cooredsCzentrKarty[0]],
-
-        // Уровень масштабирования
-        zoom: 10,
-      },
-      showScaleInCopyrights: true,
+  map = new YMap(document.getElementById('map')!, {
+    location: {
+      center: [cooredsCzentrKarty[1], cooredsCzentrKarty[0]],
+      zoom: 10,
     },
-  );
+    showScaleInCopyrights: true,
+  });
 
-  // Добавляем слой для отображения схематической карты
   map.addChild(
     new YMapDefaultSchemeLayer({
       customization: settingsMap as [],
     }),
   );
 
-  // Добавьте слой для маркеров
   map.addChild(new YMapDefaultFeaturesLayer({}));
 
-  // Метки
   const markerStavropol = new YMapDefaultMarker({
     coordinates: [centerMap[1], centerMap[0]],
     color: 'lightgreen',

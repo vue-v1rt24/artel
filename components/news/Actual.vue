@@ -30,16 +30,12 @@ const { actual } = defineProps<{
   }[];
 }>();
 
-// console.log(actual);
+const swiperActual = ref<Swiper | null>(null);
 
-//
-const swiperActual = ref<Swiper | null>(null); // объект слайдера
+const activeElementVideo = ref<HTMLElement | null>(null);
+const videoElem = ref<HTMLVideoElement | null>(null);
+const progressElem = ref<HTMLProgressElement | null>(null);
 
-const activeElementVideo = ref<HTMLElement | null>(null); // будет текущий родительский блок видео
-const videoElem = ref<HTMLVideoElement | null>(null); // будет текущий блок видео
-const progressElem = ref<HTMLProgressElement | null>(null); // будет текущий блок шкалы времени видео
-
-// Вывод шкалы времени на видео в модальном окне
 const timeupdateHandler = () => {
   if (!videoElem.value && !progressElem.value) return;
 
@@ -140,7 +136,6 @@ onMounted(async () => {
         const slide = fancybox.getSlide();
 
         if (fancybox.isCurrentSlide(slide)) {
-          // console.log(slide);
           videoElem.value = slide.contentEl.children[0];
           progressElem.value = slide.contentEl.children[3];
           progressUpdate();
@@ -446,7 +441,6 @@ onUnmounted(() => {
 </style>
 
 <style>
-/* Кнопки плеера */
 .actual_player_bx {
   position: relative;
   width: auto !important;

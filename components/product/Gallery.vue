@@ -149,7 +149,6 @@ onUnmounted(() => {
   }
 }
 
-/* ======== Большой слайдер */
 .swiper_big_image {
   width: 581px;
   background-color: var(--low-green);
@@ -225,7 +224,6 @@ onUnmounted(() => {
   }
 }
 
-/* ======== Мини слайдер */
 .swiper_little_image {
   width: 174px;
   height: 100%;

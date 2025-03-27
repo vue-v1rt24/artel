@@ -118,7 +118,6 @@ s {
   text-decoration-color: var(--light-gray3);
 }
 
-/* Кнопки слайдера */
 .swiper-btn {
   width: 62px;
   height: 62px;
@@ -134,7 +133,6 @@ s {
   opacity: 1;
 }
 
-/* Анимация сдвига слайдеров при достижении их видимости */
 .sdvig_margin {
   margin-left: 0;
   animation: animate_sdvig_margin 1s ease;
@@ -152,7 +150,6 @@ s {
   }
 }
 
-/*  */
 .sdvig_transform_x {
   transform: translateX(0);
   animation: animate_sdvig_transform 1s ease;

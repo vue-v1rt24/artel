@@ -15,9 +15,6 @@ if (error.value || !product.value) {
   });
 }
 
-// console.log(product.value);
-
-// Мета данные
 useSeoMeta({
   title: product.value?.seo.titleSeo,
   description: product.value?.seo.descriptionSeo,
@@ -35,7 +32,6 @@ const attributes: any = {
   pa_size: 'Размер',
 };
 
-// Объединение значений одинаковых атрибутов
 type TypeAttr = { name: string; value: string };
 
 const attArr: TypeAttr[] = [];
